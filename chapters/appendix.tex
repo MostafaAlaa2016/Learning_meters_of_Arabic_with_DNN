@@ -1,0 +1,61 @@
+
+
+\thispagestyle{empty}
+\begin{centering}
+\Huge{\textbf{\\[8cm]\uppercase{Appendices}}}\\[1.2cm]
+\end{centering}
+\normalsize{}
+
+\newpage
+\addcontentsline{toc}{chapter}{Appendices}
+\addcontentsline{toc}{section}{Appendix A}
+\begin{spacing}{2}
+\chapter*{\uppercase{Appendix A}} \label{A}
+\section*{Phase Correlation Theory}
+Let $D_{1}(x,y)$ and $D_{2}(x,y)$ be the dilated images to be registered, the Fourier transform for both $F_{1}(u,v)$ and $F_{2}(u,v)$ is given by:
+\[F_{k}(u,v)= \mathcal{F}\{D_{k}(x,y)\}\]
+\begin{equation}\label{eq:fourier}
+=\int_{y=-\infty}^{y=\infty}\int_{x=-\infty}^{x=\infty}D_{k}(x,y)\exp^{\left(-i2\pi\omega xy\right)}dxdy
+\end{equation}
+where, $\mathcal{F}$ is the Fourier operator, $K$ denotes image 1 or 2, $\omega$ is the frequency (in hertz), $x$ and $y$ are the spatial domain coordinates, $u$ and $v$ are the frequency domain coordinates of the two images.
+
+Given two images of size $N\times M$ shifted against each other, according to the Fourier shift property, their Fourier becomes:
+\begin{equation}\label{eq:fouriershift}
+F_{2}(u,v)= F_{1}(u,v)\exp^{\left(-i2\pi\left(\frac{u\Delta x}{M}+\frac{v\Delta y}{N}\right)\right)}
+\end{equation}
+
+The Normalized Cross Power Spectrum ($C(u,v)$) is defined as:
+\begin{equation}
+C(u,v)= \frac{F_{1}(u,v)\cdot F_{2}(u,v)^{*}}{\left|F_{1}(u,v)\cdot F_{2}(u,v)^{*}\right|}
+\end{equation}
+where `.' denotes the element-wise product, `*' denotes the complex conjugate.  
+
+Using equation \ref{eq:fouriershift}:
+\begin{equation}
+C(u,v)= \frac{F_{1}(u,v)\cdot F_{1}(u,v)^{*}\exp^{\left(i2\pi\left(\frac{u\Delta x}{M}+\frac{v\Delta y}{N}\right)\right)}}{\left|F_{1}(u,v)\cdot F_{1}(u,v)^{*}\exp^{\left(i2\pi\left(\frac{u\Delta x}{M}+\frac{v\Delta y}{N}\right)\right)}\right|}
+\end{equation}
+
+Since the phase term of $F_{1}(u,v)\cdot F_{1}(u,v)^{*}$ is zero, only the magnitude remains, i.e. $F_{1}(u,v)\cdot F_{1}(u,v)^{*}= \left|F_{1}(u,v)\cdot F_{1}(u,v)^{*}\right|$ and since the magnitude of any complex exponential is 1, the equation drops to:
+\[
+C(u,v)= \frac{\left|F_{1}(u,v)\cdot F_{1}(u,v)^{*}\right|\exp^{\left(i2\pi\left(\frac{u\Delta x}{M}+\frac{v\Delta y}{N}\right)\right)}}{\left|F_{1}(u,v)\cdot F_{1}(u,v)^{*}\right|}
+\]
+\begin{equation}
+= \exp^{\left(i2\pi\left(\frac{u\Delta x}{M}+\frac{v\Delta y}{N}\right)\right)}
+\end{equation}
+the inverse Fourier transform of which is a delta function, i.e. a single peak.
+
+The Normalized Cross Correlation ($c$) equals:
+\begin{equation}
+c= \mathcal{F}^{-1}\{C\}= \delta(x+\Delta x, y+ \Delta y)
+\end{equation}
+
+The shift in $x$ and $y$ between the two images $(\Delta x, \Delta y)$ takes the location of the maximum peak in $c$, such that:
+\begin{equation}
+(\Delta x, \Delta y)= \underset{x,y}{\operatorname{argmax}}\{c\}
+\end{equation}
+
+%%%%%%%%%%%%%
+\newpage
+%%\appendix
+%%\appendixpage
+%%\addappheadtotoc
