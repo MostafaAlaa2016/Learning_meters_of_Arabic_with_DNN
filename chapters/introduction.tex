@@ -1,33 +1,16 @@
 \chapter{\uppercase{Introduction}}
 
 
-\begin{spacing}{1.5}\section*{\LARGE{\mdseries{Thesis Outline}}}
+%\begin{spacing}{1.5}\section*{\LARGE{\mdseries{Thesis Outline}}}
 
-The coming chapters are arranged as follows:
-
-Chapter 1: presents some basic introduction and  background knowledge as regards the Arabic Poem and its definitions. Also, it contains details about the Arabic language and some feature used during our work.
- 
-Chapter 2: introduces the essential pre-processing steps, and the justification for their need. Pre-processing steps are data extraction, data cleansing and data format.
-
-Chapter 3: introduces the data encoding techniques used and the effect of each one. Also, it contains some comparisons between the three techniques used.
-
- Chapter 4: presents the model's details and how we chose the model and the architecture and hyper-parameters details.
- 
- Chapter 5: Results and discussion.
- 
- Chapter 6 : Conclusion and future work
-
- \newpage
  
 
-  Arabic is the fifth most widely spoken language\footnote{\textit{according to the
-		20th edition of Ethnologue, 2017}}. It is written from right to left. Its
+  Arabic is the fifth most widely spoken language\footnote{\textit{according to the 20th edition of Ethnologue, 2017}}. It is written from right to left. Its
 alphabet consists of 28 primary letters, and there are 8 more derived letters
 from the basic ones, so the total count of Arabic characters is 36 characters.
 The writing system is cursive; hence, most letters join to the letter that comes
 after them, a few letters remain disjoint.
 
-% Introduction to diacritics: ?
 Each Arabic letter represents a consonant, which means that short vowels are not
 represented by the 36 characters, for this reason, the need of \textit{diacritics}
 rises. \textit{Diacritics} are symbols that comes after a letter to state the
@@ -65,7 +48,7 @@ cases:
 \begin{definition}\label{def:shadaa_definition}
   \textbf{Shadaa}  \hfill \\
 to indicate the letter is doubled. Any letter with
-shaddah ( ◌ ّ ) the letter should be duplicated: first letter with a
+shaddah (\textarabic{ ّ } ) the letter should be duplicated: first letter with a
 constant (sukoon) and second letter with a vowel (haraka) \cite{Alnagdawi2013}; Table  \ref{tables:shadda_dal}
 shows the dal with shadda and the original letters.
 % table: dal with shadda
@@ -104,10 +87,11 @@ shows the difference between the original letter and the letter with Tanween
 		\textbf{\small{Diacritics}} & \small{\textit{letter with tanween }} & \small{\textit{letters without tanween}} \\
 		%\hline
 		\midrule
+          
+          \textbf{\small{Tanween Fat-ha}}  & \textarabic{دً} &  \textarabic{دَ+نْ}\\
           \textbf{\small{Tanween Dam-ma}}  & \textarabic{دٌ} &  \textarabic{دُ+نْ}\\
           \textbf{\small{Tanween Kas-ra}}  & \textarabic{دٍ} &  \textarabic{دِ+نْ}\\
-          \textbf{\small{Tanween Fat-ha}}  & \textarabic{دً} &  \textarabic{دَ+نْ}\\
-        
+          
 	
 		\bottomrule
 	\end{tabular}
@@ -147,6 +131,35 @@ unicode. This is in contrast to the Latin diacritics; e.g., in the set
 \textit{\{ê, é, è, ë, ē, ĕ, ě\}}, each combination of the letter \textit{e} and a diacritic is represented by one unicode.
 
 \newpage
+
+\section{Arabic Arud Science}
+reference is the book .... to be added
+\begin{definition}\label{def:arud}
+  \textbf{Arud} \hfill \\
+In Arabic Arud natively has many meanings (the way, the direction, the light clouds and Mecca and Madinah\footnote{\textit{Mecca and Madinah are two cities in  Saudi Arabia}.}. Arud is the science which studies The Arabic Poem meters and the rules which confirm if the Poem is sound meters \& broken meters. It named Arud because some people said he put this science in Arud place \textarabic{العَروض} \textit{with fat-ha, not with dam-ma such as the science name \textarabic{العُروض} } between Mecca and Madinah.
+\end{definition}
+
+The Author of this science is \textit{Al-Farahidi} (718 – 786 CE) has analyzed the
+Arabic poetry; then he came up with that the succession of consonants and vowels
+produce patterns or \textit{meters}, which make the music of poetry. He was one of the famous people who know The melodies and the musical parts of speech. He has
+counted them fifteen meters.  After that, a student of \textit{Al-Farahidi} has
+added one more meter to make them sixteen. Arabs call meters \textarabic{بحور}
+which means "\textit{seas}." Poets have written poems without knowing exactly what rules which make a collection of words a poem.
+
+The Reasons which makes \textit{Al-Farahidi} put this science is
+
+  \begin{itemize}
+  \item Protect the Arabic Poems from the broken meters.
+  \item Distinguish between the original Arabic Poem and the non-poem or from the prose.
+    \item Make the rules clear and easy for anyone who needs to write a poem.
+  \end{itemize}
+  
+    Some people said that the one-day Al-Farahidi was walking into the metal-market and he was said some of the poems and for some reasons the knock of the metals matched the musical sound of the poem he was saying then he got an idea to explore the Arud of the poems.
+
+    
+\newpage
+
+
 \section{Arabic Poetry } %%
 %% Introduction; the circumstances before alarud
 Arabic poetry \textarabic{الشعر العربى} is the earliest form of Arabic literature. It dates back to the sixth century. Poets have written poems without knowing exactly what rules which make a collection of words a poem. People recognize poetry by nature, but only talented ones can write poems. This was the case until \textit{Al-Farahidi} (718 – 786 CE) has analyzed the
@@ -155,8 +168,6 @@ produce patterns or \textit{meters}, which make the music of poetry.  He has
 counted them fifteen meters.  After that, a student of \textit{Al-Farahidi} has
 added one more meter to make them sixteen. Arabs call meters \textarabic{بحور}
 which means "\textit{seas}".
-
-
 
 \begin{definition}\label{def:meter}
   \textbf{Meter} \hfill \\
@@ -175,7 +186,8 @@ be represented as ordered sets of consonants and vowels \cite{Almuhareb2015}.
 
 	\end{traditionalpoem*}
 \end{Arabic}%
-  
+
+
 
 \end{definition}
 
@@ -199,7 +211,7 @@ be represented as ordered sets of consonants and vowels \cite{Almuhareb2015}.
 
 \end{definition}
 
-\begin{definition}\label{def:arud}
+\begin{definition}\label{def:aruds}
   \textbf{al-arud\textarabic{العروض}}\footnote{it is often called the \textit{Knowledge of Poetry}.}; \hfill \\
  it is the study of poetic meters, in which he has laid down rigorous
 rules and measures, with them we can determine whether a meter of a poem is sound
