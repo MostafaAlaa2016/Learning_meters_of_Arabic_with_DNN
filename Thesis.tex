@@ -95,6 +95,7 @@
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{geometry}
 \usepackage{subcaption}
+
 \usepackage{fourier}
 \DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
 \DeclareSymbolFont{letters}{OML}{cmm}{m}{it}
@@ -123,6 +124,7 @@
 \newfontfamily\arabicfont  [Script=Arabic, Scale=1.5]{Scheherazade}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{float}
+\usepackage{footnote}
 
 
 \begin{document}
@@ -196,10 +198,10 @@ Professor of Computer Science \\[1cm]
 \newpage
 
 \pagenumbering{arabic}
-
+%%%NOTE: Abstract is not attractive need to be revised
 \input{./chapters/abstract.tex}
 \newpage
-
+%%%NOTE: Introduction is too long and include a lot of background details it should be small and need to move the details into background
 \input{./chapters/introduction.tex}
 \newpage
 \input{./chapters/background.tex}
