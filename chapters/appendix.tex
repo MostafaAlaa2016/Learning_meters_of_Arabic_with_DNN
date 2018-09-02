@@ -9,7 +9,8 @@
 \newpage
 \addcontentsline{toc}{chapter}{Appendices}
 \addcontentsline{toc}{section}{Appendix A}
-\begin{spacing}{2}
+% @@@ this env need to be closed by \end{spacing}
+% \begin{spacing}{2}
 \chapter*{\uppercase{Appendix A}} \label{A}
 \section*{Phase Correlation Theory}
 Let $D_{1}(x,y)$ and $D_{2}(x,y)$ be the dilated images to be registered, the Fourier transform for both $F_{1}(u,v)$ and $F_{2}(u,v)$ is given by:
@@ -28,7 +29,7 @@ The Normalized Cross Power Spectrum ($C(u,v)$) is defined as:
 \begin{equation}
 C(u,v)= \frac{F_{1}(u,v)\cdot F_{2}(u,v)^{*}}{\left|F_{1}(u,v)\cdot F_{2}(u,v)^{*}\right|}
 \end{equation}
-where `.' denotes the element-wise product, `*' denotes the complex conjugate.  
+where `.' denotes the element-wise product, `*' denotes the complex conjugate.
 
 Using equation \ref{eq:fouriershift}:
 \begin{equation}
