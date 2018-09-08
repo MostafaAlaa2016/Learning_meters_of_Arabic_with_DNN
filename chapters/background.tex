@@ -816,7 +816,6 @@ There are different ideas behind this name.
   \item Al-Motadarek in Arabic means explored because Al-Farahidi forgets this Bahr and his student Al-Akhfash Al-Awsat has explored it named by this name.
  %%@@@ (215/830)
   \item Al-Motadarek in Arabic also means followed by something \textarabic{يُدرك}, and because this Bahr came after Al-Motaqareb, it names Al-Motadarek \cite{Alkafi1994}.\\
-    
   \end{itemize}
 
 \textbf{tafa'il}
@@ -824,39 +823,43 @@ There are different ideas behind this name.
 \begin{Arabic}
   \begin{traditionalpoem*}
 فَاْعِلُنْ فَاْعِلُنْ فَاْعِلُنْ فَاْعِلُنْ *** فَاْعِلُنْ فَاْعِلُنْ فَاْعِلُنْ فَاْعِلُنْ
-
-
-
 	\end{traditionalpoem*}
       \end{Arabic}
-
-
 \textbf{Example:}
 
 \begin{Arabic}
   \begin{traditionalpoem*}
-
     لَمْ يَدَعْ مَنْ مَضَى لِلَّذِيْ قَدْ غَبَرْ *** فَضْلَ عِلْمٍ سَوَى أَخْذِهِ بِالأثَرْ
     /0//0 /0//0 /0//0 /0//0 *** /0//0 /0//0 /0//0 /0//0
     فَاْعِلُنْ فَاْعِلُنْ فَاْعِلُنْ فَاْعِلُنْ *** فَاْعِلُنْ فَاْعِلُنْ فَاْعِلُنْ فَاْعِلُنْ
-
-
-
-
 	\end{traditionalpoem*}
       \end{Arabic}
-
-      \newpage
       
       % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-      % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-
+      % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\newpage
       \subsection{Bohor Relations}
       to be added :) 
       % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
       % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-      % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+      % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+      \newpage
       \section{Deep Learning Recurrent Neural Networks}
 
       \textbf{What is Deep Learning?} \textit{ Deep Learning is a new approach of Machine Learning research which focus on learning and understanding from the data without the needs for the human operator to formally specify all the knowledge that the computer needs. This method built using a hierarchy of concept which enables the computer to learn complex concepts by building them layer by layer from simpler ones. If there is a graph which shows how this concept built we will figure out a very deep graph with many layers, for this reason, we call this approach to AI deep learning \cite{Goodfellow-et-al-2016}
-}
+      }\\
+
+      There was many of early trials to utilize the AI into real life problems. For Example, IBM's Deep Blue chess-playing system which defeated world champion Garry Kasprov in 1997 ( Hsu , 2002 ).%@@@ add the reference
+      \\
+
+      Another approach which used to use AI but using hard-code knowledge about the world informal language. A computer can understand statements from the formal language automatically using logical inference rules. This is known as the knowledge base approach to artificial intelligence rules. None of these projects has achieved significant success. For Example, Cyc is tried to gather a comprehensive ontology and knowledge base about the basic concepts about how the world works Cyc  ( Lenat and Guha, 1989). Cyc is an inference engine and a database of statements in a language called Cycl. A staff of human supervisors enters these statements. People struggle to devise formal rules with enough complexity to describe the world accurately\cite{Goodfellow-et-al-2016}.\\
+
+      The difficulty faced in the previous system is due to the hard-coded knowledge has shown up the AI need to acquire their knowledge from the data itself. This capability is known as machine learning. This approach has introduced some algorithms which solve and tackle the problems from which we can, for example, check the email is spam or not. Also, it used for other problems for price predictions for housing Example of this algorithms is (Naive Bayes, Logistic regression).
+
+      This simple machine learning approach is working in the data but not with its original format it required some different representation to be input for the model. This different representation named feature engineering. Feature Engineering example: in case of email spam or not spam example it can be word frequency, char frequency, class attributes, capital letters frequency, some other data processing such as remove stop words from the input lemmatization. So, all the previous feature provided by a human expert which know the problem in details and analyzing which features it affect the data then add it as a feature to the input model.
+      \newpage
+
+      However, for many tasks, it is difficult to identify the features which should be extracted. For example, we need to detect cars in photographs. We know every car have wheels. So, to detect cars, we can check if there is a wheel to be a feature for car detection. However, to detect or to describe wheels in terms of pixel values is a difficult task. The image may be not clear or may be complicated by shadows, the sun glaring off the metal parts of the wheel, the blurring in images may not make it clear sometimes, and so on\cite{Goodfellow-et-al-2016}.\\
+
+      One solution to solve this problem is to use machine learning itself to discover not only the output of the model but also the features which are the input for the model. This approach is known as representation learning. Learned representation can achieve better results than hard-designed representation. This approach also allows AI systems to rapidly adapt to new tasks or be automatically identify it from any new data. A representation learning can discover many features automatically fast or can take more times in case complex tasks, but at least it will get an excellent set of features which adapt for any complex problem without the need for manual features. In this research, we used the AI to identify the features for our model which make this model get a breakthrough results than the old fashion of manual feature machine learning used.
+      
