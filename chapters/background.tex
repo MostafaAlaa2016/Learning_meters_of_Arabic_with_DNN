@@ -885,12 +885,7 @@ Logistic Regression is a machine learning algorithm which we can assume has the 
 A simple example of logistic regression it would be if we have an algorithm for fraud detection. It takes some raw data input and detect if it is a fraud case or not let’s assume fraud case is one and a non-fraud case is zero. David Cox developed logistic regression in 1958 \cite{Cox2958}. The logistic name came from its core function logistic function which also named as \textit{Sigmoid function}  function \eqref{eq:logistic_function}. The Logistic function is shaped as S-shape. %@@@ add figure for sigma function
 Also, one of these function features it can take any input real number and convert it into a value between 1 and 0.
 
-Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ which is the estimate of $y$  when $\widehat{y}$  is presented in equation \eqref{eq:yhat_estimate}.
-
-So,to calculate the output function for logistic regression using equation \eqref{eq:logistic_regression_yhat}.
-
-Note: if we remove the Sigmoid function $\sigma$ from the equation it will be Linear Regression model and $\widehat{y}$ can be greater than 1 or negative. Figure XXXX show the Sigmoid function output. %@@@ add figure for sigmoid function
-
+Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ which is the estimate of $y$  when $\widehat{y}$  is presented in equation \eqref{eq:yhat_estimate}. So,to calculate the output function for logistic regression using equation \eqref{eq:logistic_regression_yhat}. Note: if we remove the Sigmoid function $\sigma$ from the equation it will be Linear Regression model and $\widehat{y}$ can be greater than 1 or negative. Figure XXXX show the Sigmoid function output. %@@@ add figure for sigmoid function
 
 \begin{equation}\label{eq:logistic_function}
   x = \frac{1}{1-e^{-x}} \quad \text{where} \quad x \in \mathbb{R}^{n_x} 
@@ -903,5 +898,6 @@ Note: if we remove the Sigmoid function $\sigma$ from the equation it will be Li
 
 \begin{equation}
   \label{eq:logistic_regression_yhat}
-  \widehat{y} = \sigma(w^t x + b) \quad \text{where:}  \quad  w \in  \mathbb{R}^{n_x} \text{,}  b \in  \mathbb{R}  
+  \widehat{y} = \sigma(w^t x + b) \quad \text{where:} \quad  \sigma(z) = \frac{1}{1-e^{-z}} \text{, }  w \in  \mathbb{R}^{n_x} \text{, }  b \in  \mathbb{R}  
   \end{equation}
+
