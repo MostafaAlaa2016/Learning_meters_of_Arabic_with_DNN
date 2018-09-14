@@ -31,8 +31,10 @@
 
 
 
+
+
 \usepackage{fontspec}
-\usepackage{amsmath}%
+%\usepackage{amsmath}%
 \usepackage{amsfonts}%
 \usepackage{amssymb}%
 \usepackage{graphicx}
@@ -101,11 +103,13 @@
 \DeclareSymbolFont{letters}{OML}{cmm}{m}{it}
 \usepackage{mathtools}
 %\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-\usepackage{amsfonts, amssymb, bm, amsmath}
+\usepackage{amsfonts, amssymb, bm}
 \usepackage{booktabs}  % for \toprule ...
 \usepackage{caption}
 \usepackage{verbatim}
 \usepackage{enumitem}
+\newcommand{\dd}[1]{\mathrm{d}#1}
+
 \usepackage{graphicx, type1cm, lettrine}
 \usepackage{qtree}
 \usepackage[dvipsnames, table]{xcolor}
@@ -207,6 +211,7 @@ Professor of Computer Science \\[1cm]
 \newpage
 
 \input{./chapters/background.tex}
+
 \newpage
 
 \input{./chapters/literature.tex}
