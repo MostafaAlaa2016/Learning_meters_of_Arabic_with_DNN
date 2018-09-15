@@ -870,15 +870,17 @@ There are different ideas behind this name.
       
 Modern deep learning provides a compelling framework for learning data problems. This model becomes more complex by the adding more layers and more units within a layer. Deep Learning model is working perfectly on the big dataset which allows the model to learn the data features in a good way.
 
-      %[h!]
-\begin{figure} \includegraphics[width=\linewidth,height=6cm]{./Figures/DeepLearningImagePersonExample.png}
+
+In the remaining parts in this section we will start introducing the main concepts and component used in deep learning, Also the basic unit into Recurrent Neural networks and LSTM.
+
+      
+\begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/DeepLearningImagePersonExample.png}
   \caption{Illustrations on how can Deep Learning work based on images figure presented from \cite{Goodfellow-et-al-2016} \cite{Zeiler2014}.}
   \label{fig:DeepLearningImagePersonExample.png}
 \end{figure}
 
-In the remaining parts in this section we will start introducing the main concepts and component used in deep learning, Also the basic unit into Recurrent Neural networks and LSTM.
-\newpage
 
+\newpage
 \subsection{Logistic Regression}
 Logistic Regression is a machine learning algorithm which we can assume has the basic idea behind the deep learning we will explain it later. Also, Logistic Regression is one of the most used machine learning techniques for binary classification.
 
@@ -886,6 +888,7 @@ A simple example of logistic regression it would be if we have an algorithm for 
 Also, one of these function features it can take any input real number and convert it into a value between 1 and 0.
 
 Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ which is the estimate of $y$  when $\widehat{y}$  is presented in equation \eqref{eq:yhat_estimate}. So,to calculate the output function for logistic regression using equation \eqref{eq:logistic_regression_yhat}. Note: if we remove the Sigmoid function $\sigma$ from the equation it will be Linear Regression model and $\widehat{y}$ can be greater than 1 or negative. Figure XXXX show the Sigmoid function output. %@@@ add figure for sigmoid function
+%@@@ add figure to compare linear function vs sigmoid function
 
 \begin{equation}\label{eq:logistic_function}
   x = \frac{1}{1-e^{-x}} \quad \text{where} \quad x \in \mathbb{R}^{n_x} 
@@ -899,5 +902,99 @@ Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ 
 \begin{equation}
   \label{eq:logistic_regression_yhat}
   \widehat{y} = \sigma(w^t x + b) \quad \text{where:} \quad  \sigma(z) = \frac{1}{1-e^{-z}} \text{, }  w \in  \mathbb{R}^{n_x} \text{, }  b \in  \mathbb{R}  
+\end{equation}
+
+
+\subsubsection{Loss Error Function}
+
+Loss Error Function is the function which describes how well our algorithm can understand  $\widehat{y}$ y b when the true label is y. It also can be defined as the difference between the true value of $y$ and the estimated value of  $\widehat{y}$. \footnote{\textit{Most of this subsections are explained into Andrew NG Coursera courses in deep learning and It written using our understanding to this topic but the equations and the idea taken from the course  https://www.coursera.org/learn/neural-networks-deep-learning/}}. Equation \eqref  {eq:loss function} describe the loss function for Logistic Regression. There are another functions can represent the loss functions but we take the below as example. As we know $y$ is the label which should be 1 or 0. So, The reason why this function make sense to describe the loss function as below
+\begin{itemize}
+\item in case (y = 1) equation \eqref{eq:loss_function_log_y_1} we need $\widehat{y}$ to be big as possible to be equal or near y true which is 1. So, $ - (\log \widehat{y} )$ will get the value. Note as explained before Sigmoid function can't be greater than 1 or less than 0. %@@@ add chart here to explain
+\item in case (y = 0) equation \eqref{eq:loss_function_log_y_0} we need $\widehat{y}$ to be small as possible to be equal or near y true which is 0. So, $- \log (1-\widehat{y})$  will get the value.  %@@@ add chart here to explain
+  \end{itemize}
+  
+\begin{equation}
+  \label{eq:loss function}
+    \ell(y,\widehat{y}) = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y}))
   \end{equation}
 
+\begin{equation} \label{eq:loss_function_log_y_1}
+\begin{split}
+  \text{(if y = 1) } \quad  \ell(y,\widehat{y}) & = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y})) \\
+  & = - (1 \log \widehat{y} + (1-1) \log (1-\widehat{y}))\\
+  & = - (\log \widehat{y} )
+\end{split}
+\end{equation}
+
+
+\begin{equation} \label{eq:loss_function_log_y_0}
+\begin{split}
+  \text{(if y = 0) } \quad  \ell(y,\widehat{y}) & = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y})) \\
+  & = - (0 * \log \widehat{y} + (1-0) \log (1-\widehat{y}))\\
+  & = - \log (1-\widehat{y})
+\end{split}
+\end{equation}
+
+
+
+
+\subsubsection{Cost Function}
+    To predict $y$ from $\widehat{y}$ we learn from the input parameters in this case it will be \textbf{\textit{(w,b)}} from Equation \eqref{eq:logistic_regression_yhat} as  \textbf{\textit{(w,b)}} is the parameters which define the relation between input dataset X and the output Y. So, Cost Function will measure how well you are doing an entire training set and the ability to understand the relation between X,Y.
+
+Cost function \textbf{\textit{J}} in equation \eqref{eq:cost_function} is the average of loss function applied to every training example which equal the sum of the lost for each training example divided on the total number of training example.
+
+
+
+\begin{equation}\label{eq:cost_function}
+  \begin{split}
+  J(w,b) & = \frac{\sum_{i=1}^{m}  \ell(y^i,\widehat{y^i})}{m} \quad \text{ where m is the total number of training example} \\
+  & = \frac {- \sum_{i=1}^{m} [(y^i \log \widehat{y^i} + (1-y^i) \log (1-\widehat{y^i}))]}{m}  
+  \end{split}
+\end{equation}
+
+
+\subsubsection{Convex Function vs Non-Convex Function }
+
+
+Details and figure on convex function vs non-convex functions
+
+\subsubsection{Gradient Descent}
+
+As we explained in the previous parts, we need to find the relation between X,Y from the input parameters \textbf{\textit{(w,b)}} which will make the cost function  \eqref{eq:cost_function} to the minimum. In other words we need to find the best value of \textbf{\textit{J(w,b)}} which will represent the relation and reduce the error between $y$ and $\widehat{y}$  So, we need to minimize \textbf{\textit{J(w,b)}}.  %@@@ add photo to represent the gradient descent
+
+To illustrate the relation between \textbf{\textit{J(w,b)}} we will assume for simplicity the relation will be function of one variable \textbf{\textit{J(w)}}. As shown in Figure XXXX we have a curve which represent the function \textbf{\textit{J(w)}} we need to find the minimum point in this curve which is the local minimum assuming it is a  \textbf{\textit{convex function}}. We will use equation \label{eq:gredient_descent_w} to find the local minimum.
+
+To explain how this equation works let's take a random point p from Figure XXXX let's take derivative \textit{(which by definition is the slope of the function at the point)} The slope of this function is the height (h) divided into the width (w) it is the tangent of J(w) at this point. If the derivative is positive so, w will be update minus the derivative multiplied by learning rate alpha $\alpha$ as \eqref{eq:gredient_descent_w}. We will repeat the previous step until value of w get the lowest minimum. When w get the lowest minimum the derivative will be negative so, w will start to increase again at this step the algorithm will stop.
+
+
+
+\begin{equation}\label{eq:gredient_descent_w}
+  \begin{split}
+    w & := w - \alpha dw \quad \text{\textit{alpha is learning rate}}\\
+      & := w - \alpha \frac{dJ(w)}{dw} \quad \text{\textit{d represent the derivative wrt w}}
+  \end{split}
+\end{equation}
+
+Now, Let's generalize the above equation assume we have two parameters  \textbf{\textit{(w,b)}} and we need to calculate the cost function for  \textbf{\textit{J(w,b)}} we will work on as two steps first function \eqref{eq:gradient_descent_j_w}  wrt \textbf{\textit{(w)}} and second function \eqref{eq:gradient_descent_j_b} wrt \textbf{\textit{(b)}}
+
+\begin{equation}\label{eq:gradient_descent_j_w}
+      w := w - \alpha \frac{dJ(w,b)}{dw}
+  \end{equation}
+
+\begin{equation}\label{eq:gradient_descent_j_b}
+      b := b - \alpha \frac{dJ(w,b)}{db}
+  \end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%@@@@ Cost function vs Loss Function vs Gradient Desend 
