@@ -901,7 +901,7 @@ Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ 
 
 \begin{equation}
   \label{eq:logistic_regression_yhat}
-  \widehat{y} = \sigma(w^t x + b) \quad \text{where:} \quad  \sigma(z) = \frac{1}{1-e^{-z}} \text{, }  w \in  \mathbb{R}^{n_x} \text{, }  b \in  \mathbb{R}  
+  \widehat{y} = \sigma(w^t x + b)  \quad \text{where:} \quad  \sigma(z) = \frac{1}{1-e^{-z}} \text{, }  w \in  \mathbb{R}^{n_x} \text{, }  b \in  \mathbb{R}  
 \end{equation}
 
 
@@ -955,9 +955,7 @@ Cost function \textbf{\textit{J}} in equation \eqref{eq:cost_function} is the av
 
 \subsubsection{Convex Function vs Non-Convex Function }
 
-
-Details and figure on convex function vs non-convex functions
-
+\newpage
 \subsubsection{Gradient Descent}
 
 As we explained in the previous parts, we need to find the relation between X,Y from the input parameters \textbf{\textit{(w,b)}} which will make the cost function  \eqref{eq:cost_function} to the minimum. In other words we need to find the best value of \textbf{\textit{J(w,b)}} which will represent the relation and reduce the error between $y$ and $\widehat{y}$  So, we need to minimize \textbf{\textit{J(w,b)}}.  %@@@ add photo to represent the gradient descent
@@ -985,11 +983,60 @@ Now, Let's generalize the above equation assume we have two parameters  \textbf{
       b := b - \alpha \frac{dJ(w,b)}{db}
   \end{equation}
 
+\newpage
+  \subsubsection{Logistic Regression derivatives}
+
+  As described we need to calculate the gradient descent to get the best $\widehat{y}$ which minimizes the total cost in equation \eqref{eq:logistic_regression_derivatives_single_example}. So, we will do backpropagation to get the value of $dz$ we need to calculate $da$ in equation \eqref{eq:logistic_regression_derivatives_da} then we will calculate $dz$ based on the output of $da$ from equation \eqref{eq:logistic_regression_derivatives_dz}. After that, We will start to take the derivative for $z$ function parameters \textbf{\textit{$w_1,w_2,b$}}. Once we got the values of \textbf{\textit{$dw_1,dw_2,db$}} we can use it to calculate the estimated values of \textbf{\textit{$w_1,w_2,b$}} in the equations \eqref{eq:logistic_regression_derivatives_dw1}, \eqref{eq:logistic_regression_derivatives_dw2}, \eqref{eq:logistic_regression_derivatives_db}
+
+  
+  \begin{equation}\label{eq:logistic_regression_derivatives_single_example}
+    \boxed{\widehat{y} = \sigma(z) = a} \longrightarrow  \boxed{ z = w^tx + b = w_1x_1+ w_2+x_2+ b} \longrightarrow \boxed{\ell(a,y)}
+  \end{equation}
+  \begin{equation}\label{eq:logistic_regression_derivatives_da}
+      \boxed{da =  \frac{d\ell}{da} = \frac{d\ell(a,y)}{da} = - \frac{y}{a} + \frac{1-y}{1-a}}
+  \end{equation}
+    \begin{equation}\label{eq:logistic_regression_derivatives_dz}
+    \boxed{dz = \frac{d\ell}{dz} =  \frac{d\ell(a,y)}{dz} =  \frac{d\ell}{da} .  \frac{da}{dz}} = \boxed{(- \frac{y}{a} + \frac{1-y}{1-a}) . a(a-1) } = \boxed{ a - y    }
+  \end{equation}
+ \begin{equation}\label{eq:logistic_regression_derivatives_dw1}
+      \boxed{dw_1 = \frac{\partial\ell}{dw_1} = x_1 dz} \longrightarrow \boxed{ w_1 := w_1 - \alpha dw_1}
+  \end{equation}
+    \begin{equation}\label{eq:logistic_regression_derivatives_dw2}
+    \boxed{dw_2 = \frac{\partial\ell}{dw_2} = x_2 dz} \longrightarrow \boxed{ w_2 := w_2  - \alpha dw_2}
+  \end{equation}
+    \begin{equation}\label{eq:logistic_regression_derivatives_db}
+    \boxed{db = \frac{\partial\ell}{db} =  dz} \longrightarrow \boxed{ b := b - \alpha db}
+\end{equation}
 
 
+% \begin{align*}
+% \tcbhighmath[remember as=fx]{f(x)} &= xx \text{dummy function for testing} \\
+% %&= -\frac{1}{x} + \frac{1}{1}\\
+% &=
+% \tcbhighmath[remember,overlay={%
+% \draw[blue,very thick,->] (fx.south) to[bend right] ([yshift=1mm]frame.west);}]
+% {1-\frac{1}{x}.}
+% \end{align*}
+ \subsubsection{Implementing Logistic Regression on m example}
+
+To implement a simple 1 iteration example below sample code simulate the program structure. First,  assume $J = 0, dw_1 = 0, dw_2 = 0,db = 0$. Then calculate the feedforward step. Then backpropagation calculate. Finally, update the parameters. We can transfer the above equation into the below python sample code. 
+%%, caption=Simple Implementation for 1 iteration Logistic Regression with a Neural Network
+ \begin{lstlisting}[language=Python]
+   import numpy as np
+   J = 0, dw_1 = 0, dw_2 = 0,db = 0, alpha = .02
+   # FEED FORWARD PROPAGATION
+   A = 1 / (1 + np.exp(-(np.dot(w.T,X) + b))#   Z = np.dot(w.T,X) + b
+   cost = (- 1 / m) * np.sum(Y * np.log(A) + (1 - Y) * (np.log(1 - A)))
+   # BACKWARD PROPAGATION (TO FIND GRADIENT)
+   dw = (1 / m) * np.dot(X, (A - Y).T) #    dz = A - Y
+   db = (1 / m) * np.sum(A - Y)
+   # UPDATE THE PARAMETERS
+   w = w - alpha * dw
+   b = b - alpha * db
+\end{lstlisting}
 
 
-
+ 
 
 
 
