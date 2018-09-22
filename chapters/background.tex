@@ -122,6 +122,12 @@ unicode. This is in contrast to the Latin diacritics; e.g., in the set
 \newpage
 
 \section{Arabic Arud Science}
+% @@@ add el3elal and zahafat
+% @@@ add tent picture
+% @@@ add details into every bahr
+
+
+
 \begin{definition}\label{def:arud}
   \textbf{Arud} \hfill \\
   In Arabic Arud natively has many meanings (the way, the direction, the light clouds and Mecca and Madinah \footnote{\textit{Mecca and Madinah are two cities in  Saudi Arabia}.}\cite{AlQuaed}. Arud is the science which studies The Arabic Poem meters and the rules which confirm if the Poem is sound meters \& broken meters. If we need to su
@@ -1004,7 +1010,9 @@ Now, Let's generalize the above equation assume we have two parameters  \textbf{
     \begin{equation}\label{eq:logistic_regression_derivatives_dw2}
     \boxed{dw_2 = \frac{\partial\ell}{dw_2} = x_2 dz} \longrightarrow \boxed{ w_2 := w_2  - \alpha dw_2}
   \end{equation}
-    \begin{equation}\label{eq:logistic_regression_derivatives_db}
+
+
+  \begin{equation}\label{eq:logistic_regression_derivatives_db}
     \boxed{db = \frac{\partial\ell}{db} =  dz} \longrightarrow \boxed{ b := b - \alpha db}
 \end{equation}
 
@@ -1033,15 +1041,109 @@ To implement a simple 1 iteration example below sample code simulate the program
    # UPDATE THE PARAMETERS
    w = w - alpha * dw
    b = b - alpha * db
-\end{lstlisting}
+ \end{lstlisting}
 
-\subsection{The Neuron}
+ 
+ \subsection{The Neuron}
 
-\subsection{The Neural Network}
+ As we all know, Most computer research is trying to simulate the human brain as it is the most advanced smartest creation. If we are trying to check how the model understands the new information regarding for example bananas photo we can give a baby two bananas then ask him about it baby can remember it with all it new shapes. Same case if you inform any human about some information and trying to get a new inference it will automatically detect this information. So, The new research trying to simulate the human brain model into an Artificial Intelligence model to trying to get this performance. In this subsection, we will try to give an overview of the relation between the new research era and the human brain.
+ 
+ The neuron is the foundation unit of the brain. The size of the brain is as about the size of a grain of rice. The brain contains more over 10000 neurons with average 6000 connections with other neurons\footnote{\textit{Restak, Richard M. and David Grubin. The Secret Life of the Brain. Joseph Henry Press, 2001.}}.  These massive networks allow our brain to build its knowledge about the world around us. The neuron is work by receiving the information from other neuron and process it uniquely then pass the output to other neurons this process is shown in figure \ref{fig:NeuronStructure}.
 
-\subsubsection{The Neural Network Representation}
+ \begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/neuron_structure.png}
+  \caption{Description of neuron's structure this figure from \cite{DLFundamentals}}
+  \label{fig:NeuronStructure}
+\end{figure}
+
+ 
+ How do we learn a new concept? \textit{The neuron receives its input from dendrites. The incoming neuron connection is dynamically strengthened or weakened based on how often it is used, and the strength of each connection determines the contribution of the input to the neuron's output. Based on the connection strength it will have weight then the input is summed in the cell body. This sum is transformed into a new signal which is propagated along the cell's axon and sent to other neurons\cite{DLFundamentals}}.
+
+ The above biological model can be translated into an Artificial Neural Network as described in figure XXXX. %@@@ add figure for neuron input format here
+ We have an input $x_1,x_2,x_3,...,x_n$ every input has its own strength (weight) $w_1,w_2,w_3,...,w_n$. We Sum the multiplication of X and W to get the logit of the neuron, $z =  \sum_{i=0}^{n} x_i w_i $. The logit is passed throw a function $f$ to produce the output $ y = f(z)$ the output will be the input to other neurons. Note: In many cases, the logit can also include a bias constant. So, in this case the function will be $$ y = f(\sum_{i=0}^{n} x_i w_i + b)$$
+ 
+ \subsection{The Neural Network Representation}
+ As explained previously, We have been trying to simulate the human brain model into our research work in Deep Neural Network. So, We will have multi-layers to allows the model to get in-depth knowledge and more computation performance to simulate the human brain.
+
+ Now, we will represent the functions per layer as below equations \eqref{eq:nn_multi_layer}
+ 
+\begin{equation}\label{eq:nn_multi_layer}
+  \boxed{z^l =  W^l x + b^l} \longrightarrow \boxed{a_i^l =  \sigma(z^l)}  \longrightarrow \boxed{\ell(a^l,y)} \quad \text{\textit{l is refer to layer number, i refer to the node number in the layer}}
+\end{equation}
+
+What is the Neural Networks component?
+
+\textbf{Input Layer:} Input layers is the input data raw for the network it is denoted as $a^0$.
+\textbf{Hidden Layers:} The layers between the input layers and the output layer it can be any number of layers. It also has a set of weighted input and produces an output through an activation function. Every layer in the hidden layer transmits the output to the other hidden layer as an input feature figure XXXX shows this relations. %@@@ NN representation
+
+\textbf{Output Layer:} It is one output layer with have the final results from the hidden layers.
+
+ \subsection{Neural Network Computation}
+ In this subsection, We will show as example on how we can compute the Neural Networks for every layer. In figure XXXX we have example of one layer we will continue explain on this example\eqref{eq_nn_one_layer}.
+
+ \begin{subequations}\label{eq_nn_one_layer}
+   \begin{align}
+     Z_1^{[1]} & = w_1^{[1]T} x + b_1^{[1]} , a_1^{[1]} = \sigma(Z_1^{[1]}) \\
+     Z_2^{[1]} & = w_2^{[1]T} x + b_2^{[1]} , a_2^{[1]} = \sigma(Z_2^{[1]})\\
+     Z_3^{[1]} & = w_3^{[1]T} x + b_3^{[1]} , a_3^{[1]} = \sigma(Z_3^{[1]})\\
+     Z_4^{[1]} & = w_4^{[1]T} x + b_4^{[1]} , a_4^{[1]} = \sigma(Z_4^{[1]})
+ \end{align}
+\end{subequations}
+If we need to compute the above equations it will be simply be represented as vectorized way below matrix shows how we can implement it.
+\[
+z^{[1]} = 
+\left[
+  \begin{array}{ccc}
+     w^{[1]T}_{1} \\
+     w^{[1]T}_{2} \\
+     w^{[1]T}_{3} \\
+     w^{[1]T}_{4} \\  
+  \end{array}
+\right]\cdot
+\left[
+  \begin{array}{c}
+           x_{1} \\
+           x_{2} \\
+    x_{3} %\vdots \\
+  \end{array}
+\right] +
+\left[
+  \begin{array}{c}
+           b_{1}^{[1]}\\
+           b_{2}^{[1]}\\
+           b_{3}^{[1]}\\
+           b_{4}^{[1]}
+  \end{array}
+\right] =
+\left[
+  \begin{array}{cccc}
+     w^{[1]T}_{1} x + b _1^{[1]}\\
+     w^{[1]T}_{2} x + b _2^{[1] }\\
+     w^{[1]T}_{3} x + b _3^{[1] }\\
+     w^{[1]T}_{4} x + b _4^{[1] }\\  
+  \end{array}
+\right] =
+\left[
+  \begin{array}{c}
+    z_1^{[1]} \\
+    z_2^{[1]} \\
+    z_3^{[1]} \\
+    z_3^{[1]}
+  \end{array}
+\right]
+\]
 
 \subsubsection{Linear Neurons and Their Limitations}
+
+Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function $y= w x + b$. So, if we have mutli-layer networks for example equation \eqref{eq_linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks.
+
+ \begin{subequations}\label{eq_linear_fun_limitations}
+   \begin{align}
+     Z^{[1]} & = w_1^{[1]T} x + b_1^{[1]} , a_1^{[1]} = \sigma(Z_1^{[1]}) \\
+     Z^{[2]} & = w^{[2]T} a^1 + b^{[2]} = w^{[2]T} (w^{[1]T}x + b^{[1]}) + b^{[2]}\\
+             & = (w^{[1]T}W^{[2]T})x + (w^{[2]}b^{[1]}+ b^{[2]})\\
+             & = W' x + b'
+\end{align}
+\end{subequations}
 
 \subsubsection{Activation Function}
 
