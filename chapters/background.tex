@@ -1226,7 +1226,7 @@ If we checked the input variable in the backpropagation we will find it is $da^{
     As we explained previously in Logistic regression, We initialized the weights to Zero. However, in Deep Neural Networks it will not work. Note: It is okay to initialize the Bias to Zero but the wights it will not works. Let's see what will happen if we initialize the weights and Bias to Zero.
  
   % @@@https://www.coursera.org/learn/neural-networks-deep-learning/lecture/XtFPI/random-initialization figure
-  Assume from figure XXXX we have two input vectors $x_1,X_2$ if we initialize $W^{[1]}$ to Zero from equation\eqref{eq:nn_weights_init_zero} and $b^{[1]}$ to Zeros. So, $a_1^{[1]}=a_2^{[1]}$ because both of the hidden units compute the same functions. Also, $W^{[2]}=[0 0]$ Then when we will compute the backpropagation we will find that $dz_1^{[1]}=dz_2^{[2]}$. So, After every iteration, we will find that the two hidden units calculate the same function and we will not get more information from this Deep Neural Network. We need to highlight that the main idea from Neural Networks as explained before is every hidden unit should work to get a new piece of information. The more hidden unit, the more hidden information we will get but if we initialize it to Zero. It will be the same function which is calculated, and we will not get any new information.\footnote{\textit{Parts of this subsection are explained into Andrew NG Coursera courses in deep learning and It written using our understanding to this topic but the equations and the idea taken from the course  https://www.coursera.org/learn/neural-networks-deep-learning/}}.
+  Assume from figure XXXX we have two input vectors $x_1,X_2$ if we initialize $W^{[1]}$ to Zero from equation\eqref{eq:nn_weights_init_zero} and $b^{[1]}$ to Zeros. So, $a_1^{[1]}=a_2^{[1]}$ because both of the hidden units compute the same functions. Also, $W^{[2]}=[0 0]$ Then when we will compute the backpropagation we will find that $dz_1^{[1]}=dz_2^{[2]}$. So, After every iteration, we will find that the two hidden units calculate the same function and we will not get more information from this Deep Neural Network. We need to highlight that the main idea from Neural Networks as explained before is every hidden unit should work to get a new piece of information. The more hidden unit, the more hidden information we will get but if we initialize it to Zero. It will be the same function which is calculated, and we will not get any new information\footnote{\textit{Parts of this subsection are explained into Andrew NG Coursera course in deep learning and It written using our understanding to this topic but the equations and the idea taken from the course  https://www.coursera.org/learn/neural-networks-deep-learning/}}.
 
 \begin{subequations}\label{eq:nn_weights_init_zero}
 \begin{align}
@@ -1242,21 +1242,55 @@ To initialize weights and to get the maximum value of the neural network computa
 %@@@$\subsubsection{Deep Learning Running Cycle}
 %@@@@ Cost function vs Loss Function vs Gradient Desend 
 
-
+\newpage
 \subsection{Recurrent Neural Network Model}
 
-Deep Neural Networks shows its ability to solve many problems. However, in some use cases, Naive Neural Network architecture cannot works or get the expected results. One of the famous example related to this issue in the NLP tasks when working on a text problem for example, If we say our Harry is the king and Elizabeth is the queen, and we need our model to understand from the sentence that, Harry is he and Elizabeth is she. Also, if this word appears again, we need the model to detect that Harry is a person. This type of problem has a dependency on the input text and how to get the output prediction based on the provided information from the input. There are many problems which based on this idea of dependency. For example,
+Deep Neural Networks shows its ability to solve many problems. However, in some use cases, Naive Neural Network architecture cannot works or get the expected results. One of the famous example related to this issue in the NLP tasks when working on a text problem for example, If we say our Harry is the king and Elizabeth is the queen, and we need our model to understand from the sentence that, Harry is he and Elizabeth is she. Also, if this word appears again, we need the model to detect that Harry is a person. This type of problem has a dependency on the input text and how to get the output prediction based on the provided information from the input. Also, As explained previously, Most of the research in this area trying to simulate human brains. So, we will not find anyone every time trying to think about something start from scratch it always starts from another related point. Example, What is the human do if he tries to connect the information to generate the knowledge about something. There are many problems which based on this idea of dependency. For example,
 \begin{itemize}
 \item Time series anomaly detection.
-\item Next word prediction.
 \item Speech recognition.
 \item Music Composition.
 \item Image captioning.
 \item Stock market prediction.
+\item Translation.
 \end{itemize}
-
 So, What are the problems in the Naive Neural Network architecture?
 \begin{itemize}
 \item Input and output length can be the different length in a different example.
 \item The most important issue is that the Naive architecture cannot share features learned across different positions of text. In this case, we will lose the learned feature, and the lake of dependency, in this case, will affect the overall performance.
 \end{itemize}
+What is the new proposed architecture which can provide a way to share the features between the Network?
+\begin{itemize}
+\item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figures \ref{fig:RNN-rolled-loop.png}, \ref{fig:andew_ng_feedfarward} shows an example.
+   \begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/RNN-unrolled.png}
+  \caption{Recurrent Neural Networks Loops\cite{colah}}
+  \label{fig:RNN-rolled-loop.png}
+\end{figure}
+
+\begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/andew_ng_feedfarward.png}
+  \caption{Recurrent Neural Networks feedfarward \textit{ This figure from Andrew NG course sequence models https://www.coursera.org/learn/nlp-sequence-models/ }}
+  \label{fig:andew_ng_feedfarward}
+\end{figure}
+% @@@ to be replaced by new owned ones
+
+% @@@add example about the new architecture
+
+So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.
+\item Second, The feedfarward will be compute for time t and then we will calculate the loss at step t. The final loss is the sum of loss at every step t eq\eqref{eq:rnn_feedfarward} explains the steps for feedfarward. Note: The backpropagation here will be calculated though time at every step.
+
+  \begin{subequations}\label{eq:rnn_feedfarward}
+\begin{align}
+  a^{<t>} & = g(W_{aa}a^{<t-1>}+ W_{ax}x^{<t>}+b_a)\\
+   & = g(W_a[a^{<t-1>},x^{<t>}]+ b_a)\\
+  \widehat{y}^{<t>} & = g(W_{ya}a^{<t>}+ b_y)
+  \\ \ell^{<t>}(\widehat{y}^{<t>},y^{<t>}) & = - (y^{<t>} \log \widehat{y}^{<t>} + (1-y^{<t>}) \log (1-\widehat{y}^{<t>}))
+\\ \ell(\widehat{y},y) & = \sim_{t=1}^{T_m} \ell^{<t>}(\widehat{y}^{<t>},y^{<t>})                                              
+\end{align}
+\end{subequations}
+
+  
+ \end{itemize}
+
+ % @@@ example about the weakness about RNN and tiddy example
+
+ 
