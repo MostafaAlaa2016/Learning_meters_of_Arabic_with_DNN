@@ -915,7 +915,7 @@ Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ 
 
 \subsubsection{Loss Error Function}
 
-Loss Error Function is the function which describes how well our algorithm can understand  $\widehat{y}$ y b when the true label is y. It also can be defined as the difference between the true value of $y$ and the estimated value of  $\widehat{y}$. \footnote{\textit{Most of this subsections are explained into Andrew NG Coursera courses in deep learning and It written using our understanding to this topic but the equations and the idea taken from the course  https://www.coursera.org/learn/neural-networks-deep-learning/}}. Equation \eqref  {eq:loss function} describe the loss function for Logistic Regression. There are another functions can represent the loss functions but we take the below as example. As we know $y$ is the label which should be 1 or 0. So, The reason why this function make sense to describe the loss function as below
+Loss Error Function is the function which describes how well our algorithm can understand  $\widehat{y}$ y b when the true label is y. It also can be defined as the difference between the true value of $y$ and the estimated value of  $\widehat{y}$. \footnote{\textit{Parts of this subsections are explained into Andrew NG Coursera courses in deep learning and It written using our understanding to this topic but the equations and the idea taken from the course  https://www.coursera.org/learn/neural-networks-deep-learning/}}. Equation \eqref  {eq:loss function} describe the loss function for Logistic Regression. There are another functions can represent the loss functions but we take the below as example. As we know $y$ is the label which should be 1 or 0. So, The reason why this function make sense to describe the loss function as below
 \begin{itemize}
 \item in case (y = 1) equation \eqref{eq:loss_function_log_y_1} we need $\widehat{y}$ to be big as possible to be equal or near y true which is 1. So, $ - (\log \widehat{y} )$ will get the value. Note as explained before Sigmoid function can't be greater than 1 or less than 0. %@@@ add chart here to explain
 \item in case (y = 0) equation \eqref{eq:loss_function_log_y_0} we need $\widehat{y}$ to be small as possible to be equal or near y true which is 0. So, $- \log (1-\widehat{y})$  will get the value.  %@@@ add chart here to explain
@@ -1221,13 +1221,42 @@ If we checked the input variable in the backpropagation we will find it is $da^{
   \end{equation}
    
 
-\subsubsection{How we Initialize the Wights}
+  \subsubsection{How we Initialize the Wights}
+
+    As we explained previously in Logistic regression, We initialized the weights to Zero. However, in Deep Neural Networks it will not work. Note: It is okay to initialize the Bias to Zero but the wights it will not works. Let's see what will happen if we initialize the weights and Bias to Zero.
+ 
+  % @@@https://www.coursera.org/learn/neural-networks-deep-learning/lecture/XtFPI/random-initialization figure
+  Assume from figure XXXX we have two input vectors $x_1,X_2$ if we initialize $W^{[1]}$ to Zero from equation\eqref{eq:nn_weights_init_zero} and $b^{[1]}$ to Zeros. So, $a_1^{[1]}=a_2^{[1]}$ because both of the hidden units compute the same functions. Also, $W^{[2]}=[0 0]$ Then when we will compute the backpropagation we will find that $dz_1^{[1]}=dz_2^{[2]}$. So, After every iteration, we will find that the two hidden units calculate the same function and we will not get more information from this Deep Neural Network. We need to highlight that the main idea from Neural Networks as explained before is every hidden unit should work to get a new piece of information. The more hidden unit, the more hidden information we will get but if we initialize it to Zero. It will be the same function which is calculated, and we will not get any new information.\footnote{\textit{Parts of this subsection are explained into Andrew NG Coursera courses in deep learning and It written using our understanding to this topic but the equations and the idea taken from the course  https://www.coursera.org/learn/neural-networks-deep-learning/}}.
+
+\begin{subequations}\label{eq:nn_weights_init_zero}
+\begin{align}
+  W^{[1]} = \begin{bmatrix} 0 & 0\\ 0 & 0 \end{bmatrix} \quad b^{[1]} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} \\
+  W^{[2]} = \begin{bmatrix} 0 & 0 \end{bmatrix} \\
+  a_1^{[1]} = a_2^{[1]} \quad     dz_1^{[1]} = dz_2^{[1]}\\
+  dw = \begin{bmatrix} u & u \\ v & v \end{bmatrix} \quad W^{[1]} = W^{[1]} - \alpha dw
+\end{align}
+\end{subequations}
+     
+To initialize weights and to get the maximum value of the neural network computation we should initialize the weight by any small random numbers to avoid the big weights which will tend to get the small slope from the Z where $Z^{[1]}= W^{[1]} X + b^{[1]}$ For example, if we use tanh we will get the big tail values $a^{[1]}= g^{[1]}(Z^{[1]})$. So, the big weights we more likely to get slow learning rate. 
   
-\subsubsection{Deep Learning Running Cycle}
-
-
-
-
-
-
+%@@@$\subsubsection{Deep Learning Running Cycle}
 %@@@@ Cost function vs Loss Function vs Gradient Desend 
+
+
+\subsection{Recurrent Neural Network Model}
+
+Deep Neural Networks shows its ability to solve many problems. However, in some use cases, Naive Neural Network architecture cannot works or get the expected results. One of the famous example related to this issue in the NLP tasks when working on a text problem for example, If we say our Harry is the king and Elizabeth is the queen, and we need our model to understand from the sentence that, Harry is he and Elizabeth is she. Also, if this word appears again, we need the model to detect that Harry is a person. This type of problem has a dependency on the input text and how to get the output prediction based on the provided information from the input. There are many problems which based on this idea of dependency. For example,
+\begin{itemize}
+\item Time series anomaly detection.
+\item Next word prediction.
+\item Speech recognition.
+\item Music Composition.
+\item Image captioning.
+\item Stock market prediction.
+\end{itemize}
+
+So, What are the problems in the Naive Neural Network architecture?
+\begin{itemize}
+\item Input and output length can be the different length in a different example.
+\item The most important issue is that the Naive architecture cannot share features learned across different positions of text. In this case, we will lose the learned feature, and the lake of dependency, in this case, will affect the overall performance.
+\end{itemize}
