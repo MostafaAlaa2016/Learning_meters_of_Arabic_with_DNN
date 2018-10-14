@@ -744,10 +744,12 @@ Al-Wafer there are different ideas behind this name
 	\end{traditionalpoem*}
       \end{Arabic}
 
-                  % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+      % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 
-\subsubsection{Al-Mojtaz \textarabic{المجتز}}
+      
+
+      \subsubsection{Al-Mojtaz \textarabic{المجتز}}
 \textbf{Why it named Al-Mojtaz?}
 \textit{Al-Mojtaz in Arabic name is similar meaning for Al-Moktadeb it means reproduced from another thing \textarabic{الإقتطاع أو الإجتزاز} and because these Bahr words are all appeared into Al-khafeef in all its words but also there is a difference in the order of the parts. So, it named Al-Mojtaz because it seems it reproduced from Al-khafeef \textarabic{إجتُزَّ من بحر الخفيف} \cite{Alkafi1994}.}\\
 
@@ -990,12 +992,11 @@ Now, Let's generalize the above equation assume we have two parameters  \textbf{
   \end{equation}
 
 \newpage
-  \subsubsection{Logistic Regression derivatives}
+  \subsubsection{Logistic Regression derivatives}\label{logistic_bp_derivatives}
 
   As described we need to calculate the gradient descent to get the best $\widehat{y}$ which minimizes the total cost in equation \eqref{eq:logistic_regression_derivatives_single_example}. So, we will do backpropagation to get the value of $dz$ we need to calculate $da$ in equation \eqref{eq:logistic_regression_derivatives_da} then we will calculate $dz$ based on the output of $da$ from equation \eqref{eq:logistic_regression_derivatives_dz}. After that, We will start to take the derivative for $z$ function parameters \textbf{\textit{$w_1,w_2,b$}}. Once we got the values of \textbf{\textit{$dw_1,dw_2,db$}} we can use it to calculate the estimated values of \textbf{\textit{$w_1,w_2,b$}} in the equations \eqref{eq:logistic_regression_derivatives_dw1}, \eqref{eq:logistic_regression_derivatives_dw2}, \eqref{eq:logistic_regression_derivatives_db}
 
-  
-  \begin{equation}\label{eq:logistic_regression_derivatives_single_example}
+\begin{equation}\label{eq:logistic_regression_derivatives_single_example}
     \boxed{\widehat{y} = \sigma(z) = a} \longrightarrow  \boxed{ z = w^tx + b = w_1x_1+ w_2+x_2+ b} \longrightarrow \boxed{\ell(a,y)}
   \end{equation}
   \begin{equation}\label{eq:logistic_regression_derivatives_da}
@@ -1064,10 +1065,10 @@ To implement a simple 1 iteration example below sample code simulate the program
  \subsection{The Neural Network Representation}
  As explained previously, We have been trying to simulate the human brain model into our research work in Deep Neural Network. So, We will have multi-layers to allows the model to get in-depth knowledge and more computation performance to simulate the human brain.
 
- Now, we will represent the functions per layer as below equations \eqref{eq:nn_multi_layer}
+ Now, we will represent the functions per layer as below equations where \textit{l is refer to layer number, i refer to the node number in the layer}\eqref{eq:nn_multi_layer}
  
 \begin{equation}\label{eq:nn_multi_layer}
-  \boxed{z^l =  W^l x + b^l} \longrightarrow \boxed{a_i^l =  \sigma(z^l)}  \longrightarrow \boxed{\ell(a^l,y)} \quad \text{\textit{l is refer to layer number, i refer to the node number in the layer}}
+  \boxed{z^l =  W^l x + b^l} \longrightarrow \boxed{a_i^l =  \sigma(z^l)} \longrightarrow \boxed{\ell(a^l,y)}
 \end{equation}
 
 What is the Neural Networks component?
@@ -1134,9 +1135,9 @@ z^{[1]} =
 
 \subsubsection{Linear Neurons and Their Limitations}
 
-Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function $y= w x + b$. So, if we have mutli-layer networks for example equation \eqref{eq_linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks.
+Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function $y= w x + b$. So, if we have mutli-layer networks for example equation \eqref{eq_linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks. So, to be able to detect the deep information we will use different function for the hidden layers example: Tanh\eqref{eq:nn_tanh}, Sigmoid\eqref{eq:logistic_function} and Relu\eqref{eq:nn_relu}. Most of binary classification problems use Sigmoid function for output layer. Also, we can use the same functions for the output but we can also use the linear for activation function in some cases. 
 
- \begin{subequations}\label{eq_linear_fun_limitations}
+\begin{subequations}\label{eq_linear_fun_limitations}
    \begin{align}
      Z^{[1]} & = w_1^{[1]T} x + b_1^{[1]} , a_1^{[1]} = \sigma(Z_1^{[1]}) \\
      Z^{[2]} & = w^{[2]T} a^1 + b^{[2]} = w^{[2]T} (w^{[1]T}x + b^{[1]}) + b^{[2]}\\
@@ -1145,11 +1146,84 @@ Now, We explained the equations for the feedforward Neural Network. We have only
 \end{align}
 \end{subequations}
 
-\subsubsection{Activation Function}
+
+
+ 
+\begin{equation}\label{eq:nn_tanh}
+  a = tanh(z) =\frac{e^z-e^{-z}}{e^z+e^{-z}}
+\end{equation}%@@@ add figure for tanh
+
+
+
+\begin{equation}\label{eq:nn_relu}
+  a = max (0,z)
+\end{equation}%@@@ add figure for relu
 
 \subsubsection{Softmax Output Layers}
+Sometimes our problem has multi-output results not only 1 or 0. For example, we have a problem to recognize the characters from 0 to 9 in MNIST dataset, But we will not be able to recognize digits with 100\% confidence. So, we will use the probability distribution to give us a better idea of how confident we are in our predictions. The result will be an output vector of the form of the $\sum_{i = 0}^9P_i=1$
 
-\subsubsection{Gradient Descent For Neural Networks}
+This is achieved by using a special output layer named softmax layer. This layer is differ from the other as the output of a neuron in a softmax layer is depending on the output of all the other neurons in its layer. This because its sum of all output equal 1. If we assume $z_i$ be the logit of $i^{th}$ softmax neuron, we can normalize by setting its output to represented from eq \eqref{eq:nn_softmax_fun}:
+
+\begin{equation}\label{eq:nn_softmax_fun}
+  y_i=\frac{e^{z_i}}{\sum_je^{z_j}}
+\end{equation}
+
+The strong prediction will have a value entry in the vector close to 1, while the other entries will be close to 0. The weak prediction will have multiple possible labels has almost the equal values\cite{DLFundamentals}.
+
+
+
+\subsubsection{Forward-Propagation in a Neural Networks}
+%@@@ add figure to show the network example similar https://www.coursera.org/learn/neural-networks-deep-learning/lecture/MijzH/forward-propagation-in-a-deep-network
+We will take the below figure XXXX as example of Deep Neural Network. So, to calculate the Forward propagation we will follow the below equation \eqref{eq_feedfarward_DL}. Note: we assume $X = a^{[0]}$ as initial function notation. Also, $\widehat{Y}= g(Z^{[4]}=A^{[4]}$ as the final output layer.
+\begin{equation}\label{eq_feedfarward_DL}
+     Z^{[l]}  = w^{[l]} a^{l-1} + b^{[l]} , A^{[1]} = g^{l}(Z^{[l]})
+   \end{equation}
+   % @@@ figure to show the input forward and back propagation steps
+
+
+
+\subsubsection{Back-Propagation in a Neural Networks}
+
+We explained previously,  how neural networks could learn their weights using gradient descent algorithm. In this part, we will explain how to compute the gradient of the cost function.
+
+To compute the gradient descent in Neural Networks, we use an algorithm named \textit{backpropagation}. The backpropagation algorithm was initially invented in the 1970s, but it wasn't shining until one of the most important papers in this field published in 1986 %@@@cite https://www.nature.com/articles/323533a0
+which describes several neural networks where backpropagation has a significant performance better than the earlier approaches and making it possible to use neural networks to solve problems which were previously not possible to be solved. Now, the backpropagation is the backbone for the learning in neural networks.%@@@cite Michael A. Nielsen, "Neural Networks and Deep Learning", Determination Press, 2015
+
+The backpropagation not only an algorithm which gives us the expression for partial derivative of the cost function $C$ with respect to wights $w$ and bias $b$ but also it gives is an intuations about the change of the cost function while changing its variables $w \& b$ and its effect to the overall network.
+
+As explained in logistic regression section (\ref{logistic_bp_derivatives}) how we can calculate the derivatives for logistic regression with one layer using this equations\eqref{eq:logistic_regression_derivatives_single_example},\eqref{eq:logistic_regression_derivatives_da},\eqref{eq:logistic_regression_derivatives_dz},\\
+\eqref{eq:logistic_regression_derivatives_dw1},\eqref{eq:logistic_regression_derivatives_dw2},\eqref{eq:logistic_regression_derivatives_db}.\\
+We will generalize the derivatives equations to be for $l$ layers from the below equations\eqref{eq_nn_bp_l_layers}.
+ \begin{subequations}\label{eq_nn_bp_l_layers}
+   \begin{align}
+     dz^{[l]} & = da^{[l]} * g^{[l]'}(z^{l}) \\
+     dw^{[l]} & = dz^{[l]} \cdot a^{[l-1]} \\
+     db^{[l]} & = dz^{[l]} \\
+     da^{[l-1]} & = W^{[l]T} \cdot dz^{[l]} %\\
+%     dz^{[l]} & =  (W^{[l+1]T} \cdot dz^{[l+1]}) * g^{[l]'}(z^{l}) \quad \text{from 2.24d in 2.24a}
+ \end{align}
+\end{subequations}
+We can vectorize the above equation for Neural Network implementation as below equations\eqref{eq_nn_bp_l_layers_vectorize}.
+ \begin{subequations}\label{eq_nn_bp_l_layers_vectorize}
+   \begin{align}
+     dz^{[l]} & = dA^{[l]} * g^{[l]'}(z^{l}) \\
+     dw^{[l]} & = \frac{1}{m} dz^{[l]} \cdot A^{[l-1]T} \\
+     db^{[l]} & = \frac{1}{m} \text{ np.sum(}dz^{[l]}\text{,axis=1,keepdims = true)} \\
+     dA^{[l-1]} & = W^{[l]T} \cdot dz^{[l]} %\\
+%     dz^{[l]} & =  (W^{[l+1]T} \cdot dz^{[l+1]}) * g^{[l]'}(z^{l}) \quad \text{from 2.24d in 2.24a}
+ \end{align}
+\end{subequations}
+
+If we checked the input variable in the backpropagation we will find it is $da^{l}$ and this is the derivative of \eqref{eq:loss function} which we can get it as explained previously from \eqref{eq:logistic_regression_derivatives_da} this is the formula for final layer in the feedforward step. If we need to calculate the vectorize version of this equation we can use equation\eqref{eq:logistic_regression_derivatives_da_vectorize}
+
+ \begin{equation}\label{eq:logistic_regression_derivatives_da_vectorize}
+      da =  \frac{d\ell}{da} = \frac{d\ell(a,y)}{da} = (- \frac{y^{[1]}}{a^{[1]}} + \frac{1-y^{[1]}}{1-a^{[1]}} \ldots - \frac{y^{[m]}}{a^{[m]}} + \frac{1-y^{[m]}}{1-a^{[m]}} )
+  \end{equation}
+   
+
+\subsubsection{How we Initialize the Wights}
+  
+\subsubsection{Deep Learning Running Cycle}
 
 
 
