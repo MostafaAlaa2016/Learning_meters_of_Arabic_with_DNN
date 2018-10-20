@@ -1245,7 +1245,7 @@ To initialize weights and to get the maximum value of the neural network computa
 \newpage
 \subsection{Recurrent Neural Network Model}
 
-Deep Neural Networks shows its ability to solve many problems. However, in some use cases, Naive Neural Network architecture cannot works or get the expected results. One of the famous example related to this issue in the NLP tasks when working on a text problem for example, If we say our Harry is the king and Elizabeth is the queen, and we need our model to understand from the sentence that, Harry is he and Elizabeth is she. Also, if this word appears again, we need the model to detect that Harry is a person. This type of problem has a dependency on the input text and how to get the output prediction based on the provided information from the input. Also, As explained previously, Most of the research in this area trying to simulate human brains. So, we will not find anyone every time trying to think about something start from scratch it always starts from another related point. Example, What is the human do if he tries to connect the information to generate the knowledge about something. There are many problems which based on this idea of dependency. For example,
+Deep Neural Networks shows its ability to solve many problems. However, in some use cases, Naive Neural Network architecture cannot works or get the expected results. One of the famous example related to this issue in the NLP tasks when working on a text problem for example, If we say our Harry is the king and Elizabeth is the queen, and we need our model to understand from the sentence that, Harry is he and Elizabeth is she. Also, if this word appears again, we need the model to detect that Harry is a person. This type of problem has a dependency on the input text and how to get the output prediction based on the provided information from the input. Also, As explained previously, Most of the research in this area trying to simulate human brains. So, we will not find anyone every time trying to think about something start from scratch it always starts from another related point. Example, What is the human do if he tries to connect the information to generate the knowledge about something. RNN shows its ability to work on sequence data and its related application problems such as natural language \cite{Mikolov_et_al}. showed the effective of RNN on language modeling. There are many problems which based on this idea of dependency. For example,
 \begin{itemize}
 \item Time series anomaly detection.
 \item Speech recognition.
@@ -1291,6 +1291,24 @@ So, This new change will allow us to share the learned feature between the netwo
   
  \end{itemize}
 
- % @@@ example about the weakness about RNN and tiddy example
+ % @@@ example about the weakness about RNN and tiddy example when we talk about Bi-LSTM 
 
+ \subsubsection{Vanishing Gradient with RNNs}
  
+ As we explained, RNN works on sequential data, and the idea is to predict new output not only based on the input data vector but also, other input vectors. Due to the recurrent structure in RNNs, it tends to suffer from long-term dependency to simplify this point let’s have an example, the following sentence \\
+ \textit{Waleed Yousef who is Associate Professor at Helwan University and teaching Data Science courses and its dependencies \textbf{\underline{was}} got Ph.D. in Computer Engineering from GWU at 2006.}.
+
+ In the previous example, to predict the word was is depending on long dependency to check if Waleed is singular or not to be consistent. Also, shows how some problems need the long-term dependencies handling.[Bengio et al.,1994]\cite{Bengio_ et_ al} showed that Basic RNNs has a problem in long-term dependency.  Another problem which may happen into basic Neural Networks is gradient exploding. One of the side-effects of gradient exploding is exponentially large gradient which causes our parameters to be so large. So, the Neural Networks parameters will have a server problem. Another fetal problem with Basic Neural Networks is overfitting problems [Zaremba et al., 2014]\cite{Zaremba_et_al}.
+ 
+ So, to solve this learning problem [Hochreiter and Schmidhuber, 1997] introduced Long Short-Term Memory which helps to reduce the dependency problem using memory cell and forget gate.
+ 
+ Similar RNN cells such as Gated Recurrent Unit (GRU) [Cho et al., 2014]
+were introduced to improve efficiency of LSTM. Overfitting
+problems of RNNs were alleviated with applying dropout on
+non-recurrent connections of RNNs [Zaremba et al., 2014].
+As a result, recurrent neural networks achieve state-of-the-
+art performance on sequential data especially in natural lan-
+guage processing. Image captioning [Xu et al., 2015], ques-
+tion answering [Kadlec et al., 2016], and machine translation
+[Bahdanau et al., 2014] all benefited from recurrent neural
+networks.
