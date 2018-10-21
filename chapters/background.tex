@@ -1044,7 +1044,7 @@ To implement a simple 1 iteration example below sample code simulate the program
    b = b - alpha * db
  \end{lstlisting}
 
- 
+\newpage 
  \subsection{The Neuron}
 
  As we all know, Most computer research is trying to simulate the human brain as it is the most advanced smartest creation. If we are trying to check how the model understands the new information regarding for example bananas photo we can give a baby two bananas then ask him about it baby can remember it with all it new shapes. Same case if you inform any human about some information and trying to get a new inference it will automatically detect this information. So, The new research trying to simulate the human brain model into an Artificial Intelligence model to trying to get this performance. In this subsection, we will try to give an overview of the relation between the new research era and the human brain.
@@ -1133,6 +1133,7 @@ z^{[1]} =
 \right]
 \]
 
+\newpage
 \subsubsection{Linear Neurons and Their Limitations}
 
 Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function $y= w x + b$. So, if we have mutli-layer networks for example equation \eqref{eq_linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks. So, to be able to detect the deep information we will use different function for the hidden layers example: Tanh\eqref{eq:nn_tanh}, Sigmoid\eqref{eq:logistic_function} and Relu\eqref{eq:nn_relu}. Most of binary classification problems use Sigmoid function for output layer. Also, we can use the same functions for the output but we can also use the linear for activation function in some cases. 
@@ -1220,8 +1221,8 @@ If we checked the input variable in the backpropagation we will find it is $da^{
       da =  \frac{d\ell}{da} = \frac{d\ell(a,y)}{da} = (- \frac{y^{[1]}}{a^{[1]}} + \frac{1-y^{[1]}}{1-a^{[1]}} \ldots - \frac{y^{[m]}}{a^{[m]}} + \frac{1-y^{[m]}}{1-a^{[m]}} )
   \end{equation}
    
-
-  \subsubsection{How we Initialize the Wights}
+\newpage
+\subsubsection{How we Initialize the Wights}
 
     As we explained previously in Logistic regression, We initialized the weights to Zero. However, in Deep Neural Networks it will not work. Note: It is okay to initialize the Bias to Zero but the wights it will not works. Let's see what will happen if we initialize the weights and Bias to Zero.
  
@@ -1243,7 +1244,7 @@ To initialize weights and to get the maximum value of the neural network computa
 %@@@@ Cost function vs Loss Function vs Gradient Desend 
 
 \newpage
-\subsection{Recurrent Neural Network Model}
+\subsection{Recurrent Neural Networks (RNNs)}
 
 Deep Neural Networks shows its ability to solve many problems. However, in some use cases, Naive Neural Network architecture cannot works or get the expected results. One of the famous example related to this issue in the NLP tasks when working on a text problem for example, If we say our Harry is the king and Elizabeth is the queen, and we need our model to understand from the sentence that, Harry is he and Elizabeth is she. Also, if this word appears again, we need the model to detect that Harry is a person.
 
@@ -1267,7 +1268,8 @@ So, What are the problems in the Naive Neural Network architecture?
 \end{itemize}
 What is the new proposed architecture which can provide a way to share the features between the Network?
 \begin{itemize}
-\item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figures \ref{fig:RNN-rolled-loop.png}, \ref{fig:andew_ng_feedfarward} shows an example.
+\item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figures \ref{fig:RNN-rolled-loop.png}, \ref{fig:andew_ng_feedfarward} shows an example. So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.
+
    \begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/RNN-unrolled.png}
   \caption{Recurrent Neural Networks Loops\cite{colah}}
   \label{fig:RNN-rolled-loop.png}
@@ -1281,7 +1283,6 @@ What is the new proposed architecture which can provide a way to share the featu
 
 % @@@add example about the new architecture
 
-So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.
 \item Second, The feedfarward will be compute for time t and then we will calculate the loss at step t. The final loss is the sum of loss at every step t eq\eqref{eq:rnn_feedfarward} explains the steps for feedfarward. Note: The backpropagation here will be calculated though time at every step.
 %@@@ change the notations from Andrew to Blog
   \begin{subequations}\label{eq:rnn_feedfarward}
@@ -1307,7 +1308,7 @@ So, This new change will allow us to share the learned feature between the netwo
  
  So, to solve this learning problem [Hochreiter and Schmidhuber, 1997] introduced Long Short-Term Memory which helps to reduce the dependency problem using memory cell and forget gate.
 \newpage
-\subsubsection{Long Short Term Memory networks (LSTMs)}
+\subsection{Long Short Term Memory networks (LSTMs)}
 
 
 Long Short Term Memory networks – aka “LSTMs” – are a special type of RNN, capable of learning long-term dependencies. To solve the vanishing gradient problem for long-term dependencies, [Hochreiter and Schmidhuber, 1997]\cite{Hochreiter} suggested new cell architecture for RNN by adding Long Short Term Memory which significantly reduced the long-term dependency problem using memory cell and forget gate.
@@ -1320,7 +1321,8 @@ Long Short Term Memory networks – aka “LSTMs” – are a special type of RN
   \caption{The repeating module in a standard RNN contains a single layer.\cite{colah}}
   \label{fig:LSTM-SimpleRNN}
 \end{figure}
- In Basic RNNs it is very simple structure for every layer with simple output function\ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers\ref{fig:LSTM-cell-chaining}.
+
+ In Basic RNNs it is very simple structure for every layer with simple output function \ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers \ref{fig:LSTM-cell-chaining}.
 
 
 \begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/LSTM-cell-chaining.png}
@@ -1328,6 +1330,27 @@ Long Short Term Memory networks – aka “LSTMs” – are a special type of RN
   \label{fig:LSTM-cell-chaining}
 \end{figure}
 
+
+\subsubsection{LSTM Gate Mechanism}
+
+The main component of LSTM is the cell state; It allows the information to pass through along it unchanged. In figure xxx the top line show the information flow through the cell. The LSTM cell can add or remove information to the cell state using the Gating mechanism. 
+
+Gates's idea is a methodology to manage the way how and which information pass or not. It controls information flow through the cell. It has three of these gates. They are consist of a sigmoid neural network layer \ref{fig:LSTM-Cell-state} and a pointwise multiplication operation \ref{fig:LSTM-gate}.
+
+Sigmoid function output values between zero and one. If the value is one these means that everything should pass, while if the value is zero these means do not pass anything. So, the value output from the sigmoid function refers to the amount of each component should be passed.
+
+\begin{figure}[h!]
+    \centering
+        \includegraphics[width=\textwidth]{./Figures/LSTM-Cell-state.png}
+        \caption{LSTM top horizontal line working as the medium for information flow}
+        \label{fig:LSTM-Cell-state}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+        \includegraphics[width=0.2\textwidth]{./Figures/LSTM-gate.png}
+        \caption{Cell gate with sigmoid function and a pointwise multiplication operation}
+        \label{fig:LSTM-gate}
+\end{figure}
 
 
 \newpage
