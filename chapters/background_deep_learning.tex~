@@ -491,92 +491,25 @@ Sigmoid function output values between zero and one. If the value is one these m
 \begin{figure}[h!]
     \centering
         \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-Cell-state.png}
-        \caption{LSTM top horizontal line working as the medium for information flow \cite{colah}}
+        \caption{LSTM top horizontal line working as the medium for information flow}
         \label{fig:LSTM-Cell-state}
 \end{figure}
 \begin{figure}[h!]
     \centering
         \includegraphics[width=0.2\textwidth]{./Figures/Ch_2_Background/LSTM-gate.png}
-        \caption{Cell gate with sigmoid function and a pointwise multiplication operation \cite{colah}}
+        \caption{Cell gate with sigmoid function and a pointwise multiplication operation}
         \label{fig:LSTM-gate}
 \end{figure}
 
-\newpage
+
 \subsubsection{How LSTM Works?}
 
-We have explained LSTM has three gates with some 
-
-\begin{itemize}
-  
-\item \textbf{Forget Gate Layer} a Sigmoid layer \ref{fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculate the output from Sigmoid function between zero and one. As explained if one \textit{everything should pass}, while if zero \textit{do not pass anything}. The value zero or one depends on the value of the cell state if it includes a gender type and we need to predict the pronouns so, it will pass else it will ride of this state.
-
-\begin{figure}[h!]
-    \centering
-        \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-forget-gate.png}
-        \caption{LSTM sigmoid forget gate \cite{colah}}
-        \label{fig:LSTM-forget-gate}
-\end{figure}
-
-
-
-\item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{tanh layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state \ref{fig:LSTM-input-gate}. The previous combination controls the update state. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.
-
-\begin{figure}[h!]
-    \centering
-        \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-input-gate.png}
-        \caption{LSTM Input gate a combination of Sigmoid and Tanh layers \cite{colah}}
-        \label{fig:LSTM-input-gate}
-\end{figure}
-
-\item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in \ref{fig:LSTM-pointwise-operations} there are two operations, 
-  \begin{enumerate}
-  \item Multiplication Operation: This operation to apply the forget gate step by multiplying the old state $\tilde{C}_{t-1} $ by the $f_t$.
-  \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t * \tilde{C_t}$
-    \end{enumerate}
-
-    \begin{figure}[h!]
-    \centering \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-pointwise-operations.png}
-        \caption{LSTM Multiplication and Addition Operation in LSTM \cite{colah}}
-        \label{fig:LSTM-pointwise-operations}
-      \end{figure}
-
-      
-      
-    \item \textbf{Output Gate} This gate is a combination of \textit{sigmoid} layer and \textit{tanh} layer. \textit{Sigmoid} layer decides the information which should be output. Then the output of the  \textit{sigmoid} function will be multiplying with the output of the \textit{tanh} layer of the cell state. This \textit{tanh} will make the values between -1 and 1. The output of the multiplication of \textit{sigmoid} and \textit{tanh} will be the final output. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.
-
-\begin{figure}[h!]
-    \centering \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-output-gate.png}
-        \caption{LSTM Multiplication and Addition Operation in LSTM \cite{colah}}
-        \label{fig:LSTM-output-gate}
-      \end{figure}
-
-
-      
-    \end{itemize}
-
-    
-    We have explained the normal LSTM. Also, we need to mention that there are much research proposed different modifications of the normal LSTM type. We will not explain all the types, but we will give a small overview of one of these modifications named Gated Recurrent Unit (GRU) in the next part.
 \newpage
 \subsubsection{Gated Recurrent Units (GRUs)}
 
-In RNN Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 by Kyunghyun Cho et al. \cite{Cho_et_al}. It works to overcome the problem for long-term dependencies. It also aimed to solve the vanishing gradient problem from Basic RNNs.It proposed a new architecture \ref{fig:GRU} similar than the LSTM but with some major variants as below,
-\begin{itemize}
-  
-\item It combines the forget gate and input gates into a single gate named “update gate and reset gate.”
-\item The GRU unit controls the flow of information without having to use a memory unit. It just exposes the full hidden content without any control.
-\item It also merges the cell state and hidden state.
-  
-\end{itemize}
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/GRU.png}
-        \caption{GRU cell architecture \cite{colah}}
-        \label{fig:GRU}
-      \end{figure}
+ In RNN Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 by Kyunghyun Cho et al. \cite{Cho_et_al}. It works to overcome the problem for long-term dependencies. It also aimd to solve the vanishing gradient problem from Basic RNNs.It proposed a new architecture in RNN cell units.
 
-
-The result of this modifications is GRUs are simpler and easier for modifications in the design. GRUs trains faster and in some case, it performs better than LSTMs on less training data mainly in language modeling. However, LSTMs has some benefits over GRUs in case longer sequences than GRUs in tasks requiring modeling long-distance relations. 
-
+ 
 
  
 
