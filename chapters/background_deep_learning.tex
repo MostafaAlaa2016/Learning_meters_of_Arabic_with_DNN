@@ -579,6 +579,15 @@ The result of this modifications is GRUs are simpler and easier for modification
 
 
  
+\subsubsection{BI-LSTM}
 
 
+BI-LSTM two LSTMs stacked on top of each other, It used to solve some problem where the information needs to be considered in both directions for LSTM. As the normal LSTM is working from left to right, the BI-LSTM adds the other directions into the learning information. Let's take a motivation example regarding why we need BI-LSTM?
+\begin{itemize}
+\item \textit{Harry is the king, and he will travel next week.}
+\item \textit{The new book which makes the big sale named Harry Poter}.
+\end{itemize}
+Harry in the first example refers to a person, however, in the second example refers to the book. So, if we are working left to right, we will not get the type of word Harry in the second example.
+
+The architecture in BI-LSTM is similar to what we discussed previous regarding Uni-LSTM. We can mention here that BI-LSTM is very slow compared to LSTM, and it needs much time in the training phase, but for example, As we will see later in our research it is impressive regarding the results and the effect in the language problems.
  % @@@ example about the weakness about RNN and tiddy example when we talk about Bi-LSTM 
