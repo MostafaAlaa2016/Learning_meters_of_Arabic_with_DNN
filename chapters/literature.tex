@@ -1,1 +1,33 @@
 \chapter{\uppercase{LITERATURE REVIEW}}
+
+Poems classification and detection have different ways of addressing across the literature available in both computer science and linguistic sciences. However, This topic still unexplored computationally. From these literatures, we can see that they treated the problem either as a deterministic or as a learning problem.
+
+In a deterministic way, they restricted by some static conditions and not able to build a scientific approach to satisfy the problem.
+
+In the learning problem, it was with feature handcrafting in which models do not learn the real patterns, but it learns from the feature they fed by the designer who knows which feature carries the pattern. This approach is very limited in many points for example, The model is limited by the features fed to the model and this was depends on the designer knowledge about this topic. As result models have no idea about the real patterns inside the text that make the poetry. Those models are not intelligent at detecting the meter type. The lake of the intelligence is our point of departure toward real serious models. We make use of the actual text characters to train our models, with no features handcrafting. With this approach, our models can pick up the patterns inside the characters that form the meter.
+
+\section{Deterministic (Algorithmic) Approach}\label{sec:determ-algor-appr}
+
+\cite{Abuata2016RuleBasedAlgorithmFor} present the most related work to our topic, classifying Arabic poems according to their \textit{meters}. However, they have not addressed it as a \textit{learning problem}; they have designed a deterministic five-step \textit{algorithm} for analyzing and detecting meters. The first step and the most important is to have the input text carrying full diacritics; this means that every single letter must carry a diacritic, explicitly. The next step is converting input text into \textit{Arud writing} using \textit{if-else} like rules. \textit{Arud writing} is a pronounced version of writing; where only pronounced sounds written. Then metrical \textit{scansion} rules applied to the \textit{Arud writing}, which leaves the input text as a sequence of zeros and ones. After that they defined each group of zeros and ones as a \textit{tafa'il}, so now we have a sequence of \textit{tafa'il}. Finally, the input text classified to the closest meter to the \textit{tafa'il} sequence. 82.2\% is the classification accuracy on a relatively small sample, only 417 verse.
+
+\cite{Alnagdawi2013FindingArabicPoemMeter} has taken a similar approach to the previous work, but it replaced the \textit{if-else} by \textit{regular expressions} templates. This approach formalized the \textit{scansion}s, \textit{Arud} based on lingual rules related to pronounced and silent rules, which is directly related to \textit{harakat} as \textit{context-free grammar}. Only 75\% from 128 verses were correctly classified. 
+
+\cite{Kurt2012AlgorithmForDetectionAnalysis} have taken a similar approach but worked on detecting and analyzing the \textit{arud} meters in Ottoman Language. They convert the text into a lingual form in which the meters appear. Their First Step, Converting Ottoman text transliterate to Latin transcription alphabet (LTA). After that, they feed the text to the algorithm which uses a database containing all Ottoman meters to compare the detected meter extracted from LTA to the closest meter found in the database which saved the meters.
+
+Both \cite{Abuata2016RuleBasedAlgorithmFor} and \cite{Alnagdawi2013FindingArabicPoemMeter} have common problems,
+
+\begin{enumerate}
+\item \textbf{The size of the test data} which cannot measure the accuracy for any algorithms they have constructed because it is a very small dataset. Also, a 75\% total accuracy of 128 verses is even worse.
+  \item \textbf{The step converting verses into ones and zeros patternso} are probabilistic; it also depends on the meaning, which is a source of randomness. Then treating such a problem as a deterministic problem will not satisfy the case study. It results in many limitations like obligating verses to have full diacritics on every single letter before conducting the classification. This is also the case with \cite{Kurt2012AlgorithmForDetectionAnalysis} work, for their algorithm to work, the text must be transliterated into LTA.
+  \end{enumerate}
+
+
+\section{Machine Learning Approach (Handcrafted Features)}\label{sec:mach-learn-appr}
+
+Here is a different approach to the previous, the algorithmic ones, \cite{Almuhareb2015RecognitionModernArabicPoems} has used machine learning to recognize modern Arabic poems inside documents, which is a different problem to ours.  He has built \textit{Naive Bayes} and \textit{Decision Tree} classifiers which detect poems based on the visual features, like line length average, line length standard deviation, average number of block (a group of lines separated by an empty character or more), standard deviation of block number, word repetition rate, diacritic rate, punctuation rate. They have extracted those features from 2067 documents which divided into 513 modern poems and 1554 prose.  Then classifiers evaluated using \textit{10-fold cross-validation}. The best accuracy achieved was 99.81\%  by the \textit{decision tree} classifier which is trained on all the visual features together.
+
+\cite{Tizhoosh2006PoemRecognition} has presented similar work to \cite{Almuhareb2015RecognitionModernArabicPoems}, have trained \textit{Naive Bayes} and \textit{Decision Tree} using visual features, they reached accuracy above 90\%.
+
+Visual features may work well when detecting poems inside documents due to poems are written in a specific structure which distinguishes them from other text inside documents. In these approaches, models have no clue about the real patterns that create poems the way how It structures words inside text does not produce poems at all, so their model can be easily deceived.
+
+\cite{Tanasescu2016AutomaticClassificationPoetryMeter} has worked on binary classifying English poems where \textit{metric} and \textit{free-verse} are the categories, he faced an interesting problem with their dataset, it was imbalanced, (871 metrical poems, 4115 free-verse), for this reason. they have used \textit{bootstrap aggregating} (also known as \textit{bagging}), which is a meta-algorithm that can greatly improve decision tree accuracy.  With \textit{J48} and \textit{bootstrap aggregating}, he was able to achieve a 94.39\% correctly classifying poetry as metrical or not.
