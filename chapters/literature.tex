@@ -31,3 +31,26 @@ Here is a different approach to the previous, the algorithmic ones, \cite{Almuha
 Visual features may work well when detecting poems inside documents due to poems are written in a specific structure which distinguishes them from other text inside documents. In these approaches, models have no clue about the real patterns that create poems the way how It structures words inside text does not produce poems at all, so their model can be easily deceived.
 
 \cite{Tanasescu2016AutomaticClassificationPoetryMeter} has worked on binary classifying English poems where \textit{metric} and \textit{free-verse} are the categories, he faced an interesting problem with their dataset, it was imbalanced, (871 metrical poems, 4115 free-verse), for this reason. they have used \textit{bootstrap aggregating} (also known as \textit{bagging}), which is a meta-algorithm that can greatly improve decision tree accuracy.  With \textit{J48} and \textit{bootstrap aggregating}, he was able to achieve a 94.39\% correctly classifying poetry as metrical or not.
+
+So, we can summarize the difference between our work and the previous work in the following table
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{\#} & \textbf{Comparison side} & \textbf{Previous Work} & \textbf{Our Work} \\
+    \hline
+    1 & Dataset Size & A small number of the dataset used (1.5k) & Big Dataset contains 1.6M rows    \\
+        \hline
+    2 & Feature Engineering & limited features without intelligence  & Intelligent feature detection   \\
+        \hline
+    3 & Performance & \makecell{Poor performance in case of\\ rule-based and not good \\performance handcrafted \\machine learning features}  & \makecell{Excellent performance applied to \\a reasonable size of test data}  \\
+
+    \hline
+        4 & Accuracy Measure & \makecell{Most of the research does not \\provide clear way about \\accuracy measure }  & \makecell{Provide F-score and confusion\\ matrix for the results\\ with clear performance for\\ every experiment}  \\
+
+    \hline
+ \end{tabular}
+  \caption{Comparison between our work approach and Previous work. }\label{arud:feet}
+\end{table}
+
