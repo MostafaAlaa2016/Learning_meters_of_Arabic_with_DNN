@@ -1,240 +1,16 @@
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % XELATEX
 % !TEX TS-program = xelatex
-
 %% Based on a TeXnicCenter-Template by Gyorgy SZEIDL.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%------------------------------------------------------------
-%
-\documentclass[a4paper,12pt]{report}%%
-%Options -- Point size:  10pt (default), 11pt, 12pt
-%        -- Paper size:  letterpaper (default), a4paper, a5paper, b5paper
-%                        legalpaper, executivepaper
-%        -- Orientation  (portrait is the default)
-%                        landscape
-%        -- Print size:  oneside (default), twoside
-%        -- Quality      final(default), draft
-%        -- Title page   notitlepage, titlepage(default)
-%        -- Columns      onecolumn(default), twocolumn
-%        -- Equation numbering (equation numbers on the right is the default)
-%                        leqno
-%        -- Displayed equations (centered is the default)
-%                        fleqn (equations start at the same distance from the right side)
-%        -- Open bibliography style (closed is the default)
-%                        openbib
-% For instance the command
-%           \documentclass[a4paper,12pt,leqno]{article}
-% ensures that the paper size is a4, the fonts are typeset at the size 12p
-% and the equation numbers are on the left side
-%
 
-
-
-
-%@@@https://codeinthehole.com/guides/writing-a-thesis-in-latex/
-
-
-\usepackage{fontspec}
-\usepackage{amsmath}
-\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
-\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
-%\usepackage{geometry}
-\usepackage[a4paper]{geometry}
-\geometry{ a4paper, total={170mm,257mm}, left=12mm,right=20mm, top=25mm,}
-%\usepackage[left=1in, right=1in, top=1in, bottom=1in, includefoot, headheight=5.6pt]{geometry}
-
-\usepackage{makecell}
-
-\setlength{\parskip}{6pt}
-\usepackage{amsfonts}%
-\usepackage{amssymb}%
-\usepackage{graphicx}
-%-------------------------------------------
-\newtheorem{theorem}{Theorem}
-\newtheorem{acknowledgement}[theorem]{Acknowledgement}
-\newtheorem{algorithm}[theorem]{Algorithm}
-\newtheorem{axiom}[theorem]{Axiom}
-\newtheorem{case}[theorem]{Case}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{conclusion}[theorem]{Conclusion}
-\newtheorem{condition}[theorem]{Condition}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{criterion}[theorem]{Criterion}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{exercise}[theorem]{Exercise}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{notation}[theorem]{Notation}
-\newtheorem{problem}[theorem]{Problem}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{solution}[theorem]{Solution}
-\newtheorem{summary}[theorem]{Summary}
-\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
-
-%------------All done to create a subsubsubsection command with numbering-----------
-\usepackage[T1]{fontenc}
-%\usepackage[latin1]{inputenc}
-
-\usepackage{lmodern}
-\usepackage[english]{babel}
-\usepackage{hyperref}
-\hypersetup{
-  colorlinks,
-  citecolor=blue,
-  filecolor=blue,
-  linkcolor=blue,
-  urlcolor=blue}
-\setcounter{secnumdepth}{3}
-% -------------------------------------------------------------
-\setcounter{tocdepth}{2} %depth of table of contents
-% \setcounter{secnumdepth}{-1}
-
-
-\usepackage{setspace}
-\usepackage{pslatex,palatino,avant,graphicx,color}
-\usepackage{titlesec}
-\titleformat{\chapter}[display]
-{\normalfont\huge\bfseries\centering}{\thechapter}{20pt}{\Huge}
-\newcommand{\cchapter}{\chapter}
-\titleformat{\cchapter}[display]
-{\normalfont\tiny\bfseries\centering}{\thecchapter}{12pt}{\tiny}
-\usepackage{appendix}
-\usepackage{float}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% make the tables and the figures centered automatically
-\makeatletter
-\g@addto@macro\@floatboxreset\centering
-\makeatother
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage[utf8x]{inputenc}
-%\usepackage[utf8]{inputenc}
-\usepackage[numbers,sort&compress]{natbib}
-\usepackage{geometry}
-\usepackage{subcaption}
-
-\usepackage{fourier}
-\DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
-\DeclareSymbolFont{letters}{OML}{cmm}{m}{it}
-\usepackage{mathtools}
-%\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-\usepackage{amsfonts, amssymb, bm}
-\usepackage{booktabs}  % for \toprule ...
-\usepackage{caption}
-\usepackage{verbatim}
-\usepackage{enumitem}
-\newcommand{\dd}[1]{\mathrm{d}#1}
-
-\usepackage{graphicx, type1cm, lettrine}
-\usepackage{qtree}
-\usepackage[dvipsnames, table]{xcolor}
-\usepackage{collcell}
-\usepackage{pgf}
-\usepackage{forest}
-\usepackage{setspace}
-\usepackage{listings}
-
-\usepackage{pgfplots}
-%\usepackage[most]{tcolorbox}
-% \tcbset{colback=yellow!10!white, colframe=red!50!black, 
-%         highlight math style= {enhanced, %<-- needed for the ’remember’ options
-%             colframe=red,colback=red!10!white,boxsep=0pt}
-%         }
-\usepackage{tikz}
-\usetikzlibrary{shapes.geometric}
-\usetikzlibrary{arrows.meta,arrows}
-\usepackage{bidipoem}
-\usepackage{polyglossia} % <3
-\setmainlanguage{english}
-\setotherlanguage{arabic}
-\newfontfamily\arabicfont  [Script=Arabic, Scale=1.5]{Scheherazade}
-\usepackage[numbers,sort&compress]{natbib}
-\usepackage{float}
-\usepackage{footnote}
-
-\usepackage{color}
- 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
- 
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
-}
- 
-\lstset{style=mystyle}
-
-
-
-
+\input{./Thesis_Configurations.tex}
 
 \begin{document}
-\thispagestyle{empty}
-\begin{centering}
-\large{\textbf{\\[1cm]{Learning Meters of Arabic Poems with \\ Deep Learning}}}\\[5cm]
-\normalsize{}
-A Thesis Presented to the Faculty\\
- of\\
- Nile University\\[5cm]
-In Partial Fulfillment\\
-of the Requirements for the Degree\\
-of Master of SCIENCE\\[3cm]
-By\\
-Moustafa Alaa Mohamed\\
-July 2018\\
-\end{centering}
-\normalsize{}
 
 
-
-\newpage 
-\thispagestyle{empty}
-\begin{centering}
-\normalsize{}
-CERTIFICATION OF APPROVAL\\[3cm]
-Learning Meters of Arabic Poems with \\ Deep Learning\\[4cm]
- By\\
-Moustafa Alaa Mohamed\\[4cm]
-\end{centering}
-
-\hspace{-1.7em}
-\rule[0em]{19em}{0.5pt} \hspace{4em} \rule[0em]{11em}{0.5pt} \\
-\hspace{1em}
-Dr. Samhaa El-Beltagy	(Chair)	\hspace{9.4em} Date\\
-Professor of Electrical and Computer Engineering \\[1cm]
-\hspace{1em}
-\rule[0em]{19em}{0.5pt} \hspace{4em} \rule[0em]{11em}{0.5pt} \\
-\hspace{1em}
-Dr. Waleed Yousef \hspace{14.8em}  Date\\
-Professor of Computer Science \\[1cm]
-\hspace{1em}
-
-\normalsize{}
-\newpage 
-\pagenumbering{roman} 
-
-\renewcommand{\contentsname}{\uppercase{Table of Contents}}
-
+\input{./chapters/front_page.tex}
 
 \newpage
 
@@ -242,28 +18,24 @@ Professor of Computer Science \\[1cm]
 
 
 \newpage
+
 \addcontentsline{toc}{chapter}{Table of Contents}
 \tableofcontents
 \newpage
+
 \addcontentsline{toc}{chapter}{List of Figures} 
 \renewcommand\listfigurename{\uppercase{List of Figures}}
 \listoffigures 
 \newpage
+
 \addcontentsline{toc}{chapter}{List of Tables}
 \renewcommand\listtablename{\uppercase{List of Tables}}
-\listoftables 
-
-%\renewcommand\refname{your title for Bib.}
-%\renewcommand\abstractname{your title for abstract}
-
+\listoftables
 \newpage
-
 \pagenumbering{arabic}
-%%%NOTE: Abstract is not attractive need to be revised
 \input{./chapters/ch_abstract.tex}
 \newpage
 
-%%%NOTE: Introduction is too long and include a lot of background details it should be small and need to move the details into background
 \input{./chapters/ch_introduction.tex}
 \newpage
 
