@@ -1,0 +1,29 @@
+\begin{figure}[H]
+
+\begin{center}
+    \caption{Gradient of graph}
+    
+    \begin{tikzpicture}
+    \draw[step=.2, gray!40, very thin] (0,0) grid (8,4);
+\begin{axis}[axis lines=center,
+       enlargelimits,
+       tick align=inside,
+       domain=-1:1,
+       samples=30,
+       minor tick num=7,]
+       %\draw \fill[orange] (3.6,1.6) circle (1ex);
+       
+		
+       \addplot3 [surf]{x^2+y^2};
+       %\draw[dashed,line width=0.005\linewidth, ->] (axis cs:3.6, 0, 1) -- (axis cs:3.6,1.7,1);
+       \draw[dashed,line width=0.005\linewidth, ->] (axis cs:-1.1, 1.35, 1) -- (axis cs:0.0,-0.2,0.65);
+       \draw[arrows=-latex, line width=1.5pt] (0.85, 10) -- (1.5, 10)
+		%\draw \fill[orange] (3.6,1.6) circle (1ex);
+		
+%\addplot[red,mark=*] coordinates {(3.6,1.6)};  
+
+\end{axis}
+\end{tikzpicture}
+    
+\end{center}
+\end{figure} 

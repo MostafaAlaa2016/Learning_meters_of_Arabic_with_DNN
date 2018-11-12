@@ -1,0 +1,29 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}
+  % \input{Figures/Ch_2_Background/fig_logistic.tex}
+  \begin{axis}%
+[
+%grid=major,
+xmin=-10,
+xmax=10,
+axis x line=bottom,
+ytick={0,.5,1},
+%xticklabels = {,,}, 
+ymax=1,
+axis y line=middle,
+]
+\addplot%
+[
+blue,%
+mark=none,
+samples=100,
+domain=-10:10,
+]
+(x,{1/(1+exp(-x))});
+%(x,{x^2});
+\end{axis}
+\end{tikzpicture}%
+\label{fig:logistic}
+\caption{Logistic Regression Function (S-Shape)}
+\end{figure}

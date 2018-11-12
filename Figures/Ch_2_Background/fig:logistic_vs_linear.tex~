@@ -1,0 +1,70 @@
+\addplot table[y={create col/linear regression={y=Y}}]{
+X Y
+1.0 0.816286793
+1.5 0.81474159
+2.0 0.77101728
+2.5 0.733906267
+3.0 0.693063823
+4.0 0.660231965
+5.0 0.62408223
+6.0 0.627902353
+};
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+  % \input{Figures/Ch_2_Background/fig_logistic.tex}
+  \begin{axis}%
+[
+%grid=major,
+xmin=-10,
+xmax=10,
+axis x line=bottom,
+ytick={0,.5,1},
+%xticklabels = {,,}, 
+ymax=1,
+axis y line=middle,
+]
+\addplot%
+[
+blue,%
+mark=none,
+samples=100,
+domain=-10:10,
+]
+(x,{1/(1+exp(-x))});
+%(x,{x^2});
+
+% one table for all plots
+\pgfplotstableread{
+X Y1 
+1.0 0.816286793 
+1.5 0.81474159 
+2.0 0.77101728 
+2.5 0.733906267 
+3.0 0.693063823 
+4.0 0.660231965 
+5.0 0.62408223 
+6.0 0.627902353 
+}\data
+
+    \begin{axis}[
+      x post scale=2, y post scale=1.5,
+      xlabel=Injection Pressure (Bar) ,
+      ylabel=Coefficient Discharge,
+      xmin=0, xmax=7,
+      ymin=0.5, ymax=1,
+      regline/.style={dashed,forget plot}
+      ]
+        \addlegendentry{1/4 Lift}
+    \addplot [color=blue,mark=o, smooth] table [y=Y1] {\data};
+    \addplot [blue,regline] table [y={create col/linear regression={y=Y1}}] {\data};
+
+    \end{axis}%
+
+
+
+\end{tikzpicture}%
+\label{fig:logistic}
+\caption{Logistic Regression Function (S-Shape)}
+\end{figure}

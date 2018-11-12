@@ -143,7 +143,12 @@
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{float}
 \usepackage{footnote}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}% loads pgfplots, tikz, graphicx
+\usetikzlibrary{matrix}
+\pgfplotsset{compat=1.14}% <- added!
 
+\pgfplotsset{compat=1.8}
 \usepackage{color}
  
 \definecolor{codegreen}{rgb}{0,0.6,0}

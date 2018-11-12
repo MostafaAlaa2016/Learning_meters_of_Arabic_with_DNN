@@ -1,0 +1,28 @@
+\begin{figure}\label{fig:logistic_linear}
+\centering
+\begin{tikzpicture}[baseline]
+  \begin{axis}[
+    axis y line=center,
+    axis x line=middle,
+    % axis equal,
+    % grid=both,
+    xmax=1,xmin=-1,
+    ymax=2,
+    xlabel=$x$,ylabel=$y$,
+    xtick={-1,0,1},
+    ytick={-0.5,0,.5,1,2},
+    %width=15cm,
+    ]
+    anchor=center,
+
+\addplot {x+.5} ;
+%\addplot(x,1/(1+exp(-x)));
+\addplot[
+samples=1000,]{1/(1+exp(-x))};
+\end{axis}
+\end{tikzpicture}
+
+
+    \caption{Logistic vs Linear Functions}
+
+\end{figure}
