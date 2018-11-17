@@ -1,1 +1,114 @@
-\chapter{\uppercase{Model training}}
+\chapter{\uppercase{Model Training and Experiments}}
+
+In this chapter, We will discuss the Training and Experiments done in this project. The training phase started by exploring what the ratio of Training, Testing, and Validation is. Choosing the correct percentage of training dataset compared to the Testing and Validation in Deep learning differs from normal machine learning structure, and it affects the model performance.
+
+In a normal machine learning project, we used to split the dataset as around 60\% as training, 30\% testing and 10\% as a validation. However, In The Deep Learning, the amount of data profoundly affects the model performance. So, the more data fed as training, the more performance results the model can achieve on test data (Assuming we did the regularization and the needed generalization on the model training phase). Also, The main reason to change the split size is due to the size of the dataset we used to work on for example 1\% of 1M sample is 10k which is big enough for such experiments way. However, if we work on 10k sample, we need around 30\% 3k sample to have confidence in our model. So, it depends on the problem and size of the dataset.
+
+In this research, We worked on \textit{Poem Comprehensive Dataset (PCD)}\cite{ArabicpoetryDS}. We are interested in the 16 classic meters which attributed to Al-Farahidi. These meters comprise the majority of the dataset with a total number of 1,722,321 verses. Figure ~\ref{fig:data_size_distribution} shows an ordered bar chart based on the number of verses per meter. We trained all our models based on 80\% which is around 1,377,856 verse. Our testing data(development) is 10\% around 172,232 verse, and our Validation data around 172,232 verse.
+
+We can show training phase designed as a Data representation configurations and an RNN configuration. The number of experiments is the cross product of both data representation and RNN configuration, for example, If we have 12 data representation and 12 RNN configurations the total number of experiments will be 144. We need to highlight that,
+
+\begin{itemize}
+	\item Data representation feature is a general feature applied on the dataset not a Hand-Crafted features more details on ~\ref{sec_data_rep_param}.
+	\item There is an effect of the Data representation feature due to Arabic language pronunciation and some features provide more information than others.
+	\item RNN configurations are the parameters related to the Network model development training, and it used after many of experiment to find and tune the best configurations. These means we did more than the number of experiment written in this research but we only publish the best results overall. It will explain more details in sec ~\ref{sec_rnn_param}.
+	\item The number verses used on testing and validation is a significant number 344,464 verse which confirms that the model tested on all types of verses and have confidence in the results.
+
+\end{itemize}
+
+\section{Parameters of Data Representation}\label{sec_data_rep_param}
+
+Arabic language parameters have types Diacritics, Trimming, and Encoding. Every type has its effect on the data and the performance on model learning rate. We will explain each one in details in the next subsections.
+
+\subsection{Diacritics}
+
+Arabic dataset has the verse with diacritics. We can feed the network the characters with diacritics and without diacritics. With diacritics, it will be much easier for the network to learn since it provides more information on the pronunciation. Moreover, It provides more information related to the vowel and consonant sounds in the letters. However, as we discussed in Data Encoding Chapter~\ref{ch:data_encoding}, Both With and Without diacritics has the same length in input vector size.
+
+\subsection{Trimming Small Classes}
+
+Arabic poem dataset, as stated in Figure~\ref{fig:data_percentage_distribution}, is unbalanced. So, As part of our research, we make the dataset representation as a Full dataset and Trimmed dataset. This way allows us to study the effect of this unbalance. Also, We not only explore the impact of the unbalanced dataset But also, We have applied a technique to solve this issue~\ref{sec_rnn_param}. The trimmed classes are five classes which have less than 1\% of the total dataset. We presented this classes as all the classes on the left side of the horizontal red line in Figure~\ref{fig:data_percentage_distribution}. So, The total classes after trimming are 11 classes and the full with all 16 meters presented.
+
+\subsection{Encoding Techniques}
+
+As explained previously, There are three different encoding methods~\ref{ch:data_encoding}. Although all carry the same information, It expected that Every encoding has its behaviours as below,
+\begin{itemize}
+\item \textbf{Running Time}: It was expected the running time would differ from one encoding type compared to others. This information is important if someone has an experiment with limited time and need to get the results as fast as it can.
+\item \textbf{Required Resources}: It was expected to have different resources consumption from one encoding typed compared to others. This information is important if someone has an experiment with limited resources.
+• Learning Rate: Some encoding will learn faster than others (Note: Learning Rate not the overall performance) for example, one encoding can achieve 80\% on training performance after four epoch, but another one can reach the same percentage after 20\% epoch.
+\item \textbf{Learning Rate}: The final performance percentage which can be achieved with every encoding technique (Note: the best can be the worst in learning rate or the method which take much time). So, the researcher who will use this encoding should decide which one will be used based on the criteria needed.
+
+\item \textbf{Overall Performance}: The final performance percentage which can be achieved with every encoding technique (Note: the best can be the worst in learning rate or the method which take much time). So, the researcher who will use this encoding should decide which one will be used based on the criteria needed.
+
+  \end{itemize}
+
+  \subsection{Data Representation Matrix}
+
+  The data representation matrix is the cross product of the Diacritics 2, Data Encoding 3, and Trimming 2 total 12 combinations table~\ref{table:data_representation_matrix} shows this matrix combination. Example (With diacritic + One-hot + Full)
+
+  
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \textbf{\#} & \textbf{Diacritic} & \multicolumn{3}{c|}{\textbf{Encoding Types}}  & \textbf{Trimming} \\
+    
+    \hline
+    1 & With diacritic & One-hot & Two-hot & Binary & Full    \\
+        \hline
+    2 & Without diacritic & One-hot & Two-hot & Binary & Trimmed \\
+\hline
+ \end{tabular}
+  \caption{Data Representation Combination Matrix}\label{table:data_representation_matrix}
+\end{table}
+
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+	\input{./Figures/Ch_4_Dataset/dataset_percentage_ar.tex}
+	\end{tikzpicture}%
+	\caption{Arabic dataset class size (number of verses) ordered descendingly on y-axis vs. corresponding meter name on the x-axis.}\label{fig:data_percentage_distribution}
+\end{figure}
+
+\newpage
+
+\section{Parameters of Network Configuration}\label{sec_rnn_param}
+
+% RNN,LSTM,BI_LSTM
+As explained previously, Recurrent Neural Networks (RNN) showed the ability to solve language model problems in Section~\ref{sec_RNN}. We used RNNs with Long Short Term Memory(LSTM)~\ref{sec_LSTM} as the main architecture for our experiments. We also used BI-LSTM discussed in section~\ref{sec_bi-lstm} as an alternative way to test the affect of BI-Directional LSTM to check learn the patterns with the two directions.
+
+We also thought using BI-LSTM will support the model to learn the Tafa'il for every class as it can combined the sound music from both ways. We will explain our argue and the effects on the results in Chapter~\ref{ch_results}.
+% RNN Configuration
+In RNNs network configuration parameters, there are four parameters:
+\begin{itemize}
+\item \textbf{Cell Type}: We used LSTM and BI-LSTM.
+\item \textbf{Layers}: We tried many numbers of layers and we found the best number based on our problem is 4 and 7 layers.
+\item \textbf{Cell Unit Size}: We also tried many numbers but the best results achieved from 50 and 82.
+\item \textbf{Weighting Model}: As showed in Figure~\ref{fig:data_percentage_distribution} classes is unbalanced. So, as an alternative to remove the small classes we tried to keep all classes but with weighting the loss function to account for the relative class size. We introduced a new weighting function explain in next sub-section~\ref{sec_w_loss} to help working on all the dataset. So, we will have two combinations, One with weighting loss and one without weighting loss.
+  
+\end{itemize}
+
+The total number of combination is 16 which is $4$ parameters each one have $2$ types. So, the total will be $2^4=16$; and hence, there are 16 different network configurations to run on each of the 12 data representations above. This results in $16 \times 12 = 192$ different experiments (or models). Hence, there are 96 different network configurations to run on each of the 2 data representations above. This results in 96 × 2 (= 192) different experiments (or models), whose accuracies are presented on the y-axis of Figure 7-a.%@@@add figure
+For all the 192 experiments networks are trained using dropout of 0.2, batch size is of 2048, with Adam optimizer, and 10\% for each of validation and testing sets.
+
+\textit{Experiments are conducted on a Dell Precision T7600 Workstation with: Intel Xeon E5-2650 32x 2.8GHz CPU, 32GB RAM, 1 NVIDIA GeForce GTX 1080 ti GPU, Hard desk SSD 256; and with: Ubuntu OS, x86\_64 Linux 16.04 LTS.}
+
+\newpage
+\subsection{Working on Unbalanced data using Weighted Loss}\label{sec_w_loss}
+
+One of the important problem we worked to solve it during our research unbalance dataset issue. We worked to overcome the unbalanced dataset and to not make our model suffer from this issue. We so introduced a Weighting function~\ref{eq:training_weighted_fun} where nc is the sample size of class c, c = 1,2,...C, and C
+is the total number of classes.
+
+\begin{align}
+  w_c &= \left(\frac{\frac{1}{n_c}}{\sum_c \frac{1}{n_c}} \right),\label{eq:training_weighted_fun}
+\end{align}
+
+The idea is to increase the loss for the small classes as the number of verses of small classes is small so the output will be bigger than the loss in case the class has a lot of verses. To have a clear explanation we can show equation~\ref{eq:training_weighted_fun_example} as example the biggest class will has smaller loss compared to the smallest class. We are dividing on constant which is the sum of classes density
+
+\begin{subequations}
+\begin{align}
+  w_c &=  \frac{\frac{1}{288}}{\sum\frac{1}{416428}+\frac{1}{370116}\dots+\frac{1}{288}}\\
+      &= \frac{\frac{1}{288}}{0.00534631950086646} = ~0.0312768 \\
+        &= \frac{\frac{1}{416428}}{0.00534631950086646} = ~0.0004491642
+\end{align}\label{eq:training_weighted_fun_example}
+\end{subequations}

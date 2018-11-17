@@ -21,12 +21,18 @@ To meet the above criteria and overcome it, We applied following,
 
   \item \textbf{The Poem with diacritics:} We tried to get the most verses with the available diacritics, but the diacritics states are not consistent, So, a verse can be fully diacritics, Semi diacritics or without diacritics.
 
-\item \textbf{The amount of the dataset:} The total number of verses is 1,862,046 poetic verses; each verse labeled by its meter (class), the poet who wrote it, and the age which it was written. There are 22 meters, 3701 poets and 11 ages; and they are Pre Islamic, Islamic, Umayyad, Mamluk, Abbasid, Ayyubid, Ottoman, Andalusian, the era between Umayyad and Abbasid, Fatimid and modern. We are only interested in the 16 classic meters which attributed to Al-Farahidi, and they are the majority of the dataset with a total number of 1,722,321 verses. Figure XXXX shows the distribution of the verses per meter. %@@@ add datasets figures
+\item \textbf{The amount of the dataset:} The total number of verses is 1,862,046 poetic verses; each verse labeled by its meter (class), the poet who wrote it, and the age which it was written. There are 22 meters, 3701 poets and 11 ages; and they are Pre Islamic, Islamic, Umayyad, Mamluk, Abbasid, Ayyubid, Ottoman, Andalusian, the era between Umayyad and Abbasid, Fatimid and modern. We are only interested in the 16 classic meters which attributed to Al-Farahidi, and they are the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{fig:data_size_distribution} shows the distribution of the verses per meter. %@@@ add datasets figures percentage per class
   
 \item \textbf{Cleansing of this data:} Dataset was not cleaned enough for usage in this research, but we have applied cleansing rules explained in details in Data Preparation and Cleansing section~\ref{sec:data_clens}. We also open sourced all the code scripts used in our online repository \footnote{\textit{HCILAB, Arabic Poetry. Available: https://github.com/hci-lab/ArabicPoetry-1-Private/ }.}.
 \end{itemize}
 
-
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[scale=1.2]
+	\input{./Figures/Ch_4_Dataset/dataset_size_ar.tex}
+	\end{tikzpicture}%
+	\caption{Arabic dataset Meter per class percentage ordered descendingly on x axis vs. corresponding meter name on y axis all class in the left of the red line (less than 1\% assume to be trimmed in some experiments).	}\label{fig:data_size_distribution}
+\end{figure}
 
 \section{Data Scraping}\label{sec:data_scrap}
 To scrap the data from the website: \textarabic{الديوان}~\cite{diwan},ends up into such a problem just reduce your problem to the most smallest one. That means: First: Check if any "keywords" is set, if used. Then: Use your whole preamble and print the complete bibliography. If this ends up in the same error, your problem might be in your preamble. -> Reduction of preamble, until you get your bib printed. Adding slowly parts back to the preamble, until the error occurs again. That might show you, what lead to the warning.

@@ -31,7 +31,7 @@ Modern deep learning provides a compelling framework for learning data problems.
 In the remaining parts in this section we will start introducing the main concepts and component used in deep learning, Also the basic unit into Recurrent Neural networks and LSTM.
 
       
-\begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/DeepLearningImagePersonExample.png}
+\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/DeepLearningImagePersonExample.png}
   \caption{Illustrations on how can Deep Learning work based on images figure presented from \cite{Goodfellow-et-al-2016} \cite{Zeiler2014}.}
   \label{fig:DeepLearningImagePersonExample.png}
 \end{figure}
@@ -124,7 +124,7 @@ As we explained in the previous parts, we need to find the relation between X,Y 
 
 
 
-To illustrate the relation between \textbf{\textit{J(w,b)}} we will assume for simplicity the relation will be function of one variable \textbf{\textit{J(w)}}. As shown in Figure~\ref{fig:gradient_decent_surf} we have a curve which represent the function \textbf{\textit{J(w)}} we need to find the minimum point in this curve which is the local minimum (red point in the previous figure) assuming it is a  \textbf{\textit{convex function}}. We will use equation~\label{eq:gredient_descent_w} to find the local minimum.
+To illustrate the relation between \textbf{\textit{J(w,b)}} we will assume for simplicity the relation will be function of one variable \textbf{\textit{J(w)}}. As shown in Figure~\ref{fig:gradient_decent_surf} we have a curve which represent the function \textbf{\textit{J(w)}} we need to find the minimum point in this curve which is the local minimum (red point in the previous figure) assuming it is a  \textbf{\textit{convex function}}. We will use equation~\eqref{eq:gredient_descent_w} to find the local minimum.
 
 To explain how this equation works let's take a random point p from Figure XXXX let's take derivative \textit{(which by definition is the slope of the function at the point)} The slope of this function is the height (h) divided into the width (w) it is the tangent of J(w) at this point. If the derivative is positive so, w will be update minus the derivative multiplied by learning rate alpha $\alpha$ as \eqref{eq:gredient_descent_w}. We will repeat the previous step until value of w get the lowest minimum. When w get the lowest minimum the derivative will be negative so, w will start to increase again at this step the algorithm will stop.
 
@@ -208,7 +208,7 @@ To implement a simple 1 iteration example below sample code simulate the program
  
  The neuron is the foundation unit of the brain. The size of the brain is as about the size of a grain of rice. The brain contains more over 10000 neurons with average 6000 connections with other neurons\footnote{\textit{Restak, Richard M. and David Grubin. The Secret Life of the Brain. Joseph Henry Press, 2001.}}.  These massive networks allow our brain to build its knowledge about the world around us. The neuron is work by receiving the information from other neuron and process it uniquely then pass the output to other neurons this process is shown in figure \ref{fig:NeuronStructure}.
 
- \begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/neuron_structure.png}
+ \begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/neuron_structure.png}
   \caption{Description of neuron's structure this figure from \cite{DLFundamentals}}
   \label{fig:NeuronStructure}
 \end{figure}
@@ -401,7 +401,7 @@ To initialize weights and to get the maximum value of the neural network computa
 %@@@@ Cost function vs Loss Function vs Gradient Desend 
 
 \newpage
-\subsection{Recurrent Neural Networks (RNNs)}
+\subsection{Recurrent Neural Networks (RNNs)}\label{sec_RNN}
 
 Deep Neural Networks shows its ability to solve many problems. However, in some use cases, Naive Neural Network architecture cannot works or get the expected results. One of the famous example related to this issue in the NLP tasks when working on a text problem for example, If we say our Harry is the king and Elizabeth is the queen, and we need our model to understand from the sentence that, Harry is he and Elizabeth is she. Also, if this word appears again, we need the model to detect that Harry is a person.
 
@@ -427,12 +427,12 @@ What is the new proposed architecture which can provide a way to share the featu
 \begin{itemize}
 \item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figures \ref{fig:RNN-rolled-loop.png}, \ref{fig:andew_ng_feedfarward} shows an example. So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.
 
-   \begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/RNN-unrolled.png}
+   \begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/RNN-unrolled.png}
   \caption{Recurrent Neural Networks Loops\cite{colah}}
   \label{fig:RNN-rolled-loop.png}
 \end{figure}
 
-\begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/andew_ng_feedfarward.png}
+\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/andew_ng_feedfarward.png}
   \caption{Recurrent Neural Networks feedfarward \textit{ This figure from Andrew NG course sequence models https://www.coursera.org/learn/nlp-sequence-models/ }}
   \label{fig:andew_ng_feedfarward}
 \end{figure}
@@ -456,7 +456,7 @@ What is the new proposed architecture which can provide a way to share the featu
  \end{itemize}
 
 \newpage
- \subsubsection{Vanishing Gradient with RNNs}
+ \subsubsection{Vanishing Gradient with RNNs}\label{sec_RNN_Vanishing}
  
  As we explained, RNN works on sequential data, and the idea is to predict new output not only based on the input data vector but also, other input vectors. Due to the recurrent structure in RNNs, it tends to suffer from long-term dependency to simplify this point let’s have an example, the following sentence \\
  \textit{Waleed Yousef who is Associate Professor at Helwan University and teaching Data Science courses and its dependencies \textbf{\underline{was}} got Ph.D. in Computer Engineering from GWU at 2006.}.
@@ -465,7 +465,7 @@ What is the new proposed architecture which can provide a way to share the featu
  
  So, to solve this learning problem [Hochreiter and Schmidhuber, 1997] introduced Long Short-Term Memory which helps to reduce the dependency problem using memory cell and forget gate.
 \newpage
-\subsection{Long Short Term Memory networks (LSTMs)}
+\subsection{Long Short Term Memory networks (LSTMs)}\label{sec_LSTM}
 
 
 Long Short Term Memory networks – aka “LSTMs” – are a special type of RNN, capable of learning long-term dependencies. To solve the vanishing gradient problem for long-term dependencies, [Hochreiter and Schmidhuber, 1997]\cite{Hochreiter} suggested new cell architecture for RNN by adding Long Short Term Memory which significantly reduced the long-term dependency problem using memory cell and forget gate.
@@ -474,7 +474,7 @@ Long Short Term Memory networks – aka “LSTMs” – are a special type of RN
 
  Both Basic RNNs and LSTM have the form of a chain of repeating modules of neural network. The main difference is the structure of the Networks.
  
-\begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-SimpleRNN.png}
+\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-SimpleRNN.png}
   \caption{The repeating module in a standard RNN contains a single layer.\cite{colah}}
   \label{fig:LSTM-SimpleRNN}
 \end{figure}
@@ -482,7 +482,7 @@ Long Short Term Memory networks – aka “LSTMs” – are a special type of RN
  In Basic RNNs it is very simple structure for every layer with simple output function \ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers \ref{fig:LSTM-cell-chaining}.
 
 
-\begin{figure}[h!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-cell-chaining.png}
+\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-cell-chaining.png}
   \caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}
   \label{fig:LSTM-cell-chaining}
 \end{figure}
@@ -496,13 +496,13 @@ Gates's idea is a methodology to manage the way how and which information pass o
 
 Sigmoid function output values between zero and one. If the value is one these means that everything should pass, while if the value is zero these means do not pass anything. So, the value output from the sigmoid function refers to the amount of each component should be passed.
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
     \centering
         \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-Cell-state.png}
         \caption{LSTM top horizontal line working as the medium for information flow \cite{colah}}
         \label{fig:LSTM-Cell-state}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[ht!]
     \centering
         \includegraphics[width=0.2\textwidth]{./Figures/Ch_2_Background/LSTM-gate.png}
         \caption{Cell gate with sigmoid function and a pointwise multiplication operation \cite{colah}}
@@ -518,7 +518,7 @@ We have explained LSTM has three gates with some
   
 \item \textbf{Forget Gate Layer} a Sigmoid layer \ref{fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculate the output from Sigmoid function between zero and one. As explained if one \textit{everything should pass}, while if zero \textit{do not pass anything}. The value zero or one depends on the value of the cell state if it includes a gender type and we need to predict the pronouns so, it will pass else it will ride of this state.
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
     \centering
         \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-forget-gate.png}
         \caption{LSTM sigmoid forget gate \cite{colah}}
@@ -529,7 +529,7 @@ We have explained LSTM has three gates with some
 
 \item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{tanh layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state \ref{fig:LSTM-input-gate}. The previous combination controls the update state. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
     \centering
         \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-input-gate.png}
         \caption{LSTM Input gate a combination of Sigmoid and Tanh layers \cite{colah}}
@@ -542,7 +542,7 @@ We have explained LSTM has three gates with some
   \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t * \tilde{C_t}$
     \end{enumerate}
 
-    \begin{figure}[h!]
+    \begin{figure}[ht!]
     \centering \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-pointwise-operations.png}
         \caption{LSTM Multiplication and Addition Operation in LSTM \cite{colah}}
         \label{fig:LSTM-pointwise-operations}
@@ -552,7 +552,7 @@ We have explained LSTM has three gates with some
       
     \item \textbf{Output Gate} This gate is a combination of \textit{sigmoid} layer and \textit{tanh} layer. \textit{Sigmoid} layer decides the information which should be output. Then the output of the  \textit{sigmoid} function will be multiplying with the output of the \textit{tanh} layer of the cell state. This \textit{tanh} will make the values between -1 and 1. The output of the multiplication of \textit{sigmoid} and \textit{tanh} will be the final output. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
     \centering \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-output-gate.png}
         \caption{LSTM Multiplication and Addition Operation in LSTM \cite{colah}}
         \label{fig:LSTM-output-gate}
@@ -575,7 +575,7 @@ In RNN Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 b
 \item It also merges the cell state and hidden state.
   
 \end{itemize}
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \centering
   \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/GRU.png}
         \caption{GRU cell architecture \cite{colah}}
@@ -587,8 +587,7 @@ The result of this modifications is GRUs are simpler and easier for modification
 
 
  
-\subsubsection{BI-LSTM}
-
+\subsubsection{BI-LSTM}\label{sec_bi-lstm}
 
 BI-LSTM two LSTMs stacked on top of each other, It used to solve some problem where the information needs to be considered in both directions for LSTM. As the normal LSTM is working from left to right, the BI-LSTM adds the other directions into the learning information. Let's take a motivation example regarding why we need BI-LSTM?
 \begin{itemize}

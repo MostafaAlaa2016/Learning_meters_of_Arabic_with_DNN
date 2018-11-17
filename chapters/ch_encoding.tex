@@ -24,22 +24,16 @@ Arabic letters have a feature related to the diacritics; To explain this feature
 One of the main reason we need to care about the encoding is the  \textit{RNN} training. If we have a different number of time steps in  \textit{RNN} cell and the input vector dimensions are different based on the input, It will have a standard architecture for the model and to be able to train both the work with diacritics and without diacritics to show the effect of the model learning on the same architecture.
 
 To achieve the model architecture unification,  we proposed three different encoding systems: \textit{one-hot}, \textit{binary}, and the novel encoding system developed in this project \textit{two-hot}. The three of them explained in the next three subsections.
-\newpage
+
 \begin{figure*}
   \centering
     \input{./Figures/Ch_5_Encoding/encoding_three_figures_together.tex}
-\caption{Different encoding mechanisms: \textit{One-hot}, \textit{binary}, and
-  \textit{two-hot} encoding. using the word example \textarabic{مَرْحَبَا}. using $n$-letter alphabet
-  \textit{one-hot} encoding; the \textit{one-hot} is applied to encode Arabic and English verses;
-  the only difference is the vector length is 181 in Arabic and is 28 is English. In binary
-  encoding, the same word is encoded using \textit{binary} encoding, where the vector length
-  $n = \ceil*{\log_2 l}$, $l \in \{181, 28\}$ is the alphabet length (Arabic/English). By stacking
-  $\bm k_{4 \times 1}$ on the top of $\bm m_{37 \times 1}$ we get the
-  $Two-Hot_{41 \times 1}$\usebox{\columnVector}, which represents a letter and its diacritic,
-  simultaneously.}\label{fig:One-Binary-Encoding}
+\caption{Different encoding mechanisms%: \textit{One-hot}, \textit{binary}, and \textit{two-hot}  encoding. Using the word example %\textarabic{مَرْحَبَا} \textit{One-hot} encoding is applied using $n$-letter alphabet $n = 181$ in Arabic. Same word encoded using \textit{binary} encoding where the vector length $n = \ceil*{\log_2 l}$, $l \in \{181\}$. \textit{two-hot} encoding is applied by stacking $\bm k_{4 \times 1}$ on the top of $\bm m_{37 \times 1}$ we get the $Two-Hot_{41 \times 1}$ \usebox{\columnVector}, which represents a letter and its diacritic simultaneously. 
+}
+\label{fig:One-Binary-Encoding}
 \end{figure*}
 
-
+\newpage
 \subsection{One-Hot encoding}\label{sec:one-hot-encoding}
 In this encoding system, We assume the letter with the diacritic as one unit. So, for example, \textarabic{د} represented as letter differs than (\textarabic{دَ, دِ, دُ, دْْ}). Now every letter is represented 5 times one without diacritic and four times with different diacritics combinations $36 \times 5$ besides the white-space character. So, the total is $181 \times 1$. From now forward, We have 181-characters Arabic alphabet represent the One-Hot encoding, and according to it, we will encode verses. (Figure~\ref{fig:One-Binary-Encoding}).
 
@@ -47,7 +41,7 @@ We need to mention that, One-Hot encoding technique is of the famous techniques 
 
 \subsection{Binary Encoding}\label{sec:binary-encoding}
 
-The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros.  $n = \ceil*{\log_2 l}$ where $l$ is the alphabet length, and $n$ is the sufficient number of digits to represent $l$ unique binary combinations.  For example a phrase like this \textarabic{مَرْحَبا}, it has 5 characters, figure~\ref{fig:One-Binary-Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory than the \textit{one-hot} and reduces the model input dimensions, significantly. But on the other hand, the input letter share some features between them due to the binary representation as it is shown in figure~\ref{fig:One-Binary-Encoding}.
+The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros.  $n =\ceil*{\log_2} l$ where $l$ is the alphabet length, and $n$ is the sufficient number of digits to represent $l$ unique binary combinations.  For example a phrase like this \textarabic{مَرْحَبا}, it has 5 characters, figure~\ref{fig:One-Binary-Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory than the \textit{one-hot} and reduces the model input dimensions, significantly. But on the other hand, the input letter share some features between them due to the binary representation as it is shown in figure~\ref{fig:One-Binary-Encoding}.
 
 \subsection{Two-Hot encoding}\label{sec:two-hot-encoding}
 This is an intermediate technique which takes the advantages of the previous two encoding techniques. In which we encode the letter and its diacritic separately as two \textit{One-Hot} vectors, this way the letter is encoded as $37 \times 1$ \textit{One-Hot} vector and the diacritic is encoded as $4 \times 1$ \textit{One-Hot} vector, then both vectors stacked to form one $41 \times 1$ vector (Figure~\ref{fig:One-Binary-Encoding}).

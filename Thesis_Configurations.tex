@@ -109,7 +109,7 @@
 \DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
 \DeclareSymbolFont{letters}{OML}{cmm}{m}{it}
 \usepackage{mathtools}
-%\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \usepackage{amsfonts, amssymb, bm}
 \usepackage{booktabs}  % for \toprule ...
 \usepackage{caption}
@@ -145,6 +145,9 @@
 \usepackage{footnote}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}% loads pgfplots, tikz, graphicx
+\usetikzlibrary{patterns}
+\pgfplotsset{compat=newest}
+
 \usetikzlibrary{matrix}
 \pgfplotsset{compat=1.14}% <- added!
 

@@ -1,0 +1,44 @@
+
+\begin{axis}
+[
+    axis lines*=left,
+    title=Arabic Dataset Classes Percentage \%,
+    xbar,
+    width=17cm,
+    height=14cm,
+    xlabel={},
+    symbolic y coords={Taweel, Kamel,Baseet,Khafeef,Wafeer,Rigz,Raml,Motakarib,Sar'e,Monsareh,Mogtath,Madeed,Hazg,Motadarik,Moktadib,Modar'e},
+    ytick=data,
+    xmin=0,
+    xmax=.4, 
+%    point meta={x*100},
+    xtick={0.01,0.05,0.1,0.15,.2,.25,.3,.35},
+    xticklabel={\pgfmathparse{\tick*100}\pgfmathprintnumber{\pgfmathresult}\%},
+    point meta={x*100},
+    nodes near coords={\pgfmathprintnumber\pgfplotspointmeta\%},
+    nodes near coords align={horizontal},
+    ]
+  \addplot
+[draw=blue,pattern=horizontal lines light blue] 
+coordinates
+     {
+	(0.302,Taweel)
+        (0.21489,Kamel)
+        (0.1420,Baseet)
+        (0.091,Khafeef)
+        (0.083113,Wafeer)
+        (0.069258866,Rigz)
+        (0.04619348,Raml)
+        (0.036934462,Motakarib)
+        (0.034470926,Sar'e)
+        (0.016703042,Monsareh)
+        (0.010487011,Mogtath)
+	(0.004533417,Madeed)
+        (0.004336009,Hazg)
+        (0.002986667,Motadarik)
+        (0.000463909,Moktadib)
+        (0.000167216,Modar'e)
+
+};
+  \draw [thick, dotted, draw=red] (10,-13) -- (10,500);
+\end{axis}
