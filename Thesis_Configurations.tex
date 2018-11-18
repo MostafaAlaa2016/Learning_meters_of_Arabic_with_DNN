@@ -103,7 +103,9 @@
 %\usepackage[utf8]{inputenc}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{geometry}
-\usepackage{subcaption}
+%\usepackage{subcaption}
+%\usepackage{subfig}
+\usepackage{subfigure}
 
 \usepackage{fourier}
 \DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
@@ -135,6 +137,8 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{arrows.meta,arrows}
+\usetikzlibrary{calc}
+
 \usepackage{bidipoem}
 \usepackage{polyglossia} % <3
 \setmainlanguage{english}
@@ -147,6 +151,7 @@
 \usepackage{pgfplotstable}% loads pgfplots, tikz, graphicx
 \usetikzlibrary{patterns}
 \pgfplotsset{compat=newest}
+%\pgfplotsset{every axis/.append style={tick label style={/pgf/number format/fixed},font=\scriptsize,ylabel near ticks,xlabel near ticks,grid=major}}
 
 \usetikzlibrary{matrix}
 \pgfplotsset{compat=1.14}% <- added!
