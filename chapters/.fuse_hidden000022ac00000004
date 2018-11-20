@@ -507,10 +507,10 @@ Long Short Term Memory networks – aka “LSTMs” – are a special type of RN
  In Basic RNNs it is very simple structure for every layer with simple output function \ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers \ref{fig:LSTM-cell-chaining}.
 
 
-\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-cell-chaining.png}
-  \caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}
-  \label{fig:LSTM-cell-chaining}
-\end{figure}
+%\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-cell-chaining.png}
+%  \caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}
+%  \label{fig:LSTM-cell-chaining}
+%\end{figure}
 %@@@@ need some edit
 \input{./Figures/Ch_2_Background/Fig_LSTM_Main_Figure_3_Cells.tex}
 
@@ -561,7 +561,7 @@ We have explained LSTM has three gates with some
 
 \begin{figure}[ht!]
     \centering
-        \input{./Figures/Ch_2_Background/Fig_LSTM_forget_gate.tex}
+        \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/Fig_LSTM_forget_gate.tex}
         \caption{LSTM sigmoid forget gate~\cite{colah}}\label{fig:LSTM-forget-gate}
 \end{figure}
 
@@ -569,19 +569,12 @@ We have explained LSTM has three gates with some
 
 \item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{tanh layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state \ref{fig:LSTM-input-gate}. The previous combination controls the update state. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.
 
-%\begin{figure}[ht!]
-   % \centering
-   %     \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-input-gate.png}
-  %      \caption{LSTM Input gate a combination of Sigmoid and Tanh layers \cite{colah}}
- %       \label{fig:LSTM-input-gate}
-%\end{figure}
 \begin{figure}[ht!]
     \centering
-        \input{./Figures/Ch_2_Background/Fig_LSTM_Input_Gate.tex}
+        \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-input-gate.png}
         \caption{LSTM Input gate a combination of Sigmoid and Tanh layers \cite{colah}}
         \label{fig:LSTM-input-gate}
 \end{figure}
-
 
 \item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in \ref{fig:LSTM-pointwise-operations} there are two operations, 
   \begin{enumerate}
@@ -589,34 +582,22 @@ We have explained LSTM has three gates with some
   \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t * \tilde{C_t}$
     \end{enumerate}
 
-%    \begin{figure}[ht!]
-%    \centering %\includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-pointwise-operations.png}
-%        \caption{LSTM Multiplication and Addition Operation in LSTM \cite{colah}}
-%        \label{fig:LSTM-pointwise-operations}
-%      \end{figure}
-
-
     \begin{figure}[ht!]
-      \centering
-      \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_operations.tex}
-        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}\label{fig:LSTM-pointwise-operations}
+    \centering \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-pointwise-operations.png}
+        \caption{LSTM Multiplication and Addition Operation in LSTM \cite{colah}}
+        \label{fig:LSTM-pointwise-operations}
       \end{figure}
+
       
       
     \item \textbf{Output Gate} This gate is a combination of \textit{sigmoid} layer and \textit{tanh} layer. \textit{Sigmoid} layer decides the information which should be output. Then the output of the  \textit{sigmoid} function will be multiplying with the output of the \textit{tanh} layer of the cell state. This \textit{tanh} will make the values between -1 and 1. The output of the multiplication of \textit{sigmoid} and \textit{tanh} will be the final output. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.
 
-%\begin{figure}[ht!]
-%    \centering \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-output-gate.png}
-%        \caption{LSTM Multiplication and Addition Operation in LSTM \cite{colah}}
-%        \label{fig:LSTM-output-gate}
-%      \end{figure}
-
-      
 \begin{figure}[ht!]
-  \centering
-  \input{./Figures/Ch_2_Background/Fig_LSTM_output_gate.tex}
-        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}~\label{fig:LSTM-output-gate}
+    \centering \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-output-gate.png}
+        \caption{LSTM Multiplication and Addition Operation in LSTM \cite{colah}}
+        \label{fig:LSTM-output-gate}
       \end{figure}
+
 
       
     \end{itemize}

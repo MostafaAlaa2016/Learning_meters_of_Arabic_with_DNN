@@ -1,0 +1,417 @@
+\begin{tikzpicture}%[scale=0.90]
+  %% Uses pointModelsFiguresStyle macro defined in pgfplot_configurations.tex
+
+  %% two grid to help during positioing.
+  % \draw[step=0.2, green!40, thin] (0,0) grid (8,6);
+  % \draw[step=1, red!40, very thin] (0,-1) grid (8,7);
+
+  %% Variables
+  \def \maxHeight{5.7}
+  \def \yONE{-0.8}
+  \def \yTWO{-0.3}
+
+  %% two colored areas to distinguish the diacritics models.
+  \fill[gray!30, opacity=0.2, rounded corners=2pt] (0,-0.5) rectangle (2.1,\maxHeight);
+  \fill[gray!30, opacity=0.2, rounded corners=2pt] (4.2,-0.5) rectangle (6.32,\maxHeight);
+
+  %% The Full/Elimenated Seperator
+  \draw[dashed, thick] (4.2, 0 - 0.9) -- (4.2, \maxHeight +0.5);
+
+  %% Group Labels Full/Elimenated
+  \node [align=center, text width=3cm, inner sep=0.25cm] at (2.1, \yONE) {\scriptsize No Trimming(0T)};
+  \node [align=center, text width=4cm, inner sep=0.25cm] at (6.32,\yONE) {\scriptsize Trimming(1T)};
+
+  \node [align=center, text width=3cm, inner sep=0.25cm] at (1, \yTWO) {\scriptsize Diacritics(1D)};
+  \node [align=center, text width=3cm, inner sep=0.25cm] at (3, \yTWO) {\scriptsize No Diacritics(0D)};
+  \node [align=center, text width=3cm, inner sep=0.25cm] at (5+0.2, \yTWO) {\scriptsize Diacritics(1D)};
+  \node [align=center, text width=3cm, inner sep=0.25cm] at (7+0.2, \yTWO) {\scriptsize No Diacritics(0D)};
+
+  % Points annotaions
+  \def \layerHeight{5.7}
+  \def \unitHeight{\layerHeight - 0.3}
+  \def \weightedHeihgt{\layerHeight - 0.6}
+
+  \def \step{0.2}
+
+  %%%%%% 
+
+  \node  at (3.5*   \step -0.15, \layerHeight) {\scriptsize 7L};
+  \node  at (3.5*   \step -0.15, \unitHeight) {\scriptsize 82U};
+  \node  at (3.5*   \step -0.1, \weightedHeihgt) {\scriptsize 0};
+
+  \node  at (5.2*   \step, \layerHeight) {\scriptsize 7L};
+  \node  at (5.2*   \step, \unitHeight) {\scriptsize 50U};
+  \node  at (5.2*   \step, \weightedHeihgt) {\scriptsize 1};
+
+  \node  at (7*     \step +0.15, \layerHeight) {\scriptsize 7L};
+  \node  at (7*   \step   +0.15, \unitHeight) {\scriptsize 50U};
+  \node  at (7*   \step   +0.1, \weightedHeihgt) {\scriptsize 1};
+
+  %%%%%%
+
+  \node  at (14*    \step -0.15, \layerHeight) {\scriptsize 7L};
+  \node  at (14*   \step -0.15, \unitHeight) {\scriptsize 82U};
+  \node  at (14*   \step -0.1, \weightedHeihgt) {\scriptsize 0};
+
+  \node  at (16*    \step, \layerHeight) {\scriptsize 7L};
+  \node  at (16*    \step, \unitHeight) {\scriptsize 82U};
+  \node  at (16*    \step, \weightedHeihgt) {\scriptsize 0};
+
+  \node  at (17.6*  \step +0.15, \layerHeight) {\scriptsize 7L};
+  \node  at (17.6*  \step +0.15, \unitHeight) {\scriptsize 50U};
+  \node  at (17.6*  \step +0.1, \weightedHeihgt) {\scriptsize 0};
+
+  %%%%%%
+
+  \node  at (24.5*  \step -0.15, \layerHeight) {\scriptsize 7L};
+  \node  at (24.5*  \step -0.15, \unitHeight) {\scriptsize 82U};
+  \node  at (24.5*  \step -0.1,  \weightedHeihgt) {\scriptsize 1};
+
+  \node  at (26.1*  \step, \layerHeight) {\scriptsize 7L};
+  \node  at (26.1*  \step, \unitHeight) {\scriptsize 82U};
+  \node  at (26.1*  \step, \weightedHeihgt) {\scriptsize 0};
+
+  \node  at (28*    \step +0.15, \layerHeight) {\scriptsize 7L};
+  \node  at (28*    \step +0.15, \unitHeight) {\scriptsize 82U};
+  \node  at (28*    \step +0.1,  \weightedHeihgt) {\scriptsize 1};
+
+  %%%%%%
+
+  \node  at (35*    \step -0.15, \layerHeight) {\scriptsize 4L};
+  \node  at (35*    \step -0.15, \unitHeight) {\scriptsize 82U};
+  \node  at (35*    \step -0.1,  \weightedHeihgt) {\scriptsize 0};
+
+  \node  at (37*    \step, \layerHeight) {\scriptsize 7L};
+  \node  at (37*    \step, \unitHeight) {\scriptsize 50U};
+  \node  at (37*    \step, \weightedHeihgt) {\scriptsize 0};
+
+  \node  at (38.7*  \step +0.15, \layerHeight) {\scriptsize 4L};
+  \node  at (38.7*  \step +0.15, \unitHeight) {\scriptsize 50U};
+  \node  at (38.7*  \step +0.1,  \weightedHeihgt) {\scriptsize 1};
+
+  \begin{axis}[
+    major x tick style = transparent,
+    ybar=2*\pgflinewidth,
+    x=10pt,
+    ymajorgrids = true,
+    % every axis y label/.style= {at={( 0, 1.09)}, anchor=north},
+    ylabel = {$F_1$ Score},
+    ylabel style = {font=\footnotesize},
+    xtickmin={1},
+    xtickmax={21},
+    axis x line = bottom,
+    axis y line = left,
+    enlarge y limits={upper, value=0.1},
+    xticklabels = {,,},
+    bar shift=0pt,
+    % scaled y ticks = false,
+    enlarge x limits=0.1,
+    ymin=0.76,
+    ymax=0.98,
+    legend style={at={(0.5, -0.2)}, anchor=north, legend columns=3},
+    % legend style={at={(0.9, 0.26)}, anchor=north, legend columns=1},
+    every axis legend/.append style={nodes={right}},
+    nodes near coords={\vspace*{0.1\baselineskip}
+      \foreach \X in \pgfplotspointmeta%
+      {\centerline{\X}\newline}%
+      \vspace*{-0.7\baselineskip}
+    },
+    nodes near coords style={font=\scriptsize,anchor=-90, text width=1cm},
+    ]
+
+    % Settings:
+    % x-axis values are 1,2,3,..,21
+
+    % Full takes 1,..,10
+    % Full-with-diacritics takes 1,2,3
+    % Full-without-diacritics takes 7,8,9
+
+    % (14,21
+    % (14, 15
+    % (14, 21
+
+    % Separators 5, 11, 17
+
+    %%%%%%%%%%%%%%%
+    %% Full Dataset
+    %%%%%%%%%%%%%%%
+    % Binary
+    \addplot[pointBiLSTM=blue] coordinates {
+      (1, 0.9025) %[7L~~,82U~~~,0] % Full,Diacritics,Binary
+      (7, 0.8767)  %[7L~~~,82U~~~,0] % Full,Without-Diacritics,Binary
+
+    };
+    % OneHot
+    \addplot[pointBiLSTM=red] coordinates {
+      (2, 0.9347) %[7L,50U,1] % Full,Diacritics,OneHot
+      (8, 0.9310) %[7L,82U,0] % Full,Without-Diacritics,OneHot
+    };
+    % TwoHot
+    \addplot[pointBiLSTM=brown] coordinates {
+      (3, 0.9485) %[~7L,~~~50U,1] % Full,Diacritics,TwoHot
+      (9, 0.9411) %[7L,50U,0] % Full,Without-Diacritics,TwoHot
+    };
+    %%%%%%%%%%%%%%%%%%%%%
+    %% Trimmed Dataset
+    %%%%%%%%%%%%%%%%%%%%%
+    % Binary
+    \addplot[pointBiLSTM=blue] coordinates {
+      (13, 0.8989)  %[7L~~,82U~~~,1]  % (14,Binary
+      (19, 0.9638)  %[4L,82U,0]  % (14,Binary
+    };
+    % OneHot
+    \addplot[pointBiLSTM=red] coordinates {
+      (14, 0.9473) %[7L~~,82U~~~,0] % (14,OneHot
+      (20, 0.9435) %[7L,50U,0] % (14,OneHot
+    };
+    % TwoHot
+    \addplot[pointBiLSTM=brown] coordinates {
+      (15, 0.9547) %[~7L,~~~82U,1] % (14,TwoHot
+      (21, 0.9629) %[3L,50U,1] % (14,TwoHot
+    };
+    %%%%%%%%%%%%%%%%%%%%%
+    %% LSTM models [squares]
+    %%%%%%%%%%%%%%%%%%%%%
+    % Binary
+    \addplot[pointLSTM=blue] coordinates {
+      (1,  0.7977761225792722)
+      (7,  0.7883237568276938)
+      (13, 0.827841810615813)
+      (19, 0.8163877496033292)
+    };
+    % OneHot
+    \addplot[pointLSTM=red] coordinates {
+      (2,  0.8965678276701898)
+      (8,  0.8869854106074577)
+      (14, 0.9094811843247612)
+      (20, 0.926671257072718)
+    };
+    % TwoHowt
+    \addplot[pointLSTM=brown] coordinates {
+      (3,  0.9170331749071908)
+      (9,  0.8972239956491925)
+      (15, 0.94120887345448)
+      (21, 0.9284854653773612)
+    };
+    %%%%%%%%%%%%%%%%%%%%%
+    %% The rest models
+    %%%%%%%%%%%%%%%%%%%%%
+    % Binary
+    \addplot[pointRug=blue, mark size=0.7pt]
+    coordinates {
+      % 1, 7, 13, 19
+      (19, 0.8182558452833577)
+      (19, 0.9638475586025208)
+      (19, 0.9619555129778764)
+      (19, 0.9611891147501721)
+      (19, 0.6499715594407688)
+      (19, 0.9576864353501182)
+      (19, 0.7611831272640182)
+      (19, 0.6869083615244139)
+      (19, 0.7495314792084543)
+      (19, 0.6293147322096818)
+      (19, 0.704074484327755 )
+      (19, 0.9556686525162408)
+      (19, 0.9604047540640064)
+      (19, 0.9621052001317248)
+      (19, 0.7838038499535971)
+
+      (13, 0.8986558093584407)
+      (13, 0.8988593838876747)
+      (13, 0.8555698589947011)
+      (13, 0.8649043499086908)
+      (13, 0.8203873903541598)
+      (13, 0.7581235218393557)
+      (13, 0.8634134658563603)
+      (13, 0.6457563691883963)
+      (13, 0.7879471903721222)
+      (13, 0.7406280872975481)
+      (13, 0.8841181929766787)
+      (13, 0.8741370535580636)
+      (13, 0.770906804778014 )
+      (13, 0.8288896206927522)
+      (13, 0.8079693440708918)
+
+      (7, 0.2392116525974793)
+      (7, 0.7722328627840438)
+      (7, 0.817325199214963 )
+      (7, 0.8267420964271358)
+      (7, 0.8307795984961339)
+      (7, 0.2392116525974793)
+      (7, 0.7268331323449433)
+      (7, 0.7918174079591402)
+      (7, 0.8564115296398761)
+      (7, 0.7346362110141638)
+      (7, 0.2392116525974793)
+      (7, 0.7977524768863352)
+      (7, 0.8766640656404436)
+      (7, 0.5082878153744296)
+      (7, 0.7272055520087016)
+
+      (1, 0.8614953536213379)
+      (1, 0.8794601688302476)
+      (1, 0.2392116525974793)
+      (1, 0.2392116525974793)
+      (1, 0.8706225910950319)
+      (1, 0.8677259937102457)
+      (1, 0.6374642358894327)
+      (1, 0.5386134165661725)
+      (1, 0.2392116525974793)
+      (1, 0.2392116525974793)
+      (1, 0.8948003121231468)
+      (1, 0.6666016410110899)
+      (1, 0.866862925918044 )
+      (1, 0.9025442765600246)
+      (1, 0.8869558534912866)
+    };
+
+    % OneHot
+    \addplot[pointRug=red, mark size=0.7pt]
+    coordinates {
+      % 2, 8, 14, 20
+
+      (20, 0.9234859144388228 )
+      (20, 0.24334939975451306)
+      (20, 0.24334939975451306)
+      (20, 0.24334939975451306)
+      (20, 0.9015956650600244 )
+      (20, 0.24334939975451306)
+      (20, 0.24334939975451306)
+      (20, 0.24334939975451306)
+      (20, 0.9361973475436338 )
+      (20, 0.9426518576175792 )
+      (20, 0.9435140556237464 )
+      (20, 0.24334939975451306)
+      (20, 0.9382570427805884 )
+      (20, 0.9427656198545042 )
+      (20, 0.9328263928389664 )
+
+      (14, 0.9334371164266684 )
+      (14, 0.24334939975451306)
+      (14, 0.93929287788522   )
+      (14, 0.9401011885160016 )
+      (14, 0.940059276112924  )
+      (14, 0.24334939975451306)
+      (14, 0.24334939975451306)
+      (14, 0.24334939975451306)
+      (14, 0.24431937251145106)
+      (14, 0.93308984222974   )
+      (14, 0.9352632997036194 )
+      (14, 0.8778253450288896 )
+      (14, 0.24334939975451306)
+      (14, 0.24334939975451306)
+      (14, 0.9472562344699575 )
+
+
+      (8, 0.9298964318649358)
+      (8, 0.2392116525974793)
+      (8, 0.9212184625570452)
+      (8, 0.2392116525974793)
+      (8, 0.2392116525974793)
+      (8, 0.2392116525974793)
+      (8, 0.2392116525974793)
+      (8, 0.2392116525974793)
+      (8, 0.2392116525974793)
+      (8, 0.2392116525974793)
+      (8, 0.2392116525974793)
+      (8, 0.9026743278711784)
+      (8, 0.9146094913811448)
+      (8, 0.9298964318649358)
+      (8, 0.9310432479723818)
+      (8, 0.9275673311106382)
+
+      (2, 0.2392116525974793)
+      (2, 0.9346846846846848)
+      (2, 0.9320954813080796)
+      (2, 0.922241138776572 )
+      (2, 0.8536213378733064)
+      (2, 0.2392116525974793)
+      (2, 0.9248953678087536)
+      (2, 0.2392116525974793)
+      (2, 0.2392116525974793)
+      (2, 0.2392116525974793)
+      (2, 0.2392116525974793)
+      (2, 0.9309841337400392)
+      (2, 0.2392116525974793)
+      (2, 0.9336324513489868)
+      (2, 0.2392116525974793)
+    };
+    % TwoHot
+    \addplot[pointRug=brown, mark size=0.7pt]
+    coordinates {
+      % 3, 9, 15, 21
+
+      (21, 0.9100978953986169 )
+      (21, 0.24334939975451306)
+      (21, 0.24334939975451306)
+      (21, 0.24334939975451306)
+      (21, 0.9445379157560698 )
+      (21, 0.9396281771098404 )
+      (21, 0.9380534682513548 )
+      (21, 0.24334939975451306)
+      (21, 0.9627219112055804 )
+      (21, 0.9628835733317368 )
+      (21, 0.9255635721342396 )
+      (21, 0.9427356824237344 )
+      (21, 0.24334939975451306)
+      (21, 0.959949705116307  )
+      (21, 0.24334939975451306)
+
+      (15, 0.24334939975451306)
+      (15, 0.9455737508607012 )
+      (15, 0.9467353231745652 )
+      (15, 0.9530221836362004 )
+      (15, 0.9441487291560638 )
+      (15, 0.8771727090381104 )
+      (15, 0.8684369667395144 )
+      (15, 0.9522318354638803 )
+      (15, 0.9250725982696164 )
+      (15, 0.24334939975451306)
+      (15, 0.9523276352423437 )
+      (15, 0.9143310481094512 )
+      (15, 0.9537646319192888 )
+      (15, 0.9335987785528246 )
+      (15, 0.9546926922731492 )
+
+      (9, 0.9329644605235156)
+      (9, 0.9195396183585159)
+      (9, 0.935766475136554 )
+      (9, 0.2392116525974793)
+      (9, 0.9373034451774608)
+      (9, 0.2392116525974793)
+      (9, 0.9307122082712634)
+      (9, 0.2392116525974793)
+      (9, 0.2392116525974793)
+      (9, 0.2392116525974793)
+      (9, 0.9339575796268708)
+      (9, 0.94113404743326  )
+      (9, 0.2392116525974793)
+      (9, 0.2392116525974793)
+      (9, 0.2392116525974793)
+
+      (3, 0.2392116525974793)
+      (3, 0.2392116525974793)
+      (3, 0.9363812631529168)
+      (3, 0.2392116525974793)
+      (3, 0.9446217871414722)
+      (3, 0.9440129105483436)
+      (3, 0.9124399990541724)
+      (3, 0.9427892459388524)
+      (3, 0.9458158946347924)
+      (3, 0.2392116525974793)
+      (3, 0.2392116525974793)
+      (3, 0.9424582062377338)
+      (3, 0.9417192783334516)
+      (3, 0.2392116525974793)
+      (3, 0.2392116525974793)
+    };
+
+    \legend{{\scriptsize{Binary(BinE)}}, {\scriptsize{One-Hot(OneE)}}, {\scriptsize{Two-Hot(TwoE)}}}
+  \end{axis}
+\end{tikzpicture}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../Thesis.tex"
+%%% End:
