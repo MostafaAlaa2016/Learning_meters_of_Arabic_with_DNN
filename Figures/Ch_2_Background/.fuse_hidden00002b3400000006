@@ -1,0 +1,22 @@
+%Fig_LSTM_Main_Figure_3_Cells.tex
+\begin{figure}[!ht]
+\minipage{0.33\textwidth}
+%\input{./Figures/Ch_2_Background/Fig_LSTM_Left_Input_Cell.tex}
+\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Left.tex}
+
+\endminipage\hfill
+\minipage{0.33\textwidth}
+%\input{./Figures/Ch_2_Background/fig_LSTM_Middle_Cell.tex}
+\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_full.tex}
+\endminipage\hfill
+\minipage{0.33\textwidth}%
+
+%\input{./Figures/Ch_2_Background/Fig_LSTM_Right_Output_Cell.tex}
+\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Right.tex}
+\endminipage
+
+\caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}
+\label{fig:LSTM-cell-chaining}
+\end{figure}
+
+

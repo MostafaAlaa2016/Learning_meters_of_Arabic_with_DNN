@@ -54,66 +54,66 @@
 
   % LINES %%% Upper line from c_{t -1} till C_t
   %\draw[arrows=-latex, line width=2.5pt]  (0.85, \yD) -- (1.5, \yD) node[left, xshift=-.6cm, yshift=0.2cm] {$C_{t-1}$};
-  \draw[line width=2.5pt, gray]  (1.5, \yD) -- (2.1, \yD);
-  \draw[line width=2.5pt, gray]  (2.4, \yD) -- (3.46, \yD);
+  \draw[line width=2.5pt]  (1.5, \yD) -- (2.1, \yD);
+  \draw[line width=2.5pt]  (2.4, \yD) -- (3.46, \yD);
   \draw[line width=2.5pt]  (3.75, \yD) -- (6.25 +0.2, \yD);
 
   \draw[arrows=-latex, line width=2.5pt]  (6.25, \yD) -- (6.75 +0.2, \yD)
   node[right, xshift=0.0cm, yshift=0.05cm] {$C_t$};
 
   %%%%first line from left from sigmoid ft till times input from C_{t-1}
-  \draw[arrows=-latex, line width=1.5pt]  (2.25, \yB +\sigmoidHeight) -- (2.25, 2.6)
+  \draw[arrows=-latex, line width=2.5pt]  (2.25, \yB +\sigmoidHeight) -- (2.25, 2.6)
   node[left, yshift=-0.5cm] {$f_t$};
 
   % Level B LINES
   \def \levelB {1}
-  %\draw[arrows=-latex, line width=1.5pt] (0.85, \levelB) -- (1.5, \levelB) node[left, xshift=-.6cm, yshift=0.2cm] {$h_{t-1}$};
+  %\draw[arrows=-latex, line width=2.5pt] (0.85, \levelB) -- (1.5, \levelB) node[left, xshift=-.6cm, yshift=0.2cm] {$h_{t-1}$};
 
-  \draw[line width=1.5pt] (1.5, \levelB) 
+  \draw[line width=2.5pt] (1.5, \levelB) 
   --
   (4.2, \levelB);
 
   \def \xOfThirdSigmoid {\xSSS + \sigmoidWidth/2}
   %second line last angle connected to sigmoid 
-  \draw[line width=1.5pt] (4.2, \levelB) to[out=0,in=270] (\xOfThirdSigmoid, \yB);
+  \draw[line width=2.5pt] (4.2, \levelB) to[out=0,in=270] (\xOfThirdSigmoid, \yB);
 
   % Third Sigmoid up line
   % END (\xTimesB +1.3 - 0.19 , \yC)
-  \draw[line width=1.5pt] (\xOfThirdSigmoid, \yB + \sigmoidHeight) 
+  \draw[line width=2.5pt] (\xOfThirdSigmoid, \yB + \sigmoidHeight) 
   --
   (\xOfThirdSigmoid, \yB + \sigmoidHeight + 0.17) ;
 
-  \draw[arrows=-latex, line width=1.5pt] (\xOfThirdSigmoid, \yB + \sigmoidHeight+0.17) 
+  \draw[arrows=-latex, line width=2.5pt] (\xOfThirdSigmoid, \yB + \sigmoidHeight+0.17) 
   to[out=90, in=180] 
   (\xTimesB +1.3 -0.14 +\shift , \yC) 
   node [left, yshift=0.2cm, xshift=-0.2cm] {$o_t$};
 
   % tanh line
-  \draw [line width=1.5pt] (\xTimesB, \levelB)
+  \draw [line width=2.5pt] (\xTimesB, \levelB)
   --
   (\xTimesB, \yB);
 
-  \draw [line width=1.5pt] (\xTimesB, \yB + \sigmoidHeight)
+  \draw [line width=2.5pt] (\xTimesB, \yB + \sigmoidHeight)
   --
   (\xTimesB, \yB + \sigmoidHeight +0.24);
 
-  \draw [arrows=-latex, line width=1.5pt] (\xTimesB, 2.15)
+  \draw [arrows=-latex, line width=2.5pt] (\xTimesB, 2.15)
   --
   (\xTimesB, 2.6);
 
-  \draw[line width=1.5pt] (2.25, \levelB)
+  \draw[line width=2.5pt] (2.25, \levelB)
   --
   (2.25, \yB);
   
-  \draw[line width=1.5pt] (\xS +\sigmoidWidth/2, \levelB)
+  \draw[line width=2.5pt] (\xS +\sigmoidWidth/2, \levelB)
   --
   (\xS +\sigmoidWidth/2, \yB);
 
-  \draw[line width=1.5pt] (\xS +\sigmoidWidth/2, \yB +\sigmoidHeight)
+  \draw[line width=2.5pt] (\xS +\sigmoidWidth/2, \yB +\sigmoidHeight)
   -- 
   (\xS +\sigmoidWidth/2, \yB +\sigmoidHeight + 0.17);
 
-  \draw[arrows=-latex, line width=1.5pt] (\xS +\sigmoidWidth/2, \yB + \sigmoidHeight+0.17) 
+  \draw[arrows=-latex, line width=2.5pt] (\xS +\sigmoidWidth/2, \yB + \sigmoidHeight+0.17) 
   to[out=90, in=180] 
   (\xTimesB-0.14, \yC)
   node [left, yshift=0.2cm, xshift=-0.2cm] {$i_t$};
@@ -127,55 +127,55 @@
   \draw[thick] (\xBigCicleTWO, \yTWO + \C) circle (\bigRTWO) node {$h_{t+1}$};
 
   % LINE Circle ONE
-  \draw[line width=1.5pt] (\xBigCicleONE, \yONE -\C +0.25) 
+  \draw[line width=2.5pt] (\xBigCicleONE, \yONE -\C +0.25) 
   --
   (\xBigCicleONE, \yONE -\C +0.25 + 1.1);
 
-  \draw[line width=1.5pt] (\xBigCicleONE, \yONE -\C +0.25 + 1.1)
+  \draw[line width=2.5pt] (\xBigCicleONE, \yONE -\C +0.25 + 1.1)
   to[out=90, in=180]
   (2.25, 1);
 
   % LINE third \times
-  \draw[line width=1.5pt] (\xTimesB +1.3 +\shift, 1.1)
+  \draw[line width=2.5pt] (\xTimesB +1.3 +\shift, 1.1)
   --
   (\xTimesB +1.3 +\shift, \yC - 0.15);
 
-  \draw[arrows=-latex, line width=1.5pt] (5.5, 1) 
+  \draw[line width=2.5pt] (5.5, 1) 
   --
-  (6.25 +0.2, 1)
+  (6.25 +0.2, 1);
   
-  \draw[arrows=-latex, line width=1.5pt] (6.25, 1) 
+  \draw[arrows=-latex, line width=2.5pt] (6.25, 1) 
   --
   (6.75 +0.2, 1)
   node[right, xshift=0.0cm, yshift=0.05cm,] {$h_t$};
 
 %%% second line last angle connect the input with h_t output
-  \draw[line width=1.5pt] (\xTimesB +1.3 +\shift, 1.1)
+  \draw[line width=2.5pt] (\xTimesB +1.3 +\shift, 1.1)
   to[out=270, in=180]
   (5.5, 1);
 
 
-  \draw[line width=1.5pt] (\xTimesB +1.3 +\shift, 2.14)
+  \draw[line width=2.5pt] (\xTimesB +1.3 +\shift, 2.14)
   --
   (\xTimesB +1.3 +\shift, 2.26);
 
 
-  \draw[line width=1.5pt] (\xTimesB +1.3 +\shift, \yD)
+  \draw[line width=2.5pt] (\xTimesB +1.3 +\shift, \yD)
   --
   (\xTimesB +1.3 +\shift, 2.54);
 
 
-  \draw[line width=1.5pt] (\xBigCicleTWO, \levelB +0.2)
+  \draw[line width=2.5pt] (\xBigCicleTWO, \levelB +0.2)
   --
   (\xBigCicleTWO, 2.6);
 
 %%%%% first horizontal line from the right angle connected to output ht
-  \draw[line width=1.5pt] (\xBigCicleTWO - 0.2, \levelB)
+  \draw[line width=2.5pt] (\xBigCicleTWO - 0.2, \levelB)
   to[out=0, in=270]
   (\xBigCicleTWO, \levelB +0.2);
 
 
-  \draw[arrows=-latex, line width=1.5pt]
+  \draw[arrows=-latex, line width=2.5pt]
   (\xBigCicleTWO, \yD +0.15)
   --
   (\xBigCicleTWO, 4);

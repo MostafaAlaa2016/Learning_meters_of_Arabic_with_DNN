@@ -1,11 +1,6 @@
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:
   \section{Deep Learning Background}\label{sec_deep_learning_background}
-\textbf{What is Deep Learning?} \textit{ Deep Learning is a new approach of Machine Learning research which focus on learning and understanding from the data without the needs for the human operator to formally specify all the knowledge that the computer needs. This method built using a hierarchy of concept which enables the computer to learn complex concepts by building them layer by layer from simpler ones. If there is a graph which shows how this concept built we will figure out a very deep graph with many layers, for this reason, we call this approach to AI deep learning \cite{Goodfellow-et-al-2016}
-      }\\
+
+  \textbf{What is Deep Learning?} \textit{ Deep Learning is a new approach of Machine Learning research which focus on learning and understanding from the data without the needs for the human operator to formally specify all the knowledge that the computer needs. This method built using a hierarchy of concept which enables the computer to learn complex concepts by building them layer by layer from simpler ones. If there is a graph which shows how this concept built we will figure out a very deep graph with many layers, for this reason, we call this approach to AI deep learning~\cite{Goodfellow-et-al-2016}}\\
 
       There was many of early trials to utilize the AI into real life problems. For Example, IBM's Deep Blue chess-playing system which defeated world champion Garry Kasprov in 1997 ( Hsu , 2002 ).%@@@ add the reference
       \\
@@ -301,19 +296,22 @@ Now, We explained the equations for the feedforward Neural Network. We have only
             \begin{tikzpicture}
               \input{Figures/Ch_2_Background/fig_relu.tex}
             \end{tikzpicture}}
+%
   \subfigure[Tanh activation function.]{\label{fig:tanh}
             \begin{tikzpicture}
               \input{Figures/Ch_2_Background/fig_tanh}
             \end{tikzpicture}}
-            \subfigure[Linear activation function.]{\label{fig:linear}
+%          
+\subfigure[Linear activation function.]{\label{fig:linear}
             \begin{tikzpicture}
               \input{Figures/Ch_2_Background/fig_linear_fun.tex}
             \end{tikzpicture}}
-%            \subfigure[Logistic sigmoid activation function.]{\label{fig:sigmoid}
-%            \begin{Logistic sigmoid activation function.}
-%              \input{Figures/Ch_2_Background/fig_sigmoid.tex}
-%            \end{tikzpicture}}
-          \caption{Common used activation functions include the logistic sigmoid $\sigma(z)$, the hyperbolic tangent $tanh(z)$, the rectified hyperbolic tangent RelU $Relu(x)$, and linear function.}
+%
+\subfigure[Logistic sigmoid activation function.]{\label{fig:sigmoid}
+            \begin{tikzpicture}
+              \input{Figures/Ch_2_Background/fig_sigmoid.tex}
+            \end{tikzpicture}}
+          \caption{Common used activation functions include the logistic sigmoid $\sigma(z)$, the hyperbolic tangent $\tanh(z)$, the rectified hyperbolic tangent RelU $Relu(x)$, and linear function.}
 
 \end{figure}
 
@@ -504,14 +502,12 @@ Long Short Term Memory networks – aka “LSTMs” – are a special type of RN
   \label{fig:LSTM-SimpleRNN}
 \end{figure}
 
- In Basic RNNs it is very simple structure for every layer with simple output function \ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers \ref{fig:LSTM-cell-chaining}.
-
+In Basic RNNs it is very simple structure for every layer with simple output function~\ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers~\ref{fig:LSTM-cell-chaining}. 
 
 \begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-cell-chaining.png}
-  \caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}
-  \label{fig:LSTM-cell-chaining}
+  \caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}\label{fig:LSTM-cell-chaining}
 \end{figure}
-%@@@@ need some edit
+
 \input{./Figures/Ch_2_Background/Fig_LSTM_Main_Figure_3_Cells.tex}
 
 \subsubsection{LSTM Gate Mechanism}

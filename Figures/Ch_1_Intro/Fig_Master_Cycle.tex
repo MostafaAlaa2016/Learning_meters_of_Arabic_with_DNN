@@ -1,0 +1,41 @@
+   \begin{tikzpicture}[>=latex']
+        \tikzset{block/.style= {draw, rectangle, align=center,minimum width=2cm,minimum height=1cm},
+        rblock/.style={draw, shape=rectangle,rounded corners=1.5em,align=center,minimum width=2cm,minimum height=1cm},
+        input/.style={ % requires library shapes.geometric
+        draw,
+        trapezium,
+        trapezium left angle=60,
+        trapezium right angle=120,
+        minimum width=2cm,
+        align=center,
+        minimum height=1cm
+    },
+        }
+        \node [rblock]  (start) {Start};
+        \node [block, right =1cm of start] (crawl) {Data Crawling};
+        \node [block, right =1cm of crawl] (clean) {Data Cleansing};
+        \node [block, right =1cm of clean] (encode) {Data Encoding};
+        \node [block, below right =2cm and -0.5cm of start] (train) {Training};
+        \node [block, right =1cm of train] (validate) {Validation \& Testing};
+        \node [block, right =1cm of validate] (choose) {select Best Model};
+        \node [rblock, right =1cm of choose] (end) {End};
+        \node [coordinate, below right =1cm and 1cm of encode] (right) {};  %% Coordinate on right and middle
+        \node [coordinate,above left =1cm and 1cm of train] (left) {};  %% Coordinate on left and middle
+        \node [coordinate,below  =1cm and 1cm of validate] (loop) {};  %% Coordinate on left and middle
+
+%% paths
+        \path[draw,->] (start) edge (crawl)
+                    (crawl) edge (clean)
+                    (clean) edge (encode)
+                    (encode.east) -| (right) -- (left) |- (train)
+                    (train) edge (validate)
+                    (validate) -- (loop) -| (train)
+                    (validate) edge (choose)
+                    (choose) edge (end)
+                    ;
+    \end{tikzpicture}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

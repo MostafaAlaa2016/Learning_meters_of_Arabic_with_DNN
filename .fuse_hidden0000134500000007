@@ -158,75 +158,7 @@
 
 \pgfplotsset{compat=1.8}
 \usepackage{color}
-
-
-%\colorlet{red}{OneHotColor}
-%\colorlet{blue}{BinaryColor}
-%\colorlet{brown}{TwoHotColor}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\pgfplotsset{%
-  pointModelsFiguresStyle/.style args={#1}{%
-    color=#1,
-    mark=0,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-
-\pgfplotsset{%
-  pointRug/.style args={#1}{%
-    color=#1,
-    mark=-,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-
-\pgfplotsset{%
-  pointBiLSTM/.style args={#1}{%
-    color=#1,
-    mark=o,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-
-% LSTM
-\pgfplotsset{%
-  pointLSTM/.style args={#1}{%
-    color=#1,
-    mark=square,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-
-\pgfplotsset{%
-  pointBiGRU/.style args={#1}{%
-    color=#1,
-    mark=pentagon,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-
-\pgfplotsset{%
-  pointGRU/.style args={#1}{%
-    color=#1,
-    mark=diamond,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+ 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -268,3 +200,8 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../Thesis.tex"
+%%% End: 
