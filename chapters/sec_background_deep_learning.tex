@@ -17,7 +17,7 @@
 
       One solution to solve this problem is to use machine learning itself to discover not only the output of the model but also the features which are the input for the model. This approach is known as representation learning. Learned representation can achieve better results than hard-designed representation. This approach also allows AI systems to rapidly adapt to new tasks or be automatically identify it from any new data. A representation learning can discover many features automatically fast or can take more times in case complex tasks, but at least it will get an excellent set of features which adapt for any complex problem without the need for manual features. In this research, we used the AI to identify the features for our model which make this model get a breakthrough results than the old fashion of manual feature machine learning used.
 
-      If we go back to the image example, we can show that it is not an easy task to extract features to detect the car from an image. So, Deep learning is trying to solve this problem in feature engineering by introducing representation learning that are build complex representations in terms of another simpler layer of representations Figure \ref{fig:DeepLearningImagePersonExample.png} shows how deep learning represents an image of a person by combining simpler representation example the edges and contours which led to understanding complex representations. The benefit from allowing the computer to understand the data and building the representation is the ability now for building and understanding very complex representation and also, to utilize and combine features from simpler to deep representations with many ways such as recurrent or sequences.
+      If we go back to the image example, we can show that it is not an easy task to extract features to detect the car from an image. So, Deep learning is trying to solve this problem in feature engineering by introducing representation learning that are build complex representations in terms of another simpler layer of representations Figure~\ref{fig:DeepLearningImagePersonExample.png} shows how deep learning represents an image of a person by combining simpler representation example the edges and contours which led to understanding complex representations. The benefit from allowing the computer to understand the data and building the representation is the ability now for building and understanding very complex representation and also, to utilize and combine features from simpler to deep representations with many ways such as recurrent or sequences.
 
       
 Modern deep learning provides a compelling framework for learning data problems. This model becomes more complex by the adding more layers and more units within a layer. Deep Learning model is working perfectly on the big dataset which allows the model to learn the data features in a good way.
@@ -27,7 +27,7 @@ In the remaining parts in this section we will start introducing the main concep
 
       
 \begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/DeepLearningImagePersonExample.png}
-  \caption{Illustrations on how can Deep Learning work based on images figure presented from \cite{Goodfellow-et-al-2016} \cite{Zeiler2014}.}
+  \caption{Illustrations on how can Deep Learning work based on images figure presented from~\cite{Goodfellow-et-al-2016}~\cite{Zeiler2014}.}
   \label{fig:DeepLearningImagePersonExample.png}
 \end{figure}
 
@@ -119,10 +119,16 @@ As we explained in the previous parts, we need to find the relation between X,Y 
 
 To illustrate the relation between \textbf{\textit{J(w,b)}} we will assume for simplicity the relation will be function of one variable \textbf{\textit{J(w)}}. As shown in Figure~\ref{fig:gradient_decent_surf} we have a curve which represent the function \textbf{\textit{J(w)}} we need to find the minimum point in this curve which is the local minimum (red point in the previous figure) assuming it is a  \textbf{\textit{convex function}}. We will use equation~\eqref{eq:gredient_descent_w} to find the local minimum.
 
-To explain how this equation works let's take a random point p from Figure XXXX let's take derivative \textit{(which by definition is the slope of the function at the point)} The slope of this function is the height (h) divided into the width (w) it is the tangent of J(w) at this point. If the derivative is positive so, w will be update minus the derivative multiplied by learning rate alpha $\alpha$ as~\eqref{eq:gredient_descent_w}. We will repeat the previous step until value of w get the lowest minimum. When w get the lowest minimum the derivative will be negative so, w will start to increase again at this step the algorithm will stop.
+To explain how this equation works let's take simple function $f(x) = x^2$ then select a random point $P_1$ from Figure~\ref{fig:derivative_example} then pick another point $P_2$ let's take derivative \textit{(which by definition is the slope of the function at the point which also the change between these two points)} The slope of this function is the height (3) divided by the width (1) this is the tangent of $J(w)=\frac{3}{1}$ at this point. If the derivative is positive so, w will be update minus the derivative multiplied by learning rate alpha $\alpha$ as~\eqref{eq:gredient_descent_w}. We will repeat the previous step until value of w get the lowest minimum. When w get the lowest minimum the derivative will be negative so, w will start to increase again at this step the algorithm will stop. Also, we can demonstrate the effect of different $\alpha$ values and its impact on the function we can show this effect in Figure~\ref{fig:alpha_change} but the main point it is not always a happy scenario sometimes the high $alpha$ is not a good idea, and it depends on the problem and the dataset.
 
 
+\begin{figure}[!h]
+\begin{center}
 \input{Figures/Ch_2_Background/fig_derivative_example.tex}
+\caption{Derivative Example of function $f(x) = \sin(x)$ }\label{fig:derivative_example}
+\end{center}
+\end{figure} 
+
 
 \begin{equation}\label{eq:gredient_descent_w}
   \begin{split}
@@ -131,15 +137,28 @@ To explain how this equation works let's take a random point p from Figure XXXX 
   \end{split}
 \end{equation}
 
+\begin{subequations}
+     \begin{align}
+w& := w - \alpha \frac{dJ(w,b)}{dw} \label{eq:gradient_descent_j_w}\\
+b& := b - \alpha \frac{dJ(w,b)}{db} \label{eq:gradient_descent_j_b}
+     \end{align}
+   \end{subequations}
+
+\newpage
 Now, Let's generalize the above equation assume we have two parameters  \textbf{\textit{(w,b)}} and we need to calculate the cost function for  \textbf{\textit{J(w,b)}} we will work on as two steps first function~\eqref{eq:gradient_descent_j_w}  wrt \textbf{\textit{(w)}} and second function~\eqref{eq:gradient_descent_j_b} wrt \textbf{\textit{(b)}}
 
-\begin{equation}\label{eq:gradient_descent_j_w}
-      w := w - \alpha \frac{dJ(w,b)}{dw}
-  \end{equation}
+%\begin{equation}\label{eq:gradient_descent_j_w}       w := w - \alpha \frac{dJ(w,b)}{dw}  \end{equation}
 
-\begin{equation}\label{eq:gradient_descent_j_b}
-      b := b - \alpha \frac{dJ(w,b)}{db}
-  \end{equation}
+%\begin{equation}\label{eq:gradient_descent_j_b}      b := b - \alpha \frac{dJ(w,b)}{db}  \end{equation}
+
+
+\begin{figure}[!h]
+\begin{center}
+\input{Figures/Ch_2_Background/fig_derivative_alpha_change.tex}
+\caption{Derivative Example of function $f(x) = \sin(x)$ }\label{fig:alpha_change}
+\end{center}
+\end{figure} 
+
 
 \newpage
   \subsubsection{Logistic Regression derivatives}\label{logistic_bp_derivatives}
@@ -199,10 +218,10 @@ To implement a simple 1 iteration example below sample code simulate the program
 
  As we all know, Most computer research is trying to simulate the human brain as it is the most advanced smartest creation. If we are trying to check how the model understands the new information regarding for example bananas photo we can give a baby two bananas then ask him about it baby can remember it with all it new shapes. Same case if you inform any human about some information and trying to get a new inference it will automatically detect this information. So, The new research trying to simulate the human brain model into an Artificial Intelligence model to trying to get this performance. In this subsection, we will try to give an overview of the relation between the new research era and the human brain.
  
- The neuron is the foundation unit of the brain. The size of the brain is as about the size of a grain of rice. The brain contains more over 10000 neurons with average 6000 connections with other neurons\footnote{\textit{Restak, Richard M. and David Grubin. The Secret Life of the Brain. Joseph Henry Press, 2001.}}.  These massive networks allow our brain to build its knowledge about the world around us. The neuron is work by receiving the information from other neuron and process it uniquely then pass the output to other neurons this process is shown in figure \ref{fig:NeuronStructure}.
+ The neuron is the foundation unit of the brain. The size of the brain is as about the size of a grain of rice. The brain contains more over 10000 neurons with average 6000 connections with other neurons\footnote{\textit{Restak, Richard M. and David Grubin. The Secret Life of the Brain. Joseph Henry Press, 2001.}}.  These massive networks allow our brain to build its knowledge about the world around us. The neuron is work by receiving the information from other neuron and process it uniquely then pass the output to other neurons this process is shown in figure~\ref{fig:NeuronStructure}.
 
  \begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/neuron_structure.png}
-  \caption{Description of neuron's structure this figure from \cite{DLFundamentals}}
+  \caption{Description of neuron's structure this figure from~\cite{DLFundamentals}}
   \label{fig:NeuronStructure}
 \end{figure}
 
@@ -448,7 +467,7 @@ So, What are the problems in the Naive Neural Network architecture?
 \end{itemize}
 What is the new proposed architecture which can provide a way to share the features between the Network?
 \begin{itemize}
-\item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figures \ref{fig:RNN-rolled-loop.png}, \ref{fig:andew_ng_feedfarward} shows an example. So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.
+\item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figures~\ref{fig:RNN-rolled-loop.png},~\ref{fig:andew_ng_feedfarward} shows an example. So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.
 
    \begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/RNN-unrolled.png}
   \caption{Recurrent Neural Networks Loops\cite{colah}}
@@ -504,9 +523,9 @@ Long Short Term Memory networks – aka “LSTMs” – are a special type of RN
 
 In Basic RNNs it is very simple structure for every layer with simple output function~\ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers~\ref{fig:LSTM-cell-chaining}. 
 
-\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-cell-chaining.png}
-  \caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}\label{fig:LSTM-cell-chaining}
-\end{figure}
+%\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-cell-chaining.png}
+  %\caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}\label{fig:LSTM-cell-chaining}
+%\end{figure}
 
 \input{./Figures/Ch_2_Background/Fig_LSTM_Main_Figure_3_Cells.tex}
 
@@ -514,28 +533,28 @@ In Basic RNNs it is very simple structure for every layer with simple output fun
 
 The main component of LSTM is the cell state; It allows the information to pass through along it unchanged. In figure xxx the top line show the information flow through the cell. The LSTM cell can add or remove information to the cell state using the Gating mechanism. 
 
-Gates's idea is a methodology to manage the way how and which information pass or not. It controls information flow through the cell. It has three of these gates. They are consist of a sigmoid neural network layer \ref{fig:LSTM-Cell-state} and a pointwise multiplication operation \ref{fig:LSTM-gate}.
+Gates's idea is a methodology to manage the way how and which information pass or not. It controls information flow through the cell. It has three of these gates. They are consist of a sigmoid neural network layer~\ref{fig:LSTM-Cell-state} and a pointwise multiplication operation~\ref{fig:LSTM-gate}.
 
 Sigmoid function output values between zero and one. If the value is one these means that everything should pass, while if the value is zero these means do not pass anything. So, the value output from the sigmoid function refers to the amount of each component should be passed.
 
 %\begin{figure}[ht!]
 %    \centering
 %        \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-Cell-state.png}
-%        \caption{LSTM top horizontal line working as the medium for information flow \cite{colah}}
+%        \caption{LSTM top horizontal line working as the medium for information flow~\cite{colah}}
 %        \label{fig:LSTM-Cell-state}
 %      \end{figure}
       \begin{figure}[ht!]
     \centering
 \input{./Figures/Ch_2_Background/Fig_LSTM_Cell_State.tex}
-        \caption{LSTM top horizontal line working as the medium for information flow \cite{colah}}
-        \label{fig:LSTM-Cell-state2}
+        \caption{LSTM top horizontal line working as the medium for information flow~\cite{colah}}
+      \label{fig:LSTM-Cell-state}
       \end{figure}
 
       
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.2\textwidth]{./Figures/Ch_2_Background/LSTM-gate.png}
-        \caption{Cell gate with sigmoid function and a pointwise multiplication operation \cite{colah}}
+        \caption{Cell gate with sigmoid function and a pointwise multiplication operation~\cite{colah}}
         \label{fig:LSTM-gate}
 \end{figure}
 
@@ -551,7 +570,7 @@ We have explained LSTM has three gates with some
 %\begin{figure}[ht!]
 %    \centering
 %        \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-forget-gate.png}
-%        \caption{LSTM sigmoid forget gate \cite{colah}}
+%        \caption{LSTM sigmoid forget gate~\cite{colah}}
 %        \label{fig:LSTM-forget-gate}
 %\end{figure}
 
@@ -563,23 +582,23 @@ We have explained LSTM has three gates with some
 
 
 
-\item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{tanh layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state \ref{fig:LSTM-input-gate}. The previous combination controls the update state. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.
+\item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{tanh layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state~\ref{fig:LSTM-input-gate}. The previous combination controls the update state. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.
 
 %\begin{figure}[ht!]
    % \centering
    %     \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-input-gate.png}
-  %      \caption{LSTM Input gate a combination of Sigmoid and Tanh layers \cite{colah}}
+  %      \caption{LSTM Input gate a combination of Sigmoid and Tanh layers~\cite{colah}}
  %       \label{fig:LSTM-input-gate}
 %\end{figure}
 \begin{figure}[ht!]
     \centering
         \input{./Figures/Ch_2_Background/Fig_LSTM_Input_Gate.tex}
-        \caption{LSTM Input gate a combination of Sigmoid and Tanh layers \cite{colah}}
+        \caption{LSTM Input gate a combination of Sigmoid and Tanh layers~\cite{colah}}
         \label{fig:LSTM-input-gate}
 \end{figure}
 
 
-\item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in \ref{fig:LSTM-pointwise-operations} there are two operations, 
+\item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in~\ref{fig:LSTM-pointwise-operations} there are two operations, 
   \begin{enumerate}
   \item Multiplication Operation: This operation to apply the forget gate step by multiplying the old state $\tilde{C}_{t-1} $ by the $f_t$.
   \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t * \tilde{C_t}$
@@ -587,7 +606,7 @@ We have explained LSTM has three gates with some
 
 %    \begin{figure}[ht!]
 %    \centering %\includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-pointwise-operations.png}
-%        \caption{LSTM Multiplication and Addition Operation in LSTM \cite{colah}}
+%        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}
 %        \label{fig:LSTM-pointwise-operations}
 %      \end{figure}
 
@@ -595,7 +614,8 @@ We have explained LSTM has three gates with some
     \begin{figure}[ht!]
       \centering
       \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_operations.tex}
-        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}\label{fig:LSTM-pointwise-operations}
+        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}
+        \label{fig:LSTM-pointwise-operations}
       \end{figure}
       
       
@@ -603,7 +623,7 @@ We have explained LSTM has three gates with some
 
 %\begin{figure}[ht!]
 %    \centering \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-output-gate.png}
-%        \caption{LSTM Multiplication and Addition Operation in LSTM \cite{colah}}
+%        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}
 %        \label{fig:LSTM-output-gate}
 %      \end{figure}
 
@@ -611,9 +631,8 @@ We have explained LSTM has three gates with some
 \begin{figure}[ht!]
   \centering
   \input{./Figures/Ch_2_Background/Fig_LSTM_output_gate.tex}
-        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}~\label{fig:LSTM-output-gate}
+        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}\label{fig:LSTM-output-gate}
       \end{figure}
-
       
     \end{itemize}
 
@@ -622,7 +641,7 @@ We have explained LSTM has three gates with some
 \newpage
 \subsubsection{Gated Recurrent Units (GRUs)}
 
-In RNN Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 by Kyunghyun Cho et al. \cite{Cho_et_al}. It works to overcome the problem for long-term dependencies. It also aimed to solve the vanishing gradient problem from Basic RNNs.It proposed a new architecture \ref{fig:GRU} similar than the LSTM but with some major variants as below,
+In RNN Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 by Kyunghyun Cho et al.~\cite{Cho_et_al}. It works to overcome the problem for long-term dependencies. It also aimed to solve the vanishing gradient problem from Basic RNNs.It proposed a new architecture~\ref{fig:GRU} similar than the LSTM but with some major variants as below,
 \begin{itemize}
   
 \item It combines the forget gate and input gates into a single gate named “update gate and reset gate.”
@@ -633,7 +652,7 @@ In RNN Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 b
 \begin{figure}[ht!]
   \centering
   \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/GRU.png}
-        \caption{GRU cell architecture \cite{colah}}
+        \caption{GRU cell architecture~\cite{colah}}
         \label{fig:GRU}
       \end{figure}
 

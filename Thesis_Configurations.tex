@@ -118,7 +118,7 @@
 \usepackage{verbatim}
 \usepackage{enumitem}
 \newcommand{\dd}[1]{\mathrm{d}#1}
-
+\RequirePackage{pgfmath}
 \usepackage{graphicx, type1cm, lettrine}
 \usepackage{qtree}
 \usepackage[dvipsnames, table]{xcolor}
@@ -225,6 +225,18 @@
     point meta=explicit symbolic,
   }
 }
+\pgfplotsset{
+    azetinaplot/.style={
+        width=7cm,
+        height=7cm,
+        axis lines=middle,
+        xlabel=$x$,
+        ylabel=$y$,
+        enlarge y limits,
+        clip=false
+    }
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -235,6 +247,7 @@
 %\usepackage{xcolor}
 
 \colorlet{LightGreen}{green!25}
+\colorlet{DarkGreen}{green!90}
 \colorlet{LightBlue}{blue!40}
 \colorlet{LightPurple}{red!20}
 \colorlet{LightYellow}{yellow!30}
