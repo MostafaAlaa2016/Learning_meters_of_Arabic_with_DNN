@@ -1,0 +1,210 @@
+\begin{tikzpicture}[scale=1.2]
+  \begin{axis}[
+    axis x line = bottom,
+    axis y line = left,
+    ymajorgrids = true,
+    ybar,
+    enlargelimits=0.15,
+    legend style={at={(0.87,0.99)},
+      anchor=north,legend columns=1},
+    ylabel={$F_{1}$ Score},
+    ylabel style = {font=\footnotesize},
+    symbolic x coords={Taweel, Kamel, Baseet, Khafeef, Wafeer, Rigz, Raml, Motakarib, Sar'e, Monsareh, Mogtath, Madeed, Hazg, Motadarik, Moktadib, Modar'e},
+    xtick=data,
+    xticklabel style = {font=\footnotesize},
+    nodes near coords align={vertical},
+    x tick label style={rotate=90, anchor=east},
+    bar width=2pt,
+    ymin=0.6,
+    ]
+
+    % trimmed no-diacritic (Empty Triangle)
+    \addplot[mark=triangle, every mark/.append style={rotate=180},
+    thin, only marks, mark size=1.5pt, point meta=explicit symbolic, opacity=0.4]
+    coordinates {
+      (Taweel,     0.9851172524158307)       
+      (Kamel,      0.9652475629233903)       
+      (Baseet,     0.9796481833964317) 
+      (Khafeef,    0.9685310147936672)       
+      (Wafeer,     0.9800042695509855)       
+      (Rigz,       0.8946829393189383)       
+      (Raml,       0.9361911800936191)       
+      (Motakarib,  0.959795491517546 )       
+      (Sar'e,      0.9182454343744668)       
+      (Monsareh,   0.914378612716763 )       
+      (Mogtath,    0.8934631432545201)       
+      % Damn Trick; the first \addplot must have all the x ticks; otherwise
+      % the following 4 ticks will not appear on the x-axis.
+      (Madeed,     0)  
+      (Hazg,       0)
+      (Motadarik,  0) 
+      (Moktadib,   0) 
+      (Modar'e,    0)
+    };
+
+    % trimmed diacritic (Empty Circle)
+    \addplot[mark=o, thin, only marks, mark size=1.5pt, point
+    meta=explicit symbolic, opacity=0.4]
+    coordinates{
+      (Taweel,    0.9818557817770008)       
+      (Kamel,     0.9576166230906838)       
+      (Baseet,    0.9756393621028839) 
+      (Khafeef,   0.9589173825980233)       
+      (Wafeer,    0.97306361268686  )       
+      (Rigz,      0.8690169840452907)       
+      (Raml,      0.9171277587814735)       
+      (Motakarib, 0.9476956555529649)       
+      (Sar'e,     0.8971480834788392)       
+      (Monsareh,  0.8964889939967255)       
+      (Mogtath,   0.852965982569581 )       
+    };
+
+
+
+    % full no-diacritic (Full Triangle)
+    \addplot[mark=triangle*, every mark/.append style={rotate=180},
+    thin, only marks, mark size=1.5pt, point meta=explicit symbolic, opacity=0.4]
+    coordinates {
+      (Taweel,     0.9797117984076986)       
+      (Kamel,      0.9497651482802794)       
+      (Baseet,     0.9694416914436736) 
+      (Khafeef,    0.9490905591377153)       
+      (Wafeer,     0.9561501167175435)       
+      (Rigz,       0.8382501685772085)       
+      (Raml,       0.8982087708462013)       
+      (Motakarib,  0.9381081512202903)       
+      (Sar'e,      0.8764296156161321)       
+      (Monsareh,   0.884060552092609 )       
+      (Mogtath,    0.8158338012352612)       
+      (Madeed,     0.7701375245579568 )  
+      (Hazg,       0.690017513134851  )
+      (Motadarik,  0.6202661207778916 ) 
+      (Moktadib,   0.5223880597014925 ) 
+      (Modar'e,    0.21428571428571427)
+    };
+
+    % full diacritic (Full Circle)
+    \addplot[mark=*, thin, only marks, mark size=1.5pt, point
+    meta=explicit symbolic, opacity=0.4]
+    coordinates {
+      (Taweel,    0.9792390538251331)       
+      (Kamel,     0.951906768069158 )       
+      (Baseet,    0.9704723593082569) 
+      (Khafeef,   0.9527113852480082)       
+      (Wafeer,    0.9556124626547161)       
+      (Rigz,      0.8617761929020207)       
+      (Raml,      0.9109545163356824)       
+      (Motakarib, 0.9425525143220879)       
+      (Sar'e,     0.884472886493769 )       
+      (Monsareh,  0.8904428904428904)       
+      (Mogtath,   0.8493552168815944)       
+      (Madeed,    0.8228498074454429)  
+      (Hazg,      0.6914546640574037)
+      (Motadarik, 0.6921529175050303) 
+      (Moktadib,  0.6790123456790124) 
+      (Modar'e,   0.3225806451612903)
+    };
+
+    \legend{
+      {\scriptsize (1T, 0D)},
+      {\scriptsize (1T, 1D)},
+      {\scriptsize (0T, 0D)},
+      {\scriptsize (0T, 1D)},
+    }
+
+    % Dotted line
+    \draw[loosely dotted] (axis cs:Wafeer,    0) -- (axis cs:Wafeer,     0.8800042695509855);
+    \draw[loosely dotted] (axis cs:Monsareh,  0) -- (axis cs:Monsareh,   0.814378612716763 );
+    \draw[loosely dotted] (axis cs:Mogtath,   0) -- (axis cs:Mogtath,    0.7934631432545201);
+    \draw[loosely dotted] (axis cs:Motakarib, 0) -- (axis cs:Motakarib,  0.859795491517546 );
+    \draw[loosely dotted] (axis cs:Kamel,     0) -- (axis cs:Kamel,      0.8652475629233903);
+    \draw[loosely dotted] (axis cs:Taweel,    0) -- (axis cs:Taweel,     0.8851172524158307);
+    \draw[loosely dotted] (axis cs:Sar'e,     0) -- (axis cs:Sar'e,      0.8182454343744668);
+    \draw[loosely dotted] (axis cs:Raml,      0) -- (axis cs:Raml,       0.8361911800936191);
+    \draw[loosely dotted] (axis cs:Rigz,      0) -- (axis cs:Rigz,       0.7946829393189383);
+    \draw[loosely dotted] (axis cs:Khafeef,   0) -- (axis cs:Khafeef,    0.8685310147936672);
+    \draw[loosely dotted] (axis cs:Baseet,    0) -- (axis cs:Baseet,     0.8796481833964317);
+    \draw[loosely dotted] (axis cs:Moktadib,  0) -- (axis cs:Moktadib,   0.5790123456790124);
+    \draw[loosely dotted] (axis cs:Madeed,    0) -- (axis cs:Madeed,     0.7228498074454429);
+    \draw[loosely dotted] (axis cs:Hazg,      0) -- (axis cs:Hazg,       0.5914546640574037);
+    \draw[loosely dotted] (axis cs:Modar'e,   0) -- (axis cs:Modar'e,    0.2225806451612903);
+    \draw[loosely dotted] (axis cs:Motadarik, 0) -- (axis cs:Motadarik,  0.5921529175050303);
+
+
+
+    % connecting a models F_1s
+    % Full Triangle
+    \draw[line width=0.1pt, densely dashed]
+    (axis cs:Taweel,     0.9797117984076986)
+    -- (axis cs:Kamel,      0.9497651482802794)
+    -- (axis cs:Baseet,     0.9694416914436736)
+    -- (axis cs:Khafeef,    0.9490905591377153)
+    -- (axis cs:Wafeer,     0.9561501167175435)
+    -- (axis cs:Rigz,       0.8382501685772085)
+    -- (axis cs:Raml,       0.8982087708462013)
+    -- (axis cs:Motakarib,  0.9381081512202903)
+    -- (axis cs:Sar'e,      0.8764296156161321)
+    -- (axis cs:Monsareh,   0.884060552092609 )
+    -- (axis cs:Mogtath,    0.8158338012352612)
+    -- (axis cs:Madeed,     0.7701375245579568)
+    -- (axis cs:Hazg,       0.690017513134851 )
+    -- (axis cs:Motadarik,  0.6202661207778916)
+    -- (axis cs:Moktadib,   0.5223880597014925)
+    -- (axis cs:Modar'e,    0.2142857142857142);
+
+    % Full Circle
+    \draw[line width=0.1pt, densely dashed]
+    (axis cs:Taweel,     0.9792390538251331)
+    -- (axis cs:Kamel,      0.951906768069158 )
+    -- (axis cs:Baseet,     0.9704723593082569)
+    -- (axis cs:Khafeef,    0.9527113852480082)
+    -- (axis cs:Wafeer,     0.9556124626547161)
+    -- (axis cs:Rigz,       0.8617761929020207)
+    -- (axis cs:Raml,       0.9109545163356824)
+    -- (axis cs:Motakarib,  0.9425525143220879)
+    -- (axis cs:Sar'e,      0.884472886493769 )
+    -- (axis cs:Monsareh,   0.8904428904428904)
+    -- (axis cs:Mogtath,    0.8493552168815944)
+    -- (axis cs:Madeed,     0.8228498074454429)
+    -- (axis cs:Hazg,       0.6914546640574037)
+    -- (axis cs:Motadarik,  0.6921529175050303)
+    -- (axis cs:Moktadib,   0.6790123456790124)
+    -- (axis cs:Modar'e,    0.3225806451612903);
+
+
+    % Empty Circle
+    \draw[line width=0.1pt, densely dashed]
+    (axis cs:Taweel,     0.981855781777000)
+    -- (axis cs:Kamel,      0.957616623090683)
+    -- (axis cs:Baseet,     0.975639362102883)
+    -- (axis cs:Khafeef,    0.958917382598023)
+    -- (axis cs:Wafeer,     0.97306361268686 )
+    -- (axis cs:Rigz,       0.869016984045290)
+    -- (axis cs:Raml,       0.917127758781473)
+    -- (axis cs:Motakarib,  0.947695655552964)
+    -- (axis cs:Sar'e,      0.897148083478839)
+    -- (axis cs:Monsareh,   0.896488993996725)
+    -- (axis cs:Mogtath,    0.852965982569581);
+
+    % Empty Triangle
+    \draw[line width=0.1pt, densely dashed]
+    (axis cs:Taweel,     0.9851172524158307)
+    -- (axis cs:Kamel,      0.9652475629233903)
+    -- (axis cs:Baseet,     0.9796481833964317)
+    -- (axis cs:Khafeef,    0.9685310147936672)
+    -- (axis cs:Wafeer,     0.9800042695509855)
+    -- (axis cs:Rigz,       0.8946829393189383)
+    -- (axis cs:Raml,       0.9361911800936191)
+    -- (axis cs:Motakarib,  0.959795491517546 )
+    -- (axis cs:Sar'e,      0.9182454343744668)
+    -- (axis cs:Monsareh,   0.914378612716763 )
+    -- (axis cs:Mogtath,    0.8934631432545201);
+
+  \end{axis}
+\end{tikzpicture}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../master"
+%%% End:

@@ -47,7 +47,7 @@ In this section we will explain the effect of the 12 data representation techniq
 
   
 \begin{figure}
- \input{./Figures/Ch_7_Results/F_1_Score.tex}
+ \input{./Figures/Ch_7_Results/Fig_F_1_Score.tex}
  \caption{$F_1$ score of the 192 experiments plotted as 12 vertical rug plots (for the 12 different data representations: $\left\{\mathit{Trimming},\ \mathit{No Trimming} \right\} \times \left\{\mathit{Diacritics},\ \mathit{No Diacritics} \right\} \times \left\{\mathit{OneE},\ \mathit{BinE},\ \mathit{TwoE}\right\}$), each represents 16 exp. (for the 16 different network configurations: $\left\{7L,\ 4L\right\} \times \left\{82U,\ 50U\right\} \times \left\{0W, 1W\right\} \times \left\{LSTM,\ BiLSTM\right\}$). For each rug plot the two best (Bi)LSTM models are marked differently; and the other three network configuration parameters of the best of them, which consistently was the BiLSTM, are listed at the top of each rug plot.}~\label{fig:ArabicModelsResults}
 \end{figure}
 
@@ -66,13 +66,74 @@ This section is to comment on the effect of the network configurations parameter
 
 \subsection{Per-Class (Meter) Accuracy}
 
-Next, we investigate the accuracy of each class rather than the overall F1 score. For each of the four combinations of trimming × diacritics, we select the best model. From Figure 4, it is clear that three of them will be of two-hot encoding and the fourth (1T, 0D, BinE) is best overall model discussed above. Figure 5 displays the per-class accuracy of these four models. The class names are ordered according to their individual sizes (the same order of Figure 1). Several comments are in order. The overall score of each of the four models is around 0.95 (Figure 4); however, for the four models the per-class score of only 6 classes are around this value. For some classes the score drops significantly.
+In this section we will explore the accuracy of each class. This is regarding how our model is able to detect every class separate. The difference between this and the $F_1$ score is it is per class accuracy. It is also useful to check it as it will show us how the model able to understand every class and what is the classes which our model not able to classify it. 
 
-Moreover, the common trend for the four models is that the per-class accuracy decreases with the class size for the first 11 classes. The score of the two Trimmed models keeps decreasing significantly with the remaining 5 classes. Although this trend is associated with class size, the latter needs not be the cause of this phenomenon. This phenomenon, along with what was concluded above for the inconsistent effect of the weighting loss, emphasizes the importance of a more prudent design for the weighting function in combination with appropriate selection of the both the learning rate and batch size. Also, the same full set of experiments can be reconducted with enforcing all classes to have equal size to assert/negate the interpretation of causality (Sec. VI).
+Similar in the previous section, We have a four combination of \textit{trimming and diacritic} we will invistegate about which models is achieved the best results. We will take the best four models (the first three of them is two-hot encoding and the forth is binary encoding) from Figure~\ref{fig:ArabicModelsResults} which is the overall accuracy and show the results of the per class accuracy for each one.
+
+In Figure~\ref{fig:Results_Per_Class} we have the previous four models display the per-class accuracy. The class names is ordered based on their data size per class which we explained previous in Figure~\ref{fig:data_percentage_distribution} with the same order. If we compare the results for the four models $F_1$ scores which was around 95\% in Figure~\ref{fig:ArabicModelsResults} and the per-class accuracy we will find only 6 classes (which have around 80\% of the total datasets) are around this value. But there are a significant drops for some classes which make the figures line has drops in the results.
+
+The relation between the model accuracy results per-class and the dataset size per class is clearly shown in Figure~\ref{fig:Results_Per_Class}; However, This trend was expected to be fixed from the weighted loss which is inconsistent effect of the weighting loss for all the models. This inconsistent effects shows that we need to have a new design for weighting function which can solve this trend issue. The overall accuracy can be increased after trimming but there will be a gab between the accuracy per class the size of the data per class as the dataset is not balanced. Moreover, We can repeat this experiments again with enforcing all classes to have an equal size so, we can show the accuracy without in data unbalance issue. We will elaborate more in Section~\ref{sec_discussion}.
+
+
+
+\begin{figure}
+ \input{./Figures/Ch_7_Results/Fig_Results_Per_Class.tex}
+ \caption{The per-class $F_1$ score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{fig:data_percentage_distribution}. There is a descending trend with the class size, with the exception at \textit{Rigz} meter.}~\label{fig:Results_Per_Class}
+\end{figure}
+
+
 
 \subsection{Encoding Effect}
 
-Encoding Effect on Learning rate and Memory Utilization: Figure 6-a shows the learning curve of the best model (4L, 82U, 0W, 1T, 0D, BinE), which converges to the same value displayed in Figure 4, along with its learning curve using the other two encodings. There is no big difference in convergence speed except normal few epochs for the curve possessing higher convergence score.
+As explained in Chapter~\ref{ch:data_encoding} the difference between data encoding types. In this section we will explore the effects of Data Encoding with respect to the \textit{Accuracy, Learning Rate and Memory Utilization} on the best model results (4L, 82U, 0W, 1T, 0D, BinE). During our experiments we didn't find a consistent effect for the model encoding type and the model accuracy~\ref{fig:Convergence_Memory}-a. However, most of cases we found the accuracy of the two-hot is slightly better than binary and then one-hot.
 
-Figure 6-b is a sort of visual emphasis, in bytes, on the same numbers of Figure 2 that represented the size of a character vector under each encoding—(1,448, 328, 64) = 8 × (8, 41,181). It is clear that one-hot encoding is very memory demanding than the two other encodings. Twohot is a good compromise between the one-hot that is too memory demanding and the binary that is too terse, and hence difficult for networks to learn from (as discussed above for encoding effect and will be elaborated more in Sec. VI).
 
+\begin{figure}[!h]
+  \centering
+  \begin{tikzpicture}[scale=1.2]
+    \input{Figures/Ch_7_Results/Fig_Results_Encoding_Convergence.tex}
+        \input{Figures/Ch_7_Results/Fig_Results_Memory_Consumption.tex}
+  \end{tikzpicture}
+  \caption{Encoding effect. (a) Learning rate of the best model (1T, 0D, 4L, 82U, 0W, BinE) and when using the two other encodings instead of BinE. (b) Relative size in bytes of the three encoding vectors.}~\label{fig:Convergence_Memory}
+\end{figure}
+
+
+Figure~\ref{fig:Convergence_Memory}-a shows the effect of encoding on learning rate which has no difference in convergence speed between the encoding types; However, We can found some encoding start learning faster than other between epochs[1:5] but overall they will converge with the same learning curve at the end.
+
+
+Memory Utilization is not similar for each model encoding. So, If we take a look in Figure~\ref{fig:One-Binary-Encoding} we will find that each encoding has it is own vector size representation Figure~\ref{fig:Convergence_Memory}-b shows this different of memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \texit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \texit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that, \textit{Two-hot} is in the middle between the two encoding with respect to the memory consumption and also it gives some more meaning for data encoding as explained before in Chapter~\ref{ch:data_encoding}
+
+
+\newpage
+\subsection{Comparison with Literature}
+\begin{table}[!tb]
+  \centering
+  \begin{tabular}{c c c c}
+    \toprule
+    \textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} & \textbf{Poem}\\
+    \midrule
+    \cite{Alnagdawi2013FindingArabicPoemMeter}   & 75\%     & 128     & \multirow{3}{*}{Arabic}\\
+    \cite{Abuata2016RuleBasedAlgorithmFor}      & 82.2\%   & 417     & \\
+    This article   & 96.38\%  & 150,000 & \\
+    \midrule
+    This article   & 82.31\%  &  1,740  & English\\
+    \bottomrule
+  \end{tabular}
+  \caption{Overall accuracy of this article compared to literature.}\label{tab:summ-results}
+\end{table}
+%The best model scored 0.9638, achieve almost the same numbers in terms of accuracy 96.38\%. However, reporting accuracy in this section is essential for comparison with the best results in literature, to the best of authors' knowledge, as illustrated in Table~\ref{tab:summ-results}. For Arabic poem classification, the accuracy of our approach is significantly higher than the highest two in literature. The very large dataset we tested on should provide more confidence in the reported results. In addition, the classification in the two studies are algorithmic; and hence there is no learning from data (Sec.~\ref{sec:literature-review}). 
+
+\section{Discussion}\label{sec_discussion}
+
+
+
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../master"
+%%% End:

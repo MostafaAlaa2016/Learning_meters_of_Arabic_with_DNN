@@ -1,0 +1,52 @@
+\begin{axis}[
+  symbolic x coords={
+    % the x ordering.
+    One-Hot,
+    Two-Hot,
+    Binary,
+  },
+  xtick=data,
+  % the following x label positioning does work here.
+  every axis y label/.style= {at={( 0.1, 1.1)}, anchor=north},
+  x tick label style={font=\footnotesize},
+  ylabel={Bytes},
+  height=7cm,
+  x=0.5cm,
+  ytick={64, 1448, 328},
+  enlarge x limits=0.3,
+  enlarge y limits=0.07,
+  % xticklabel style = {font=\footnotesize},
+  % x tick label style={rotate=60},
+  % X ticks configurations
+  x tick label style={rotate=90, anchor=east},
+  /pgf/bar width=20pt,
+  % Y ticks configurations
+  y tick label style={/pgf/number format/.cd,%
+    scaled y ticks = false,
+    set thousands separator={,},
+    fixed},
+  at={($(left plot.south east)+(1.5cm,0)$)},
+  title={\small (b) \textit{Memory Size}},
+  title style={at={(0.5,-.4)}}
+  ]
+
+  \addplot[mark=*, only marks,
+  point meta=explicit symbolic] coordinates {
+    % Ordering does not effect.
+    (One-Hot, 1448)
+    (Two-Hot, 328)
+    (Binary,  64)
+  };
+
+  \draw[loosely dotted] (axis cs:One-Hot, 0) -- (axis cs:One-Hot, 1448);
+  \draw[loosely dotted] (axis cs:Two-Hot, 0) -- (axis cs:Two-Hot, 328);
+  \draw[loosely dotted] (axis cs:Binary, 0) -- (axis cs:Binary, 64);
+
+\end{axis}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../master"
+%%% End:

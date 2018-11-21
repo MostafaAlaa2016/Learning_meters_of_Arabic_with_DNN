@@ -1,0 +1,31 @@
+\begin{tikzpicture}
+  \newcommand{\derivative}[5]{
+\begin{scope}[declare function={g(\x)=#1;}]
+    \addplot [thick, red, latex-latex] {g(x)} node [anchor=west] {#2};
+    \addplot [black, mark=*] coordinates {(#3,{g(#3)}) (#4,{g(#4)})}
+        node [pos=0,/pgfplots/point 1] {$P_1$}
+        node [pos=1,/pgfplots/point 2] {$P_2$};
+    \pgfplotsextra{
+        \pgfmathsetmacro\first{f(#3)}
+        %\pgfmathsetmacro\second{(f(#4)}
+        %\pgfmathsetmacro\xdiff{#4-#3}
+        %\pgfmathsetmacro\ydiff{f(#4)-f(#3)}
+        %\draw (axis cs:#3,\first) -| (axis cs:#4,\second);
+        %\draw [|-|,yshift=-2ex] (axis cs:#3,\first) -- node [inner sep=1pt,fill=white] {\pgfmathprintnumber{\xdiff}} (axis cs:#4,\first);
+        %\draw [|-|,xshift=2ex] (axis cs:#4,\first) -- node [inner sep=1pt, fill=white] {\pgfmathprintnumber{\ydiff}} (axis cs:#4,\second);
+        %\matrix at (rel axis cs:1,1) [matrix of nodes,/pgfplots/point legend] {#5\\};
+    }
+    \end{scope}
+}
+
+\begin{axis}[
+    azetinaplot,
+    domain=-0.5:2.5, samples=100,
+    xmin=-1, xmax=3,
+    point legend/.style={ at={(rel axis cs:1.1,0.5)}},
+    point 1/.style={anchor=south east}, point 2/.style={anchor=south east}
+]
+%\derivative{\x^2}{$g(x)=x^2$}{1}{2}{$P_1=(1\,,\,1)$\\$P_2=(2\,,\,4)$}
+\end{axis}
+
+\end{tikzpicture}
