@@ -467,17 +467,22 @@ So, What are the problems in the Naive Neural Network architecture?
 \end{itemize}
 What is the new proposed architecture which can provide a way to share the features between the Network?
 \begin{itemize}
-\item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figures~\ref{fig:RNN-rolled-loop.png},~\ref{fig:andew_ng_feedfarward} shows an example. So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.
+\item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figure~\ref{fig:RNN-rolled-loop} shows an example. So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.
 
-   \begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/RNN-unrolled.png}
-  \caption{Recurrent Neural Networks Loops\cite{colah}}
-  \label{fig:RNN-rolled-loop.png}
+%   \begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/RNN-unrolled.png}
+%  \caption{Recurrent Neural Networks Loops\cite{colah}}
+%  \label{fig:RNN-rolled-loop.png}
+%\end{figure}
+
+\begin{figure}[ht!]
+  \input{./Figures/Ch_2_Background/Fig_RNN_unrolled.tex}
+  \caption{Recurrent Neural Networks Loops\cite{colah}}\label{fig:RNN-rolled-loop}
 \end{figure}
 
-\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/andew_ng_feedfarward.png}
-  \caption{Recurrent Neural Networks feedfarward \textit{ This figure from Andrew NG course sequence models https://www.coursera.org/learn/nlp-sequence-models/ }}
-  \label{fig:andew_ng_feedfarward}
-\end{figure}
+%\begin{figure}[ht!] %\includegraphics[width=\linewidth]{./Figures/Ch_2_Background/andew_ng_feedfarward.png}
+%  \caption{Recurrent Neural Networks feedfarward \textit{ This figure from Andrew NG course sequence models https://www.coursera.org/learn/nlp-sequence-models/ }}
+%  \label{fig:andew_ng_feedfarward}
+%\end{figure}
 % @@@ to be replaced by new owned ones
 
 % @@@add example about the new architecture
@@ -497,7 +502,7 @@ What is the new proposed architecture which can provide a way to share the featu
   
  \end{itemize}
 
-\newpage
+
  \subsubsection{Vanishing Gradient with RNNs}\label{sec_RNN_Vanishing}
  
  As we explained, RNN works on sequential data, and the idea is to predict new output not only based on the input data vector but also, other input vectors. Due to the recurrent structure in RNNs, it tends to suffer from long-term dependency to simplify this point let’s have an example, the following sentence \\

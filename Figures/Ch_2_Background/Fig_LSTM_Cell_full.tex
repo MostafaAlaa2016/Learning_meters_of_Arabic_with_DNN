@@ -123,11 +123,11 @@
   \def \C    {1}
   \def \xBigCicleONE {2}
   \def \xBigCicleTWO {5.5 + 0.25}
-  \draw[thick] (\xBigCicleONE, \yONE - \C) circle (\bigRTWO) node {$x_{t+1}$};
-  \draw[thick] (\xBigCicleTWO, \yTWO + \C) circle (\bigRTWO) node {$h_{t+1}$};
+  \draw[thick] (\xBigCicleONE, \yONE - \C) circle (\bigRTWO) node {$x_{t}$};
+  \draw[thick] (\xBigCicleTWO, \yTWO + \C) circle (\bigRTWO) node {$h_{t}$};
 
   % LINE Circle ONE
-  \draw[line width=2.5pt] (\xBigCicleONE, \yONE -\C +0.25) 
+  \draw[line width=2.5pt] (\xBigCicleONE, \yONE -\C +0.4) 
   --
   (\xBigCicleONE, \yONE -\C +0.25 + 1.1);
 
@@ -178,7 +178,6 @@
   \draw[arrows=-latex, line width=2.5pt]
   (\xBigCicleTWO, \yD +0.15)
   --
-  (\xBigCicleTWO, 4);
+  (\xBigCicleTWO, 4-.1);
 
 \end{tikzpicture}
-

@@ -54,9 +54,9 @@
 
   % LINES %%% Upper line from c_{t -1} till C_t
   %\draw[arrows=-latex, line width=2.5pt]  (0.85, \yD) -- (1.5, \yD) node[left, xshift=-.6cm, yshift=0.2cm] {$C_{t-1}$};
-  \draw[line width=2.5pt, gray]  (1.5, \yD) -- (2.1, \yD);
-  \draw[line width=2.5pt, gray]  (2.4, \yD) -- (3.46, \yD);
-  \draw[line width=2.5pt,gray]  (3.75, \yD) -- (6.25 +0.2, \yD);
+  \draw[line width=1.5pt,gray]  (1.5, \yD) -- (2.1, \yD);
+  \draw[line width=1.5pt,gray]  (2.4, \yD) -- (3.46, \yD);
+  \draw[line width=1.5pt,gray]  (3.75, \yD) -- (6.25 +0.2, \yD);
 
   \draw[arrows=-latex, line width=2.5pt]  (6.25, \yD) -- (6.75 +0.2, \yD)
   node[right, xshift=0.0cm, yshift=0.05cm] {$C_t$};
@@ -127,7 +127,7 @@
   \draw[thick,gray] (\xBigCicleTWO, \yTWO + \C) circle (\bigRTWO) node {$h_{t+1}$};
 
   % LINE Circle ONE
-  \draw[line width=1.5pt,gray] (\xBigCicleONE, \yONE -\C +0.25) 
+  \draw[line width=1.5pt,gray] (\xBigCicleONE, \yONE -\C +0.4) 
   --
   (\xBigCicleONE, \yONE -\C +0.25 + 1.1);
 
@@ -144,7 +144,7 @@
   --
   (6.25 +0.2, 1);
   
-  \draw[arrows=-latex, line width=2.5pt] (6.25, 1) 
+  \draw[arrows=-latex,line width=2.5pt] (6.25, 1) 
   --
   (6.75 +0.2, 1)
   node[right, xshift=0.0cm, yshift=0.05cm,] {$h_t$};
@@ -178,7 +178,6 @@
   \draw[arrows=-latex, line width=1.5pt,gray]
   (\xBigCicleTWO, \yD +0.15)
   --
-  (\xBigCicleTWO, 4);
+  (\xBigCicleTWO, 4-.1);
 
 \end{tikzpicture}
-
