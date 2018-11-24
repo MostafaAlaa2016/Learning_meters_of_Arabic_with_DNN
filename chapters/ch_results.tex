@@ -102,10 +102,12 @@ Figure~\ref{fig:Convergence_Memory}-a shows the effect of encoding on learning r
 
 
 Memory Utilization is not similar for each model encoding. So, If we take a look in Figure~\ref{fig:One-Binary-Encoding} we will find that each encoding has it is own vector size representation Figure~\ref{fig:Convergence_Memory}-b shows this different of memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \texit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \texit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that, \textit{Two-hot} is in the middle between the two encoding with respect to the memory consumption and also it gives some more meaning for data encoding as explained before in Chapter~\ref{ch:data_encoding}
-
-
 \newpage
 \subsection{Comparison with Literature}
+As explained previous, One of the advantages in our research work is the very large dataset we have which allows us to have a good subset for testing. This provides us a confidence regarding our results.
+
+If we compared our work approach results the best model scored 0.9638 with the highest two in literature, We will find that our model results is significant higher than the others as illustrated in Table~\ref{tab:summ-results}. Moreover, Our approach is a learning approach not a Hand-crafted algorithmic approach which gives our model more confidence to be mature enough for these types of problems (Chapter~\ref{ch_literature}).
+
 \begin{table}[!tb]
   \centering
   \begin{tabular}{c c c c}
@@ -119,11 +121,45 @@ Memory Utilization is not similar for each model encoding. So, If we take a look
   \end{tabular}
   \caption{Overall accuracy of this article compared to literature.}\label{tab:summ-results}
 \end{table}
-%The best model scored 0.9638, achieve almost the same numbers in terms of accuracy 96.38\%. However, reporting accuracy in this section is essential for comparison with the best results in literature, to the best of authors' knowledge, as illustrated in Table~\ref{tab:summ-results}. For Arabic poem classification, the accuracy of our approach is significantly higher than the highest two in literature. The very large dataset we tested on should provide more confidence in the reported results. In addition, the classification in the two studies are algorithmic; and hence there is no learning from data (Sec.~\ref{sec:literature-review}). 
 
+
+\newpage
 \section{Discussion}\label{sec_discussion}
 
+In this section we need to discuss some points regarding our experiments and results approach. We will show some parts we think it need more discussion or exploration.
 
+
+\subsection{Dataset Unbalanced}
+
+Our dataset was un balanced which for sure affect our results we showed we have some significant drops in Per-class accuracy which most of them regarding the data size issue. We think we should have some further work regarding this point to reconstruct the experiments with balanced data for example, 10k samples per class and check the results. Another approach could be to increase the size of the small classes to be at least 5\% of the overall classes percentage this would enhance the learning accuracy for this classes.
+  
+\subsection{Encoding Method}
+
+Although all the encoding methods which carries the same information should produce the same results in theory, But In practice Deep Neural Networks showed this is not the case. To explain the reason let's first explain how Neural Network work with different encoding mechanism?
+
+Encoding method is a transformer function $\mathcal{T}$ this function transform a discrete input values $X$. We can denotes to the values as a transformed feature $\mathcal{T}(X)$ the output of this transformer method. The output $\mathcal{T}(X)$ of this transformer in the new encoding space will be input to the Neural Network model. The model should be able to ``decode''  this type of encoding. Since the lossless encoding is invertible, it is clear for any two functions and any two encodings that $\eta_1\left(\mathcal{T}_1(X)\right) = \left(\eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1} \right)\left(\mathcal{T}_2(X)\right)$. This means that if the network $\eta_1$ is the most accurate network which can ``decode'' the encoding function (transformer) $\mathcal{T}_1$ this network $\eta_1$ is not a general network which can understand any encoding function. Also, to design this network it requires a very complex architecture. So, if we have another encoding function $\mathcal{T}_2$ and we tried to use the same network for the $\mathcal{T}_2$ requires designing another network $\eta_2 = \eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1}$. However, this network may be of complicated architecture to ``decode'' the complicated pattern of $\mathcal{T}_2(X)$.
+
+In general, Any encoding function $\mathcal{T}$ require a special network $\eta$ to get the correct decoding (learning) for the dataset. So, our comparison between the encoding methods in the same Neural Networks architecture not accurate as each one required different network design. But all of them will reach the same results but with different time or can be small difference due to the not accurate network architecture. Moreover, Our work illustrated clearly the effect of the encoding methods and compared between each other, We think the \textit{Two-Hot} encoding is the more suitable method to work with character level problems. It is the middle approach between the \textit{One-Hot} which needs huge amount of memory and the \textit{Binary} which loss some meaning in Arabic language diacritics effect.
+
+
+\subsection{Weighting Loss Function}
+
+Our weighting loss functions doesn't solve the small classes issues (regardless the best model accuracy achieved with weighting loss but this is not a consistent results). The weighting loss function need to be redesigned to solve this issue with the combination of learning rate and the batch size.
+
+
+\subsection{Neural Network configurations}
+
+During our work we shows the effect of different network configurations on the model learning and accuracy. We did a lot of experiments to find the best development architecture to make our experiments run faster and be able to do a lot of experiments. At the beginning, Out experiments were take around 1.5 hours. Second, we proposed the multi-batch training to utilize the parallel processing and prepare the data faster to the model as our data was huge. Then we use enhanced \textit{Cuda} LSTM cell which allows to reduce our experiments time overall to be around 7-9 min per epoch based on the networks architecture. 
+
+We also showed the effect of network layers on Learning and accuracy results. So, If we have do more experiments with more deep layers and more complex architecture it can reach more language knowledge and build more complex model which will enhance both the Per-class accuracy and the overall accuracy.
+
+\subsection{Model Assessment}
+
+In our work, we proposed the $F_1$ score as the model assessment method for the results. But we need to highlight that the overall model accuracy produced from the Deep Neural Networks was very close to the $F_1$ score and in some experiments it was almost the same. We also, tried different statistical ways to assess our model and we find it will be same the model results or $F_1$ score.
+
+  \section{Future Work}
+
+%*  Enhance the classification results to be same as the human expert.• Use the current datasets to classify the poem meaning *as this paper did not work for this idea. • Analyze the historical impact based on the Poem and the Poetry for example for a specific period Is the Poem affected by this period, or there are patterns of writing between the Poetry or not. • Can we generate from each class some poem similar to the poetry poems?
 
 
 
