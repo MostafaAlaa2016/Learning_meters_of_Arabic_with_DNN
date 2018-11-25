@@ -6,7 +6,7 @@
   % LSTM frame
   \def \yONE {0.5}
   \def \yTWO {3.3}
-  \draw[rounded corners=10pt, very thick, fill=LightGreen]  (1.5, 0.5) rectangle (6.2, 3.3);
+  \draw[rounded corners=10pt, very thick, gray,fill=LightGreen]  (1.5, 0.5) rectangle (6.2, 3.3);
 
   \def \sigmoidWidth  {0.45}
   \def \sigmoidInDist {0.2}
@@ -15,26 +15,26 @@
   \def \yD  {2.75}
   \def \shift {0.3}
   % First Sigmoid
-  \draw[fill=LightYellow] (2, \yB) rectangle (2+ \sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {$\sigma$};
+  \draw[gray,fill=LightYellow] (2, \yB) rectangle (2+ \sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {$\sigma$};
 
   \def \r {.15cm}
   % The Upper times operator % first time from left
-  \draw[thick, fill=pink] (2.25, \yD) circle (\r) node {$\times$};
+  \draw[thick, gray,fill=pink] (2.25, \yD) circle (\r) node {$\times$};
 
   % Second Sigmoid
   \def \xS {2.45 +\sigmoidInDist}
-  \draw[fill=LightYellow]  (\xS, \yB) rectangle (\xS +\sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {$\sigma$};
+  \draw[gray,fill=LightYellow]  (\xS, \yB) rectangle (\xS +\sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {$\sigma$};
 
   % Square tanh
   \def \xSS {\xS +\sigmoidWidth + \sigmoidInDist}
-  \draw[fill=LightYellow]  (\xSS, \yB) 
+  \draw[gray,fill=LightYellow]  (\xSS, \yB) 
   rectangle 
   (\xSS +\sigmoidWidth +0.13, \yB +\sigmoidHeight)
   node[pos=0.5] {\scriptsize \textit{tanh}};
 
   % Third Sigoid
   \def \xSSS {\xSS +\sigmoidWidth +0.13 +\sigmoidInDist}
-  \draw[fill=LightYellow]  (\xSSS, \yB) rectangle (\xSSS +\sigmoidWidth, \yB +\sigmoidHeight)
+  \draw[gray,fill=LightYellow]  (\xSSS, \yB) rectangle (\xSSS +\sigmoidWidth, \yB +\sigmoidHeight)
   node[pos=0.5] { $\sigma$};
 
   % Second times operator and add operator
@@ -43,7 +43,7 @@
 
   \draw[thick,fill=pink] (\xTimesB, \yC) circle (\r) node {$\times$};
   %%%%% first line sectond operator +
-  \draw[thick, fill=pink] (\xTimesB, \yD) circle (\r) node {$+$};
+  \draw[thick, gray,fill=pink] (\xTimesB, \yD) circle (\r) node {$+$};
 
   % Third times operator and its tanh
   \draw[thick,fill=pink] (\xTimesB +1.3 +\shift, \yC) circle (\r) node {$\times$};

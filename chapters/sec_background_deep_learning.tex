@@ -521,10 +521,12 @@ Long Short Term Memory networks – aka “LSTMs” – are a special type of RN
 
  Both Basic RNNs and LSTM have the form of a chain of repeating modules of neural network. The main difference is the structure of the Networks.
  
-\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-SimpleRNN.png}
-  \caption{The repeating module in a standard RNN contains a single layer.\cite{colah}}
-  \label{fig:LSTM-SimpleRNN}
-\end{figure}
+%\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-SimpleRNN.png}
+%  \caption{The repeating module in a standard RNN contains a single layer.\cite{colah}}
+%  \label{fig:LSTM-SimpleRNN}
+%\end{figure}
+
+\input{./Figures/Ch_2_Background/Fig_RNN_Single_Tanh_Main_3_Cells.tex}
 
 In Basic RNNs it is very simple structure for every layer with simple output function~\ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers~\ref{fig:LSTM-cell-chaining}. 
 
@@ -556,12 +558,20 @@ Sigmoid function output values between zero and one. If the value is one these m
       \end{figure}
 
       
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.2\textwidth]{./Figures/Ch_2_Background/LSTM-gate.png}
-        \caption{Cell gate with sigmoid function and a pointwise multiplication operation~\cite{colah}}
-        \label{fig:LSTM-gate}
-\end{figure}
+%\begin{figure}[ht!]
+%    \centering
+%    \includegraphics[width=0.2\textwidth]{./Figures/Ch_2_Background/LSTM-gate.png}
+%        \caption{Cell gate with sigmoid function and a pointwise multiplication operation~\cite{colah}}
+%        \label{fig:LSTM-gate}
+%      \end{figure}
+      
+      \begin{figure}[ht!]
+        \centering
+        \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_multiplication_operation.tex}
+        \caption{Cell gate with sigmoid function and a pointwise multiplication operation~\cite{colah}}~\label{fig:LSTM-gate}
+      \end{figure}
+
+
 
 \newpage
 \subsubsection{How LSTM Works?}
@@ -683,4 +693,5 @@ The architecture in BI-LSTM is similar to what we discussed previous regarding U
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../master"
+%%% TeX-engine: xetex
 %%% End:
