@@ -91,7 +91,6 @@ In RNNs network configuration parameters, there are four parameters:
 The total number of combination is 16 which is $4$ parameters each one have $2$ types. So, the total will be $2^4=16$; and hence, there are 16 different network configurations to run on each of the 12 data representations above. This results in $16 \times 12 = 192$ different experiments (or models). Hence, there are 96 different network configurations to run on each of the 2 data representations above. This results in 96 × 2 (= 192) different experiments (or models), whose accuracies are presented on the y-axis of Figure 7-a.%@@@add figure
 For all the 192 experiments networks are trained using dropout of 0.2, batch size is of 2048, with Adam optimizer, and 10\% for each of validation and testing sets.
 
-\textit{Experiments are conducted on a Dell Precision T7600 Workstation with: Intel Xeon E5-2650 32x 2.8GHz CPU, 32GB RAM, 1 NVIDIA GeForce GTX 1080 ti GPU, Hard desk SSD 256; and with: Ubuntu OS, x86\_64 Linux 16.04 LTS.}
 
 \newpage
 \subsection{Working on Unbalanced data using Weighted Loss}\label{sec_w_loss}
@@ -112,11 +111,41 @@ The idea is to increase the loss for the small classes as the number of verses o
         &= \frac{\frac{1}{416428}}{0.00534631950086646} = ~0.0004491642
 \end{align}\label{eq:training_weighted_fun_example}
 \end{subequations}
+\newpage
+\section{Experiments Setup Details}
 
-%@@@@@@ some details about the training and tools used 
+\subsection{Hardware}
+
+We used a Dell Precision T7600 Workstation to conduct our experiments with: Intel Xeon E5-2650 32x 2.8GHz CPU, 32GB RAM, 1 NVIDIA GeForce GTX 1080 ti GPU\footnote{\textit{GPU ASUS ROG STRIX GeForce GTX 1080 Ti Assassin's Creed Origins Edition AC-ORIGINS-ROG-STRIX-GTX1080TI, Memory Type: GDDR5X, Connectors: DisplayPort Output, DVI Output: HDMI Standard Output, Chipset/GPU Manufacturer: NVIDIA, Brand: ASUS NVIDIA GeForce GTX 1080 Ti, Compatible Port/Slot: PCI Express 3.0, Memory Size: 11GB 352-Bit GDDR5X, Core Clock 1594 MHz (OC Mode), 1569 MHz (Gaming Mode (Default)), Boost Clock 1708 MHz (OC Mode), 1683 MHz (Gaming Mode (Default)), 1 x DL-DVI-D 2 x HDMI 2.0 2 x DisplayPort 1.4, 3584 CUDA Cores more details is available in the following website link https://www.asus.com/us/Graphics-Cards/AC-ORIGINS-ROG-STRIX-GTX1080TI/} }, Hard desk SSD 256; and with: Ubuntu OS, x86\_64 Linux 16.04 LTS. We need to highlight that\footnote{\textit{we found a major impact using SSD hard desk when data reading. Beside the effect of the GPU for Deep Learning experiments we utilized the memory and the processors to prepare the batches for the input model}}
+
+
+\subsection{Software}
+
+During our Model development we used the following software and libraries,
+
+\begin{itemize}
+\item Python 3.7: \textit{We used it as main programming language.}
+\item Tensorflow: \textit{We used it as Deep learning backend framework}
+\item Keras: \textit{We used it as High level framework on top of the backend}
+\item Pyarabic: \textit{We used it in data pre-processing and cleansing.}
+\item pandas: \textit{We used it in data pre-processing and splitting.}
+\item sklearn: \textit{We used it to encode the classes using Label-Encoder and for model assessment phase.}
+\item pickle: \textit{We used it to save the encoder and the model as serialized pickle object.}
+\item h5py: \textit{We used it to save the encoded dataset matrix in h5 format.}
+\end{itemize}
+
+We faced a performance issue while training LSTM for Recurrent Neural Networks as we have huge amount of data with the current known behaviour of RNN as it is recurrent. So, We did some techniques to reduce our RNN training time by
+\begin{itemize}
+\item Save the data cleaned and encoded in the hard desk and read it direct encoded\footnote{\textit{We saved the data encoder as pickle file for later decoding process}}.
+\item Read the data with batches and utilized the hardware to train the dataset in batch parallel.
+\item We used Nvidia Cuda optimized LSTM cell which highly reduced our training time up to 6x speedup.
+   
+\end{itemize}
+
 
 
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../master"
+%%% TeX-engine: xetex
 %%% End:
