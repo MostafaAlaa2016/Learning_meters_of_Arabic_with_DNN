@@ -101,7 +101,7 @@ As explained in Chapter~\ref{ch:data_encoding} the difference between data encod
 Figure~\ref{fig:Convergence_Memory}-a shows the effect of encoding on learning rate which has no difference in convergence speed between the encoding types; However, We can found some encoding start learning faster than other between epochs[1:5] but overall they will converge with the same learning curve at the end.
 
 
-Memory Utilization is not similar for each model encoding. So, If we take a look in Figure~\ref{fig:One-Binary-Encoding} we will find that each encoding has it is own vector size representation Figure~\ref{fig:Convergence_Memory}-b shows this different of memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \texit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \texit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that, \textit{Two-hot} is in the middle between the two encoding with respect to the memory consumption and also it gives some more meaning for data encoding as explained before in Chapter~\ref{ch:data_encoding}
+Memory Utilization is not similar for each model encoding. So, If we take a look in Figure~\ref{fig:One-Binary-Encoding} we will find that each encoding has it is own vector size representation Figure~\ref{fig:Convergence_Memory}-b shows this different of memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \textit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \textit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that, \textit{Two-hot} is in the middle between the two encoding with respect to the memory consumption and also it gives some more meaning for data encoding as explained before in Chapter~\ref{ch:data_encoding}
 \newpage
 \subsection{Comparison with Literature}
 As explained previous, One of the advantages in our research work is the very large dataset we have which allows us to have a good subset for testing. This provides us a confidence regarding our results.
@@ -110,13 +110,13 @@ If we compared our work approach results the best model scored 0.9638 with the h
 
 \begin{table}[!tb]
   \centering
-  \begin{tabular}{c c c c}
+  \begin{tabular}{c c c}
     \toprule
-    \textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} & \textbf{Poem}\\
+    \textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} \\
     \midrule
-    \cite{Alnagdawi2013FindingArabicPoemMeter}   & 75\%     & 128     & \multirow{3}{*}{Arabic}\\
-    \cite{Abuata2016RuleBasedAlgorithmFor}      & 82.2\%   & 417     & \\
-    This article   & 96.38\%  & 150,000 & \\
+    \cite{Alnagdawi2013FindingArabicPoemMeter}   & 75\%     & 128\\
+    \cite{Abuata2016RuleBasedAlgorithmFor}      & 82.2\%   & 417  \\
+    This article   & 96.38\%  & 150,000 \\
     \bottomrule
   \end{tabular}
   \caption{Overall accuracy of this article compared to literature.}\label{tab:summ-results}
