@@ -1,4 +1,5 @@
-  \section{Deep Learning Background}\label{sec_deep_learning_background}
+\section{Deep Learning Background}\label{sec_deep_learning_background}
+
 
   \textbf{What is Deep Learning?} \textit{ Deep Learning is a new approach of Machine Learning research which focus on learning and understanding from the data without the needs for the human operator to formally specify all the knowledge that the computer needs. This method built using a hierarchy of concept which enables the computer to learn complex concepts by building them layer by layer from simpler ones. If there is a graph which shows how this concept built we will figure out a very deep graph with many layers, for this reason, we call this approach to AI deep learning~\cite{Goodfellow-et-al-2016}}\\
 
@@ -108,7 +109,57 @@ Cost function \textbf{\textit{J}} in equation~\eqref{eq:cost_function} is the av
 
 
 \subsubsection{Convex Function vs Non-Convex Function }
+In this subsection we will give an overview about the convex and non-convex functions and its relation with deep learning. We will not explain the proofs or write it. We will explain in general about the definition and its related features to our topic.
 
+\begin{description}
+  \item [\textbf{Convex Function}]:  In mathematics, a real-valued function defined on an n-dimensional interval is called \textit{convex} if the line segment between any two points on the graph of the function lies above or on the graph, in a Euclidean space (or more generally a vector space) of at least two dimensions\footnote{https://en.wikipedia.org/wiki/Convex\_function\#cite\_note-1}. More generally, a function $f(x)$~\ref{fig:convex_function} is \textit{convex} on an interval $[a,b]$ if for any two points $x_1$ and $x_2$ in $[a,b]$ and any $\lambda$ where $0<\lambda<1$\footnote{(Rudin 1976, p. 101; cf. Gradshteyn and Ryzhik 2000, p. 1132).},
+
+\begin{equation}\label{eq:convex_fun}
+  \begin{split}
+$f(\lambda x_1 + (1-\lambda)x_2) <= \lambda f(x_1) + (1 - \lambda) f(x_2) $
+  \end{split}
+\end{equation}
+
+For a twice differentiable function of a single variable, if the second derivative is always greater than or equal to zero for its entire domain then the function is \textit{convex}. Well-known examples of convex functions include the quadratic function $X^2$ Figure~\ref{fig:derivative_example}. So, If $f(x)$ has a second derivative in $[a,b]$, then a necessary and sufficient condition for it to be \textit{convex} on that interval is that the second derivative $f^{''}(x) >= 0$ for all $x$ in $[a,b]$.\footnote{http://mathworld.wolfram.com/ConvexFunction.html}.
+\newpage
+If the inequality above is strict for all $x_1$ and $x_2$, then $f(x)$ is called \textbf{strictly convex}. \textit{Convex} function on an open set has no more than one minimum. So, in strictly convex the local minimum = global minimum. This feature is very important feature for any optimization problem. As we will see most of deep learning problems are related to how to optimize the function to find the minimum point in this function. It will be nice and easy problem to face a convex function but in real world most of the cases is non convex functions.
+
+
+\begin{figure}[!h]
+\begin{center}
+\input{Figures/Ch_2_Background/Fig_Convex_Function.tex}
+
+\caption{Convex Function Example }\label{fig:convex_function}
+\end{center}
+\end{figure} 
+
+
+
+\item [\textbf{Non-Convex Function}]: In mathematics, a Non-Convex (also named concave) function is the negative of a \texit{convex function}. A function $f(x)$ is said to be concave on an interval  $[a,b]$ if, for any points $x_1$ and $x_2$ in $[a,b]$, the function  $-f(x)$ is convex on that interval.
+
+\begin{equation}\label{eq:concave_fun}
+  \begin{split}
+$f(\lambda x_1 + (1-\lambda)x_2) >= \lambda f(x_1) + (1 - \lambda) f(x_2) $
+  \end{split}
+\end{equation}
+
+The function is also called strictly concave if,
+\begin{equation}\label{eq:concave_fun_strictly}
+  \begin{split}
+$f(\lambda x_1 + (1-\lambda)x_2) > \lambda f(x_1) + (1 - \lambda) f(x_2) $
+  \end{split}
+\end{equation}
+If $f$ is twice-differentiable, then $f$ is concave if and only if $f^{''}$ is non-positive (or, informally, if the "acceleration" is non-positive). If its second derivative is negative then it is strictly concave, but the opposite is not true, as shown by $f(x) = −x^4$~\footnote{https://en.wikipedia.org/wiki/Concave_function}. Also, a differentiable function $f$ is (strictly) concave on an interval if and only if its derivative function $f^'$ is (strictly) monotonically decreasing on that interval, that is, a concave function has a non-increasing (decreasing) slope. The problem for non-convex optimization is to find the local minimum. Sometimes you will find many local minimum and it will be hard to optimize this function Figure~\ref{fig:concave_function}.
+
+\begin{figure}[!h]
+\begin{center}
+\input{Figures/Ch_2_Background/Fig_Concave_Fun.tex}
+
+\caption{Concave Function Example }\label{fig:concave_function}
+\end{center}
+\end{figure}
+
+\end{description}
 \newpage
 \subsubsection{Gradient Descent}
 

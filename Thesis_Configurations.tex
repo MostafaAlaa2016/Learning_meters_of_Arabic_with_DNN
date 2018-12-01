@@ -137,7 +137,7 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{arrows.meta,arrows}
-\usetikzlibrary{calc}
+\usetikzlibrary{calc,intersections}
 
 \usepackage{bidipoem}
 \usepackage{polyglossia} % <3
@@ -164,6 +164,24 @@
 %\colorlet{blue}{BinaryColor}
 %\colorlet{brown}{TwoHotColor}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pgfplotsset{compat=newest}
+%\pgfplotsset{plot coordinates/math parser=false}
+%\pgfplotsset{
+%    every non boxed x axis/.style={
+%        xtick align=center,
+%        enlarge x limits=true,
+%        x axis line style={line width=0.8pt, -latex}
+%},
+%    every boxed x axis/.style={}, enlargelimits=false
+%}
+%\pgfplotsset{
+%    every non boxed y axis/.style={
+%        ytick align=center,
+%        enlarge y limits=true,
+%        y axis line style={line width=0.8pt, -latex}
+%},
+%    every boxed y axis/.style={}, enlargelimits=false
+%}
 
 \pgfplotsset{%
   pointModelsFiguresStyle/.style args={#1}{%
