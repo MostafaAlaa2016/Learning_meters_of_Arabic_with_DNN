@@ -162,21 +162,25 @@ If $f$ is twice-differentiable, then $f$ is concave if and only if $f^{''}$ is n
 \subsubsection{Gradient Descent}
 
 As we explained in the previous parts, we need to find the relation between X,Y from the input parameters \textbf{\textit{(w,b)}} which will make the cost function ~\eqref{eq:cost_function} to the minimum. In other words we need to find the best value of \textbf{\textit{J(w,b)}} which will represent the relation and reduce the error between $y$ and $\widehat{y}$  So, we need to minimize \textbf{\textit{J(w,b)}}. 
+
 \input{Figures/Ch_2_Background/fig_gradient_decent.tex}
-
-
 
 To illustrate the relation between \textbf{\textit{J(w,b)}} we will assume for simplicity the relation will be function of one variable \textbf{\textit{J(w)}}. As shown in Figure~\ref{fig:gradient_decent_surf} we have a curve which represent the function \textbf{\textit{J(w)}} we need to find the minimum point in this curve which is the local minimum (red point in the previous figure) assuming it is a  \textbf{\textit{convex function}}. We will use equation~\eqref{eq:gredient_descent_w} to find the local minimum.
 
 To explain how this equation works let's take simple function $f(x) = x^2$ then select a random point $P_1$ from Figure~\ref{fig:derivative_example} then pick another point $P_2$ let's take derivative \textit{(which by definition is the slope of the function at the point which also the change between these two points)} The slope of this function is the height (3) divided by the width (1) this is the tangent of $J(w)=\frac{3}{1}$ at this point. If the derivative is positive so, w will be update minus the derivative multiplied by learning rate alpha $\alpha$ as~\eqref{eq:gredient_descent_w}. We will repeat the previous step until value of w get the lowest minimum. When w get the lowest minimum the derivative will be negative so, w will start to increase again at this step the algorithm will stop. Also, we can demonstrate the effect of different $\alpha$ values and its impact on the function we can show this effect in Figure~\ref{fig:alpha_change} but the main point it is not always a happy scenario sometimes the high $alpha$ is not a good idea, and it depends on the problem and the dataset.
 
+Now, Let's generalize the above equation assume we have two parameters  \textbf{\textit{(w,b)}} and we need to calculate the cost function for  \textbf{\textit{J(w,b)}} we will work on as two steps first function~\eqref{eq:gradient_descent_j_w}  wrt \textbf{\textit{(w)}} and second function~\eqref{eq:gradient_descent_j_b} wrt \textbf{\textit{(b)}}
+
+% \setlength{\belowdisplayskip}{0pt} \setlength{\belowdisplayshortskip}{0pt}
+%\setlength{\abovedisplayskip}{0pt} \setlength{\abovedisplayshortskip}{0pt}
+
 
 \begin{figure}[!h]
-\begin{center}
-\input{Figures/Ch_2_Background/fig_derivative_example.tex}
-\caption{Derivative Example of function $f(x) = x^2$ }\label{fig:derivative_example}
-\end{center}
-\end{figure} 
+\subfigure[Derivative Example of function $f(x) = x^2$]{~\label{fig:derivative_example}
+\input{Figures/Ch_2_Background/fig_derivative_example.tex}}
+\subfigure[Derivative Example of function  $f(x) = x^2$ where $\alpha_1$ > $\alpha_2$]{\label{fig:alpha_change}
+\input{Figures/Ch_2_Background/fig_derivative_alpha_change.tex}}
+\end{figure}
 
 
 \begin{equation}\label{eq:gredient_descent_w}
@@ -185,28 +189,19 @@ To explain how this equation works let's take simple function $f(x) = x^2$ then 
       & := w - \alpha \frac{dJ(w)}{dw} \quad \text{\textit{d represent the derivative wrt w}}
   \end{split}
 \end{equation}
-
+%
 \begin{subequations}
      \begin{align}
 w& := w - \alpha \frac{dJ(w,b)}{dw} \label{eq:gradient_descent_j_w}\\
 b& := b - \alpha \frac{dJ(w,b)}{db} \label{eq:gradient_descent_j_b}
      \end{align}
    \end{subequations}
-
-\newpage
-Now, Let's generalize the above equation assume we have two parameters  \textbf{\textit{(w,b)}} and we need to calculate the cost function for  \textbf{\textit{J(w,b)}} we will work on as two steps first function~\eqref{eq:gradient_descent_j_w}  wrt \textbf{\textit{(w)}} and second function~\eqref{eq:gradient_descent_j_b} wrt \textbf{\textit{(b)}}
+   
 
 %\begin{equation}\label{eq:gradient_descent_j_w}       w := w - \alpha \frac{dJ(w,b)}{dw}  \end{equation}
 
 %\begin{equation}\label{eq:gradient_descent_j_b}      b := b - \alpha \frac{dJ(w,b)}{db}  \end{equation}
 
-
-\begin{figure}[!h]
-\begin{center}
-\input{Figures/Ch_2_Background/fig_derivative_alpha_change.tex}
-\caption{Derivative Example of function  $f(x) = x^2$ where $\alpha_1$ > $\alpha_2$}\label{fig:alpha_change}
-\end{center}
-\end{figure} 
 
 
 \newpage
