@@ -102,13 +102,13 @@ is the total number of classes.
   w_c &= \left(\frac{\frac{1}{n_c}}{\sum_c \frac{1}{n_c}} \right),\label{eq:training_weighted_fun}
 \end{align}
 
-The idea is to increase the loss for the small classes as the number of verses of small classes is small so the output will be bigger than the loss in case the class has a lot of verses. To have a clear explanation we can show equation~\ref{eq:training_weighted_fun_example} as example the biggest class will has smaller loss compared to the smallest class. We are dividing on constant which is the sum of classes density
+The idea is to increase the loss for the small classes as the number of verses of small classes is small so the output will be bigger than the loss in case the class has a lot of verses. To have a clear explanation we can show equation~\ref{eq:training_weighted_fun_example}~\footnote{The equation numbers are rounded for simplicity.} as example the biggest class will has smaller loss compared to the smallest class. We are dividing on constant which is the sum of classes density. 
 
 \begin{subequations}
 \begin{align}
   w_c &=  \frac{\frac{1}{288}}{\sum\frac{1}{416428}+\frac{1}{370116}\dots+\frac{1}{288}}\\
-      &= \frac{\frac{1}{288}}{0.00534631950086646} = ~0.0312768 \\
-        &= \frac{\frac{1}{416428}}{0.00534631950086646} = ~0.0004491642
+      &= \frac{\frac{1}{288}}{0.00535} = ~0.03 \\
+        &= \frac{\frac{1}{416428}}{0.00535} = ~0.0004
 \end{align}\label{eq:training_weighted_fun_example}
 \end{subequations}
 \newpage
