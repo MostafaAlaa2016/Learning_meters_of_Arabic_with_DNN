@@ -27,15 +27,16 @@ Both \cite{Abuata2016RuleBasedAlgorithmFor} and \cite{Alnagdawi2013FindingArabic
   \end{enumerate}
 
 
-\section{Machine Learning Approach (Handcrafted Features)}\label{sec:mach-learn-appr}
+%\section{Machine Learning Approach (Handcrafted Features)}\label{sec:mach-learn-appr}
 
-Here is a different approach to the previous, the algorithmic ones, \cite{Almuhareb2015RecognitionModernArabicPoems} has used machine learning to recognize modern Arabic poems inside documents, which is a different problem to ours.  He has built \textit{Naive Bayes} and \textit{Decision Tree} classifiers which detect poems based on the visual features, like line length average, line length standard deviation, average number of block (a group of lines separated by an empty character or more), standard deviation of block number, word repetition rate, diacritic rate, punctuation rate. They have extracted those features from 2067 documents which divided into 513 modern poems and 1554 prose.  Then classifiers evaluated using \textit{10-fold cross-validation}. The best accuracy achieved was 99.81\%  by the \textit{decision tree} classifier which is trained on all the visual features together.
+%Here is a different approach to the previous, the algorithmic ones, \cite{Almuhareb2015RecognitionModernArabicPoems} has used machine learning to recognize modern Arabic poems inside documents, which is a different problem to ours.  He has built \textit{Naive Bayes} and \textit{Decision Tree} classifiers which detect poems based on the visual features, like line length average, line length standard deviation, average number of block (a group of lines separated by an empty character or more), standard deviation of block number, word repetition rate, diacritic rate, punctuation rate. They have extracted those features from 2067 documents which divided into 513 modern poems and 1554 prose.  Then classifiers evaluated using \textit{10-fold cross-validation}. The best accuracy achieved was 99.81\%  by the \textit{decision tree} classifier which is trained on all the visual features together.
 
-\cite{Tizhoosh2006PoemRecognition} has presented similar work to \cite{Almuhareb2015RecognitionModernArabicPoems}, have trained \textit{Naive Bayes} and \textit{Decision Tree} using visual features, they reached accuracy above 90\%.
+%\cite{Tizhoosh2006PoemRecognition} has presented similar work to \cite{Almuhareb2015RecognitionModernArabicPoems}, have trained \textit{Naive Bayes} and \textit{Decision Tree} using visual features, they reached accuracy above 90\%.
 
-Visual features may work well when detecting poems inside documents due to poems are written in a specific structure which distinguishes them from other text inside documents. In these approaches, models have no clue about the real patterns that create poems the way how It structures words inside text does not produce poems at all, so their model can be easily deceived.
+% Visual features may work well when detecting poems inside documents due to poems are written in a specific structure which distinguishes them from other text inside documents. In these approaches, models have no clue about the real patterns that create poems the way how It structures words inside text does not produce poems at all, so their model can be easily deceived.
 
-\cite{Tanasescu2016AutomaticClassificationPoetryMeter} has worked on binary classifying English poems where \textit{metric} and \textit{free-verse} are the categories, he faced an interesting problem with their dataset, it was imbalanced, (871 metrical poems, 4115 free-verse), for this reason. they have used \textit{bootstrap aggregating} (also known as \textit{bagging}), which is a meta-algorithm that can greatly improve decision tree accuracy.  With \textit{J48} and \textit{bootstrap aggregating}, he was able to achieve a 94.39\% correctly classifying poetry as metrical or not.
+%\cite{Tanasescu2016AutomaticClassificationPoetryMeter} has worked on binary classifying English poems where \textit{metric} and \textit{free-verse} are the categories, he faced an interesting problem with their dataset, it was imbalanced, (871 metrical poems, 4115 free-verse), for this reason. they have used \textit{bootstrap aggregating} (also known as \textit{bagging}), which is a meta-algorithm that can greatly improve decision tree accuracy.  With \textit{J48} and \textit{bootstrap aggregating}, he was able to achieve a 94.39\% correctly classifying poetry as metrical or not.
+
 
 \section{Literature Summary Comparison}
 
@@ -69,4 +70,5 @@ We can summarize the difference between our work and the previous work in the fo
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../master"
+%%% TeX-engine: xetex
 %%% End:
