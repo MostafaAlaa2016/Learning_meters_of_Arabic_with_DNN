@@ -1,5 +1,0 @@
-\chapter{\uppercase{Background}}
-
-\input{./chapters/background_arud_science}
-  \newpage
-\input{./chapters/background_deep_learning}
