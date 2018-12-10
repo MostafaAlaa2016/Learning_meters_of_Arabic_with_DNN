@@ -23,7 +23,7 @@ To meet the above criteria and overcome it, We applied following,
 
 \item \textbf{The amount of the dataset:} The total number of verses is 1,862,046 poetic verses; each verse labeled by its meter (class), the poet who wrote it, and the age which it was written. There are 22 meters, 3701 poets and 11 ages; and they are Pre Islamic, Islamic, Umayyad, Mamluk, Abbasid, Ayyubid, Ottoman, Andalusian, the era between Umayyad and Abbasid, Fatimid and modern. We are only interested in the 16 classic meters which attributed to Al-Farahidi, and they are the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{fig:data_size_distribution} shows the distribution of the verses per meter. %@@@ add datasets figures percentage per class
   
-\item \textbf{Cleansing of this data:} Dataset was not cleaned enough for usage in this research, but we have applied cleansing rules explained in details in Data Preparation and Cleansing section~\ref{sec:data_clens}. We also open sourced all the code scripts used in our online repository \footnote{\textit{HCILAB, Arabic Poetry. Available: https://github.com/hci-lab/ArabicPoetry-1-Private/ }.}.
+\item \textbf{Cleansing of this data:} Dataset was not cleaned enough for usage in this research, but we have applied cleansing rules explained in details in Data Preparation and Cleansing section~\ref{sec:data_clens}. We also open sourced all the code scripts used in our online repository~\cite{HCILAB_ArabicPoetry_2018}.
 \end{itemize}
 
 \begin{figure}
@@ -39,7 +39,7 @@ To scrap the data from the website: \textarabic{الديوان}~\cite{diwan},end
 
  \textarabic{الموسوعة الشعرية}~\cite{PoetryEncyclopedia2016}, We used custom Python scripts for each websites to get the verses details. The script created with simple usage to pass the link we need to scrap. We will show two examples from both websites.
 \begin{enumerate}
-\item The First example, If we need to scrap a meter from \textarabic{الديوان} the website, for example Al-Tawil \footnote{ \textit{https://www.aldiwan.net/poem.html?Word=\%C7\%E1\%D8\%E6\%ED\%E1\&Find=meaning}}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{tables:Aldiwan_Sample}
+\item The First example, If we need to scrap a meter from \textarabic{الديوان} the website, for example Al-Tawil \\textit{https://www.aldiwan.net/poem.html?Word=\%C7\%E1\%D8\%E6\%ED\%E1\&Find=meaning}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{tables:Aldiwan_Sample}
 
 
 % table: dal with diacritics
@@ -62,7 +62,7 @@ To scrap the data from the website: \textarabic{الديوان}~\cite{diwan},end
 	\caption{Aldiwan scraping output example }\label{tables:Aldiwan_Sample}
 \end{table}
 
-\item Second Example, If we need to scrap the same meter from \textarabic{الموسوعة الشعرية} the website for example Al-Raml \footnote{ \textit{https://poetry.dctabudhabi.ae/\#/diwan/poem/126971}}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{tables:ElMosoaa_Sample}
+\item Second Example, If we need to scrap the same meter from \textarabic{الموسوعة الشعرية} the website for example Al-Raml \textit{https://poetry.dctabudhabi.ae/\#/diwan/poem/126971}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{tables:ElMosoaa_Sample}
 
 
 % table: dal with diacritics
