@@ -10,7 +10,7 @@ From these literatures, we can see that they treated the problem either as a det
 
 \end{itemize}
   
-\newpage
+%\newpage
 \section{Deterministic (Algorithmic) Approach}\label{sec:determ-algor-appr}
 
 \cite{Abuata2016RuleBasedAlgorithmFor} present the most related work to our topic, classifying Arabic poetry according to their \textit{meters}. However, they have not addressed it as a \textit{learning problem}; they have designed a deterministic five-step \textit{algorithm} for analyzing and detecting meters. The first step and the most important is to have the input text carrying full diacritics; this means that every single letter must carry a diacritic, explicitly. The next step is converting input text into \textit{Arud writing} using \textit{if-else} like rules. \textit{Arud writing} is a pronounced version of writing; where only pronounced sounds written. Then metrical \textit{scansion} rules applied to the \textit{Arud writing}, which leaves the input text as a sequence of zeros and ones. After that they defined each group of zeros and ones as a \textit{tafa'il}, so now we have a sequence of \textit{tafa'il}. Finally, the input text classified to the closest meter to the \textit{tafa'il} sequence. 82.2\% is the classification accuracy on a relatively small sample, only 417 verse.
@@ -46,19 +46,19 @@ We can summarize the difference between our work and the previous work in the fo
   \centering
   \begin{tabular}{|c|c|c|c|}
     \hline
-    \textbf{\#} & \textbf{Comparison side} & \textbf{Previous Work} & \textbf{Our Work} \\
+    \textbf{\#} & \textbf{Comparison} & \textbf{Previous Work} & \textbf{Our Work} \\
     \hline
-    1 & Dataset Size & A small number of the dataset used (1.5k) & Big Dataset contains 1.6M rows    \\
+    1 & \makecell{Dataset\\Size} & A small number of the dataset used (1.5k) & Big Dataset contains 1.6M rows    \\
         \hline
-    2 & Feature Engineering & limited features without intelligence  & Intelligent feature detection   \\
+    2 & \makecell{Feature\\Engineering} & limited features without intelligence  & Intelligent feature detection   \\
         \hline
-    3 & Performance & \makecell{Poor performance in case of\\ rule-based and not good \\performance handcrafted \\machine learning features}  & \makecell{Excellent performance applied to \\a reasonable size of test data}  \\
+    3 & Performance & \makecell{Poor performance in case of\\ rule-based 75\% on 128 samples and not good \\performance handcrafted 82.2\% \\machine learning features on 417 samples}  & \makecell{Reached 96.38\% applied to \\a reasonable size of test data 150k}  \\
 
     \hline
-        4 & Accuracy Measure & \makecell{Most of the research does not \\provide clear way about \\accuracy measure }  & \makecell{Provide F-score and confusion\\ matrix for the results\\ with clear performance for\\ every experiment}  \\
+        4 & \makecell{Accuracy\\Measure} & \makecell{Most of the research does not \\provide clear way about \\accuracy measure }  & \makecell{Provide F-score and confusion\\ matrix for the results\\ with clear performance for\\ every experiment}  \\
 
     \hline
-    5 & Encoding Techniques & \makecell{Encoding using Zeros and Ones \\ based on features handcrafted \\or rule based }    & \makecell{Produces three encoding types\\  One-Hot, Binary, Two-Hot \\encoding with comparison }  \\
+    5 & \makecell{Encoding\\Techniques} & \makecell{Encoding using Zeros and Ones \\ based on features handcrafted \\or rule based }    & \makecell{Produces three encoding types\\  One-Hot, Binary, Two-Hot \\encoding with comparison }  \\
 
     \hline
  \end{tabular}
