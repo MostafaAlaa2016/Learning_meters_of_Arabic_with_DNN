@@ -99,7 +99,7 @@ One of the important problem we worked to solve it during our research unbalance
 is the total number of classes.
 
 \begin{align}
-  w_c &= \left(\frac{\frac{1}{n_c}}{\sum_c \frac{1}{n_c}} \right),\label{eq:training_weighted_fun}
+  w_c &= \left(\frac{\frac{1}{n_c}}{\sum_{c'} \frac{1}{n_{c'}}} \right)\label{eq:training_weighted_fun}
 \end{align}
 
 The idea is to increase the loss for the small classes as the number of verses of small classes is small so the output will be bigger than the loss in case the class has a lot of verses. To have a clear explanation we can show equation~\ref{eq:training_weighted_fun_example}~\footnote{The equation numbers are rounded for simplicity.} as example the biggest class will has smaller loss compared to the smallest class. We are dividing on constant which is the sum of classes density. 
