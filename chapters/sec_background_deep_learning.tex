@@ -37,13 +37,13 @@ In the remaining parts in this section we will start introducing the main concep
 \subsection{Logistic Regression}
 Logistic Regression is a machine learning algorithm which we can assume has the basic idea behind the deep learning we will explain it later. Also, Logistic Regression is one of the most used machine learning techniques for binary classification.
 
-A simple example of logistic regression it would be if we have an algorithm for fraud detection. It takes some raw data input and detect if it is a fraud case or not let’s assume fraud case is one and a non-fraud case is zero. David Cox developed logistic regression in 1958~\cite{Cox2958}. The logistic name came from its core function logistic function which also named as \textit{Sigmoid function}  function~\eqref{eq:logistic_function}. The Logistic function is shaped as S-shape.
+A simple example of logistic regression it would be if we have an algorithm for fraud detection. It takes some raw data input and detect if it is a fraud case or not let’s assume fraud case is one and a non-fraud case is zero. David Cox developed logistic regression in 1958~\cite{Cox2958}. The logistic name came from its core function logistic function which also named as \textit{Sigmoid function} function in Equation~\eqref{eq:logistic_function}. The Logistic function is shaped as S-shape.
 
 Also, one of these function features it can take any input real number and convert it into a value between 1 and 0.
 \input{Figures/Ch_2_Background/fig_logistic.tex}
 
 
-Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ which is the estimate of $y$  when $\widehat{y}$  is presented in equation~\eqref{eq:yhat_estimate}. So,to calculate the output function for logistic regression using equation~\eqref{eq:logistic_regression_yhat}. Note: if we remove the Sigmoid function $\sigma$ from the equation it will be Linear Regression model and $\widehat{y}$ can be greater than 1 or negative. Figure~\ref{fig:logistic} show the Sigmoid function output. 
+Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ which is the estimate of $y$  when $\widehat{y}$  is presented in Equation~\eqref{eq:yhat_estimate}. So,to calculate the output function for logistic regression using Equation~\eqref{eq:logistic_regression_yhat}. Note: if we remove the Sigmoid function $\sigma$ from the equation it will be Linear Regression model and $\widehat{y}$ can be greater than 1 or negative. Figure~\ref{fig:logistic} show the Sigmoid function output. 
 
 \begin{equation}\label{eq:logistic_function}
   x = \frac{1}{1-e^{-x}} \quad \text{where} \quad x \in \mathbb{R}^{n_x} 
@@ -64,8 +64,8 @@ Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ 
 
 Loss Error Function is the function which describes how well our algorithm can understand  $\widehat{y}$ y b when the true label is y. It also can be defined as the difference between the true value of $y$ and the estimated value of  $\widehat{y}$.~\footnote{\textit{Parts of this subsections are explained into Andrew NG Coursera courses in deep learning and It written using our understanding to this topic but the equations and the idea taken from the course  https://www.coursera.org/learn/neural-networks-deep-learning/}}. Equation~\eqref{eq:loss function} describe the loss function for Logistic Regression. There are another functions can represent the loss functions but we take the below as example. As we know $y$ is the label which should be 1 or 0. So, The reason why this function make sense to describe the loss function as below
 \begin{itemize}
-\item in case (y = 1) equation~\eqref{eq:loss_function_log_y_1} we need $\widehat{y}$ to be big as possible to be equal or near y true which is 1. So, $ - (\log \widehat{y} )$ will get the value. Note as explained before Sigmoid function can't be greater than 1 or less than 0. %@@@ add chart here to explain
-\item in case (y = 0) equation~\eqref{eq:loss_function_log_y_0} we need $\widehat{y}$ to be small as possible to be equal or near y true which is 0. So, $- \log (1-\widehat{y})$  will get the value.  %@@@ add chart here to explain
+\item in case (y = 1) Equation~\eqref{eq:loss_function_log_y_1} we need $\widehat{y}$ to be big as possible to be equal or near y true which is 1. So, $ - (\log \widehat{y} )$ will get the value. Note as explained before Sigmoid function can't be greater than 1 or less than 0. %@@@ add chart here to explain
+\item in case (y = 0) Equation~\eqref{eq:loss_function_log_y_0} we need $\widehat{y}$ to be small as possible to be equal or near y true which is 0. So, $- \log (1-\widehat{y})$  will get the value.  %@@@ add chart here to explain
   \end{itemize}
   
 \begin{equation}
@@ -96,7 +96,7 @@ Loss Error Function is the function which describes how well our algorithm can u
 \subsubsection{Cost Function}
     To predict $y$ from $\widehat{y}$ we learn from the input parameters in this case it will be \textbf{\textit{(w,b)}} from Equation~\eqref{eq:logistic_regression_yhat} as  \textbf{\textit{(w,b)}} is the parameters which define the relation between input dataset X and the output Y. So, Cost Function will measure how well you are doing an entire training set and the ability to understand the relation between X,Y.
 
-Cost function \textbf{\textit{J}} in equation~\eqref{eq:cost_function} is the average of loss function applied to every training example which equal the sum of the lost for each training example divided on the total number of training example.
+Cost function \textbf{\textit{$J$}} in Equation~\eqref{eq:cost_function} is the average of loss function applied to every training example which equal the sum of the lost for each training example divided on the total number of training example.
 
 
 
@@ -112,7 +112,7 @@ Cost function \textbf{\textit{J}} in equation~\eqref{eq:cost_function} is the av
 In this subsection we will give an overview about the convex and non-convex functions and its relation with deep learning. We will not explain the proofs or write it. We will explain in general about the definition and its related features to our topic.
 
 \begin{description}
-  \item [\textbf{Convex Function}]:  In mathematics, a real-valued function defined on an n-dimensional interval is called \textit{convex} if the line segment between any two points on the graph of the function lies above or on the graph, in a Euclidean space (or more generally a vector space) of at least two dimensions~\cite{Wiki_Convex_Function}. More generally, a function $f(x)$~\ref{fig:convex_function} is \textit{convex} on an interval $[a,b]$ if for any two points $x_1$ and $x_2$ in $[a,b]$ and any $\lambda$ where $0<\lambda<1$~\cite{Rudin_1976},
+  \item [\textbf{Convex Function}]:  In mathematics, a real-valued function defined on an n-dimensional interval is called \textit{convex} if the line segment between any two points on the graph of the function lies above or on the graph, in a Euclidean space (or more generally a vector space) of at least two dimensions~\cite{Wiki_Convex_Function}. More generally, a function $f(x)$ Figure~\ref{fig:convex_function} is \textit{convex} on an interval $[a,b]$ if for any two points $x_1$ and $x_2$ in $[a,b]$ and any $\lambda$ where $0<\lambda<1$~\cite{Rudin_1976},
 
 \begin{equation}\label{eq:convex_fun}
   f(\lambda x_1 + (1-\lambda)x_2) \leq \lambda f(x_1) + (1 - \lambda) f(x_2)
@@ -161,15 +161,15 @@ If $f$ is twice-differentiable, then $f$ is concave if and only if $f^{''}$ is n
 \newpage
 \subsubsection{Gradient Descent}
 
-As we explained in the previous parts, we need to find the relation between X,Y from the input parameters \textbf{\textit{(w,b)}} which will make the cost function ~\eqref{eq:cost_function} to the minimum. In other words we need to find the best value of \textbf{\textit{J(w,b)}} which will represent the relation and reduce the error between $y$ and $\widehat{y}$  So, we need to minimize \textbf{\textit{J(w,b)}}. 
+As we explained in the previous parts, we need to find the relation between X,Y from the input parameters \textbf{\textit{(w,b)}} which will make the cost function in Equation~\eqref{eq:cost_function} to the minimum. In other words we need to find the best value of \textbf{\textit{J(w,b)}} which will represent the relation and reduce the error between $y$ and $\widehat{y}$  So, we need to minimize \textbf{\textit{J(w,b)}}. 
 
 \input{Figures/Ch_2_Background/fig_gradient_decent.tex}
 
-To illustrate the relation between \textbf{\textit{J(w,b)}} we will assume for simplicity the relation will be function of one variable \textbf{\textit{J(w)}}. As shown in Figure~\ref{fig:gradient_decent_surf} we have a curve which represent the function \textbf{\textit{J(w)}} we need to find the minimum point in this curve which is the local minimum (red point in the previous figure) assuming it is a  \textbf{\textit{convex function}}. We will use equation~\eqref{eq:gredient_descent_w} to find the local minimum.
+To illustrate the relation between \textbf{\textit{J(w,b)}} we will assume for simplicity the relation will be function of one variable \textbf{\textit{J(w)}}. As shown in Figure~\ref{fig:gradient_decent_surf} we have a curve which represent the function \textbf{\textit{J(w)}} we need to find the minimum point in this curve which is the local minimum (red point in the previous figure) assuming it is a  \textbf{\textit{convex function}}. We will use in Equation~\eqref{eq:gredient_descent_w} to find the local minimum.
 
-To explain how this equation works let's take simple function $f(x) = x^2$ then select a random point $P_1$ from Figure~\ref{fig:derivative_example} then pick another point $P_2$ let's take derivative \textit{(which by definition is the slope of the function at the point which also the change between these two points)} The slope of this function is the height (3) divided by the width (1) this is the tangent of $J(w)=\frac{3}{1}$ at this point. If the derivative is positive so, w will be update minus the derivative multiplied by learning rate alpha $\alpha$ as~\eqref{eq:gredient_descent_w}. We will repeat the previous step until value of w get the lowest minimum. When w get the lowest minimum the derivative will be negative so, w will start to increase again at this step the algorithm will stop. Also, we can demonstrate the effect of different $\alpha$ values and its impact on the function we can show this effect in Figure~\ref{fig:alpha_change} but the main point it is not always a happy scenario sometimes the high $alpha$ is not a good idea, and it depends on the problem and the dataset.
+To explain how this equation works let's take simple function $f(x) = x^2$ then select a random point $P_1$ from Figure~\ref{fig:derivative_example} then pick another point $P_2$ let's take derivative \textit{(which by definition is the slope of the function at the point which also the change between these two points)} The slope of this function is the height (3) divided by the width (1) this is the tangent of $J(w)=\frac{3}{1}$ at this point. If the derivative is positive so, w will be update minus the derivative multiplied by learning rate alpha $\alpha$ as in Equation~\eqref{eq:gredient_descent_w}. We will repeat the previous step until value of w get the lowest minimum. When w get the lowest minimum the derivative will be negative so, w will start to increase again at this step the algorithm will stop. Also, we can demonstrate the effect of different $\alpha$ values and its impact on the function we can show this effect in Figure~\ref{fig:alpha_change} but the main point it is not always a happy scenario sometimes the high $alpha$ is not a good idea, and it depends on the problem and the dataset.
 
-Now, Let's generalize the above equation assume we have two parameters  \textbf{\textit{(w,b)}} and we need to calculate the cost function for  \textbf{\textit{J(w,b)}} we will work on as two steps first function~\eqref{eq:gradient_descent_j_w}  wrt \textbf{\textit{(w)}} and second function~\eqref{eq:gradient_descent_j_b} wrt \textbf{\textit{(b)}}
+Now, Let's generalize the above equation assume we have two parameters  \textbf{\textit{(w,b)}} and we need to calculate the cost function for  \textbf{\textit{J(w,b)}} we will work on as two steps first function in Equation~\eqref{eq:gradient_descent_j_w}  wrt \textbf{\textit{(w)}} and second function in Equation~\eqref{eq:gradient_descent_j_b} wrt \textbf{\textit{(b)}}
 
 % \setlength{\belowdisplayskip}{0pt} \setlength{\belowdisplayshortskip}{0pt}
 %\setlength{\abovedisplayskip}{0pt} \setlength{\abovedisplayshortskip}{0pt}
@@ -207,7 +207,7 @@ b& := b - \alpha \frac{dJ(w,b)}{db} \label{eq:gradient_descent_j_b}
 \newpage
   \subsubsection{Logistic Regression derivatives}\label{logistic_bp_derivatives}
 
-  As described we need to calculate the gradient descent to get the best $\widehat{y}$ which minimizes the total cost in equation~\eqref{eq:logistic_regression_derivatives_single_example}. So, we will do backpropagation to get the value of $dz$ we need to calculate $da$ in equation~\eqref{eq:logistic_regression_derivatives_da} then we will calculate $dz$ based on the output of $da$ from equation~\eqref{eq:logistic_regression_derivatives_dz}. After that, We will start to take the derivative for $z$ function parameters \textbf{\textit{$w_1,w_2,b$}}. Once we got the values of \textbf{\textit{$dw_1,dw_2,db$}} we can use it to calculate the estimated values of \textbf{\textit{$w_1,w_2,b$}} in the equations~\eqref{eq:logistic_regression_derivatives_dw1},~\eqref{eq:logistic_regression_derivatives_dw2},~\eqref{eq:logistic_regression_derivatives_db}
+  As described we need to calculate the gradient descent to get the best $\widehat{y}$ which minimizes the total cost in equation~\eqref{eq:logistic_regression_derivatives_single_example}. So, we will do backpropagation to get the value of $dz$ we need to calculate $da$ in Equation~\eqref{eq:logistic_regression_derivatives_da} then we will calculate $dz$ based on the output of $da$ from Equation~\eqref{eq:logistic_regression_derivatives_dz}. After that, We will start to take the derivative for $z$ function parameters \textbf{\textit{$w_1,w_2,b$}}. Once we got the values of \textbf{\textit{$dw_1,dw_2,db$}} we can use it to calculate the estimated values of \textbf{\textit{$w_1,w_2,b$}} in the Equations~\eqref{eq:logistic_regression_derivatives_dw1},~\eqref{eq:logistic_regression_derivatives_dw2},~\eqref{eq:logistic_regression_derivatives_db}
 
 \begin{equation}\label{eq:logistic_regression_derivatives_single_example}
     \boxed{\widehat{y} = \sigma(z) = a} \longrightarrow  \boxed{ z = w^tx + b = w_1x_1+ w_2+x_2+ b} \longrightarrow \boxed{\ell(a,y)}
@@ -292,7 +292,7 @@ What is the Neural Networks component?
 \textbf{Output Layer:} It is one output layer with have the final results from the hidden layers.
 
  \subsection{Neural Network Computation}
- In this subsection, We will show as example on how we can compute the Neural Networks for every layer. In figure XXXX we have example of one layer we will continue explain on this example\eqref{eq_nn_one_layer}.
+ In this subsection, We will show as example on how we can compute the Neural Networks for every layer. In figure XXXX we have example of one layer we will continue explain on this example in Equation~\eqref{eq_nn_one_layer}.
 
  \begin{subequations}\label{eq_nn_one_layer}
    \begin{align}
@@ -349,7 +349,7 @@ z^{[1]} =
 \newpage
 \subsubsection{Linear Neurons and Their Limitations}
 
-Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function~\ref{fig:linear} $y= w x + b$. So, if we have mutli-layer networks for example equation~\eqref{eq_linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks. So, to be able to detect the deep information we will use different function for the hidden layers example: $\tanh$ Figure~\ref{fig:tanh} and Equation~\eqref{eq:nn_tanh}, Sigmoid Figure~\ref{fig:sigmoid} and  Equation~\eqref{eq:logistic_function} and Relu Figure~\ref{fig:relu} Equation~\eqref{eq:nn_relu}. Most of binary classification problems use Sigmoid function for output layer. Also, we can use the same functions for the output but we can also use the linear for activation function in some cases.
+Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function in Figure~\ref{fig:linear} which represent linear equation  $y= w x + b$. So, if we have mutli-layer networks for example Equation~\eqref{eq_linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks. So, to be able to detect the deep information we will use different functions for the hidden layers example: $\tanh$ Figure~\ref{fig:tanh} and its Equation~\eqref{eq:nn_tanh}. Another option is Sigmoid Figure~\ref{fig:sigmoid} and  Equation~\eqref{eq:logistic_function}. Finally, Relu Figure~\ref{fig:relu} Equation~\eqref{eq:nn_relu}. Most of binary classification problems use Sigmoid function for output layer. Also, we can use the same functions for the output but we can also use the linear for activation function in some cases.
 
 
 
@@ -406,7 +406,7 @@ Now, We explained the equations for the feedforward Neural Network. We have only
 \subsubsection{Softmax Output Layers}
 Sometimes our problem has multi-output results not only 1 or 0. For example, we have a problem to recognize the characters from 0 to 9 in MNIST dataset, But we will not be able to recognize digits with 100\% confidence. So, we will use the probability distribution to give us a better idea of how confident we are in our predictions. The result will be an output vector of the form of the $\sum_{i = 0}^9P_i=1$
 
-This is achieved by using a special output layer named softmax layer. This layer is differ from the other as the output of a neuron in a softmax layer is depending on the output of all the other neurons in its layer. This because its sum of all output equal 1. If we assume $z_i$ be the logit of $i^{th}$ softmax neuron, we can normalize by setting its output to represented from eq~\eqref{eq:nn_softmax_fun}:
+This is achieved by using a special output layer named softmax layer. This layer is differ from the other as the output of a neuron in a softmax layer is depending on the output of all the other neurons in its layer. This because its sum of all output equal 1. If we assume $z_i$ be the logit of $i^{th}$ softmax neuron, we can normalize by setting its output to represented from Equation~\eqref{eq:nn_softmax_fun}:
 
 \begin{equation}\label{eq:nn_softmax_fun}
   y_i=\frac{e^{z_i}}{\sum_je^{z_j}}
@@ -572,7 +572,7 @@ Long Short Term Memory networks – aka “LSTMs” – are a special type of RN
 
 \input{./Figures/Ch_2_Background/Fig_RNN_Single_Tanh_Main_3_Cells.tex}
 
-In Basic RNNs it is very simple structure for every layer with simple output function~\ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers~\ref{fig:LSTM-cell-chaining}. 
+In Basic RNNs it is very simple structure for every layer with simple output function~\ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers Figure~\ref{fig:LSTM-cell-chaining}. 
 
 %\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-cell-chaining.png}
   %\caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}\label{fig:LSTM-cell-chaining}
@@ -624,7 +624,7 @@ We have explained LSTM has three gates with some
 
 \begin{itemize}
   
-\item \textbf{Forget Gate Layer} a Sigmoid layer~\ref{fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculate the output from Sigmoid function between zero and one. As explained if one \textit{everything should pass}, while if zero \textit{do not pass anything}. The value zero or one depends on the value of the cell state if it includes a gender type and we need to predict the pronouns so, it will pass else it will ride of this state~\eqref{eq:lstm-gate}.
+\item \textbf{Forget Gate Layer} a Sigmoid layer Figure~\ref{fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculate the output from Sigmoid function between zero and one. As explained if one \textit{everything should pass}, while if zero \textit{do not pass anything}. The value zero or one depends on the value of the cell state if it includes a gender type and we need to predict the pronouns so, it will pass else it will ride of this state~\eqref{eq:lstm-gate}.
 
 %\begin{figure}[ht!]
 %    \centering
@@ -644,7 +644,7 @@ f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
 
 
 
-\item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{$\tanh$ layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state~\ref{fig:LSTM-input-gate}. The previous combination controls the update state as shown in Equation~\eqref{eq:input-gate}. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.
+\item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{$\tanh$ layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state Figure~\ref{fig:LSTM-input-gate}. The previous combination controls the update state as shown in Equation~\eqref{eq:input-gate}. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.
   % \begin{equation}
 \begin{subequations}\label{eq:input-gate}
 \begin{align}
@@ -669,7 +669,7 @@ f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
 \end{figure}
 
 \newpage
-\item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates as shown in Equation~\eqref{eq:Multiplication-gate}. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in~\ref{fig:LSTM-pointwise-operations} there are two operations, 
+\item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates as shown in Equation~\eqref{eq:Multiplication-gate}. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in Figure~\ref{fig:LSTM-pointwise-operations} there are two operations, 
   \begin{enumerate}
   \item Multiplication Operation: This operation to apply the forget gate step by multiplying the old state $\tilde{C}_{t-1} $ by the $f_t$.
   \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t \times \tilde{C_t}$
@@ -725,7 +725,7 @@ h_t  &= o_t \circ \tanh(C_t)
 \newpage
 \subsubsection{Gated Recurrent Units (GRUs)}
 
-In RNN Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 by Kyunghyun Cho et al.~\cite{Cho_et_al}. It works to overcome the problem for long-term dependencies. It also aimed to solve the vanishing gradient problem from Basic RNNs.It proposed a new architecture~\ref{fig:GRU} similar than the LSTM but with some major variants as below,
+In RNN Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 by Kyunghyun Cho et al.~\cite{Cho_et_al}. It works to overcome the problem for long-term dependencies. It also aimed to solve the vanishing gradient problem from Basic RNNs.It proposed a new architecture Figure~\ref{fig:GRU} similar than the LSTM but with some major variants as below,
 \begin{itemize}
   
 \item It combines the forget gate and input gates into a single gate named “update gate and reset gate.”
