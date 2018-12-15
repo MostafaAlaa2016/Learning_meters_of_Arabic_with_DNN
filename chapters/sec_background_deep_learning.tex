@@ -85,7 +85,7 @@ Loss Error Function is the function which describes how well our algorithm can u
 \begin{equation} \label{eq:loss_function_log_y_0}
 \begin{split}
   \text{(if y = 0) } \quad  \ell(y,\widehat{y}) & = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y})) \\
-  & = - (0 * \log \widehat{y} + (1-0) \log (1-\widehat{y}))\\
+  & = - (0 \times \log \widehat{y} + (1-0) \log (1-\widehat{y}))\\
   & = - \log (1-\widehat{y})
 \end{split}
 \end{equation}
@@ -115,10 +115,10 @@ In this subsection we will give an overview about the convex and non-convex func
   \item [\textbf{Convex Function}]:  In mathematics, a real-valued function defined on an n-dimensional interval is called \textit{convex} if the line segment between any two points on the graph of the function lies above or on the graph, in a Euclidean space (or more generally a vector space) of at least two dimensions~\cite{Wiki_Convex_Function}. More generally, a function $f(x)$~\ref{fig:convex_function} is \textit{convex} on an interval $[a,b]$ if for any two points $x_1$ and $x_2$ in $[a,b]$ and any $\lambda$ where $0<\lambda<1$~\cite{Rudin_1976},
 
 \begin{equation}\label{eq:convex_fun}
-  f(\lambda x_1 + (1-\lambda)x_2) <= \lambda f(x_1) + (1 - \lambda) f(x_2)
+  f(\lambda x_1 + (1-\lambda)x_2) \leq \lambda f(x_1) + (1 - \lambda) f(x_2)
 \end{equation}
 
-For a twice differentiable function of a single variable, if the second derivative is always greater than or equal to zero for its entire domain then the function is \textit{convex}. Well-known examples of convex functions include the quadratic function $X^2$ Figure~\ref{fig:derivative_example}. So, If $f(x)$ has a second derivative in $[a,b]$, then a necessary and sufficient condition for it to be \textit{convex} on that interval is that the second derivative $f^{''}(x) >= 0$ for all $x$ in $[a,b]$.~\cite{Wolfram_Convex}.
+For a twice differentiable function of a single variable, if the second derivative is always greater than or equal to zero for its entire domain then the function is \textit{convex}. Well-known examples of convex functions include the quadratic function $X^2$ Figure~\ref{fig:derivative_example}. So, If $f(x)$ has a second derivative in $[a,b]$, then a necessary and sufficient condition for it to be \textit{convex} on that interval is that the second derivative $f^{''}(x) \geq 0$ for all $x$ in $[a,b]$.~\cite{Wolfram_Convex}.
 \newpage
 If the inequality above is strict for all $x_1$ and $x_2$, then $f(x)$ is called \textbf{strictly convex}. \textit{Convex} function on an open set has no more than one minimum. So, in strictly convex the local minimum = global minimum. This feature is very important feature for any optimization problem. As we will see most of deep learning problems are related to how to optimize the function to find the minimum point in this function. It will be nice and easy problem to face a convex function but in real world most of the cases is non convex functions.
 
@@ -137,7 +137,7 @@ If the inequality above is strict for all $x_1$ and $x_2$, then $f(x)$ is called
 
 \begin{equation}\label{eq:concave_fun}
   \begin{split}
-f(\lambda x_1 + (1-\lambda)x_2) >= \lambda f(x_1) + (1 - \lambda) f(x_2)
+f(\lambda x_1 + (1-\lambda)x_2) \geq \lambda f(x_1) + (1 - \lambda) f(x_2)
   \end{split}
 \end{equation}
 
@@ -349,7 +349,7 @@ z^{[1]} =
 \newpage
 \subsubsection{Linear Neurons and Their Limitations}
 
-Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function~\ref{fig:linear} $y= w x + b$. So, if we have mutli-layer networks for example equation~\eqref{eq_linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks. So, to be able to detect the deep information we will use different function for the hidden layers example: Tanh Figure~\ref{fig:tanh} and Equation~\eqref{eq:nn_tanh}, Sigmoid Figure~\ref{fig:sigmoid} and  Equation~\eqref{eq:logistic_function} and Relu Figure~\ref{fig:relu} Equation~\eqref{eq:nn_relu}. Most of binary classification problems use Sigmoid function for output layer. Also, we can use the same functions for the output but we can also use the linear for activation function in some cases.
+Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function~\ref{fig:linear} $y= w x + b$. So, if we have mutli-layer networks for example equation~\eqref{eq_linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks. So, to be able to detect the deep information we will use different function for the hidden layers example: $\tanh$ Figure~\ref{fig:tanh} and Equation~\eqref{eq:nn_tanh}, Sigmoid Figure~\ref{fig:sigmoid} and  Equation~\eqref{eq:logistic_function} and Relu Figure~\ref{fig:relu} Equation~\eqref{eq:nn_relu}. Most of binary classification problems use Sigmoid function for output layer. Also, we can use the same functions for the output but we can also use the linear for activation function in some cases.
 
 
 
@@ -394,13 +394,13 @@ Now, We explained the equations for the feedforward Neural Network. We have only
 
  
 \begin{equation}\label{eq:nn_tanh}
-  a = tanh(z) =\frac{e^z-e^{-z}}{e^z+e^{-z}}
+  a = \tanh(z) =\frac{e^z-e^{-z}}{e^z+e^{-z}}
 \end{equation}%@@@ add figure for tanh
 
 
 
 \begin{equation}\label{eq:nn_relu}
-  a = max (0,z)
+  a = \max(0,z)
 \end{equation}%@@@ add figure for relu
 
 \subsubsection{Softmax Output Layers}
@@ -440,7 +440,7 @@ As explained in logistic regression section (\ref{logistic_bp_derivatives}) how 
 We will generalize the derivatives equations to be for $l$ layers from the below equations\eqref{eq_nn_bp_l_layers}.
  \begin{subequations}\label{eq_nn_bp_l_layers}
    \begin{align}
-     dz^{[l]} & = da^{[l]} * g^{[l]'}(z^{l}) \\
+     dz^{[l]} & = da^{[l]} \times g^{[l]'}(z^{l}) \\
      dw^{[l]} & = dz^{[l]} \cdot a^{[l-1]} \\
      db^{[l]} & = dz^{[l]} \\
      da^{[l-1]} & = W^{[l]T} \cdot dz^{[l]} %\\
@@ -450,7 +450,7 @@ We will generalize the derivatives equations to be for $l$ layers from the below
 We can vectorize the above equation for Neural Network implementation as below equations\eqref{eq_nn_bp_l_layers_vectorize}.
  \begin{subequations}\label{eq_nn_bp_l_layers_vectorize}
    \begin{align}
-     dz^{[l]} & = dA^{[l]} * g^{[l]'}(z^{l}) \\
+     dz^{[l]} & = dA^{[l]} \times g^{[l]'}(z^{l}) \\
      dw^{[l]} & = \frac{1}{m} dz^{[l]} \cdot A^{[l-1]T} \\
      db^{[l]} & = \frac{1}{m} \text{ np.sum(}dz^{[l]}\text{,axis=1,keepdims = true)} \\
      dA^{[l-1]} & = W^{[l]T} \cdot dz^{[l]} %\\
@@ -481,7 +481,7 @@ If we checked the input variable in the backpropagation we will find it is $da^{
 \end{align}
 \end{subequations}
      
-To initialize weights and to get the maximum value of the neural network computation we should initialize the weight by any small random numbers to avoid the big weights which will tend to get the small slope from the Z where $Z^{[1]}= W^{[1]} X + b^{[1]}$ For example, if we use tanh we will get the big tail values $a^{[1]}= g^{[1]}(Z^{[1]})$. So, the big weights we more likely to get slow learning rate. 
+To initialize weights and to get the maximum value of the neural network computation we should initialize the weight by any small random numbers to avoid the big weights which will tend to get the small slope from the Z where $Z^{[1]}= W^{[1]} X + b^{[1]}$ For example, if we use $\tanh$ we will get the big tail values $a^{[1]}= g^{[1]}(Z^{[1]})$. So, the big weights we more likely to get slow learning rate. 
   
 %@@@$\subsubsection{Deep Learning Running Cycle}
 %@@@@ Cost function vs Loss Function vs Gradient Desend 
@@ -582,7 +582,7 @@ In Basic RNNs it is very simple structure for every layer with simple output fun
 
 \subsubsection{LSTM Gate Mechanism}
 
-The main component of LSTM is the cell state; It allows the information to pass through along it unchanged. In figure xxx the top line show the information flow through the cell. The LSTM cell can add or remove information to the cell state using the Gating mechanism. 
+The main component of LSTM is the cell state; It allows the information to pass through along it unchanged. In figure~\ref{fig:LSTM-gate} the top line show the information flow through the cell. The LSTM cell can add or remove information to the cell state using the Gating mechanism. 
 
 Gates's idea is a methodology to manage the way how and which information pass or not. It controls information flow through the cell. It has three of these gates. They are consist of a sigmoid neural network layer~\ref{fig:LSTM-Cell-state} and a pointwise multiplication operation~\ref{fig:LSTM-gate}.
 
@@ -624,7 +624,7 @@ We have explained LSTM has three gates with some
 
 \begin{itemize}
   
-\item \textbf{Forget Gate Layer} a Sigmoid layer~\ref{fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculate the output from Sigmoid function between zero and one. As explained if one \textit{everything should pass}, while if zero \textit{do not pass anything}. The value zero or one depends on the value of the cell state if it includes a gender type and we need to predict the pronouns so, it will pass else it will ride of this state.
+\item \textbf{Forget Gate Layer} a Sigmoid layer~\ref{fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculate the output from Sigmoid function between zero and one. As explained if one \textit{everything should pass}, while if zero \textit{do not pass anything}. The value zero or one depends on the value of the cell state if it includes a gender type and we need to predict the pronouns so, it will pass else it will ride of this state~\eqref{eq:lstm-gate}.
 
 %\begin{figure}[ht!]
 %    \centering
@@ -632,6 +632,9 @@ We have explained LSTM has three gates with some
 %        \caption{LSTM sigmoid forget gate~\cite{colah}}
 %        \label{fig:LSTM-forget-gate}
 %\end{figure}
+\begin{equation}\label{eq:lstm-gate}
+f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
+\end{equation}
 
 \begin{figure}[ht!]
     \centering
@@ -641,7 +644,16 @@ We have explained LSTM has three gates with some
 
 
 
-\item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{tanh layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state~\ref{fig:LSTM-input-gate}. The previous combination controls the update state. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.
+\item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{$\tanh$ layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state~\ref{fig:LSTM-input-gate}. The previous combination controls the update state as shown in Equation~\eqref{eq:input-gate}. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.
+  % \begin{equation}
+\begin{subequations}\label{eq:input-gate}
+\begin{align}
+  i_t  &= \sigma(W_i \dot[h_{t-1},x_t] + b_i)\\
+\widetilde{C_t} &= \tanh(W_C\dot [h_{t-1},x_t]+ b_C)
+\end{align}
+\end{subequations}
+%\end{equation}
+
 
 %\begin{figure}[ht!]
    % \centering
@@ -652,15 +664,15 @@ We have explained LSTM has three gates with some
 \begin{figure}[ht!]
     \centering
         \input{./Figures/Ch_2_Background/Fig_LSTM_Input_Gate.tex}
-        \caption{LSTM Input gate a combination of Sigmoid and Tanh layers~\cite{colah}}
+        \caption{LSTM Input gate a combination of Sigmoid and $\tanh$ layers~\cite{colah}}
         \label{fig:LSTM-input-gate}
 \end{figure}
 
-
-\item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in~\ref{fig:LSTM-pointwise-operations} there are two operations, 
+\newpage
+\item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates as shown in Equation~\eqref{eq:Multiplication-gate}. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in~\ref{fig:LSTM-pointwise-operations} there are two operations, 
   \begin{enumerate}
   \item Multiplication Operation: This operation to apply the forget gate step by multiplying the old state $\tilde{C}_{t-1} $ by the $f_t$.
-  \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t * \tilde{C_t}$
+  \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t \times \tilde{C_t}$
     \end{enumerate}
 
 %    \begin{figure}[ht!]
@@ -668,6 +680,11 @@ We have explained LSTM has three gates with some
 %        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}
 %        \label{fig:LSTM-pointwise-operations}
 %      \end{figure}
+
+\begin{equation}\label{eq:Multiplication-gate}
+C_t  = f_t \circ c_{t-1} + i_t \circ \widetilde{C_t}
+\end{equation}
+
 
 
     \begin{figure}[ht!]
@@ -677,14 +694,22 @@ We have explained LSTM has three gates with some
         \label{fig:LSTM-pointwise-operations}
       \end{figure}
       
-      
-    \item \textbf{Output Gate} This gate is a combination of \textit{sigmoid} layer and \textit{tanh} layer. \textit{Sigmoid} layer decides the information which should be output. Then the output of the  \textit{sigmoid} function will be multiplying with the output of the \textit{tanh} layer of the cell state. This \textit{tanh} will make the values between -1 and 1. The output of the multiplication of \textit{sigmoid} and \textit{tanh} will be the final output. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.
+\newpage      
+    \item \textbf{Output Gate} This gate is a combination of \textit{sigmoid} layer and \textit{$\tanh$} layer. \textit{Sigmoid} layer decides the information which should be output. Then the output of the  \textit{sigmoid} function will be multiplying with the output of the \textit{$\tanh$} layer of the cell state. This \textit{$\tanh$} will make the values between -1 and 1. The output of the multiplication of \textit{sigmoid} and \textit{$\tanh$} will be the final output as show in Equation~\eqref{eq:output-gate}. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.
 
 %\begin{figure}[ht!]
 %    \centering \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-output-gate.png}
 %        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}
 %        \label{fig:LSTM-output-gate}
 %      \end{figure}
+
+
+\begin{subequations}\label{eq:output-gate}
+\begin{align}
+o_t  &= \sigma(W_o  x_t + U_o h_{t-1} + b_o),\\
+h_t  &= o_t \circ \tanh(C_t)
+\end{align}
+\end{subequations}
 
       
 \begin{figure}[ht!]
