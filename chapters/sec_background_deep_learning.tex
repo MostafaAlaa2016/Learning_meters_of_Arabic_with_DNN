@@ -513,21 +513,10 @@ What is the new proposed architecture which can provide a way to share the featu
 \begin{itemize}
 \item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figure~\ref{fig:RNN-rolled-loop} shows an example. So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.
 
-%   \begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/RNN-unrolled.png}
-%  \caption{Recurrent Neural Networks Loops\cite{colah}}
-%  \label{fig:RNN-rolled-loop.png}
-%\end{figure}
-
 \begin{figure}[ht!]
   \input{./Figures/Ch_2_Background/Fig_RNN_unrolled.tex}
   \caption{Recurrent Neural Networks Loops\cite{colah}}\label{fig:RNN-rolled-loop}
 \end{figure}
-
-%\begin{figure}[ht!] %\includegraphics[width=\linewidth]{./Figures/Ch_2_Background/andew_ng_feedfarward.png}
-%  \caption{Recurrent Neural Networks feedfarward \textit{ This figure from Andrew NG course sequence models https://www.coursera.org/learn/nlp-sequence-models/ }}
-%  \label{fig:andew_ng_feedfarward}
-%\end{figure}
-% @@@ to be replaced by new owned ones
 
 % @@@add example about the new architecture
 
@@ -565,18 +554,9 @@ Long Short Term Memory networks – aka “LSTMs” – are a special type of RN
 
  Both Basic RNNs and LSTM have the form of a chain of repeating modules of neural network. The main difference is the structure of the Networks.
  
-%\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-SimpleRNN.png}
-%  \caption{The repeating module in a standard RNN contains a single layer.\cite{colah}}
-%  \label{fig:LSTM-SimpleRNN}
-%\end{figure}
-
 \input{./Figures/Ch_2_Background/Fig_RNN_Single_Tanh_Main_3_Cells.tex}
 
 In Basic RNNs it is very simple structure for every layer with simple output function~\ref{fig:LSTM-SimpleRNN}. But in LSTMs it has four interacting layers Figure~\ref{fig:LSTM-cell-chaining}. 
-
-%\begin{figure}[ht!] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/LSTM-cell-chaining.png}
-  %\caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}\label{fig:LSTM-cell-chaining}
-%\end{figure}
 
 \input{./Figures/Ch_2_Background/Fig_LSTM_Main_Figure_3_Cells.tex}
 
@@ -588,26 +568,12 @@ Gates's idea is a methodology to manage the way how and which information pass o
 
 Sigmoid function output values between zero and one. If the value is one these means that everything should pass, while if the value is zero these means do not pass anything. So, the value output from the sigmoid function refers to the amount of each component should be passed.
 
-%\begin{figure}[ht!]
-%    \centering
-%        \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-Cell-state.png}
-%        \caption{LSTM top horizontal line working as the medium for information flow~\cite{colah}}
-%        \label{fig:LSTM-Cell-state}
-%      \end{figure}
-      \begin{figure}[ht!]
+    \begin{figure}[ht!]
     \centering
 \input{./Figures/Ch_2_Background/Fig_LSTM_Cell_State.tex}
         \caption{LSTM top horizontal line working as the medium for information flow~\cite{colah}}
       \label{fig:LSTM-Cell-state}
       \end{figure}
-
-      
-%\begin{figure}[ht!]
-%    \centering
-%    \includegraphics[width=0.2\textwidth]{./Figures/Ch_2_Background/LSTM-gate.png}
-%        \caption{Cell gate with sigmoid function and a pointwise multiplication operation~\cite{colah}}
-%        \label{fig:LSTM-gate}
-%      \end{figure}
       
       \begin{figure}[ht!]
         \centering
@@ -626,12 +592,6 @@ We have explained LSTM has three gates with some
   
 \item \textbf{Forget Gate Layer} a Sigmoid layer Figure~\ref{fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculate the output from Sigmoid function between zero and one. As explained if one \textit{everything should pass}, while if zero \textit{do not pass anything}. The value zero or one depends on the value of the cell state if it includes a gender type and we need to predict the pronouns so, it will pass else it will ride of this state~\eqref{eq:lstm-gate}.
 
-%\begin{figure}[ht!]
-%    \centering
-%        \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-forget-gate.png}
-%        \caption{LSTM sigmoid forget gate~\cite{colah}}
-%        \label{fig:LSTM-forget-gate}
-%\end{figure}
 \begin{equation}\label{eq:lstm-gate}
 f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
 \end{equation}
@@ -645,22 +605,14 @@ f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
 
 
 \item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{$\tanh$ layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state Figure~\ref{fig:LSTM-input-gate}. The previous combination controls the update state as shown in Equation~\eqref{eq:input-gate}. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.
-  % \begin{equation}
+
 \begin{subequations}\label{eq:input-gate}
 \begin{align}
   i_t  &= \sigma(W_i \dot[h_{t-1},x_t] + b_i)\\
 \widetilde{C_t} &= \tanh(W_C\dot [h_{t-1},x_t]+ b_C)
 \end{align}
 \end{subequations}
-%\end{equation}
 
-
-%\begin{figure}[ht!]
-   % \centering
-   %     \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-input-gate.png}
-  %      \caption{LSTM Input gate a combination of Sigmoid and Tanh layers~\cite{colah}}
- %       \label{fig:LSTM-input-gate}
-%\end{figure}
 \begin{figure}[ht!]
     \centering
         \input{./Figures/Ch_2_Background/Fig_LSTM_Input_Gate.tex}
@@ -674,12 +626,6 @@ f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
   \item Multiplication Operation: This operation to apply the forget gate step by multiplying the old state $\tilde{C}_{t-1} $ by the $f_t$.
   \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t \times \tilde{C_t}$
     \end{enumerate}
-
-%    \begin{figure}[ht!]
-%    \centering %\includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-pointwise-operations.png}
-%        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}
-%        \label{fig:LSTM-pointwise-operations}
-%      \end{figure}
 
 \begin{equation}\label{eq:Multiplication-gate}
 C_t  = f_t \circ c_{t-1} + i_t \circ \widetilde{C_t}
@@ -696,12 +642,6 @@ C_t  = f_t \circ c_{t-1} + i_t \circ \widetilde{C_t}
       
       
     \item \textbf{Output Gate} This gate is a combination of \textit{sigmoid} layer and \textit{$\tanh$} layer. \textit{Sigmoid} layer decides the information which should be output. Then the output of the  \textit{sigmoid} function will be multiplying with the output of the \textit{$\tanh$} layer of the cell state. This \textit{$\tanh$} will make the values between -1 and 1. The output of the multiplication of \textit{sigmoid} and \textit{$\tanh$} will be the final output as show in Equation~\eqref{eq:output-gate}. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.
-
-%\begin{figure}[ht!]
-%    \centering \includegraphics[width=\textwidth]{./Figures/Ch_2_Background/LSTM-output-gate.png}
-%        \caption{LSTM Multiplication and Addition Operation in LSTM~\cite{colah}}
-%        \label{fig:LSTM-output-gate}
-%      \end{figure}
 
 
 \begin{subequations}\label{eq:output-gate}
