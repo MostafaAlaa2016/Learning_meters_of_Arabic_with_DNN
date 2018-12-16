@@ -4,7 +4,7 @@ In this chapter, We will discuss the Training and Experiments done in this proje
 
 In a normal machine learning project, we used to split the dataset as around 60\% as training, 30\% testing and 10\% as a validation. However, In The Deep Learning, the amount of data profoundly affects the model performance. So, the more data fed as training, the more performance results the model can achieve on test data (Assuming we did the regularization and the needed generalization on the model training phase). Also, The main reason to change the split size is due to the size of the dataset we used to work on for example 1\% of 1M sample is 10k which is big enough for such experiments way. However, if we work on 10k sample, we need around 30\% 3k sample to have confidence in our model. So, it depends on the problem and size of the dataset.
 
-In this research, We worked on \textit{Poem Comprehensive Dataset (PCD)}\cite{ArabicpoetryDS}. We are interested in the 16 classic meters which attributed to Al-Farahidi. These meters comprise the majority of the dataset with a total number of 1,722,321 verses. Figure ~\ref{fig:data_size_distribution} shows an ordered bar chart based on the number of verses per meter. We trained all our models based on 80\% which is around 1,377,856 verse. Our testing data(development) is 10\% around 172,232 verse, and our Validation data around 172,232 verse.
+In this research, We worked on \textit{Poem Comprehensive Dataset (PCD)}\cite{ArabicpoetryDS}. We are interested in the 16 classic meters which attributed to Al-Farahidi. These meters comprise the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{fig:data_size_distribution} shows an ordered bar chart based on the number of verses per meter. We trained all our models based on 80\% which is around 1,377,856 verse. Our testing data(development) is 10\% around 172,232 verse, and our Validation data around 172,232 verse.
 
 We can show training phase designed as a Data representation configurations and an RNN configuration. The number of experiments is the cross product of both data representation and RNN configuration, for example, If we have 12 data representation and 12 RNN configurations the total number of experiments will be 144. We need to highlight that,
 
@@ -12,7 +12,7 @@ We can show training phase designed as a Data representation configurations and 
 	\item Data representation feature is a general feature applied on the dataset not a Hand-Crafted features more details on~\ref{sec_data_rep_param}.
 	\item There is an effect of the Data representation feature due to Arabic language pronunciation and some features provide more information than others.
 	\item RNN configurations are the parameters related to the Network model development training, and it used after many of experiment to find and tune the best configurations. These means we did more than the number of experiment written in this research but we only publish the best results overall. It will explain more details in sec ~\ref{sec_rnn_param}.
-	\item The number verses used on testing and validation is a significant number 344,464 verse which confirms that the model tested on all types of verses and have confidence in the results.
+	\item The number verses used on testing and validation is a significant number 344,464 verse which confirms that the model tested on all types of verses and have confidence in the results.
 
 \end{itemize}
 
@@ -26,7 +26,7 @@ Arabic dataset has the verse with diacritics. We can feed the network the charac
 
 \subsection{Trimming Small Classes}
 
-Arabic poem dataset, as stated in Figure~\ref{fig:data_percentage_distribution}, is unbalanced. So, As part of our research, we make the dataset representation as a Full dataset and Trimmed dataset. This way allows us to study the effect of this unbalance. Also, We not only explore the impact of the unbalanced dataset But also, We have applied a technique to solve this issue~\ref{sec_rnn_param}. The trimmed classes are five classes which have less than 1\% of the total dataset. We presented this classes as all the classes on the left side of the horizontal red line in Figure~\ref{fig:data_percentage_distribution}. So, The total classes after trimming are 11 classes and the full with all 16 meters presented.
+Arabic poem dataset, as stated in Figure~\ref{fig:data_size_distribution}, is unbalanced. So, As part of our research, we make the dataset representation as a Full dataset and Trimmed dataset. This way allows us to study the effect of this unbalance. Also, We not only explore the impact of the unbalanced dataset But also, We have applied a technique to solve this issue~\ref{sec_rnn_param}. The trimmed classes are five classes which have less than 1\% of the total dataset. We presented this classes as all the classes on the left side of the horizontal red line in Figure~\ref{fig:data_size_distribution}. So, The total classes after trimming are 11 classes and the full with all 16 meters presented.
 
 \subsection{Encoding Techniques}
 
@@ -50,7 +50,7 @@ As explained previously, There are three different encoding methods~\ref{ch:data
   \centering
   \begin{tabular}{c c c c c c}
     \hline
-    \textbf{\#} & \textbf{Diacritic} & \multicolumn{3}{c|}{\textbf{Encoding Types}}  & \textbf{Trimming} \\
+    \textbf{\#} & \textbf{Diacritic} & \multicolumn{3}{c}{\textbf{Encoding Types}}  & \textbf{Trimming} \\
     
     \hline
     1 & With diacritic & One-hot & Two-hot & Binary & Full    \\
@@ -62,13 +62,13 @@ As explained previously, There are three different encoding methods~\ref{ch:data
 \end{table}
 
 
-\begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-	\input{./Figures/Ch_4_Dataset/dataset_percentage_ar.tex}
-	\end{tikzpicture}%
-	\caption{Arabic dataset class size (number of verses) ordered descendingly on y-axis vs. corresponding meter name on the x-axis.}\label{fig:data_percentage_distribution}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\begin{tikzpicture}
+%	\input{./Figures/Ch_4_Dataset/dataset_percentage_ar.tex}
+%	\end{tikzpicture}%
+%	\caption{Arabic dataset class size (number of verses) ordered descendingly on y-axis vs. corresponding meter name on the x-axis.}\label{fig:data_percentage_distribution}
+%\end{figure}
 
 
 
@@ -84,7 +84,7 @@ In RNNs network configuration parameters, there are four parameters:
 \item \textbf{Cell Type}: We used LSTM and BI-LSTM.
 \item \textbf{Layers}: We tried many numbers of layers and we found the best number based on our problem is 4 and 7 layers.
 \item \textbf{Cell Unit Size}: We also tried many numbers but the best results achieved from 50 and 82.
-\item \textbf{Weighting Model}: As showed in Figure~\ref{fig:data_percentage_distribution} classes is unbalanced. So, as an alternative to remove the small classes we tried to keep all classes but with weighting the loss function to account for the relative class size. We introduced a new weighting function explain in next sub-section~\ref{sec_w_loss} to help working on all the dataset. So, we will have two combinations, One with weighting loss and one without weighting loss.
+\item \textbf{Weighting Model}: As showed in Figure~\ref{fig:data_size_distribution} classes is unbalanced. So, as an alternative to remove the small classes we tried to keep all classes but with weighting the loss function to account for the relative class size. We introduced a new weighting function explain in next sub-section~\ref{sec_w_loss} to help working on all the dataset. So, we will have two combinations, One with weighting loss and one without weighting loss.
   
 \end{itemize}
 
