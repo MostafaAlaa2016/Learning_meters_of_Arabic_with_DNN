@@ -26,11 +26,14 @@
 
 \usepackage{fontspec}
 \usepackage{amsmath}
-\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
-\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
-%\usepackage{geometry}
-\usepackage[a4paper]{geometry}
-\geometry{ a4paper, total={170mm,257mm}, left=20mm,right=20mm, top=25mm,}
+
+\usepackage[hang, small, bf, margin=20pt]{caption}%, tableposition=top
+\setlength{\abovecaptionskip}{0pt}
+
+
+\usepackage{geometry}
+
+\geometry{ a4paper, total={170mm,257mm}, left=10mm,right=10mm, top=20mm,}
 %\usepackage[left=1in, right=1in, top=1in, bottom=1in, includefoot, headheight=5.6pt]{geometry}
 
 \usepackage{makecell}
@@ -302,3 +305,8 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../master"
+%%% End:
