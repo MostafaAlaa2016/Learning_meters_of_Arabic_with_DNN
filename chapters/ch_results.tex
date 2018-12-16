@@ -17,7 +17,7 @@ As we explained, In Chapter~\ref{ch_model_training} we have a set of combination
 \subsection{Overall F1 Score}
 
 \textbf{$F_1$ (also F-score or F-measure)} is a measure of a test's accuracy. It considers both the precision $p$ and the recall $r$ of the test to compute the score: $p$ is the number of correct positive results divided by the number of all positive results returned by the classifier, and $r$ is the number of correct positive results divided by the number of all relevant samples (all samples that should have been identified as positive).\\ The F1 score is the harmonic average of the precision and recall, where an F1 score reaches its best value at 1 (perfect precision and recall) and worst at 0~\cite{Wiki_f1_score}.
-\newpage
+
 
 We present the $F_!$ Score in Figure~\ref{fig:ArabicModelsResults} of the 16 neural netwroks configurations and at each of the 12 data representations (y- and
 x-axis respectively). The x-axis is divided into 4 strips corresponding to the 4 combinations of trimming and diacritic parameters. Then, each strip includes the 3 different encoding values. Each point on the figure represents the F1 score of one of the 192 experiments; (some values are too small, and hence omitted from the figure). To explain the figure, we take as an example the most-left
@@ -51,7 +51,7 @@ In this section we will explain the effect of the 12 data representation techniq
  \caption{$F_1$ score of the 192 experiments plotted as 12 vertical rug plots (for the 12 different data representations: $\left\{\mathit{Trimming},\ \mathit{No Trimming} \right\} \times \left\{\mathit{Diacritics},\ \mathit{No Diacritics} \right\} \times \left\{\mathit{OneE},\ \mathit{BinE},\ \mathit{TwoE}\right\}$), each represents 16 exp. (for the 16 different network configurations: $\left\{7L,\ 4L\right\} \times \left\{82U,\ 50U\right\} \times \left\{0W, 1W\right\} \times \left\{LSTM,\ BiLSTM\right\}$). For each rug plot the two best (Bi)LSTM models are marked differently; and the other three network configuration parameters of the best of them, which consistently was the BiLSTM, are listed at the top of each rug plot.}~\label{fig:ArabicModelsResults}
 \end{figure}
 
-  \newpage
+  
 \subsubsection{Network Configurations Effects} 
 
 This section is to comment on the effect of the network configurations parameters.
@@ -102,7 +102,7 @@ Figure~\ref{fig:Convergence_Memory}-a shows the effect of encoding on learning r
 
 
 Memory Utilization is not similar for each model encoding. So, If we take a look in Figure~\ref{fig:One-Binary-Encoding} we will find that each encoding has it is own vector size representation Figure~\ref{fig:Convergence_Memory}-b shows this different of memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \textit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \textit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that, \textit{Two-hot} is in the middle between the two encoding with respect to the memory consumption and also it gives some more meaning for data encoding as explained before in Chapter~\ref{ch:data_encoding}
-\newpage
+
 \subsection{Comparison with Literature}
 As explained previous, One of the advantages in our research work is the very large dataset we have which allows us to have a good subset for testing. This provides us a confidence regarding our results.
 
@@ -123,7 +123,7 @@ If we compared our work approach results the best model scored 0.9638 with the h
 \end{table}
 
 
-\newpage
+
 \section{Discussion}\label{sec_discussion}
 
 In this section we need to discuss some points regarding our experiments and results approach. We will show some parts we think it need more discussion or exploration.

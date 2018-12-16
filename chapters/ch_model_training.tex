@@ -9,7 +9,7 @@ In this research, We worked on \textit{Poem Comprehensive Dataset (PCD)}\cite{Ar
 We can show training phase designed as a Data representation configurations and an RNN configuration. The number of experiments is the cross product of both data representation and RNN configuration, for example, If we have 12 data representation and 12 RNN configurations the total number of experiments will be 144. We need to highlight that,
 
 \begin{itemize}
-	\item Data representation feature is a general feature applied on the dataset not a Hand-Crafted features more details on ~\ref{sec_data_rep_param}.
+	\item Data representation feature is a general feature applied on the dataset not a Hand-Crafted features more details on~\ref{sec_data_rep_param}.
 	\item There is an effect of the Data representation feature due to Arabic language pronunciation and some features provide more information than others.
 	\item RNN configurations are the parameters related to the Network model development training, and it used after many of experiment to find and tune the best configurations. These means we did more than the number of experiment written in this research but we only publish the best results overall. It will explain more details in sec ~\ref{sec_rnn_param}.
 	\item The number verses used on testing and validation is a significant number 344,464 verse which confirms that the model tested on all types of verses and have confidence in the results.
@@ -70,7 +70,7 @@ As explained previously, There are three different encoding methods~\ref{ch:data
 	\caption{Arabic dataset class size (number of verses) ordered descendingly on y-axis vs. corresponding meter name on the x-axis.}\label{fig:data_percentage_distribution}
 \end{figure}
 
-\newpage
+
 
 \section{Parameters of Network Configuration}\label{sec_rnn_param}
 
@@ -92,7 +92,7 @@ The total number of combination is 16 which is $4$ parameters each one have $2$ 
 For all the 192 experiments networks are trained using dropout of 0.2, batch size is of 2048, with Adam optimizer, and 10\% for each of validation and testing sets.
 
 
-\newpage
+
 \subsection{Working on Unbalanced data using Weighted Loss}\label{sec_w_loss}
 
 One of the important problem we worked to solve it during our research unbalance dataset issue. We worked to overcome the unbalanced dataset and to not make our model suffer from this issue. We so introduced a Weighting function~\ref{eq:training_weighted_fun} where nc is the sample size of class c, c = 1,2,...C, and C
@@ -111,7 +111,7 @@ The idea is to increase the loss for the small classes as the number of verses o
         &= \frac{\frac{1}{416428}}{0.00535} = ~0.0004
 \end{align}\label{eq:training_weighted_fun_example}
 \end{subequations}
-\newpage
+
 \section{Experiments Setup Details}
 
 \subsection{Hardware}

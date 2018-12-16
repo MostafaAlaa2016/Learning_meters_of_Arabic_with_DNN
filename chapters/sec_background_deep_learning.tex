@@ -12,7 +12,7 @@
       The difficulty faced in the previous system is due to the hard-coded knowledge has shown up the AI need to acquire their knowledge from the data itself. This capability is known as machine learning. This approach has introduced some algorithms which solve and tackle the problems from which we can, for example, check the email is spam or not. Also, it used for other problems for price predictions for housing Example of this algorithms is (Naive Bayes, Logistic regression).
 
       This simple machine learning approach is working in the data but not with its original format it required some different representation to be input for the model. This different representation named feature engineering. Feature Engineering example: in case of email spam or not spam example it can be word frequency, char frequency, class attributes, capital letters frequency, some other data processing such as remove stop words from the input lemmatization. So, all the previous feature provided by a human expert which know the problem in details and analyzing which features it affect the data then add it as a feature to the input model.
-      \newpage
+      
 
       However, for many tasks, it is difficult to identify the features which should be extracted. For example, we need to detect cars in photographs. We know every car have wheels. So, to detect cars, we can check if there is a wheel to be a feature for car detection. However, to detect or to describe wheels in terms of pixel values is a difficult task. The image may be not clear or may be complicated by shadows, the sun glaring off the metal parts of the wheel, the blurring in images may not make it clear sometimes, and so on\cite{Goodfellow-et-al-2016}.\\
 
@@ -33,7 +33,7 @@ In the remaining parts in this section we will start introducing the main concep
 \end{figure}
 
 
-\newpage
+
 \subsection{Logistic Regression}
 Logistic Regression is a machine learning algorithm which we can assume has the basic idea behind the deep learning we will explain it later. Also, Logistic Regression is one of the most used machine learning techniques for binary classification.
 
@@ -119,7 +119,7 @@ In this subsection we will give an overview about the convex and non-convex func
 \end{equation}
 
 For a twice differentiable function of a single variable, if the second derivative is always greater than or equal to zero for its entire domain then the function is \textit{convex}. Well-known examples of convex functions include the quadratic function $X^2$ Figure~\ref{fig:derivative_example}. So, If $f(x)$ has a second derivative in $[a,b]$, then a necessary and sufficient condition for it to be \textit{convex} on that interval is that the second derivative $f^{''}(x) \geq 0$ for all $x$ in $[a,b]$.~\cite{Wolfram_Convex}.
-\newpage
+
 If the inequality above is strict for all $x_1$ and $x_2$, then $f(x)$ is called \textbf{strictly convex}. \textit{Convex} function on an open set has no more than one minimum. So, in strictly convex the local minimum = global minimum. This feature is very important feature for any optimization problem. As we will see most of deep learning problems are related to how to optimize the function to find the minimum point in this function. It will be nice and easy problem to face a convex function but in real world most of the cases is non convex functions.
 
 
@@ -158,7 +158,7 @@ If $f$ is twice-differentiable, then $f$ is concave if and only if $f^{''}$ is n
 \end{figure}
 
 \end{description}
-\newpage
+
 \subsubsection{Gradient Descent}
 
 As we explained in the previous parts, we need to find the relation between X,Y from the input parameters \textbf{\textit{(w,b)}} which will make the cost function in Equation~\eqref{eq:cost_function} to the minimum. In other words we need to find the best value of \textbf{\textit{J(w,b)}} which will represent the relation and reduce the error between $y$ and $\widehat{y}$  So, we need to minimize \textbf{\textit{J(w,b)}}. 
@@ -204,7 +204,7 @@ b& := b - \alpha \frac{dJ(w,b)}{db} \label{eq:gradient_descent_j_b}
 
 
 
-\newpage
+
   \subsubsection{Logistic Regression derivatives}\label{logistic_bp_derivatives}
 
   As described we need to calculate the gradient descent to get the best $\widehat{y}$ which minimizes the total cost in equation~\eqref{eq:logistic_regression_derivatives_single_example}. So, we will do backpropagation to get the value of $dz$ we need to calculate $da$ in Equation~\eqref{eq:logistic_regression_derivatives_da} then we will calculate $dz$ based on the output of $da$ from Equation~\eqref{eq:logistic_regression_derivatives_dz}. After that, We will start to take the derivative for $z$ function parameters \textbf{\textit{$w_1,w_2,b$}}. Once we got the values of \textbf{\textit{$dw_1,dw_2,db$}} we can use it to calculate the estimated values of \textbf{\textit{$w_1,w_2,b$}} in the Equations~\eqref{eq:logistic_regression_derivatives_dw1},~\eqref{eq:logistic_regression_derivatives_dw2},~\eqref{eq:logistic_regression_derivatives_db}
@@ -257,7 +257,7 @@ To implement a simple 1 iteration example below sample code simulate the program
    b = b - alpha * db
  \end{lstlisting}
 
-\newpage 
+ 
  \subsection{The Neuron}
 
  As we all know, Most computer research is trying to simulate the human brain as it is the most advanced smartest creation. If we are trying to check how the model understands the new information regarding for example bananas photo we can give a baby two bananas then ask him about it baby can remember it with all it new shapes. Same case if you inform any human about some information and trying to get a new inference it will automatically detect this information. So, The new research trying to simulate the human brain model into an Artificial Intelligence model to trying to get this performance. In this subsection, we will try to give an overview of the relation between the new research era and the human brain.
@@ -346,7 +346,7 @@ z^{[1]} =
 \right]
 \]
 
-\newpage
+
 \subsubsection{Linear Neurons and Their Limitations}
 
 Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function in Figure~\ref{fig:linear} which represent linear equation  $y= w x + b$. So, if we have mutli-layer networks for example Equation~\eqref{eq_linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks. So, to be able to detect the deep information we will use different functions for the hidden layers example: $\tanh$ Figure~\ref{fig:tanh} and its Equation~\eqref{eq:nn_tanh}. Another option is Sigmoid Figure~\ref{fig:sigmoid} and  Equation~\eqref{eq:logistic_function}. Finally, Relu Figure~\ref{fig:relu} Equation~\eqref{eq:nn_relu}. Most of binary classification problems use Sigmoid function for output layer. Also, we can use the same functions for the output but we can also use the linear for activation function in some cases.
@@ -464,7 +464,7 @@ If we checked the input variable in the backpropagation we will find it is $da^{
       da =  \frac{d\ell}{da} = \frac{d\ell(a,y)}{da} = (- \frac{y^{[1]}}{a^{[1]}} + \frac{1-y^{[1]}}{1-a^{[1]}} \ldots - \frac{y^{[m]}}{a^{[m]}} + \frac{1-y^{[m]}}{1-a^{[m]}} )
   \end{equation}
    
-\newpage
+
 \subsubsection{How we Initialize the Wights}
 
     As we explained previously in Logistic regression, We initialized the weights to Zero. However, in Deep Neural Networks it will not work. Note: It is okay to initialize the Bias to Zero but the wights it will not works. Let's see what will happen if we initialize the weights and Bias to Zero.
@@ -486,7 +486,7 @@ To initialize weights and to get the maximum value of the neural network computa
 %@@@$\subsubsection{Deep Learning Running Cycle}
 %@@@@ Cost function vs Loss Function vs Gradient Desend 
 
-\newpage
+
 \subsection{Recurrent Neural Networks (RNNs)}\label{sec_RNN}
 
 Deep Neural Networks shows its ability to solve many problems. However, in some use cases, Naive Neural Network architecture cannot works or get the expected results. One of the famous example related to this issue in the NLP tasks when working on a text problem for example, If we say our Harry is the king and Elizabeth is the queen, and we need our model to understand from the sentence that, Harry is he and Elizabeth is she. Also, if this word appears again, we need the model to detect that Harry is a person.
@@ -555,7 +555,7 @@ What is the new proposed architecture which can provide a way to share the featu
  In the previous example, to predict the word was is depending on long dependency to check if Waleed is singular or not to be consistent. Also, shows how some problems need the long-term dependencies handling.[Bengio et al.,1994]\cite{Bengio_ et_ al} showed that Basic RNNs has a problem in long-term dependency.  Another problem which may happen into basic Neural Networks is gradient exploding. One of the side-effects of gradient exploding is exponentially large gradient which causes our parameters to be so large. So, the Neural Networks parameters will have a server problem. Another fetal problem with Basic Neural Networks is overfitting problems [Zaremba et al., 2014]\cite{Zaremba_et_al}.
  
  So, to solve this learning problem [Hochreiter and Schmidhuber, 1997] introduced Long Short-Term Memory which helps to reduce the dependency problem using memory cell and forget gate.
-\newpage
+
 \subsection{Long Short Term Memory networks (LSTMs)}\label{sec_LSTM}
 
 
@@ -617,7 +617,7 @@ Sigmoid function output values between zero and one. If the value is one these m
 
 
 
-\newpage
+
 \subsubsection{How LSTM Works?}
 
 We have explained LSTM has three gates with some 
@@ -668,7 +668,7 @@ f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
         \label{fig:LSTM-input-gate}
 \end{figure}
 
-\newpage
+
 \item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates as shown in Equation~\eqref{eq:Multiplication-gate}. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in Figure~\ref{fig:LSTM-pointwise-operations} there are two operations, 
   \begin{enumerate}
   \item Multiplication Operation: This operation to apply the forget gate step by multiplying the old state $\tilde{C}_{t-1} $ by the $f_t$.
@@ -694,7 +694,7 @@ C_t  = f_t \circ c_{t-1} + i_t \circ \widetilde{C_t}
         \label{fig:LSTM-pointwise-operations}
       \end{figure}
       
-\newpage      
+      
     \item \textbf{Output Gate} This gate is a combination of \textit{sigmoid} layer and \textit{$\tanh$} layer. \textit{Sigmoid} layer decides the information which should be output. Then the output of the  \textit{sigmoid} function will be multiplying with the output of the \textit{$\tanh$} layer of the cell state. This \textit{$\tanh$} will make the values between -1 and 1. The output of the multiplication of \textit{sigmoid} and \textit{$\tanh$} will be the final output as show in Equation~\eqref{eq:output-gate}. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.
 
 %\begin{figure}[ht!]
@@ -722,7 +722,7 @@ h_t  &= o_t \circ \tanh(C_t)
 
     
     We have explained the normal LSTM. Also, we need to mention that there are much research proposed different modifications of the normal LSTM type. We will not explain all the types, but we will give a small overview of one of these modifications named Gated Recurrent Unit (GRU) in the next part.
-\newpage
+
 \subsubsection{Gated Recurrent Units (GRUs)}
 
 In RNN Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 by Kyunghyun Cho et al.~\cite{Cho_et_al}. It works to overcome the problem for long-term dependencies. It also aimed to solve the vanishing gradient problem from Basic RNNs.It proposed a new architecture Figure~\ref{fig:GRU} similar than the LSTM but with some major variants as below,
