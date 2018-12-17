@@ -46,7 +46,7 @@ In this section we will explain the effect of the 12 data representation techniq
 
 
   
-\begin{figure}
+\begin{figure}[!t]
  \input{./Figures/Ch_7_Results/Fig_F_1_Score.tex}
  \caption{$F_1$ score of the 192 experiments plotted as 12 vertical rug plots (for the 12 different data representations: $\left\{\mathit{Trimming},\ \mathit{No Trimming} \right\} \times \left\{\mathit{Diacritics},\ \mathit{No Diacritics} \right\} \times \left\{\mathit{OneE},\ \mathit{BinE},\ \mathit{TwoE}\right\}$), each represents 16 exp. (for the 16 different network configurations: $\left\{7L,\ 4L\right\} \times \left\{82U,\ 50U\right\} \times \left\{0W, 1W\right\} \times \left\{LSTM,\ BiLSTM\right\}$). For each rug plot the two best (Bi)LSTM models are marked differently; and the other three network configuration parameters of the best of them, which consistently was the BiLSTM, are listed at the top of each rug plot.}~\label{fig:ArabicModelsResults}
 \end{figure}
@@ -76,7 +76,7 @@ The relation between the model accuracy results per-class and the dataset size p
 
 
 
-\begin{figure}
+\begin{figure}[!t]
  \input{./Figures/Ch_7_Results/Fig_Results_Per_Class.tex}
  \caption{The per-class $F_1$ score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{fig:data_size_distribution}. There is a descending trend with the class size, with the exception at \textit{Rigz} meter.}~\label{fig:Results_Per_Class}
 \end{figure}
@@ -88,7 +88,7 @@ The relation between the model accuracy results per-class and the dataset size p
 As explained in Chapter~\ref{ch:data_encoding} the difference between data encoding types. In this section we will explore the effects of Data Encoding with respect to the \textit{Accuracy, Learning Rate and Memory Utilization} on the best model results (4L, 82U, 0W, 1T, 0D, BinE). During our experiments we didn't find a consistent effect for the model encoding type and the model accuracy~\ref{fig:Convergence_Memory}-a. However, most of cases we found the accuracy of the two-hot is slightly better than binary and then one-hot.
 
 
-\begin{figure}[!h]
+\begin{figure}[!t]
   \centering
   \begin{tikzpicture}
     \input{Figures/Ch_7_Results/Fig_Results_Encoding_Convergence.tex}
@@ -108,7 +108,7 @@ As explained previous, One of the advantages in our research work is the very la
 
 If we compared our work approach results the best model scored 0.9638 with the highest two in literature, We will find that our model results is significant higher than the others as illustrated in Table~\ref{tab:summ-results}. Moreover, Our approach is a learning approach not a Hand-crafted algorithmic approach which gives our model more confidence to be mature enough for these types of problems (Chapter~\ref{ch_literature}).
 
-\begin{table}[!tb]
+\begin{table}[!t]
   \centering
   \begin{tabular}{c c c}
     \toprule
