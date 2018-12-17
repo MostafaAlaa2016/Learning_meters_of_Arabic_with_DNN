@@ -1,4 +1,4 @@
-\section{Deep Learning Background}\label{sec_deep_learning_background}
+\section{Deep Learning Background}\label{sec:Deep_Learning_Background}
 
 
   \textbf{What is Deep Learning?} \textit{ Deep Learning is a new approach of Machine Learning research which focus on learning and understanding from the data without the needs for the human operator to formally specify all the knowledge that the computer needs. This method built using a hierarchy of concept which enables the computer to learn complex concepts by building them layer by layer from simpler ones. If there is a graph which shows how this concept built we will figure out a very deep graph with many layers, for this reason, we call this approach to AI deep learning~\cite{Goodfellow-et-al-2016}}\\
@@ -18,7 +18,7 @@
 
       One solution to solve this problem is to use machine learning itself to discover not only the output of the model but also the features which are the input for the model. This approach is known as representation learning. Learned representation can achieve better results than hard-designed representation. This approach also allows AI systems to rapidly adapt to new tasks or be automatically identify it from any new data. A representation learning can discover many features automatically fast or can take more times in case complex tasks, but at least it will get an excellent set of features which adapt for any complex problem without the need for manual features. In this research, we used the AI to identify the features for our model which make this model get a breakthrough results than the old fashion of manual feature machine learning used.
 
-      If we go back to the image example, we can show that it is not an easy task to extract features to detect the car from an image. So, Deep learning is trying to solve this problem in feature engineering by introducing representation learning that are build complex representations in terms of another simpler layer of representations Figure~\ref{fig:DeepLearningImagePersonExample.png} shows how deep learning represents an image of a person by combining simpler representation example the edges and contours which led to understanding complex representations. The benefit from allowing the computer to understand the data and building the representation is the ability now for building and understanding very complex representation and also, to utilize and combine features from simpler to deep representations with many ways such as recurrent or sequences.
+      If we go back to the image example, we can show that it is not an easy task to extract features to detect the car from an image. So, Deep learning is trying to solve this problem in feature engineering by introducing representation learning that are build complex representations in terms of another simpler layer of representations Figure~\ref{fig:Deep_Learning_Image_Person_Example} shows how deep learning represents an image of a person by combining simpler representation example the edges and contours which led to understanding complex representations. The benefit from allowing the computer to understand the data and building the representation is the ability now for building and understanding very complex representation and also, to utilize and combine features from simpler to deep representations with many ways such as recurrent or sequences.
 
       
 Modern deep learning provides a compelling framework for learning data problems. This model becomes more complex by the adding more layers and more units within a layer. Deep Learning model is working perfectly on the big dataset which allows the model to learn the data features in a good way.
@@ -29,7 +29,7 @@ In the remaining parts in this section we will start introducing the main concep
       
 \begin{figure}[!t] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/DeepLearningImagePersonExample.png}
   \caption{Illustrations on how can Deep Learning work based on images figure presented from~\cite{Goodfellow-et-al-2016}~\cite{Zeiler2014}.}
-  \label{fig:DeepLearningImagePersonExample.png}
+  \label{fig:Deep_Learning_Image_Person_Example}
 \end{figure}
 
 
@@ -40,7 +40,7 @@ Logistic Regression is a machine learning algorithm which we can assume has the 
 A simple example of logistic regression it would be if we have an algorithm for fraud detection. It takes some raw data input and detect if it is a fraud case or not let’s assume fraud case is one and a non-fraud case is zero. David Cox developed logistic regression in 1958~\cite{Cox2958}. The logistic name came from its core function logistic function which also named as \textit{Sigmoid function} function in Equation~\eqref{eq:logistic_function}. The Logistic function is shaped as S-shape.
 
 Also, one of these function features it can take any input real number and convert it into a value between 1 and 0.
-\input{Figures/Ch_2_Background/fig_logistic.tex}
+\input{./Figures/Ch_2_Background/fig_logistic.tex}
 
 
 Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ which is the estimate of $y$  when $\widehat{y}$  is presented in Equation~\eqref{eq:yhat_estimate}. So,to calculate the output function for logistic regression using Equation~\eqref{eq:logistic_regression_yhat}. Note: if we remove the Sigmoid function $\sigma$ from the equation it will be Linear Regression model and $\widehat{y}$ can be greater than 1 or negative. Figure~\ref{fig:logistic} show the Sigmoid function output. 
@@ -62,14 +62,14 @@ Let's take an Example, Given x, we want to get the predictions of $\widehat{y}$ 
 
 \subsubsection{Loss Error Function}
 
-Loss Error Function is the function which describes how well our algorithm can understand  $\widehat{y}$ y b when the true label is y. It also can be defined as the difference between the true value of $y$ and the estimated value of  $\widehat{y}$.~\footnote{\textit{Parts of this subsections are explained into Andrew NG Coursera courses in deep learning and It written using our understanding to this topic but the equations and the idea taken from the course  https://www.coursera.org/learn/neural-networks-deep-learning/}}. Equation~\eqref{eq:loss function} describe the loss function for Logistic Regression. There are another functions can represent the loss functions but we take the below as example. As we know $y$ is the label which should be 1 or 0. So, The reason why this function make sense to describe the loss function as below
+Loss Error Function is the function which describes how well our algorithm can understand  $\widehat{y}$ y b when the true label is y. It also can be defined as the difference between the true value of $y$ and the estimated value of  $\widehat{y}$.~\footnote{\textit{Parts of this subsections are explained into Andrew NG Coursera courses in deep learning and It written using our understanding to this topic but the equations and the idea taken from the course\url{ https://www.coursera.org/learn/neural-networks-deep-learning/}}}}. Equation~\eqref{eq:loss_function} describe the loss function for Logistic Regression. There are another functions can represent the loss functions but we take the below as example. As we know $y$ is the label which should be 1 or 0. So, The reason why this function make sense to describe the loss function as below
 \begin{itemize}
 \item in case (y = 1) Equation~\eqref{eq:loss_function_log_y_1} we need $\widehat{y}$ to be big as possible to be equal or near y true which is 1. So, $ - (\log \widehat{y} )$ will get the value. Note as explained before Sigmoid function can't be greater than 1 or less than 0. %@@@ add chart here to explain
 \item in case (y = 0) Equation~\eqref{eq:loss_function_log_y_0} we need $\widehat{y}$ to be small as possible to be equal or near y true which is 0. So, $- \log (1-\widehat{y})$  will get the value.  %@@@ add chart here to explain
   \end{itemize}
   
 \begin{equation}
-  \label{eq:loss function}
+  \label{eq:loss_function}
     \ell(y,\widehat{y}) = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y}))
   \end{equation}
 
@@ -112,13 +112,13 @@ Cost function \textbf{\textit{$J$}} in Equation~\eqref{eq:cost_function} is the 
 In this subsection we will give an overview about the convex and non-convex functions and its relation with deep learning. We will not explain the proofs or write it. We will explain in general about the definition and its related features to our topic.
 
 \begin{description}
-  \item [\textbf{Convex Function}]:  In mathematics, a real-valued function defined on an n-dimensional interval is called \textit{convex} if the line segment between any two points on the graph of the function lies above or on the graph, in a Euclidean space (or more generally a vector space) of at least two dimensions~\cite{Wiki_Convex_Function}. More generally, a function $f(x)$ Figure~\ref{fig:convex_function} is \textit{convex} on an interval $[a,b]$ if for any two points $x_1$ and $x_2$ in $[a,b]$ and any $\lambda$ where $0<\lambda<1$~\cite{Rudin_1976},
+  \item [\textbf{Convex Function}]:  In mathematics, a real-valued function defined on an n-dimensional interval is called \textit{convex} if the line segment between any two points on the graph of the function lies above or on the graph, in a Euclidean space (or more generally a vector space) of at least two dimensions~\cite{Wiki_Convex_Function}. More generally, a function $f(x)$ Figure~\ref{fig:Convex_Function} is \textit{convex} on an interval $[a,b]$ if for any two points $x_1$ and $x_2$ in $[a,b]$ and any $\lambda$ where $0<\lambda<1$~\cite{Rudin_1976},
 
 \begin{equation}\label{eq:convex_fun}
   f(\lambda x_1 + (1-\lambda)x_2) \leq \lambda f(x_1) + (1 - \lambda) f(x_2)
 \end{equation}
 
-For a twice differentiable function of a single variable, if the second derivative is always greater than or equal to zero for its entire domain then the function is \textit{convex}. Well-known examples of convex functions include the quadratic function $X^2$ Figure~\ref{fig:derivative_example}. So, If $f(x)$ has a second derivative in $[a,b]$, then a necessary and sufficient condition for it to be \textit{convex} on that interval is that the second derivative $f^{''}(x) \geq 0$ for all $x$ in $[a,b]$.~\cite{Wolfram_Convex}.
+For a twice differentiable function of a single variable, if the second derivative is always greater than or equal to zero for its entire domain then the function is \textit{convex}. Well-known examples of convex functions include the quadratic function $X^2$ Figure~\ref{fig:Derivative_Example}. So, If $f(x)$ has a second derivative in $[a,b]$, then a necessary and sufficient condition for it to be \textit{convex} on that interval is that the second derivative $f^{''}(x) \geq 0$ for all $x$ in $[a,b]$.~\cite{Wolfram_Convex}.
 
 If the inequality above is strict for all $x_1$ and $x_2$, then $f(x)$ is called \textbf{strictly convex}. \textit{Convex} function on an open set has no more than one minimum. So, in strictly convex the local minimum = global minimum. This feature is very important feature for any optimization problem. As we will see most of deep learning problems are related to how to optimize the function to find the minimum point in this function. It will be nice and easy problem to face a convex function but in real world most of the cases is non convex functions.
 
@@ -126,17 +126,18 @@ If the inequality above is strict for all $x_1$ and $x_2$, then $f(x)$ is called
 %\begin{figure}[!t]
 %\begin{center}
 %\input{Figures/Ch_2_Background/Fig_Convex_Function.tex}
-%\caption{Convex Function Example }\label{fig:convex_function}
+%\caption{Convex Function Example }\label{fig:Convex_Function}
 %\end{center}
 %\end{figure} 
 
 
 \begin{figure}[!t]
   \centering
-  \subfigure[Convex Function Example]{~\label{fig:convex_function}
+  \subfigure[Convex Function Example]{~\label{fig:Convex_Function}
   \input{Figures/Ch_2_Background/Fig_Convex_Function.tex}}
-  \subfigure[Concave Function Example]{~\label{fig:concave_function}
+  \subfigure[Concave Function Example]{~\label{fig:Concave_Function}
     \input{Figures/Ch_2_Background/Fig_Concave_Fun.tex}}
+\caption{Convex and Concave functions examples.}
 \end{figure}
 
 
@@ -154,12 +155,12 @@ The function is also called strictly concave if,
 f(\lambda x_1 + (1-\lambda)x_2) > \lambda f(x_1) + (1 - \lambda) f(x_2)
   \end{split}
 \end{equation}
-If $f$ is twice-differentiable, then $f$ is concave if and only if $f^{''}$ is non-positive (or, informally, if the "acceleration" is non-positive). If its second derivative is negative then it is strictly concave, but the opposite is not true, as shown by $f(x) = −x^4$~\cite{Wiki_Concave_Function}. Also, a differentiable function $f$ is (strictly) concave on an interval if and only if its derivative function $f^`$ is (strictly) monotonically decreasing on that interval, that is, a concave function has a non-increasing (decreasing) slope. The problem for non-convex optimization is to find the local minimum. Sometimes you will find many local minimum and it will be hard to optimize this function Figure~\ref{fig:concave_function}.
+If $f$ is twice-differentiable, then $f$ is concave if and only if $f^{''}$ is non-positive (or, informally, if the "acceleration" is non-positive). If its second derivative is negative then it is strictly concave, but the opposite is not true, as shown by $f(x) = −x^4$~\cite{Wiki_Concave_Function}. Also, a differentiable function $f$ is (strictly) concave on an interval if and only if its derivative function $f^`$ is (strictly) monotonically decreasing on that interval, that is, a concave function has a non-increasing (decreasing) slope. The problem for non-convex optimization is to find the local minimum. Sometimes you will find many local minimum and it will be hard to optimize this function Figure~\ref{fig:Concave_Function}.
 
 %\begin{figure}[!t]
 %\begin{center}
 %\input{Figures/Ch_2_Background/Fig_Concave_Fun.tex}
-%\caption{Concave Function Example }\label{fig:concave_function}
+%\caption{Concave Function Example }\label{fig:Concave_Function}
 %\end{center}
 %\end{figure}
 
@@ -173,7 +174,7 @@ As we explained in the previous parts, we need to find the relation between X,Y 
 
 To illustrate the relation between \textbf{\textit{J(w,b)}} we will assume for simplicity the relation will be function of one variable \textbf{\textit{J(w)}}. As shown in Figure~\ref{fig:gradient_decent_surf} we have a curve which represent the function \textbf{\textit{J(w)}} we need to find the minimum point in this curve which is the local minimum (red point in the previous figure) assuming it is a  \textbf{\textit{convex function}}. We will use in Equation~\eqref{eq:gredient_descent_w} to find the local minimum.
 
-To explain how this equation works let's take simple function $f(x) = x^2$ then select a random point $P_1$ from Figure~\ref{fig:derivative_example} then pick another point $P_2$ let's take derivative \textit{(which by definition is the slope of the function at the point which also the change between these two points)} The slope of this function is the height (3) divided by the width (1) this is the tangent of $J(w)=\frac{3}{1}$ at this point. If the derivative is positive so, w will be update minus the derivative multiplied by learning rate alpha $\alpha$ as in Equation~\eqref{eq:gredient_descent_w}. We will repeat the previous step until value of w get the lowest minimum. When w get the lowest minimum the derivative will be negative so, w will start to increase again at this step the algorithm will stop. Also, we can demonstrate the effect of different $\alpha$ values and its impact on the function we can show this effect in Figure~\ref{fig:alpha_change} but the main point it is not always a happy scenario sometimes the high $alpha$ is not a good idea, and it depends on the problem and the dataset.
+To explain how this equation works let's take simple function $f(x) = x^2$ then select a random point $P_1$ from Figure~\ref{fig:Derivative_Example} then pick another point $P_2$ let's take derivative \textit{(which by definition is the slope of the function at the point which also the change between these two points)} The slope of this function is the height (3) divided by the width (1) this is the tangent of $J(w)=\frac{3}{1}$ at this point. If the derivative is positive so, w will be update minus the derivative multiplied by learning rate alpha $\alpha$ as in Equation~\eqref{eq:gredient_descent_w}. We will repeat the previous step until value of w get the lowest minimum. When w get the lowest minimum the derivative will be negative so, w will start to increase again at this step the algorithm will stop. Also, we can demonstrate the effect of different $\alpha$ values and its impact on the function we can show this effect in Figure~\ref{fig:Alpha_Change} but the main point it is not always a happy scenario sometimes the high $alpha$ is not a good idea, and it depends on the problem and the dataset.
 
 Now, Let's generalize the above equation assume we have two parameters  \textbf{\textit{(w,b)}} and we need to calculate the cost function for  \textbf{\textit{J(w,b)}} we will work on as two steps first function in Equation~\eqref{eq:gradient_descent_j_w}  wrt \textbf{\textit{(w)}} and second function in Equation~\eqref{eq:gradient_descent_j_b} wrt \textbf{\textit{(b)}}
 
@@ -182,9 +183,9 @@ Now, Let's generalize the above equation assume we have two parameters  \textbf{
 
 
 \begin{figure}[!t]
-\subfigure[Derivative Example of function $f(x) = x^2$]{~\label{fig:derivative_example}
+\subfigure[Derivative Example of function $f(x) = x^2$]{~\label{fig:Derivative_Example}
 \input{Figures/Ch_2_Background/fig_derivative_example.tex}}
-\subfigure[Derivative Example of function  $f(x) = x^2$ where $\alpha_1$ > $\alpha_2$]{\label{fig:alpha_change}
+\subfigure[Derivative Example of function  $f(x) = x^2$ where $\alpha_1$ > $\alpha_2$]{\label{fig:Alpha_Change}
 \input{Figures/Ch_2_Background/fig_derivative_alpha_change.tex}}
 \end{figure}
 
@@ -211,7 +212,7 @@ b& := b - \alpha \frac{dJ(w,b)}{db} \label{eq:gradient_descent_j_b}
 
 
 
-  \subsubsection{Logistic Regression derivatives}\label{logistic_bp_derivatives}
+  \subsubsection{Logistic Regression derivatives}\label{sec:Logistic_Bp_Derivatives}
 
   As described we need to calculate the gradient descent to get the best $\widehat{y}$ which minimizes the total cost in equation~\eqref{eq:logistic_regression_derivatives_single_example}. So, we will do backpropagation to get the value of $dz$ we need to calculate $da$ in Equation~\eqref{eq:logistic_regression_derivatives_da} then we will calculate $dz$ based on the output of $da$ from Equation~\eqref{eq:logistic_regression_derivatives_dz}. After that, We will start to take the derivative for $z$ function parameters \textbf{\textit{$w_1,w_2,b$}}. Once we got the values of \textbf{\textit{$dw_1,dw_2,db$}} we can use it to calculate the estimated values of \textbf{\textit{$w_1,w_2,b$}} in the Equations~\eqref{eq:logistic_regression_derivatives_dw1},~\eqref{eq:logistic_regression_derivatives_dw2},~\eqref{eq:logistic_regression_derivatives_db}%
 \begin{equation}\label{eq:logistic_regression_derivatives_single_example}
@@ -253,10 +254,10 @@ To implement a simple 1 iteration example below sample code simulate the program
  \subsection{The Neuron}
  As we all know, Most computer research is trying to simulate the human brain as it is the most advanced smartest creation. If we are trying to check how the model understands the new information regarding for example bananas photo we can give a baby two bananas then ask him about it baby can remember it with all it new shapes. Same case if you inform any human about some information and trying to get a new inference it will automatically detect this information. So, The new research trying to simulate the human brain model into an Artificial Intelligence model to trying to get this performance. In this subsection, we will try to give an overview of the relation between the new research era and the human brain.
  
- The neuron is the foundation unit of the brain. The size of the brain is as about the size of a grain of rice. The brain contains more over 10000 neurons with average 6000 connections with other neurons~\cite{Restak_2001}.  These massive networks allow our brain to build its knowledge about the world around us. The neuron is work by receiving the information from other neuron and process it uniquely then pass the output to other neurons this process is shown in figure~\ref{fig:NeuronStructure}.%
+ The neuron is the foundation unit of the brain. The size of the brain is as about the size of a grain of rice. The brain contains more over 10000 neurons with average 6000 connections with other neurons~\cite{Restak_2001}.  These massive networks allow our brain to build its knowledge about the world around us. The neuron is work by receiving the information from other neuron and process it uniquely then pass the output to other neurons this process is shown in figure~\ref{fig:Neuron_Structure}.%
  \begin{figure}[!t] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/neuron_structure.png}
   \caption{Description of neuron's structure this figure from~\cite{DLFundamentals}}
-  \label{fig:NeuronStructure}
+  \label{fig:Neuron_Structure}
 \end{figure}%
  How do we learn a new concept? \textit{The neuron receives its input from dendrites. The incoming neuron connection is dynamically strengthened or weakened based on how often it is used, and the strength of each connection determines the contribution of the input to the neuron's output. Based on the connection strength it will have weight then the input is summed in the cell body. This sum is transformed into a new signal which is propagated along the cell's axon and sent to other neurons\cite{DLFundamentals}}.
 
@@ -332,31 +333,31 @@ z^{[1]} =
 \]%
 \subsubsection{Linear Neurons and Their Limitations}
 
-Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function in Figure~\ref{fig:linear} which represent linear equation  $y= w x + b$. So, if we have mutli-layer networks for example Equation~\eqref{eq_linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks. So, to be able to detect the deep information we will use different functions for the hidden layers example: $\tanh$ Figure~\ref{fig:tanh} and its Equation~\eqref{eq:nn_tanh}. Another option is Sigmoid Figure~\ref{fig:sigmoid} and  Equation~\eqref{eq:logistic_function}. Finally, Relu Figure~\ref{fig:relu} Equation~\eqref{eq:nn_relu}. Most of binary classification problems use Sigmoid function for output layer. Also, we can use the same functions for the output but we can also use the linear for activation function in some cases.%
+Now, We explained the equations for the feedforward Neural Network. We have only one point we need to discuss it which is the Activation function. Let's assume we will continue use linear function in Figure~\ref{fig:Linear} which represent linear equation  $y= w x + b$. So, if we have mutli-layer networks for example Equation~\eqref{eq:linear_fun_limitations} it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks. So, to be able to detect the deep information we will use different functions for the hidden layers example: $\tanh$ Figure~\ref{fig:Tanh} and its Equation~\eqref{eq:nn_tanh}. Another option is Sigmoid Figure~\ref{fig:Sigmoid} and  Equation~\eqref{eq:logistic_function}. Finally, Relu Figure~\ref{fig:Relu} Equation~\eqref{eq:nn_relu}. Most of binary classification problems use Sigmoid function for output layer. Also, we can use the same functions for the output but we can also use the linear for activation function in some cases.%
 \begin{figure}[!t]
   \centering
-  \subfigure[RELU activation function.]{\label{fig:relu}
+  \subfigure[RELU activation function.]{\label{fig:Relu}
             \begin{tikzpicture}
               \input{Figures/Ch_2_Background/fig_relu.tex}
             \end{tikzpicture}}
 %
-  \subfigure[Tanh activation function.]{\label{fig:tanh}
+  \subfigure[Tanh activation function.]{\label{fig:Tanh}
             \begin{tikzpicture}
               \input{Figures/Ch_2_Background/fig_tanh}
             \end{tikzpicture}}
 %          
-\subfigure[Linear activation function.]{\label{fig:linear}
+\subfigure[Linear activation function.]{\label{fig:Linear}
             \begin{tikzpicture}
               \input{Figures/Ch_2_Background/fig_linear_fun.tex}
             \end{tikzpicture}}
 %
-\subfigure[Logistic sigmoid activation function.]{\label{fig:sigmoid}
+\subfigure[Logistic sigmoid activation function.]{\label{fig:Sigmoid}
             \begin{tikzpicture}
               \input{Figures/Ch_2_Background/fig_sigmoid.tex}
             \end{tikzpicture}}
           \caption{Common used activation functions include the logistic sigmoid $\sigma(z)$, the hyperbolic tangent $\tanh(z)$, the rectified hyperbolic tangent RelU $Relu(x)$, and linear function.}
 \end{figure}%
-\begin{subequations}\label{eq_linear_fun_limitations}
+\begin{subequations}\label{eq:linear_fun_limitations}
    \begin{align}
      Z^{[1]} & = w_1^{[1]T} x + b_1^{[1]} , a_1^{[1]} = \sigma(Z_1^{[1]}) \\
      Z^{[2]} & = w^{[2]T} a^1 + b^{[2]} = w^{[2]T} (w^{[1]T}x + b^{[1]}) + b^{[2]}\\
@@ -379,8 +380,8 @@ This is achieved by using a special output layer named softmax layer. This layer
 The strong prediction will have a value entry in the vector close to 1, while the other entries will be close to 0. The weak prediction will have multiple possible labels has almost the equal values\cite{DLFundamentals}.
 \subsubsection{Forward-Propagation in a Neural Networks}
 %@@@ add figure to show the network example similar https://www.coursera.org/learn/neural-networks-deep-learning/lecture/MijzH/forward-propagation-in-a-deep-network
-We will take the below figure XXXX as example of Deep Neural Network. So, to calculate the Forward propagation we will follow the below equation~\eqref{eq_feedfarward_DL}. Note: we assume $X = a^{[0]}$ as initial function notation. Also, $\widehat{Y}= g(Z^{[4]}=A^{[4]}$ as the final output layer.%
-\begin{equation}\label{eq_feedfarward_DL}
+We will take the below figure XXXX as example of Deep Neural Network. So, to calculate the Forward propagation we will follow the below equation~\eqref{eq:feedfarward_dL}. Note: we assume $X = a^{[0]}$ as initial function notation. Also, $\widehat{Y}= g(Z^{[4]}=A^{[4]}$ as the final output layer.%
+\begin{equation}\label{eq:feedfarward_dL}
      Z^{[l]}  = w^{[l]} a^{l-1} + b^{[l]} , A^{[1]} = g^{l}(Z^{[l]})
    \end{equation} % @@@ figure to show the input forward and back propagation steps
 \subsubsection{Back-Propagation in a Neural Networks}
@@ -392,10 +393,10 @@ which describes several neural networks where backpropagation has a significant 
 
 The backpropagation not only an algorithm which gives us the expression for partial derivative of the cost function $C$ with respect to wights $w$ and bias $b$ but also it gives is an intuations about the change of the cost function while changing its variables $w \& b$ and its effect to the overall network.
 
-As explained in logistic regression section (\ref{logistic_bp_derivatives}) how we can calculate the derivatives for logistic regression with one layer using this equations\eqref{eq:logistic_regression_derivatives_single_example},\eqref{eq:logistic_regression_derivatives_da},\eqref{eq:logistic_regression_derivatives_dz},\\
+As explained in logistic regression section (\ref{sec:Logistic_Bp_Derivatives}) how we can calculate the derivatives for logistic regression with one layer using this equations\eqref{eq:logistic_regression_derivatives_single_example},\eqref{eq:logistic_regression_derivatives_da},\eqref{eq:logistic_regression_derivatives_dz},\\
 \eqref{eq:logistic_regression_derivatives_dw1},\eqref{eq:logistic_regression_derivatives_dw2},\eqref{eq:logistic_regression_derivatives_db}.\\
-We will generalize the derivatives equations to be for $l$ layers from the below equations\eqref{eq_nn_bp_l_layers}.%
- \begin{subequations}\label{eq_nn_bp_l_layers}
+We will generalize the derivatives equations to be for $l$ layers from the below equations\eqref{eq:nn_bp_l_layers}.%
+ \begin{subequations}\label{eq:nn_bp_l_layers}
    \begin{align}
      dz^{[l]} & = da^{[l]} \times g^{[l]'}(z^{l}) \\
      dw^{[l]} & = dz^{[l]} \cdot a^{[l-1]} \\
@@ -404,8 +405,8 @@ We will generalize the derivatives equations to be for $l$ layers from the below
 %     dz^{[l]} & =  (W^{[l+1]T} \cdot dz^{[l+1]}) * g^{[l]'}(z^{l}) \quad \text{from 2.24d in 2.24a}
  \end{align}
 \end{subequations}%
-We can vectorize the above equation for Neural Network implementation as below equations\eqref{eq_nn_bp_l_layers_vectorize}.%
- \begin{subequations}\label{eq_nn_bp_l_layers_vectorize}
+We can vectorize the above equation for Neural Network implementation as below equations\eqref{eq:nn_bp_l_layers_vectorize}.%
+ \begin{subequations}\label{eq:nn_bp_l_layers_vectorize}
    \begin{align}
      dz^{[l]} & = dA^{[l]} \times g^{[l]'}(z^{l}) \\
      dw^{[l]} & = \frac{1}{m} dz^{[l]} \cdot A^{[l-1]T} \\
@@ -414,7 +415,7 @@ We can vectorize the above equation for Neural Network implementation as below e
 %     dz^{[l]} & =  (W^{[l+1]T} \cdot dz^{[l+1]}) * g^{[l]'}(z^{l}) \quad \text{from 2.24d in 2.24a}
  \end{align}
 \end{subequations}%
-If we checked the input variable in the backpropagation we will find it is $da^{l}$ and this is the derivative of~\eqref{eq:loss function} which we can get it as explained previously from~\eqref{eq:logistic_regression_derivatives_da} this is the formula for final layer in the feedforward step. If we need to calculate the vectorize version of this equation we can use equation\eqref{eq:logistic_regression_derivatives_da_vectorize}%
+If we checked the input variable in the backpropagation we will find it is $da^{l}$ and this is the derivative of~\eqref{eq:loss_function} which we can get it as explained previously from~\eqref{eq:logistic_regression_derivatives_da} this is the formula for final layer in the feedforward step. If we need to calculate the vectorize version of this equation we can use equation\eqref{eq:logistic_regression_derivatives_da_vectorize}%
  \begin{equation}\label{eq:logistic_regression_derivatives_da_vectorize}
       da =  \frac{d\ell}{da} = \frac{d\ell(a,y)}{da} = (- \frac{y^{[1]}}{a^{[1]}} + \frac{1-y^{[1]}}{1-a^{[1]}} \ldots - \frac{y^{[m]}}{a^{[m]}} + \frac{1-y^{[m]}}{1-a^{[m]}} )
   \end{equation}%
@@ -433,7 +434,7 @@ If we checked the input variable in the backpropagation we will find it is $da^{
 \end{subequations}%
 To initialize weights and to get the maximum value of the neural network computation we should initialize the weight by any small random numbers to avoid the big weights which will tend to get the small slope from the Z where $Z^{[1]}= W^{[1]} X + b^{[1]}$ For example, if we use $\tanh$ we will get the big tail values $a^{[1]}= g^{[1]}(Z^{[1]})$. So, the big weights we more likely to get slow learning rate. 
 
-\subsection{Recurrent Neural Networks (RNNs)}\label{sec_RNN}
+\subsection{Recurrent Neural Networks (RNNs)}\label{sec:RNN}
 
 Deep Neural Networks shows its ability to solve many problems. However, in some use cases, Naive Neural Network architecture cannot works or get the expected results. One of the famous example related to this issue in the NLP tasks when working on a text problem for example, If we say our Harry is the king and Elizabeth is the queen, and we need our model to understand from the sentence that, Harry is he and Elizabeth is she. Also, if this word appears again, we need the model to detect that Harry is a person.
 This type of problem has a dependency on the input text and how to get the output prediction based on the provided information from the input.
@@ -456,10 +457,10 @@ So, What are the problems in the Naive Neural Network architecture?
 \end{itemize}
 What is the new proposed architecture which can provide a way to share the features between the Network?
 \begin{itemize}
-\item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figure~\ref{fig:RNN-rolled-loop} shows an example. So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.%
+\item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figure~\ref{fig:RNN_Rolled_Loop} shows an example. So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.%
 \begin{figure}[!t]
   \input{./Figures/Ch_2_Background/Fig_RNN_unrolled.tex}
-  \caption{Recurrent Neural Networks Loops\cite{colah}}\label{fig:RNN-rolled-loop}
+  \caption{Recurrent Neural Networks Loops\cite{colah}}\label{fig:RNN_Rolled_Loop}
 \end{figure}%
 \item Second, The feedfarward will be compute for time t and then we will calculate the loss at step t. The final loss is the sum of loss at every step t eq\eqref{eq:rnn_feedfarward} explains the steps for feedfarward. Note: The backpropagation here will be calculated though time at every step.%@@@ change the notations from Andrew to Blog
   \begin{subequations}\label{eq:rnn_feedfarward}
@@ -474,7 +475,7 @@ What is the new proposed architecture which can provide a way to share the featu
  \end{itemize}
 
 
- \subsubsection{Vanishing Gradient with RNNs}\label{sec_RNN_Vanishing}
+ \subsubsection{Vanishing Gradient with RNNs}\label{sec:RNN_Vanishing}
  
  As we explained, RNN works on sequential data, and the idea is to predict new output not only based on the input data vector but also, other input vectors. Due to the recurrent structure in RNNs, it tends to suffer from long-term dependency to simplify this point let’s have an example, the following sentence \\
  \textit{Waleed Yousef who is Associate Professor at Helwan University and teaching Data Science courses and its dependencies \textbf{\underline{was}} got Ph.D. in Computer Engineering from GWU at 2006.}.
@@ -483,7 +484,7 @@ What is the new proposed architecture which can provide a way to share the featu
  
  So, to solve this learning problem [Hochreiter and Schmidhuber, 1997] introduced Long Short-Term Memory which helps to reduce the dependency problem using memory cell and forget gate.
 
-\subsection{Long Short Term Memory networks (LSTMs)}\label{sec_LSTM}
+\subsection{Long Short Term Memory networks (LSTMs)}\label{sec:LSTM}
 
 
 Long Short Term Memory networks – aka “LSTMs” – are a special type of RNN, capable of learning long-term dependencies. To solve the vanishing gradient problem for long-term dependencies, [Hochreiter and Schmidhuber, 1997]\cite{Hochreiter} suggested new cell architecture for RNN by adding Long Short Term Memory which significantly reduced the long-term dependency problem using memory cell and forget gate.
@@ -496,16 +497,16 @@ In Basic RNNs it is very simple structure for every layer with simple output fun
 \input{./Figures/Ch_2_Background/Fig_LSTM_Main_Figure_3_Cells.tex}%
 \subsubsection{LSTM Gate Mechanism}
 
-The main component of LSTM is the cell state; It allows the information to pass through along it unchanged. In figure~\ref{fig:LSTM-gate} the top line show the information flow through the cell. The LSTM cell can add or remove information to the cell state using the Gating mechanism. 
+The main component of LSTM is the cell state; It allows the information to pass through along it unchanged. In figure~\ref{fig:LSTM_Gate} the top line show the information flow through the cell. The LSTM cell can add or remove information to the cell state using the Gating mechanism. 
 
-Gates's idea is a methodology to manage the way how and which information pass or not. It controls information flow through the cell. It has three of these gates. They are consist of a sigmoid neural network layer~\ref{fig:LSTM-Cell-state} and a pointwise multiplication operation~\ref{fig:LSTM-gate}.
+Gates's idea is a methodology to manage the way how and which information pass or not. It controls information flow through the cell. It has three of these gates. They are consist of a sigmoid neural network layer~\ref{fig:LSTM_Cell_State} and a pointwise multiplication operation~\ref{fig:LSTM_Gate}.
 
 Sigmoid function output values between zero and one. If the value is one these means that everything should pass, while if the value is zero these means do not pass anything. So, the value output from the sigmoid function refers to the amount of each component should be passed.%
 \begin{figure}[!t]
   \centering
- \subfigure[Top line is the medium for information flow]{\label{fig:LSTM-Cell-state}
+ \subfigure[Top line is the medium for information flow]{\label{fig:LSTM_Cell_State}
     \input{./Figures/Ch_2_Background/Fig_LSTM_Cell_State.tex}}
-  \subfigure[Pointwise Multiplication Operation]{\label{fig:LSTM-gate} \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_multiplication_operation.tex}}
+  \subfigure[Pointwise Multiplication Operation]{\label{fig:LSTM_Gate} \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_multiplication_operation.tex}}
   \caption{LSTM Cell state and Pointwise operation adapted from~\cite{colah}.}
 \end{figure}%
 \subsubsection{How LSTM Works?}
@@ -514,8 +515,8 @@ We have explained LSTM has three gates with some
 
 \begin{itemize}
   
-\item \textbf{Forget Gate Layer} a Sigmoid layer Figure~\ref{fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculate the output from Sigmoid function between zero and one. As explained if one \textit{everything should pass}, while if zero \textit{do not pass anything}. The value zero or one depends on the value of the cell state if it includes a gender type and we need to predict the pronouns so, it will pass else it will ride of this state~\eqref{eq:lstm-gate}.%
-\begin{equation}\label{eq:lstm-gate}
+\item \textbf{Forget Gate Layer} a Sigmoid layer Figure~\ref{fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculate the output from Sigmoid function between zero and one. As explained if one \textit{everything should pass}, while if zero \textit{do not pass anything}. The value zero or one depends on the value of the cell state if it includes a gender type and we need to predict the pronouns so, it will pass else it will ride of this state~\eqref{eq:lstm_gate}.%
+\begin{equation}\label{eq:lstm_gate}
 f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
 \end{equation}%
 \begin{figure}[!t]
@@ -527,17 +528,17 @@ f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
       \input{./Figures/Ch_2_Background/Fig_LSTM_forget_gate.tex}
     %\end{tikzpicture}
   }
-  \subfigure[LSTM Input gate]{\label{fig:LSTM-input-gate}
+  \subfigure[LSTM Input gate]{\label{fig:LSTM_Input_Gate}
     %\begin{tikzpicture}
         \input{./Figures/Ch_2_Background/Fig_LSTM_Input_Gate.tex}
         % \end{tikzpicture}
       }
-  \subfigure[Multiplication and Addition Operation in LSTM.]{\label{fig:LSTM-pointwise-operations}
+  \subfigure[Multiplication and Addition Operation in LSTM.]{\label{fig:LSTM_Pointwise_Operations}
   %\begin{tikzpicture}
     \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_operations.tex}
     % \end{tikzpicture}
   }
-  \subfigure[LSTM output gate.]{\label{fig:LSTM-output-gate}
+  \subfigure[LSTM output gate.]{\label{fig:LSTM_Output_Gate}
   %\begin{tikzpicture}
     \input{./Figures/Ch_2_Background/Fig_LSTM_output_gate.tex}
     % \end{tikzpicture}
@@ -545,25 +546,25 @@ f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
   \caption{LSTM Gates and Configurations adapopted from~\cite{colah}.}
 \end{figure}%
 
-\item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{$\tanh$ layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state Figure~\ref{fig:LSTM-input-gate}. The previous combination controls the update state as shown in Equation~\eqref{eq:input-gate}. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.%
-\begin{subequations}\label{eq:input-gate}
+\item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{$\tanh$ layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state Figure~\ref{fig:LSTM_Input_Gate}. The previous combination controls the update state as shown in Equation~\eqref{eq:input_gate}. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.%
+\begin{subequations}\label{eq:input_gate}
 \begin{align}
   i_t  &= \sigma(W_i \dot[h_{t-1},x_t] + b_i)\\
 \widetilde{C_t} &= \tanh(W_C\dot [h_{t-1},x_t]+ b_C)
 \end{align}
 \end{subequations}
 
-\item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates as shown in Equation~\eqref{eq:Multiplication-gate}. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in Figure~\ref{fig:LSTM-pointwise-operations} there are two operations, 
+\item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates as shown in Equation~\eqref{eq:multiplication_gate}. This step is the actions applying the forget of the old information and add the new information, as we decided in the previous steps. Let's look into the upper line in Figure~\ref{fig:LSTM_Pointwise_Operations} there are two operations, 
   \begin{enumerate}
   \item Multiplication Operation: This operation to apply the forget gate step by multiplying the old state $\tilde{C}_{t-1} $ by the $f_t$.
   \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t \times \tilde{C_t}$
     \end{enumerate}%
-\begin{equation}\label{eq:Multiplication-gate}
+\begin{equation}\label{eq:multiplication_gate}
 C_t  = f_t \circ c_{t-1} + i_t \circ \widetilde{C_t}
 \end{equation}
       
-    \item \textbf{Output Gate} This gate is a combination of \textit{sigmoid} layer and \textit{$\tanh$} layer. \textit{Sigmoid} layer decides the information which should be output. Then the output of the  \textit{sigmoid} function will be multiplying with the output of the \textit{$\tanh$} layer of the cell state. This \textit{$\tanh$} will make the values between -1 and 1. The output of the multiplication of \textit{sigmoid} and \textit{$\tanh$} will be the final output as show in Equation~\eqref{eq:output-gate}. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.%
-\begin{subequations}\label{eq:output-gate}
+    \item \textbf{Output Gate} This gate is a combination of \textit{sigmoid} layer and \textit{$\tanh$} layer. \textit{Sigmoid} layer decides the information which should be output. Then the output of the  \textit{sigmoid} function will be multiplying with the output of the \textit{$\tanh$} layer of the cell state. This \textit{$\tanh$} will make the values between -1 and 1. The output of the multiplication of \textit{sigmoid} and \textit{$\tanh$} will be the final output as show in Equation~\eqref{eq:output_gate}. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.%
+\begin{subequations}\label{eq:output_gate}
 \begin{align}
 o_t  &= \sigma(W_o  x_t + U_o h_{t-1} + b_o),\\
 h_t  &= o_t \circ \tanh(C_t)
@@ -593,7 +594,7 @@ The result of this modifications is GRUs are simpler and easier for modification
 
 
  
-\subsubsection{BI-LSTM}\label{sec_bi-lstm}
+\subsubsection{BI-LSTM}\label{sec:Bi_Lstm}
 
 BI-LSTM two LSTMs stacked on top of each other, It used to solve some problem where the information needs to be considered in both directions for LSTM. As the normal LSTM is working from left to right, the BI-LSTM adds the other directions into the learning information. Let's take a motivation example regarding why we need BI-LSTM?
 \begin{itemize}

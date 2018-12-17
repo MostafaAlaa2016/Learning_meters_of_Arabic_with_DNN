@@ -1,4 +1,4 @@
-\chapter{\uppercase{LITERATURE REVIEW}}\label{ch_literature}
+\chapter{\uppercase{LITERATURE REVIEW}}\label{ch:Literature}
 
 Poetry meter classification and detection have different ways of addressing across the literature available in both computer science and linguistic sciences. However, This topic still unexplored computationally.
 From these literatures, we can see that they treated the problem either as a deterministic or as a learning problem.
@@ -11,7 +11,7 @@ From these literatures, we can see that they treated the problem either as a det
 \end{itemize}
   
 %
-\section{Deterministic (Algorithmic) Approach}\label{sec:determ-algor-appr}
+\section{Deterministic (Algorithmic) Approach}\label{sec:Determ_Algor_Appr}
 
 \cite{Abuata2016RuleBasedAlgorithmFor} present the most related work to our topic, classifying Arabic poetry according to their \textit{meters}. However, they have not addressed it as a \textit{learning problem}; they have designed a deterministic five-step \textit{algorithm} for analyzing and detecting meters. The first step and the most important is to have the input text carrying full diacritics; this means that every single letter must carry a diacritic, explicitly. The next step is converting input text into \textit{Arud writing} using \textit{if-else} like rules. \textit{Arud writing} is a pronounced version of writing; where only pronounced sounds written. Then metrical \textit{scansion} rules applied to the \textit{Arud writing}, which leaves the input text as a sequence of zeros and ones. After that they defined each group of zeros and ones as a \textit{tafa'il}, so now we have a sequence of \textit{tafa'il}. Finally, the input text classified to the closest meter to the \textit{tafa'il} sequence. 82.2\% is the classification accuracy on a relatively small sample, only 417 verse.
 
@@ -62,7 +62,7 @@ We can summarize the difference between our work and the previous work in the fo
 
     \hline
  \end{tabular}
-  \caption{Comparison between our work approach and Previous work. }\label{arud:feet}
+  \caption{Comparison between our work approach and Previous work. }\label{tab:Comparison_Ours_Vs_Others}
 \end{table}
 
 

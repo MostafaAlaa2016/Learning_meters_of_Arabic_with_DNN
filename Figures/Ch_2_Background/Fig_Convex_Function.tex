@@ -4,13 +4,13 @@
 \draw[-latex] (0,-0.2) -- (0,2.4) node [above] {$y$};
 \coordinate (O) at (0,0);
 \draw plot[domain=0.2:3,variable=\x] ({\x},{f(\x)});
-\foreach [count=\Z] \X/\Y in {0.4/{x_1},2.2/{\lambda x_1 +(1-\lambda) x_2},2.8/{x_2}}
-{\draw[dashed] (\X,0) coordinate (X\Z) node[below]{$\strut\Y$} -- (\X,{f(\X)}) coordinate (F\Z)
--- (0,{f(\X)}) node[above right]{$f(\Y)$};}
+\foreach [count=\Z] \X/\Y in {0.4/{x_1},2.2/{\scriptsize\lambda x_1 +(1-\lambda) x_2},2.8/{x_2}}
+{\draw[dashed] (\X,0) coordinate (X\Z) node[below]{\scriptsize$\strut\Y$} -- (\X,{f(\X)}) coordinate (F\Z)
+-- (0,{f(\X)}) node[above right]{\scriptsize$f(\Y)$};}
 \draw[blue] (F1) -- (F3);
 \draw[dashed] (F2) --
 (intersection cs:first line={(X2)--(F2)}, second line={(F1)--(F3)})
-coordinate (F4) -- (O|-F4) node[above right]{$f(x_1)+(1-\lambda)\,f(x_2)$};
+coordinate (F4) -- (O|-F4) node[above right]{\scriptsize$f(x_1)+(1-\lambda)\,f(x_2)$};
 \foreach \X in {1,...,4}
 {\draw[very thin,red,fill=white] (F\X) circle(1pt);}
 \end{tikzpicture}

@@ -1,10 +1,10 @@
-\chapter{\uppercase{Results And Discussion}}\label{ch_results}
+\chapter{\uppercase{Results And Discussion}}\label{ch:Results}
 
 In this chapter we will explain the results of all the 192 experiments on our dataset. We measure the results using the overall $F_1$ Score Then we measure the performance accuracy of the model per class (meter).We will start by present the results for every combinations and then discuss our findings related to the topic.
 
 \section{Results}
 
-As we explained, In Chapter~\ref{ch_model_training} we have a set of combinations we need to explore it. So, most of our results will combine a combination and show the results of this combinations. Let's explore it as below,
+As we explained, In Chapter~\ref{ch:Model_Training} we have a set of combinations we need to explore it. So, most of our results will combine a combination and show the results of this combinations. Let's explore it as below,
 \begin{enumerate}
 \item  We have three data representation \textbf{\textit{Binary, One-hot, and Two-Hot}} we will represent it as \textbf{\textit{BinE, 1D, 0T}} respectively.
 \item We have two types of model loss functions \textbf{\textit{Weighting loss and no Weighting loss}} we will represent it as \textbf{\textit{(1 and 0)}} respectively.
@@ -57,7 +57,7 @@ In this section we will explain the effect of the 12 data representation techniq
 This section is to comment on the effect of the network configurations parameters.
 \begin{itemize}
 \item \textbf{Cell Type}: It is clear that BI-LSTM  (large circle) is the highest $F_1$ score for each data representation. It always higher than the highest score of the LSTM model (large square). This is what we expected the more complex architecture, the more results we can achieved. But we need to mention that the BI-LSTM is slower than LSTM in overall running time for all experiments, and it also consume much more resources than LSTM cell.
-\item \textbf{Layers Number:} As we explained in Section~\ref{sec_deep_learning_background} The idea behind the deep neural network come from the multi-layers which makes the network learn more details. So, the more complex network (more layer) the more results we can achieved. So, in our experiments we can show that 7 layers achieved the highest scores more than the 4 layers. There is exception for the trimming data without diacritics in (1T, 0D, BinE) and (1T, 0D, TwoE). The straightforward interpretation for that is the reduction in dataset size occurred by trimming and no diacritics, which required less complex network. So, of we reduced the complexity of our problem the number of layers will not be effective.
+\item \textbf{Layers Number:} As we explained in Section~\ref{sec:Deep_Learning_Background} The idea behind the deep neural network come from the multi-layers which makes the network learn more details. So, the more complex network (more layer) the more results we can achieved. So, in our experiments we can show that 7 layers achieved the highest scores more than the 4 layers. There is exception for the trimming data without diacritics in (1T, 0D, BinE) and (1T, 0D, TwoE). The straightforward interpretation for that is the reduction in dataset size occurred by trimming and no diacritics, which required less complex network. So, of we reduced the complexity of our problem the number of layers will not be effective.
 
 \item \textbf{Cell Units and Weighting Loss:} We can't figure out a consistent effect based on the number of cell units or the weighting loss. But we need to mention that the highest results achieved was using both the highest cell units 82 and the weighted loss.
   \end{itemize}
@@ -70,22 +70,22 @@ In this section we will explore the accuracy of each class. This is regarding ho
 
 Similar in the previous section, We have a four combination of \textit{trimming and diacritic} we will invistegate about which models is achieved the best results. We will take the best four models (the first three of them is two-hot encoding and the forth is binary encoding) from Figure~\ref{fig:ArabicModelsResults} which is the overall accuracy and show the results of the per class accuracy for each one.
 
-In Figure~\ref{fig:Results_Per_Class} we have the previous four models display the per-class accuracy. The class names is ordered based on their data size per class which we explained previous in Figure~\ref{fig:data_size_distribution} with the same order. If we compare the results for the four models $F_1$ scores which was around 95\% in Figure~\ref{fig:ArabicModelsResults} and the per-class accuracy we will find only 6 classes (which have around 80\% of the total datasets) are around this value. But there are a significant drops for some classes which make the figures line has drops in the results.
+In Figure~\ref{fig:Results_Per_Class} we have the previous four models display the per-class accuracy. The class names is ordered based on their data size per class which we explained previous in Figure~\ref{fig:Data_Size_Distribution} with the same order. If we compare the results for the four models $F_1$ scores which was around 95\% in Figure~\ref{fig:ArabicModelsResults} and the per-class accuracy we will find only 6 classes (which have around 80\% of the total datasets) are around this value. But there are a significant drops for some classes which make the figures line has drops in the results.
 
-The relation between the model accuracy results per-class and the dataset size per class is clearly shown in Figure~\ref{fig:Results_Per_Class}; However, This trend was expected to be fixed from the weighted loss which is inconsistent effect of the weighting loss for all the models. This inconsistent effects shows that we need to have a new design for weighting function which can solve this trend issue. The overall accuracy can be increased after trimming but there will be a gab between the accuracy per class the size of the data per class as the dataset is not balanced. Moreover, We can repeat this experiments again with enforcing all classes to have an equal size so, we can show the accuracy without in data unbalance issue. We will elaborate more in Section~\ref{sec_discussion}.
+The relation between the model accuracy results per-class and the dataset size per class is clearly shown in Figure~\ref{fig:Results_Per_Class}; However, This trend was expected to be fixed from the weighted loss which is inconsistent effect of the weighting loss for all the models. This inconsistent effects shows that we need to have a new design for weighting function which can solve this trend issue. The overall accuracy can be increased after trimming but there will be a gab between the accuracy per class the size of the data per class as the dataset is not balanced. Moreover, We can repeat this experiments again with enforcing all classes to have an equal size so, we can show the accuracy without in data unbalance issue. We will elaborate more in Section~\ref{sec:Discussion}.
 
 
 
 \begin{figure}[!t]
  \input{./Figures/Ch_7_Results/Fig_Results_Per_Class.tex}
- \caption{The per-class $F_1$ score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{fig:data_size_distribution}. There is a descending trend with the class size, with the exception at \textit{Rigz} meter.}~\label{fig:Results_Per_Class}
+ \caption{The per-class $F_1$ score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{fig:Data_Size_Distribution}. There is a descending trend with the class size, with the exception at \textit{Rigz} meter.}~\label{fig:Results_Per_Class}
 \end{figure}
 
 
 
 \subsection{Encoding Effect}
 
-As explained in Chapter~\ref{ch:data_encoding} the difference between data encoding types. In this section we will explore the effects of Data Encoding with respect to the \textit{Accuracy, Learning Rate and Memory Utilization} on the best model results (4L, 82U, 0W, 1T, 0D, BinE). During our experiments we didn't find a consistent effect for the model encoding type and the model accuracy~\ref{fig:Convergence_Memory}-a. However, most of cases we found the accuracy of the two-hot is slightly better than binary and then one-hot.
+As explained in Chapter~\ref{ch:Data_Encoding} the difference between data encoding types. In this section we will explore the effects of Data Encoding with respect to the \textit{Accuracy, Learning Rate and Memory Utilization} on the best model results (4L, 82U, 0W, 1T, 0D, BinE). During our experiments we didn't find a consistent effect for the model encoding type and the model accuracy~\ref{fig:Convergence_Memory}-a. However, most of cases we found the accuracy of the two-hot is slightly better than binary and then one-hot.
 
 
 \begin{figure}[!t]
@@ -101,30 +101,14 @@ As explained in Chapter~\ref{ch:data_encoding} the difference between data encod
 Figure~\ref{fig:Convergence_Memory} shows the effect of encoding on learning rate which has no difference in convergence speed between the encoding types; However, We can found some encoding start learning faster than other between epochs[1:5] but overall they will converge with the same learning curve at the end.
 
 
-Memory Utilization is not similar for each model encoding. We found that each encoding has it is own vector size representation Figure with different of memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \textit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \textit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that, \textit{Two-hot} is in the middle between the two encoding with respect to the memory consumption and also it gives some more meaning for data encoding as explained before in Section~\ref{ch:data_encoding}
+Memory Utilization is not similar for each model encoding. We found that each encoding has it is own vector size representation Figure with different of memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \textit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \textit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that, \textit{Two-hot} is in the middle between the two encoding with respect to the memory consumption and also it gives some more meaning for data encoding as explained before in Section~\ref{ch:Data_Encoding}
 
 \subsection{Comparison with Literature}
 As explained previous, One of the advantages in our research work is the very large dataset we have which allows us to have a good subset for testing. This provides us a confidence regarding our results.
 
-If we compared our work approach results the best model scored 0.9638 with the highest two in literature, We will find that our model results is significant higher than the others as illustrated in Table~\ref{tab:summ-results}. Moreover, Our approach is a learning approach not a Hand-crafted algorithmic approach which gives our model more confidence to be mature enough for these types of problems (Chapter~\ref{ch_literature}).
+If we compared our work approach results the best model scored 0.9638 with the highest two in literature, We will find that our model results is significant higher than the others as illustrated in Table~\ref{tab:Summary_Results}. Moreover, Our approach is a learning approach not a Hand-crafted algorithmic approach which gives our model more confidence to be mature enough for these types of problems as explained in Chapter~\ref{ch:Literature}.
 
-\begin{table}[!t]
-  \centering
-  \begin{tabular}{c c c}
-    \toprule
-    \textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} \\
-    \midrule
-    \cite{Alnagdawi2013FindingArabicPoemMeter}   & 75\%     & 128\\
-    \cite{Abuata2016RuleBasedAlgorithmFor}      & 82.2\%   & 417  \\
-    This article   & 96.38\%  & 150,000 \\
-    \bottomrule
-  \end{tabular}
-  \caption{Overall accuracy of this article compared to literature.}\label{tab:summ-results}
-\end{table}
-
-
-
-\section{Discussion}\label{sec_discussion}
+\section{Discussion}\label{sec:Discussion}
 
 In this section we need to discuss some points regarding our experiments and results approach. We will show some parts we think it need more discussion or exploration.
 
@@ -140,6 +124,22 @@ Although all the encoding methods which carries the same information should prod
 Encoding method is a transformer function $\mathcal{T}$ this function transform a discrete input values $X$. We can denotes to the values as a transformed feature $\mathcal{T}(X)$ the output of this transformer method. The output $\mathcal{T}(X)$ of this transformer in the new encoding space will be input to the Neural Network model. The model should be able to ``decode''  this type of encoding. Since the lossless encoding is invertible, it is clear for any two functions and any two encodings that $\eta_1\left(\mathcal{T}_1(X)\right) = \left(\eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1} \right)\left(\mathcal{T}_2(X)\right)$. This means that if the network $\eta_1$ is the most accurate network which can ``decode'' the encoding function (transformer) $\mathcal{T}_1$ this network $\eta_1$ is not a general network which can understand any encoding function. Also, to design this network it requires a very complex architecture. So, if we have another encoding function $\mathcal{T}_2$ and we tried to use the same network for the $\mathcal{T}_2$ requires designing another network $\eta_2 = \eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1}$. However, this network may be of complicated architecture to ``decode'' the complicated pattern of $\mathcal{T}_2(X)$.
 
 In general, Any encoding function $\mathcal{T}$ require a special network $\eta$ to get the correct decoding (learning) for the dataset. So, our comparison between the encoding methods in the same Neural Networks architecture not accurate as each one required different network design. But all of them will reach the same results but with different time or can be small difference due to the not accurate network architecture. Moreover, Our work illustrated clearly the effect of the encoding methods and compared between each other, We think the \textit{Two-Hot} encoding is the more suitable method to work with character level problems. It is the middle approach between the \textit{One-Hot} which needs huge amount of memory and the \textit{Binary} which loss some meaning in Arabic language diacritics effect.
+
+
+\begin{table}[!t]
+  \centering
+  \begin{tabular}{c c c}
+    \toprule
+    \textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} \\
+    \midrule
+    \cite{Alnagdawi2013FindingArabicPoemMeter}   & 75\%     & 128\\
+    \cite{Abuata2016RuleBasedAlgorithmFor}      & 82.2\%   & 417  \\
+    This article   & 96.38\%  & 150,000 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Overall accuracy of this article compared to literature.}\label{tab:Summary_Results}
+\end{table}
+
 
 
 \subsection{Weighting Loss Function}
