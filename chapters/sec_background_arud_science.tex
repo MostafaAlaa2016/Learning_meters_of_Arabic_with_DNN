@@ -5,13 +5,13 @@ short vowel accompanied by that letter. There are four diacritics \textarabic{�
 \textarabic{◌ِ} \textarabic{◌ْ} which represent the following short vowels
 /\textit{a}/, /\textit{u}/, /\textit{i}/ and \textit{no-vowel} respectively,
 their names are \textit{fat-ha, dam-ma, kas-ra and sukun} respectively.  The first
-three symbols are called \textit{harakat}. Table~\ref{tab:Diacritics_Dal}
+three symbols are called \textit{harakat}. Table~\ref{Tab:Diacritics_Dal}
 shows the 4 diacritics on a letter.
 There are two more sub-diacritics made up of the basic four to represent two
 cases: \textit{Shadaa} and \textit{Tanween}
 \begin{definition}\label{def:shadaa_definition}
 \textbf{Shadaa}  \hfill \\
- is To indicate the letter is doubled. Any letter with shaddah (\textarabic{ ّ }) the letter should be duplicated: first letter with a constant (sukoon) and second letter with a vowel (haraka)~\cite{Alnagdawi2013}; Table~\ref{tab:Shadda_Dal} shows the dal with shadda and the original letters.% table: dal with shadda
+ is To indicate the letter is doubled. Any letter with shaddah (\textarabic{ ّ }) the letter should be duplicated: first letter with a constant (sukoon) and second letter with a vowel (haraka)~\cite{Alnagdawi2013}; Table~\ref{Tab:Shadda_Dal} shows the dal with shadda and the original letters.% table: dal with shadda
 \end{definition}%
 \begin{definition}\label{def:tanween_definition}
   \textbf{Tanween} \hfill \\
@@ -19,7 +19,7 @@ cases: \textit{Shadaa} and \textit{Tanween}
   is doubling the short vowel, and can convert
 Tanween fathah, Tanween dhammah or Tanween kasrah by
 replacing it with the appropriate vowel ( ُ◌ – dhammah, َ◌ –
-fathah or ِ◌ –kasrah ) then add the Noon letter with constant to the end of the word~\cite{Alnagdawi2013}. Table~\ref{tab:Tanween_Dal}
+fathah or ِ◌ –kasrah ) then add the Noon letter with constant to the end of the word~\cite{Alnagdawi2013}. Table~\ref{Tab:Tanween_Dal}
 shows the difference between the original letter and the letter with Tanween%
 \end{definition}%
 
@@ -39,18 +39,16 @@ letter's \textit{haraka} is preserved in addition to stating the sound
 \textit{noon-sakinah}; for example, \textarabic{رَجُلُ + نْ} is written
 \textarabic{رَجُلٌ} and  \textarabic{رَجُلِ + نْ} is written \textarabic{رَجُلٍ}.%
 
-Those two definition, Definition ~\ref{def:shadaa_definition} and Definition ~\ref{def:tanween_definition}  will help us to reduce the dimension of the letter's feature vector as we will see in \textit{preparing data} section.%
+Those two definition, Definition ~\ref{def:shadaa_definition} and Definition~\ref{def:tanween_definition}  will help us to reduce the dimension of the letter's feature vector as we will see in \textit{preparing data} section.%
 Diacritics makes short vowels clearer, but they are not necessary.
 Moreover, a phrase without full diacritics or with just some on some letters is
 right linguistically, so it is allowed to drop them from the text.%
 % Diacritics in Unicode
-In Unicode, Arabic diacritics are standalone symbols, each of them has its own
-unicode. This is in contrast to the Latin diacritics; e.g., in the set
-\textit{\{ê, é, è, ë, ē, ĕ, ě\}}, each combination of the letter \textit{e} and a diacritic is represented by one unicode.%
+In Unicode, Arabic diacritics are standalone symbols, each of them has its own unicode. This is in contrast to the Latin diacritics; e.g., in the set \textit{\{ê, é, è, ë, ē, ĕ, ě\}}, each combination of the letter \textit{e} and a diacritic is represented by one unicode.%
 
 %\clearpage
 % table: dal with diacritics
-\begin{table}[!t]
+\begin{table}[t]
 	\centering
 	\begin{tabular}{c c c c c c}
 		%\hline
@@ -64,11 +62,11 @@ unicode. This is in contrast to the Latin diacritics; e.g., in the set
 		%\hline
 		\bottomrule
 	\end{tabular}
-	\caption{Diacritics on the letter  \textarabic{ د }}\label{tab:Diacritics_Dal}
+	\caption{Diacritics on the letter  \textarabic{ د }}\label{Tab:Diacritics_Dal}
 \end{table}%
 
 
-\begin{table}[!t]
+\begin{table}[t]
 	\centering
 	\begin{tabular}{c c c}
 		%\hline
@@ -80,10 +78,10 @@ unicode. This is in contrast to the Latin diacritics; e.g., in the set
 		%\hline
 		\bottomrule
 	\end{tabular}
-	\caption{Shadaa diacritics on the letter  \textarabic{ د }}\label{tab:Shadda_Dal}
+	\caption{Shadaa diacritics on the letter  \textarabic{ د }}\label{Tab:Shadda_Dal}
 \end{table}%
 
-\begin{table}[!t]
+\begin{table}[t]
 	\centering
 	\begin{tabular}{c c c}
 		%\hline
@@ -96,7 +94,7 @@ unicode. This is in contrast to the Latin diacritics; e.g., in the set
           \textbf{\small{Tanween Kas-ra}}  & \textarabic{دٍ} &  \textarabic{دِ+نْ}\\
 		\bottomrule
 	\end{tabular}
-	\caption{Tanween diacritics on the letter  \textarabic{ د }} \label{tab:Tanween_Dal}
+	\caption{Tanween diacritics on the letter  \textarabic{ د }} \label{Tab:Tanween_Dal}
 \end{table}%
 
 
@@ -211,7 +209,7 @@ Example: (note: the below representation first line is simliar the second one bu
 Arabic poetry feet has ten tafa'il \textarabic{تفاعيل} (scansion)  any peom constructed from these feet. They are eight from writing (syntax) perspective, But it ten in the rules.
 \begin{savenotes}
 
-\begin{table}[!t]
+\begin{table}[t]
   \centering
   \begin{tabular}{l r r l}
     \hline
@@ -604,14 +602,10 @@ Arabic poetry feet has ten tafa'il \textarabic{تفاعيل} (scansion)  any peo
   
 \subsection{Meters Relation}
 
-Al-Arud classes have a relation between each other. The author of this relations is Al-Farahidi. He designed this relation to show the similarity and the difference between the meters. In this section, we will explain in brief this relation between them, and we will demonstrate its effect in Chapter~\ref{ch:Results}. There are five groups of relationships between the meters. The details about how this relations arises will be omitted as it need more explanation in Arud details. But we will show brief about each one.
-  
- % @@@replace figures by tikz
-  
+Al-Arud classes have a relation between each other. The author of this relations is Al-Farahidi. He designed this relation to show the similarity and the difference between the meters. In this section, we will explain in brief this relation between them, and we will demonstrate its effect in Chapter~\ref{Ch:Results}. There are five groups of relationships between the meters. The details about how this relations arises will be omitted as it need more explanation in Arud details. But we will show brief about each one.
   \begin{itemize}
-  \item \textbf{Al-Mokhtalef \textarabic{المُخْتَلِف}}: This group also know as Al-Taweel group. As all the meters inside it is sub-child from Al-Taweel from its tafa'il. It contains three meters Al-Taweel, Al-Madeed and Al-Baseet. Table~\ref{tab:AlMokhtalef_Group} show this group relations
-
-\begin{table}[!ht]
+  \item \textbf{Al-Mokhtalef \textarabic{المُخْتَلِف}}: This group also know as Al-Taweel group. As all the meters inside it is sub-child from Al-Taweel from its tafa'il. It contains three meters Al-Taweel, Al-Madeed and Al-Baseet. Table~\ref{Tab:AlMokhtalef_Group} show this group relations.
+\begin{table}[t]
   \centering
   \begin{tabular}{ c c c}
     \hline
@@ -622,19 +616,10 @@ Al-Arud classes have a relation between each other. The author of this relations
     3 &\textarabic{Al-Baseet}  & \textarabic{مُسْتَفْعِلُنْ فَاْعِلُنْ مُسْتَفْعِلُنْ فَاْعِلُنْ}\\
     \hline                                                
   \end{tabular}
-\caption{Al-Mokhtalef Circle Group.}\label{tab:AlMokhtalef_Group}
-\end{table}
-    
-
-%All meters inside Figure~\ref{fig:Circle_Mokhtalef} shows this relation between them.
-%\begin{figure}[H]
-% \includegraphics{./Figures/Ch_2_Background/Al-Mokhtalef.jpg}
-% \caption{Al-Mokhtalef circle which contains three classes Al-Taweel, Al-Madeed and Al-Baseet}~\label{fig:Circle_Mokhtalef}
-%\end{figure}
-
-\item \textbf{Al-Mo'talef \textarabic{المُؤْتَلِف}}: This group contains two classes Al-Kamel and Al-Wafer. Table~\ref{tab:Al-Mo'talef_Group} shows this relation between them.
-
-\begin{table}[!h]
+\caption{Al-Mokhtalef Relation Group.}\label{Tab:AlMokhtalef_Group}
+\end{table}%
+\item \textbf{Al-Mo'talef \textarabic{المُؤْتَلِف}}: This group contains two classes Al-Kamel and Al-Wafer. Table~\ref{Tab:Al-Mo'talef_Group} shows this relation between them.%
+\begin{table}[t]
   \centering
   \begin{tabular}{c c c}
     \hline
@@ -643,20 +628,10 @@ Al-Arud classes have a relation between each other. The author of this relations
     1 & \textarabic{Al-Wafer} & \textarabic{مُفَاعَلَتُنْ مُفَاعَلَتُنْ مُفَاعَلَتُنْ}\\
     2 &\textarabic{Al-Kamel}&  \textarabic{مُتَفَاعِلُنْ مُتَفَاعِلُنْ مُتَفَاعِلُنْ}\\
     \hline                                                
-  \end{tabular}
-\caption{Al-Mo'talef Circle Group.}\label{tab:Al-Mo'talef_Group}
+  \end{tabular}\caption{Al-Mo'talef Circle Group.}\label{Tab:Al-Mo'talef_Group}
 \end{table}
-  
-%\begin{figure}[H]
-%\includegraphics{./Figures/Ch_2_Background/Al-Mo'talef.jpg}
-%\caption{Al-Mo'talef circle which contains three classes Al-Kamel and Al-Wafer}~\label{fig:Circle_Motalef}
-%\end{figure}
-
-
-\item \textbf{Al-Mojtaleb \textarabic{المُجْتَلَب}}: This group contains three classes Al-Raml, Al-Rejz and Al-Hazaj. Table~\ref{tab:AlMojtaleb_Group} shows this relation between them.
-
-
-\begin{table}[!ht]
+\item \textbf{Al-Mojtaleb \textarabic{المُجْتَلَب}}: This group contains three classes Al-Raml, Al-Rejz and Al-Hazaj. Table~\ref{Tab:AlMojtaleb_Group} shows this relation between them.%
+\begin{table}[t]
   \centering
   \begin{tabular}{c c c}
     \hline
@@ -667,20 +642,10 @@ Al-Arud classes have a relation between each other. The author of this relations
     3 &\textarabic{Al-Hazaj}  & \textarabic{مَفَاعِيْلُنْ مَفَاعِيْلُنْ مَفَاعِيْلُنْ}\\
     \hline                                                
   \end{tabular}
-\caption{Al-Mojtaleb Circle Group.}\label{tab:AlMojtaleb_Group}
-\end{table}
-    
-  
-%\begin{figure}[H]
-%\includegraphics{./Figures/Ch_2_Background/Mojtaleb.jpg}
-%\caption{Al-Mojtaleb circle which contains three classes }~\label{fig:Circle_Mojtaleb}
-%\end{figure}
-
-
-\item \textbf{Al-Moshtabeh \textarabic{المُشْتَبِه}}: This group contains six classes Al-Sarea, Al-Monsareh, Al-Khafeef, Al-Modarea, Al-Moktadeb and Al-Mojtaz. Table~\ref{tab:AlMoshtabeh_Group} shows this relation between them.
-
-
-\begin{table}[!ht]
+\caption{Al-Mojtaleb Circle Group.}\label{Tab:AlMojtaleb_Group}
+\end{table}%
+\item \textbf{Al-Moshtabeh \textarabic{المُشْتَبِه}}: This group contains six classes Al-Sarea, Al-Monsareh, Al-Khafeef, Al-Modarea, Al-Moktadeb and Al-Mojtaz. Table~\ref{Tab:AlMoshtabeh_Group} shows this relation between them.%
+\begin{table}[t]
   \centering
   \begin{tabular}{c c c}
     \hline
@@ -694,19 +659,10 @@ Al-Arud classes have a relation between each other. The author of this relations
     6 &\textarabic{Al-Mojtaz}  & \textarabic{مُسْتَفْعِ لُنْ فَاعِلاتُنْ فَاعِلاتُنْ}\\
     \hline                                                
   \end{tabular}
-\caption{Al-Moshtabeh Circle Group.}\label{tab:AlMoshtabeh_Group}
-\end{table}
-    
-  
-%\begin{figure}[H]
-%\includegraphics{./Figures/Ch_2_Background/Al-Moshtabeh.jpg}
-%\caption{Al-Moshtabeh circle which contains six classes Al-Sarea, Al-Monsareh, Al-Khafeef, Al-Modarea, Al-Moktadeb and Al-Mojtaz }~\label{fig:Circle_AlMoshtabeh}
-%\end{figure}
-
-
-\item \textbf{Al-Motafeq \textarabic{المُتَّفِق}}: This group contains two classes Al-Motaqareb and Al-Motadarek. Table~\ref{tab:AlMotafeq_Group} shows this relation between them.
-
-\begin{table}[!ht]
+\caption{Al-Moshtabeh Circle Group.}\label{Tab:AlMoshtabeh_Group}
+\end{table}%
+\item \textbf{Al-Motafeq \textarabic{المُتَّفِق}}: This group contains two classes Al-Motaqareb and Al-Motadarek. Table~\ref{Tab:AlMotafeq_Group} shows this relation between them.%
+\begin{table}[t]
   \centering
   \begin{tabular}{c c c}
     \hline
@@ -716,19 +672,9 @@ Al-Arud classes have a relation between each other. The author of this relations
     2 &\textarabic{Al-Motadarek}&  \textarabic{فَاعِلُنْ فَاعِلُنْ فَاعِلُنْ فَاعِلُنْ}\\
     \hline                                                
   \end{tabular}
-\caption{Al-Motafeq Circle Group.}\label{tab:AlMotafeq_Group}
-\end{table}
-   
-%\begin{figure}[H]
-%\includegraphics{./Figures/Ch_2_Background/Al-Motafeq.jpg}
-%\caption{Al-Motafeq circle which contains six classes Al-Motaqareb and Al-Motadarek}~\label{fig:Circle_Motafeq}
-%\end{figure}
-
-
+\caption{Al-Motafeq Circle Group.}\label{Tab:AlMotafeq_Group}
+\end{table}%
 \end{itemize}
-
-
-
 
 %%% Local Variables:
 %%% mode: latex

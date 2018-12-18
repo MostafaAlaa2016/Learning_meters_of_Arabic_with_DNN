@@ -1,4 +1,4 @@
-\chapter{\uppercase{Dataset: Acquisition and Encoding}}\label{ch:Datasets}  
+\chapter{\uppercase{Dataset: Acquisition and Encoding}}\label{Ch:Datasets}  
 
   The collection of the dataset was one of the most laborious tasks in this project. There were criteria we were searching to find. These criteria are as follows,
   \begin{itemize}
@@ -21,7 +21,7 @@ To meet the above criteria and overcome it, We applied following,
 
   \item \textbf{The Poem with diacritics:} We tried to get the most verses with the available diacritics, but the diacritics states are not consistent, So, a verse can be fully diacritics, Semi diacritics or without diacritics.
 
-\item \textbf{The amount of the dataset:} The total number of verses is 1,862,046 poetic verses; each verse labeled by its meter (class), the poet who wrote it, and the age which it was written. There are 22 meters, 3701 poets and 11 ages; and they are Pre Islamic, Islamic, Umayyad, Mamluk, Abbasid, Ayyubid, Ottoman, Andalusian, the era between Umayyad and Abbasid, Fatimid and modern. We are only interested in the 16 classic meters which attributed to Al-Farahidi, and they are the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{fig:Data_Size_Distribution} shows the distribution of the verses per meter. %@@@ add datasets figures percentage per class
+\item \textbf{The amount of the dataset:} The total number of verses is 1,862,046 poetic verses; each verse labeled by its meter (class), the poet who wrote it, and the age which it was written. There are 22 meters, 3701 poets and 11 ages; and they are Pre Islamic, Islamic, Umayyad, Mamluk, Abbasid, Ayyubid, Ottoman, Andalusian, the era between Umayyad and Abbasid, Fatimid and modern. We are only interested in the 16 classic meters which attributed to Al-Farahidi, and they are the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{Fig:Data_Size_Distribution} shows the distribution of the verses per meter. %@@@ add datasets figures percentage per class
   
 \item \textbf{Cleansing of this data:} Dataset was not cleaned enough for usage in this research, but we have applied cleansing rules explained in details in Data Preparation and Cleansing section~\ref{sec:Data_Clens}. We also open sourced all the code scripts used in our online repository~\cite{HCILAB_ArabicPoetry_2018}.
 \end{itemize}
@@ -31,7 +31,7 @@ To meet the above criteria and overcome it, We applied following,
 	\begin{tikzpicture}
 	\input{./Figures/Ch_4_Dataset/dataset_size_ar.tex}
 	\end{tikzpicture}%
-	\caption{Arabic dataset Meter per class percentage ordered descendingly on x axis vs. corresponding meter name on y axis all class in the left of the red line (less than 1\% assume to be trimmed in some experiments).	}\label{fig:Data_Size_Distribution}
+	\caption{Arabic dataset Meter per class percentage ordered descendingly on x axis vs. corresponding meter name on y axis all class in the left of the red line (less than 1\% assume to be trimmed in some experiments).	}\label{Fig:Data_Size_Distribution}
 \end{figure}
 
 \section{Data Scraping}\label{sec:Data_Scrap}
@@ -39,8 +39,8 @@ To scrap the data from the website: \textarabic{الديوان}~\cite{diwan},end
 
  \textarabic{الموسوعة الشعرية}~\cite{PoetryEncyclopedia2016}, We used custom Python scripts for each websites to get the verses details. The script created with simple usage to pass the link we need to scrap. We will show two examples from both websites.
 \begin{enumerate}
-\item The First example, If we need to scrap a meter from \textarabic{الديوان} the website, for example Al-Tawil \\\url{https://www.aldiwan.net/poem.html?Word=\%C7\%E1\%D8\%E6\%ED\%E1\&Find=meaning}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{tab:Aldiwan_Sample}
-\item Second Example, If we need to scrap the same meter from \textarabic{الموسوعة الشعرية} the website for example Al-Raml \url{https://poetry.dctabudhabi.ae/\#/diwan/poem/126971}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{tab:ElMosoaa_Sample}
+\item The First example, If we need to scrap a meter from \textarabic{الديوان} the website, for example Al-Tawil \\\url{https://www.aldiwan.net/poem.html?Word=\%C7\%E1\%D8\%E6\%ED\%E1\&Find=meaning}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{Tab:Aldiwan_Sample}
+\item Second Example, If we need to scrap the same meter from \textarabic{الموسوعة الشعرية} the website for example Al-Raml \url{https://poetry.dctabudhabi.ae/\#/diwan/poem/126971}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{Tab:ElMosoaa_Sample}
 We scrapped all the available datasets on both websites and merged them based on the common columns. Then we started the Data preparation tasks. We need to mention that, Not all diacritics was correctly available on all the websites. Also, We did not work to generate the diacritics for those datasets. So, we depended on whatever available without changing the data all the next sections is related to correction, preparation, and cleansing of the current datasets.
 
 \section{Data Preparation and Cleansing}\label{sec:Data_Clens}
@@ -55,8 +55,8 @@ Data preparation and cleansing tasks divided into multi-stages.
 \item Remove non-Arabic characters and the other web symbols.
 \item Fix diacritics mistakes, such as the existence of two consecutive harakat, we have only kept one and have removed the other. %@@@add an example
 \item Remove any \textit{harakah} comes after a white space, it removed as it is useless. %@@@add an example
-\item We factored \textit{Shadaa}~\ref{def:shadaa_definition} to its original format explained in this example~\ref{tab:Shadda_Dal} previously.
-\item We also factored \textit{Tanween}~\ref{def:tanween_definition} to its original format explained in this example~\ref{tab:Tanween_Dal} previously.\footnote{\textit{We ignored the factorization of Alef-Mad  \textbf{\textarabic{ آ }} in our data preparation and transformation which can save more memory and shorten our encoding vectors}}
+\item We factored \textit{Shadaa}~\ref{def:shadaa_definition} to its original format explained in this example~\ref{Tab:Shadda_Dal} previously.
+\item We also factored \textit{Tanween}~\ref{def:tanween_definition} to its original format explained in this example~\ref{Tab:Tanween_Dal} previously.\footnote{\textit{We ignored the factorization of Alef-Mad  \textbf{\textarabic{ آ }} in our data preparation and transformation which can save more memory and shorten our encoding vectors}}
 \end{itemize}
 
 We need to highlight that the last two points are not a handcrafted feature. It is a factorization for the letter to its original format. This factorization will affect the size of the data in the memory and the letter representation in the vector. We will explain this part in details in the next chapter about encoding mechanism and the impact of the encoding type in the model training time and performance.
@@ -79,7 +79,7 @@ We need to highlight that the last two points are not a handcrafted feature. It 
 		%\hline
 		\bottomrule
 	\end{tabular*}
-	\caption{Aldiwan scraping output example }\label{tab:Aldiwan_Sample}
+	\caption{Aldiwan scraping output example }\label{Tab:Aldiwan_Sample}
 \end{table}
 
 
@@ -107,12 +107,12 @@ We need to highlight that the last two points are not a handcrafted feature. It 
 		%\hline
 		\bottomrule
 	\end{tabular*}
-	\caption{Al-Mosoaa Elshearyaa scraping output example }\label{tab:ElMosoaa_Sample}
+	\caption{Al-Mosoaa Elshearyaa scraping output example }\label{Tab:ElMosoaa_Sample}
 \end{table}
 \end{enumerate}
 
 
-\section{\uppercase{Data Encoding}}\label{ch:Data_Encoding}
+\section{\uppercase{Data Encoding}}\label{Ch:Data_Encoding}
 
 As we explained, We have collected the dataset and cleaned the data from any quality issues. The next step is to change the data representation to be ready for model training. This change of the data structure named \textit{Data Encoding}.
 
@@ -147,20 +147,20 @@ To achieve the model architecture unification,  we proposed three different enco
   \centering
     \input{./Figures/Ch_5_Encoding/encoding_three_figures_together.tex}
 \caption{Different encoding mechanisms%: \textit{One-hot}, \textit{binary}, and \textit{two-hot}  encoding. Using the word example %\textarabic{مَرْحَبَا} \textit{One-hot} encoding is applied using $n$-letter alphabet $n = 181$ in Arabic. Same word encoded using \textit{binary} encoding where the vector length $n = \ceil*{\log_2 l}$, $l \in \{181\}$. \textit{two-hot} encoding is applied by stacking $\bm k_{4 \times 1}$ on the top of $\bm m_{37 \times 1}$ we get the $Two-Hot_{41 \times 1}$ \usebox{\columnVector}, which represents a letter and its diacritic simultaneously. 
-}~\label{fig:One_Binary_Encoding}
+}~\label{Fig:One_Binary_Encoding}
 \end{figure*}
 
 
 
 \begin{description}
 
-\item[\textbf{One-Hot encoding}] In this encoding system, We assume the letter with the diacritic as one unit. So, for example, \textarabic{د} represented as letter differs than (\textarabic{دَ, دِ, دُ, دْْ}). Now every letter is represented 5 times one without diacritic and four times with different diacritics combinations $36 \times 5$ besides the white-space character. So, the total is $181 \times 1$. From now forward, We have 181-characters Arabic alphabet represent the One-Hot encoding, and according to it, we will encode verses. (Figure~\ref{fig:One_Binary_Encoding}).
+\item[\textbf{One-Hot encoding}] In this encoding system, We assume the letter with the diacritic as one unit. So, for example, \textarabic{د} represented as letter differs than (\textarabic{دَ, دِ, دُ, دْْ}). Now every letter is represented 5 times one without diacritic and four times with different diacritics combinations $36 \times 5$ besides the white-space character. So, the total is $181 \times 1$. From now forward, We have 181-characters Arabic alphabet represent the One-Hot encoding, and according to it, we will encode verses. (Figure~\ref{Fig:One_Binary_Encoding}).
 
 We need to mention that, One-Hot encoding technique is of the famous techniques in encoding problem. We will not compare the encoding technique in these sections. However, We will discuss it in details in model results. Also, The implementations of the One-Hot is trivial. But we need to focus on here about the size for every letter which is $181 \times 1$ which means if we have a verse with 82 characters it will results up with a matrix $181 \times 82$ which is very big to be in memory.
 
-\item[\textbf{Binary Encoding}] The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros.  $n =\ceil*{\log_2} l$ where $l$ is the alphabet length, and $n$ is the sufficient number of digits to represent $l$ unique binary combinations.  For example a phrase like this \textarabic{مَرْحَبا}, it has 5 characters, figure~\ref{fig:One_Binary_Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory than the \textit{one-hot} and reduces the model input dimensions, significantly. But on the other hand, the input letter share some features between them due to the binary representation as it is shown in figure~\ref{fig:One_Binary_Encoding}.
+\item[\textbf{Binary Encoding}] The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros.  $n =\ceil*{\log_2} l$ where $l$ is the alphabet length, and $n$ is the sufficient number of digits to represent $l$ unique binary combinations.  For example a phrase like this \textarabic{مَرْحَبا}, it has 5 characters, figure~\ref{Fig:One_Binary_Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory than the \textit{one-hot} and reduces the model input dimensions, significantly. But on the other hand, the input letter share some features between them due to the binary representation as it is shown in figure~\ref{Fig:One_Binary_Encoding}.
 
-\item[\textbf{Two-Hot encoding}] This is an intermediate technique which takes the advantages of the previous two encoding techniques. In which we encode the letter and its diacritic separately as two \textit{One-Hot} vectors, this way the letter is encoded as $37 \times 1$ \textit{One-Hot} vector and the diacritic is encoded as $4 \times 1$ \textit{One-Hot} vector, then both vectors stacked to form one $41 \times 1$ vector (Figure~\ref{fig:One_Binary_Encoding}).
+\item[\textbf{Two-Hot encoding}] This is an intermediate technique which takes the advantages of the previous two encoding techniques. In which we encode the letter and its diacritic separately as two \textit{One-Hot} vectors, this way the letter is encoded as $37 \times 1$ \textit{One-Hot} vector and the diacritic is encoded as $4 \times 1$ \textit{One-Hot} vector, then both vectors stacked to form one $41 \times 1$ vector (Figure~\ref{Fig:One_Binary_Encoding}).
 
 By this way, we reduced the vector dimension from 181 to 41 and also minimizes the number of shared features between vectors to the maximum one at each vector. 
 \end{description}

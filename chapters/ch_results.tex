@@ -1,10 +1,10 @@
-\chapter{\uppercase{Results And Discussion}}\label{ch:Results}
+\chapter{\uppercase{Results And Discussion}}\label{Ch:Results}
 
 In this chapter we will explain the results of all the 192 experiments on our dataset. We measure the results using the overall $F_1$ Score Then we measure the performance accuracy of the model per class (meter).We will start by present the results for every combinations and then discuss our findings related to the topic.
 
 \section{Results}
 
-As we explained, In Chapter~\ref{ch:Model_Training} we have a set of combinations we need to explore it. So, most of our results will combine a combination and show the results of this combinations. Let's explore it as below,
+As we explained, In Chapter~\ref{Ch:Model_Training} we have a set of combinations we need to explore it. So, most of our results will combine a combination and show the results of this combinations. Let's explore it as below,
 \begin{enumerate}
 \item  We have three data representation \textbf{\textit{Binary, One-hot, and Two-Hot}} we will represent it as \textbf{\textit{BinE, 1D, 0T}} respectively.
 \item We have two types of model loss functions \textbf{\textit{Weighting loss and no Weighting loss}} we will represent it as \textbf{\textit{(1 and 0)}} respectively.
@@ -19,7 +19,7 @@ As we explained, In Chapter~\ref{ch:Model_Training} we have a set of combination
 \textbf{$F_1$ (also F-score or F-measure)} is a measure of a test's accuracy. It considers both the precision $p$ and the recall $r$ of the test to compute the score: $p$ is the number of correct positive results divided by the number of all positive results returned by the classifier, and $r$ is the number of correct positive results divided by the number of all relevant samples (all samples that should have been identified as positive).\\ The F1 score is the harmonic average of the precision and recall, where an F1 score reaches its best value at 1 (perfect precision and recall) and worst at 0~\cite{Wiki_f1_score}.
 
 
-We present the $F_!$ Score in Figure~\ref{fig:ArabicModelsResults} of the 16 neural netwroks configurations and at each of the 12 data representations (y- and
+We present the $F_!$ Score in Figure~\ref{Fig:ArabicModelsResults} of the 16 neural netwroks configurations and at each of the 12 data representations (y- and
 x-axis respectively). The x-axis is divided into 4 strips corresponding to the 4 combinations of trimming and diacritic parameters. Then, each strip includes the 3 different encoding values. Each point on the figure represents the F1 score of one of the 192 experiments; (some values are too small, and hence omitted from the figure). To explain the figure, we take as an example the most-left
 vertical list of points that represents the 16 experiments of the full (no trimming), diacritics, and binary encoding dataset representation.
 
@@ -48,7 +48,7 @@ In this section we will explain the effect of the 12 data representation techniq
   
 \begin{figure}[!t]
  \input{./Figures/Ch_7_Results/Fig_F_1_Score.tex}
- \caption{$F_1$ score of the 192 experiments plotted as 12 vertical rug plots (for the 12 different data representations: $\left\{\mathit{Trimming},\ \mathit{No Trimming} \right\} \times \left\{\mathit{Diacritics},\ \mathit{No Diacritics} \right\} \times \left\{\mathit{OneE},\ \mathit{BinE},\ \mathit{TwoE}\right\}$), each represents 16 exp. (for the 16 different network configurations: $\left\{7L,\ 4L\right\} \times \left\{82U,\ 50U\right\} \times \left\{0W, 1W\right\} \times \left\{LSTM,\ BiLSTM\right\}$). For each rug plot the two best (Bi)LSTM models are marked differently; and the other three network configuration parameters of the best of them, which consistently was the BiLSTM, are listed at the top of each rug plot.}~\label{fig:ArabicModelsResults}
+ \caption{$F_1$ score of the 192 experiments plotted as 12 vertical rug plots (for the 12 different data representations: $\left\{\mathit{Trimming},\ \mathit{No Trimming} \right\} \times \left\{\mathit{Diacritics},\ \mathit{No Diacritics} \right\} \times \left\{\mathit{OneE},\ \mathit{BinE},\ \mathit{TwoE}\right\}$), each represents 16 exp. (for the 16 different network configurations: $\left\{7L,\ 4L\right\} \times \left\{82U,\ 50U\right\} \times \left\{0W, 1W\right\} \times \left\{LSTM,\ BiLSTM\right\}$). For each rug plot the two best (Bi)LSTM models are marked differently; and the other three network configuration parameters of the best of them, which consistently was the BiLSTM, are listed at the top of each rug plot.}~\label{Fig:ArabicModelsResults}
 \end{figure}
 
   
@@ -57,7 +57,7 @@ In this section we will explain the effect of the 12 data representation techniq
 This section is to comment on the effect of the network configurations parameters.
 \begin{itemize}
 \item \textbf{Cell Type}: It is clear that BI-LSTM  (large circle) is the highest $F_1$ score for each data representation. It always higher than the highest score of the LSTM model (large square). This is what we expected the more complex architecture, the more results we can achieved. But we need to mention that the BI-LSTM is slower than LSTM in overall running time for all experiments, and it also consume much more resources than LSTM cell.
-\item \textbf{Layers Number:} As we explained in Section~\ref{sec:Deep_Learning_Background} The idea behind the deep neural network come from the multi-layers which makes the network learn more details. So, the more complex network (more layer) the more results we can achieved. So, in our experiments we can show that 7 layers achieved the highest scores more than the 4 layers. There is exception for the trimming data without diacritics in (1T, 0D, BinE) and (1T, 0D, TwoE). The straightforward interpretation for that is the reduction in dataset size occurred by trimming and no diacritics, which required less complex network. So, of we reduced the complexity of our problem the number of layers will not be effective.
+\item \textbf{Layers Number:} As we explained in Section~\ref{Sec:Deep_Learning_Background} The idea behind the deep neural network come from the multi-layers which makes the network learn more details. So, the more complex network (more layer) the more results we can achieved. So, in our experiments we can show that 7 layers achieved the highest scores more than the 4 layers. There is exception for the trimming data without diacritics in (1T, 0D, BinE) and (1T, 0D, TwoE). The straightforward interpretation for that is the reduction in dataset size occurred by trimming and no diacritics, which required less complex network. So, of we reduced the complexity of our problem the number of layers will not be effective.
 
 \item \textbf{Cell Units and Weighting Loss:} We can't figure out a consistent effect based on the number of cell units or the weighting loss. But we need to mention that the highest results achieved was using both the highest cell units 82 and the weighted loss.
   \end{itemize}
@@ -68,24 +68,24 @@ This section is to comment on the effect of the network configurations parameter
 
 In this section we will explore the accuracy of each class. This is regarding how our model is able to detect every class separate. The difference between this and the $F_1$ score is it is per class accuracy. It is also useful to check it as it will show us how the model able to understand every class and what is the classes which our model not able to classify it. 
 
-Similar in the previous section, We have a four combination of \textit{trimming and diacritic} we will invistegate about which models is achieved the best results. We will take the best four models (the first three of them is two-hot encoding and the forth is binary encoding) from Figure~\ref{fig:ArabicModelsResults} which is the overall accuracy and show the results of the per class accuracy for each one.
+Similar in the previous section, We have a four combination of \textit{trimming and diacritic} we will invistegate about which models is achieved the best results. We will take the best four models (the first three of them is two-hot encoding and the forth is binary encoding) from Figure~\ref{Fig:ArabicModelsResults} which is the overall accuracy and show the results of the per class accuracy for each one.
 
-In Figure~\ref{fig:Results_Per_Class} we have the previous four models display the per-class accuracy. The class names is ordered based on their data size per class which we explained previous in Figure~\ref{fig:Data_Size_Distribution} with the same order. If we compare the results for the four models $F_1$ scores which was around 95\% in Figure~\ref{fig:ArabicModelsResults} and the per-class accuracy we will find only 6 classes (which have around 80\% of the total datasets) are around this value. But there are a significant drops for some classes which make the figures line has drops in the results.
+In Figure~\ref{Fig:Results_Per_Class} we have the previous four models display the per-class accuracy. The class names is ordered based on their data size per class which we explained previous in Figure~\ref{Fig:Data_Size_Distribution} with the same order. If we compare the results for the four models $F_1$ scores which was around 95\% in Figure~\ref{Fig:ArabicModelsResults} and the per-class accuracy we will find only 6 classes (which have around 80\% of the total datasets) are around this value. But there are a significant drops for some classes which make the figures line has drops in the results.
 
-The relation between the model accuracy results per-class and the dataset size per class is clearly shown in Figure~\ref{fig:Results_Per_Class}; However, This trend was expected to be fixed from the weighted loss which is inconsistent effect of the weighting loss for all the models. This inconsistent effects shows that we need to have a new design for weighting function which can solve this trend issue. The overall accuracy can be increased after trimming but there will be a gab between the accuracy per class the size of the data per class as the dataset is not balanced. Moreover, We can repeat this experiments again with enforcing all classes to have an equal size so, we can show the accuracy without in data unbalance issue. We will elaborate more in Section~\ref{sec:Discussion}.
+The relation between the model accuracy results per-class and the dataset size per class is clearly shown in Figure~\ref{Fig:Results_Per_Class}; However, This trend was expected to be fixed from the weighted loss which is inconsistent effect of the weighting loss for all the models. This inconsistent effects shows that we need to have a new design for weighting function which can solve this trend issue. The overall accuracy can be increased after trimming but there will be a gab between the accuracy per class the size of the data per class as the dataset is not balanced. Moreover, We can repeat this experiments again with enforcing all classes to have an equal size so, we can show the accuracy without in data unbalance issue. We will elaborate more in Section~\ref{Sec:Discussion}.
 
 
 
 \begin{figure}[!t]
  \input{./Figures/Ch_7_Results/Fig_Results_Per_Class.tex}
- \caption{The per-class $F_1$ score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{fig:Data_Size_Distribution}. There is a descending trend with the class size, with the exception at \textit{Rigz} meter.}~\label{fig:Results_Per_Class}
+ \caption{The per-class $F_1$ score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{Fig:Data_Size_Distribution}. There is a descending trend with the class size, with the exception at \textit{Rigz} meter.}~\label{Fig:Results_Per_Class}
 \end{figure}
 
 
 
 \subsection{Encoding Effect}
 
-As explained in Chapter~\ref{ch:Data_Encoding} the difference between data encoding types. In this section we will explore the effects of Data Encoding with respect to the \textit{Accuracy, Learning Rate and Memory Utilization} on the best model results (4L, 82U, 0W, 1T, 0D, BinE). During our experiments we didn't find a consistent effect for the model encoding type and the model accuracy~\ref{fig:Convergence_Memory}-a. However, most of cases we found the accuracy of the two-hot is slightly better than binary and then one-hot.
+As explained in Chapter~\ref{Ch:Data_Encoding} the difference between data encoding types. In this section we will explore the effects of Data Encoding with respect to the \textit{Accuracy, Learning Rate and Memory Utilization} on the best model results (4L, 82U, 0W, 1T, 0D, BinE). During our experiments we didn't find a consistent effect for the model encoding type and the model accuracy~\ref{Fig:Convergence_Memory}-a. However, most of cases we found the accuracy of the two-hot is slightly better than binary and then one-hot.
 
 
 \begin{figure}[!t]
@@ -94,21 +94,21 @@ As explained in Chapter~\ref{ch:Data_Encoding} the difference between data encod
     \input{Figures/Ch_7_Results/Fig_Results_Encoding_Convergence.tex}
         %\input{Figures/Ch_7_Results/Fig_Results_Memory_Consumption.tex}
   \end{tikzpicture}
-  \caption{Encoding effect on Learning rate with the best model (1T, 0D, 4L, 82U, 0W, BinE) and when using the two other encodings instead of BinE.}~\label{fig:Convergence_Memory}%(b) Relative size in bytes of the three encoding vectors
+  \caption{Encoding effect on Learning rate with the best model (1T, 0D, 4L, 82U, 0W, BinE) and when using the two other encodings instead of BinE.}~\label{Fig:Convergence_Memory}%(b) Relative size in bytes of the three encoding vectors
 \end{figure}
 
 
-Figure~\ref{fig:Convergence_Memory} shows the effect of encoding on learning rate which has no difference in convergence speed between the encoding types; However, We can found some encoding start learning faster than other between epochs[1:5] but overall they will converge with the same learning curve at the end.
+Figure~\ref{Fig:Convergence_Memory} shows the effect of encoding on learning rate which has no difference in convergence speed between the encoding types; However, We can found some encoding start learning faster than other between epochs[1:5] but overall they will converge with the same learning curve at the end.
 
 
-Memory Utilization is not similar for each model encoding. We found that each encoding has it is own vector size representation Figure with different of memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \textit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \textit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that, \textit{Two-hot} is in the middle between the two encoding with respect to the memory consumption and also it gives some more meaning for data encoding as explained before in Section~\ref{ch:Data_Encoding}
+Memory Utilization is not similar for each model encoding. We found that each encoding has it is own vector size representation Figure with different of memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \textit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \textit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that, \textit{Two-hot} is in the middle between the two encoding with respect to the memory consumption and also it gives some more meaning for data encoding as explained before in Section~\ref{Ch:Data_Encoding}
 
 \subsection{Comparison with Literature}
 As explained previous, One of the advantages in our research work is the very large dataset we have which allows us to have a good subset for testing. This provides us a confidence regarding our results.
 
-If we compared our work approach results the best model scored 0.9638 with the highest two in literature, We will find that our model results is significant higher than the others as illustrated in Table~\ref{tab:Summary_Results}. Moreover, Our approach is a learning approach not a Hand-crafted algorithmic approach which gives our model more confidence to be mature enough for these types of problems as explained in Chapter~\ref{ch:Literature}.
+If we compared our work approach results the best model scored 0.9638 with the highest two in literature, We will find that our model results is significant higher than the others as illustrated in Table~\ref{Tab:Summary_Results}. Moreover, Our approach is a learning approach not a Hand-crafted algorithmic approach which gives our model more confidence to be mature enough for these types of problems as explained in Chapter~\ref{Ch:Literature}.
 
-\section{Discussion}\label{sec:Discussion}
+\section{Discussion}\label{Sec:Discussion}
 
 In this section we need to discuss some points regarding our experiments and results approach. We will show some parts we think it need more discussion or exploration.
 
@@ -137,7 +137,7 @@ In general, Any encoding function $\mathcal{T}$ require a special network $\eta$
     This article   & 96.38\%  & 150,000 \\
     \bottomrule
   \end{tabular}
-  \caption{Overall accuracy of this article compared to literature.}\label{tab:Summary_Results}
+  \caption{Overall accuracy of this article compared to literature.}\label{Tab:Summary_Results}
 \end{table}
 
 
