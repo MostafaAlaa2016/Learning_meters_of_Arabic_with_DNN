@@ -1,0 +1,95 @@
+\tikzset{
+  Above/.style={
+    midway,
+    above,
+    font=\scriptsize,
+    text width=1.5cm,
+    align=center,
+  },
+  Below/.style={
+    midway,
+    below,
+    font=\scriptsize,
+    text width=1.5cm,
+    align=center
+  }
+}
+\pgfplotsset{compat=1.11,
+  /pgfplots/ybar legend/.style={
+    /pgfplots/legend image code/.code={
+      \draw[##1,/tikz/.cd,bar width=1pt,yshift=0.0cm,bar shift=0pt]
+      plot coordinates {(0cm,0.0cm)};},
+  },
+}
+
+\pgfplotsset{%
+  pointModelsFiguresStyle/.style args={#1}{%
+    color=#1,
+    mark=0,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+
+\pgfplotsset{%
+  pointRug/.style args={#1}{%
+    color=#1,
+    mark=-,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+
+\pgfplotsset{%
+  pointBiLSTM/.style args={#1}{%
+    color=#1,
+    mark=o,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+
+% LSTM
+\pgfplotsset{%
+  pointLSTM/.style args={#1}{%
+    color=#1,
+    mark=square,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+
+\pgfplotsset{%
+  pointBiGRU/.style args={#1}{%
+    color=#1,
+    mark=pentagon,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+
+\pgfplotsset{%
+  pointGRU/.style args={#1}{%
+    color=#1,
+    mark=diamond,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+\pgfplotsset{
+    azetinaplot/.style={
+        width=7cm,
+        height=7cm,
+        axis lines=middle,
+        xlabel=$x$,
+        ylabel=$y$,
+        enlarge y limits,
+        clip=false
+    }
+}

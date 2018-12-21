@@ -1,80 +1,21 @@
 %------------------------------------------------------------
-%
-\documentclass[a4paper,10pt]{report}%%
-%Options -- Point size:  10pt (default), 11pt, 12pt
-%        -- Paper size:  letterpaper (default), a4paper, a5paper, b5paper
-%                        legalpaper, executivepaper
-%        -- Orientation  (portrait is the default)
-%                        landscape
-%        -- Print size:  oneside (default), twoside
-%        -- Quality      final(default), draft
-%        -- Title page   notitlepage, titlepage(default)
-%        -- Columns      onecolumn(default), twocolumn
-%        -- Equation numbering (equation numbers on the right is the default)
-%                        leqno
-%        -- Displayed equations (centered is the default)
-%                        fleqn (equations start at the same distance from the right side)
-%        -- Open bibliography style (closed is the default)
-%                        openbib
-% For instance the command
-%           \documentclass[a4paper,12pt,leqno]{article}
-% ensures that the paper size is a4, the fonts are typeset at the size 12p
-% and the equation numbers are on the left side
-%
-%@@@https://codeinthehole.com/guides/writing-a-thesis-in-latex/
-
-
+\documentclass[a4paper,10pt]{report}
 \usepackage{fontspec}
 \usepackage{amsmath}
-
 \usepackage[hang, small, bf, margin=20pt]{caption}%, tableposition=top
 \setlength{\abovecaptionskip}{0pt}
-
-
 \usepackage{geometry}
-
 \geometry{ a4paper, total={170mm,257mm}, left=10mm,right=10mm, top=20mm,}
-%\usepackage[left=1in, right=1in, top=1in, bottom=1in, includefoot, headheight=5.6pt]{geometry}
-
-\usepackage{makecell}
-
-\setlength{\parskip}{6pt}
-\usepackage{amsfonts}%
-\usepackage{amssymb}%
+\usepackage{makecell}%###################33
 \usepackage{graphicx}
-%-------------------------------------------
+\usepackage{subfigure}
+\setlength{\parskip}{6pt}
 \newtheorem{theorem}{Theorem}
 \newtheorem{acknowledgement}[theorem]{Acknowledgement}
-\newtheorem{algorithm}[theorem]{Algorithm}
-\newtheorem{axiom}[theorem]{Axiom}
-\newtheorem{case}[theorem]{Case}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{conclusion}[theorem]{Conclusion}
-\newtheorem{condition}[theorem]{Condition}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{criterion}[theorem]{Criterion}
 \newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{exercise}[theorem]{Exercise}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{notation}[theorem]{Notation}
-\newtheorem{problem}[theorem]{Problem}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{solution}[theorem]{Solution}
-\newtheorem{summary}[theorem]{Summary}
-\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
-
-%------------All done to create a subsubsubsection command with numbering-----------
-\usepackage[T1]{fontenc}
-%\usepackage[latin1]{inputenc}
-
-\usepackage{lmodern}
-\usepackage[english]{babel}
+%-------------------------------------------
 \usepackage{hyperref}
 \usepackage{multirow}
-
 \hypersetup{
   colorlinks,
   citecolor=blue,
@@ -83,225 +24,98 @@
   urlcolor=blue}
 \setcounter{secnumdepth}{3}
 % -------------------------------------------------------------
-\setcounter{tocdepth}{2} %depth of table of contents
-% \setcounter{secnumdepth}{-1}
-
-
-\usepackage{setspace}
-\usepackage{pslatex,palatino,avant,graphicx,color}
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
 {\normalfont\huge\bfseries\centering}{\thechapter}{20pt}{\Huge}
 \newcommand{\cchapter}{\chapter}
 \titleformat{\cchapter}[display]
 {\normalfont\tiny\bfseries\centering}{\thecchapter}{12pt}{\tiny}
-\usepackage{appendix}
-\usepackage{float}
+% -------------------------------------------------------------
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\usepackage{amssymb}
+\usepackage{booktabs}  % for \toprule ...
+\usepackage{collcell}
+\usepackage{pgf}
+\usepackage{setspace}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\usetikzlibrary{calc,intersections}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}% To get more advances positioning options
+\usetikzlibrary{patterns}
+\usepackage{polyglossia}
+\usepackage{footnote}
+\usepackage{pgfplotstable}% loads pgfplots, tikz, graphicx
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % make the tables and the figures centered automatically
 \makeatletter
 \g@addto@macro\@floatboxreset\centering
 \makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage[utf8x]{inputenc}
-%\usepackage[utf8]{inputenc}
-\usepackage[numbers,sort&compress]{natbib}
-\usepackage{geometry}
-%\usepackage{subcaption}
-%\usepackage{subfig}
-\usepackage{subfigure}
-
-\usepackage{fourier}
-\DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
-\DeclareSymbolFont{letters}{OML}{cmm}{m}{it}
-\usepackage{mathtools}
-\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-\usepackage{amsfonts, amssymb, bm}
-\usepackage{booktabs}  % for \toprule ...
-\usepackage{caption}
-\usepackage{verbatim}
-\usepackage{enumitem}
-\newcommand{\dd}[1]{\mathrm{d}#1}
-\RequirePackage{pgfmath}
-\usepackage{graphicx, type1cm, lettrine}
-\usepackage{qtree}
-\usepackage[dvipsnames, table]{xcolor}
-\usepackage{collcell}
-\usepackage{pgf}
-\usepackage{forest}
-\usepackage{setspace}
+\colorlet{LightGreen}{green!25}%for figures
+\colorlet{DarkGreen}{green!90}%for figures
+\colorlet{LightBlue}{blue!40}%for figures
+\colorlet{LightPurple}{red!20}%for figures
+\colorlet{LightYellow}{yellow!30}%for figures
+\colorlet{LightBlue1}{blue!20}%for figures
+\colorlet{LightPurple1}{purple!40}%for figures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{listings}
-
-
-\usepackage{pgfplots}
-%\usepackage[most]{tcolorbox}
-% \tcbset{colback=yellow!10!white, colframe=red!50!black, 
-%         highlight math style= {enhanced, %<-- needed for the ’remember’ options
-%             colframe=red,colback=red!10!white,boxsep=0pt}
-%         }
-\usepackage{tikz}
-\usetikzlibrary{shapes.geometric}
-\usetikzlibrary{arrows.meta,arrows}
-\usetikzlibrary{calc,intersections}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{bidipoem}
-\usepackage{polyglossia} % <3
 \setmainlanguage{english}
 \setotherlanguage{arabic}
-\newfontfamily\arabicfont  [Script=Arabic, Scale=1.5]{Scheherazade}
-\usepackage[numbers,sort&compress]{natbib}
-\usepackage{float}
-\usepackage{footnote}
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}% loads pgfplots, tikz, graphicx
-\usetikzlibrary{patterns}
-\pgfplotsset{compat=newest}
-%\pgfplotsset{every axis/.append style={tick label style={/pgf/number format/fixed},font=\scriptsize,ylabel near ticks,xlabel near ticks,grid=major}}
-
-\usetikzlibrary{matrix}
-\pgfplotsset{compat=1.14}% <- added!
-
-\pgfplotsset{compat=1.8}
-\usepackage{color}
-
-
-%\colorlet{red}{OneHotColor}
-%\colorlet{blue}{BinaryColor}
-%\colorlet{brown}{TwoHotColor}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\pgfplotsset{compat=newest}
-%\pgfplotsset{plot coordinates/math parser=false}
-%\pgfplotsset{
-%    every non boxed x axis/.style={
-%        xtick align=center,
-%        enlarge x limits=true,
-%        x axis line style={line width=0.8pt, -latex}
-%},
-%    every boxed x axis/.style={}, enlargelimits=false
-%}
-%\pgfplotsset{
-%    every non boxed y axis/.style={
-%        ytick align=center,
-%        enlarge y limits=true,
-%        y axis line style={line width=0.8pt, -latex}
-%},
-%    every boxed y axis/.style={}, enlargelimits=false
-%}
-
-\pgfplotsset{%
-  pointModelsFiguresStyle/.style args={#1}{%
-    color=#1,
-    mark=0,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-
-\pgfplotsset{%
-  pointRug/.style args={#1}{%
-    color=#1,
-    mark=-,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-
-\pgfplotsset{%
-  pointBiLSTM/.style args={#1}{%
-    color=#1,
-    mark=o,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-
-% LSTM
-\pgfplotsset{%
-  pointLSTM/.style args={#1}{%
-    color=#1,
-    mark=square,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-
-\pgfplotsset{%
-  pointBiGRU/.style args={#1}{%
-    color=#1,
-    mark=pentagon,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-
-\pgfplotsset{%
-  pointGRU/.style args={#1}{%
-    color=#1,
-    mark=diamond,
-    only marks,
-    mark size=1.5pt,
-    point meta=explicit symbolic,
-  }
-}
-\pgfplotsset{
-    azetinaplot/.style={
-        width=7cm,
-        height=7cm,
-        axis lines=middle,
-        xlabel=$x$,
-        ylabel=$y$,
-        enlarge y limits,
-        clip=false
-    }
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\usetikzlibrary{positioning}% To get more advances positioning options
-%\usepackage{xcolor}
-
-\colorlet{LightGreen}{green!25}
-\colorlet{DarkGreen}{green!90}
-\colorlet{LightBlue}{blue!40}
-\colorlet{LightPurple}{red!20}
-\colorlet{LightYellow}{yellow!30}
-\colorlet{LightBlue1}{blue!20}
-\colorlet{LightPurple1}{purple!40}
-
-
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
-}
- 
-\lstset{style=mystyle}
+\newfontfamily\arabicfont[Script=Arabic, Scale=1.5]{Scheherazade}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{listing_python_configuration.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% highlight undefined reference in PDF
-
+\input{pgfplot_configurations.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------
+%\usepackage{amsfonts}%
+%\usepackage[latin1]{inputenc}
+%\usepackage{lmodern}
+%\usepackage{amssymb}%
+%\usepackage{pslatex,palatino,avant,graphicx,color}
+%\setcounter{tocdepth}{2} %depth of table of contents
+% \setcounter{secnumdepth}{-1}
+%\usepackage[T1]{fontenc}
+%\usepackage[english]{babel}
+%\usepackage{setspace}
+%\usepackage{appendix}
+%\usepackage{subcaption}
+%\usepackage{subfig}
+%\usepackage[utf8]{inputenc}
+%\usepackage[numbers,sort&compress]{natbib}
+%\usepackage[utf8x]{inputenc}
+%\usepackage{geometry}
+% \usepackage[numbers,sort&compress]{natbib}
+% \usepackage{fourier}
+%\DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
+%\DeclareSymbolFont{letters}{OML}{cmm}{m}{it}
+%\usepackage{caption}
+%\usepackage{verbatim}
+%\usepackage{enumitem}
+%\newcommand{\dd}[1]{\mathrm{d}#1}
+%\RequirePackage{pgfmath}
+%\usepackage{graphicx, type1cm, lettrine}
+%\usepackage{qtree}
+%\usepackage{color}
+%\usepackage[dvipsnames,svgnames]{xcolor}
+%\usepackage{xcolor}
+%\usepackage{amsfonts}
+%\usepackage{bm}
+%\usepackage{pgfplots}
+%\usepackage{pgfplots}
+%\pgfplotsset{compat=newest}
+%\pgfplotsset{compat=1.14}% <- added!
+%\pgfplotsset{compat=1.8}
+%\usepackage{forest}
+%\usepackage{float}
+%-------------------------------------------
 
 %\makeatother
 
@@ -310,6 +124,6 @@
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../master"
+%%% TeX-master: "master"
 %%% TeX-engine: xetex
 %%% End:
