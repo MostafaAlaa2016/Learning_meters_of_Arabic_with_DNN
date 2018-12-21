@@ -1,10 +1,11 @@
 %------------------------------------------------------------
 \documentclass[a4paper,10pt]{report}
-\usepackage{geometry}
-\geometry{ a4paper, total={170mm,257mm}, left=10mm,right=10mm, top=20mm,}
+\usepackage{fontspec}
+\usepackage{amsmath}
 \usepackage[hang, small, bf, margin=20pt]{caption}%, tableposition=top
 \setlength{\abovecaptionskip}{0pt}
-\usepackage{makecell}%
+\usepackage{geometry}
+\geometry{ a4paper, total={170mm,257mm}, left=10mm,right=10mm, top=20mm,}
 \usepackage{graphicx}
 \usepackage{subfigure}
 \setlength{\parskip}{6pt}
@@ -22,6 +23,10 @@
   urlcolor=blue}
 \setcounter{secnumdepth}{3}
 % -------------------------------------------------------------
+%\usepackage{makecell}%###################33
+\usepackage{tabu}
+\usepackage{booktabs}% for better rules in the table
+
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
 {\normalfont\huge\bfseries\centering}{\thechapter}{20pt}{\Huge}
@@ -61,23 +66,17 @@
 \colorlet{LightBlue1}{blue!20}%for figures
 \colorlet{LightPurple1}{purple!40}%for figures
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{listing_python_configuration.tex}
+\usepackage{listings}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{fontspec}
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{fourier}
-\DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
-\DeclareSymbolFont{letters}{OML}{cmm}{m}{it}
 \usepackage{bidipoem}
 \setmainlanguage{english}
 \setotherlanguage{arabic}
-\newfontfamily\arabicfont[Script=Arabic]{Amiri}
-\setmainfont[Scale=0.925]{Heuristica}
+\newfontfamily\arabicfont[Script=Arabic, Scale=1.5]{Scheherazade}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{listing_python_configuration.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{pgfplot_configurations.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pdfstringdefDisableCommands{\let\uppercase\relax}%ignore warning \uppercase is not supported when a string is expanded for bookmarks.
 
 %%% Local Variables:
 %%% mode: latex
