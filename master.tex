@@ -1,71 +1,57 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% XELATEX
-% !TEX TS-program = xelatex
-%% Based on a TeXnicCenter-Template by Gyorgy SZEIDL.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 \input{./Thesis_Configurations.tex}
+
+\includeonly{
+  chapters/front_page,
+  chapters/sec_acknowledgement,
+  chapters/ch_abstract,
+  chapters/ch_introduction,
+  chapters/ch_background,
+  chapters/ch_literature,
+  chapters/ch_dataset,
+  %chapters/ch_encoding,
+  chapters/ch_model_training,
+  chapters/ch_results,
+  % chapters/ch_future_work,
+  chapters/ch_references,
+  % chapters/ch_appendix
+}
 
 \begin{document}
 
-
-\input{./chapters/front_page.tex}
-
-\newpage
-
-\input{./chapters/sec_acknowledgement.tex}
-\newpage
+\include{chapters/front_page}
+\include{chapters/sec_acknowledgement}
 
 \addcontentsline{toc}{chapter}{Table of Contents}
 \tableofcontents
 \newpage
-
-\addcontentsline{toc}{chapter}{List of Figures} 
+\addcontentsline{toc}{chapter}{List of Figures}
 \renewcommand\listfigurename{\uppercase{List of Figures}}
-\listoffigures 
+\listoffigures
 \newpage
-
 \addcontentsline{toc}{chapter}{List of Tables}
 \renewcommand\listtablename{\uppercase{List of Tables}}
 \listoftables
 \newpage
+
 \pagenumbering{arabic}
-\input{./chapters/ch_abstract.tex}
-\newpage
-\input{./chapters/ch_introduction.tex}
-\newpage
 
-\input{./chapters/ch_background.tex}
-\clearpage
-\input{./chapters/ch_literature.tex}
-\clearpage
-\input{./chapters/ch_dataset.tex}
-\clearpage
-%\input{./chapters/ch_encoding.tex}
-%\newpage
-
-\input{./chapters/ch_model_training.tex}
-\clearpage
-
-\input{./chapters/ch_results.tex}
-
-%\input{./chapters/ch_future_work.tex}
-%\newpage
-\clearpage
-\input{./chapters/ch_references.tex}
-\clearpage
-
-%\input{./chapters/ch_appendix.tex}
-
-% \newpage
+\include{chapters/ch_abstract}
+\include{chapters/ch_introduction}
+\include{chapters/ch_background}
+\include{chapters/ch_literature}
+\include{chapters/ch_dataset}
+% \include{chapters/ch_encoding}
+\include{chapters/ch_model_training}
+\include{chapters/ch_results}
+% \include{chapters/ch_future_work}
+\include{chapters/ch_references}
+% \include{chapters/ch_appendix}
 
 \end{document}
 
-
 %%% https://tex.stackexchange.com/questions/91201/change-the-appearance-of-grids-in-pgfplots
 
-% Local Variables:
-% TeX-engine: xetex
-% End:
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
