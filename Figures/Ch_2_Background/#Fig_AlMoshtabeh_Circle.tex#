@@ -1,4 +1,4 @@
-\begin{tikzpicture}\arabicfont\fontsize{10pt}{20}\selectfont
+\begin{tikzpicture}scale=.5,transform shape]\arabicfont\fontsize{10pt}{20}\selectfont
 %====================================================
 \node[circle, minimum size=12cm, draw, fill=CodedEmerald] (a) {};
 \node[circle, minimum size=10.5cm, draw, fill=CodedDarkLemon] (a) {};
