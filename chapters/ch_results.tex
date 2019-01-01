@@ -123,22 +123,6 @@ The encoding method is a transformer function $\mathcal{T}$ this function transf
 In general, Any encoding function $\mathcal{T}$ require a special network $\eta$ to get the correct decoding (learning) for the dataset. So, our comparison between the encoding methods in the same Neural Networks architecture not accurate as each one required different network design. But all of them will reach the same results but with a different time or can be a small difference due to the not accurate network architecture. Moreover, Our work illustrated clearly the effect of the encoding methods and compared between each other, We think the \textit{Two-Hot} encoding is the more suitable method to work with character level problems. It is the middle approach between the \textit{One-Hot} which needs a huge amount of memory and the \textit{Binary} which loss some meaning in Arabic language diacritics effect.
 
 
-\begin{table}[!t]
-  \centering
-  \begin{tabular}{c c c}
-    \toprule
-    \textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} \\
-    \midrule
-    \cite{Alnagdawi2013FindingArabicPoemMeter}   & 75\%     & 128\\
-    \cite{Abuata2016RuleBasedAlgorithmFor}      & 82.2\%   & 417  \\
-    This article   & 96.38\%  & 150,000 \\
-    \bottomrule
-  \end{tabular}
-  \caption{Overall accuracy of this article compared to literature.}\label{Tab:Summary_Results}
-\end{table}
-
-
-
 \subsection{Weighting Loss Function}
 Our weighting loss functions don’t solve the small classes issues (regardless the best model accuracy achieved with weighting loss but this is not a consistent result). The weighting loss function needs to be redesigned to solve this issue with the combination of learning rate and the batch size.
 

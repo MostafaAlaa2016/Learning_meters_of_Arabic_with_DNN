@@ -28,6 +28,8 @@ Both~\cite{Abuata2016RuleBasedAlgorithmFor} and~\cite{Alnagdawi2013FindingArabic
   \item \textbf{The step converting verses into ones and zeros patternso} are probabilistic; it also depends on the meaning, which is a source of randomness. Then treating such a problem as a deterministic problem will not satisfy the case study. It results in many limitations like obligating verses to have full diacritics on every single letter before conducting the classification. This is also the case with~\cite{Kurt2012AlgorithmForDetectionAnalysis} work, for their algorithm to work, the text must be transliterated into LTA.
   \end{enumerate}
 
+  We can summarize the difference between our work results and the previous work in Table~\ref{Tab:Summary_Results}
+
 
 %\section{Machine Learning Approach (Handcrafted Features)}\label{sec:mach-learn-appr}
 
@@ -40,32 +42,47 @@ Both~\cite{Abuata2016RuleBasedAlgorithmFor} and~\cite{Alnagdawi2013FindingArabic
 %\cite{Tanasescu2016AutomaticClassificationPoetryMeter} has worked on binary classifying English poems where \textit{metric} and \textit{free-verse} are the categories, he faced an interesting problem with their dataset, it was imbalanced, (871 metrical poems, 4115 free-verse), for this reason. they have used \textit{bootstrap aggregating} (also known as \textit{bagging}), which is a meta-algorithm that can greatly improve decision tree accuracy.  With \textit{J48} and \textit{bootstrap aggregating}, he was able to achieve a 94.39\% correctly classifying poetry as metrical or not.
 
 
-\section{Literature Summary Comparison}
+%\section{Literature Summary Comparison}
 
-We can summarize the difference between our work and the previous work in the following table
+
 
 \begin{table}[!t]
   \centering
-  \begin{tabular}{c c c c}
-    \hline
-    \textbf{\#} & \textbf{Comparison} & \textbf{Previous Work} & \textbf{Our Work} \\
-    \hline
-    1 & \makecell{Dataset\\Size} & A small number of the dataset used (1.5k) & Big Dataset contains 1.6M rows    \\
-        \hline
-    2 & \makecell{Feature\\Engineering} & limited features without intelligence  & Intelligent feature detection   \\
-        \hline
-    3 & Performance & \makecell{Poor performance in case of\\ rule-based 75\% on 128 samples and not good \\performance handcrafted 82.2\% \\machine learning features on 417 samples}  & \makecell{Reached 96.38\% applied to \\a reasonable size of test data 150k}  \\
-
-    \hline
-        4 & \makecell{Accuracy\\Measure} & \makecell{Most of the research does not \\provide clear way about \\accuracy measure }  & \makecell{Provide F-score and confusion\\ matrix for the results\\ with clear performance for\\ every experiment}  \\
-
-    \hline
-    5 & \makecell{Encoding\\Techniques} & \makecell{Encoding using Zeros and Ones \\ based on features handcrafted \\or rule based }    & \makecell{Produces three encoding types\\  One-Hot, Binary, Two-Hot \\encoding with comparison }  \\
-
-    \hline
- \end{tabular}
-  \caption{Comparison between our work approach and Previous work. }\label{Tab:Comparison_Ours_Vs_Others}
+  \begin{tabular}{c c c}
+    \toprule
+    \textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} \\
+    \midrule
+    \cite{Alnagdawi2013FindingArabicPoemMeter}   & 75\%     & 128\\
+    \cite{Abuata2016RuleBasedAlgorithmFor}      & 82.2\%   & 417  \\
+    This article   & 96.38\%  & 150,000 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Overall accuracy of this article compared to literature.}\label{Tab:Summary_Results}
 \end{table}
+
+
+%\begin{table}[!t]
+%  \centering
+%  \begin{tabular}{c c c c}
+%    \hline
+%    \textbf{\#} & \textbf{Comparison} & \textbf{Previous Work} & \textbf{Our Work} \\
+%    \hline
+%    1 & \makecell{Dataset\\Size} & A small number of the dataset used (1.5k) & Big Dataset contains 1.6M rows    \\
+%        \hline
+%    2 & \makecell{Feature\\Engineering} & limited features without intelligence  & Intelligent feature detection   \\
+%        \hline
+%    3 & Performance & \makecell{Poor performance in case of\\ rule-based 75\% on 128 samples and not good \\performance handcrafted 82.2\% \\machine learning features on 417 samples}  & \makecell{Reached 96.38\% applied to \\a reasonable size of test data 150k}  \\
+%
+%    \hline
+%        4 & \makecell{Accuracy\\Measure} & \makecell{Most of the research does not \\provide clear way about \\accuracy measure }  & \makecell{Provide F-score and confusion\\ matrix for the results\\ with clear performance for\\ every experiment}  \\
+%
+%    \hline
+%    5 & \makecell{Encoding\\Techniques} & \makecell{Encoding using Zeros and Ones \\ based on features handcrafted \\or rule based }    & \makecell{Produces three encoding types\\  One-Hot, Binary, Two-Hot \\encoding with comparison }  \\
+%
+%    \hline
+% \end{tabular}
+%  \caption{Comparison between our work approach and Previous work. }\label{Tab:Comparison_Ours_Vs_Others}
+%\end{table}
 
 
 

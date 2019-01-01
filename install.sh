@@ -64,3 +64,8 @@ sudo add-apt-repository ppa:notepadqq-team/notepadqq
 sudo apt-get update 
 sudo apt-get install notepadqq
 
+#R-studio
+sudo apt -y install r-base
+sudo apt install gdebi-core
+sudo apt install gdebi libxml2-dev libssl-dev libcurl4-openssl-dev libopenblas-dev r-base r-base-dev
+
