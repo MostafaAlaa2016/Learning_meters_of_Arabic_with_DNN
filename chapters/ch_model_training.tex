@@ -26,11 +26,11 @@ Arabic dataset has the verse with diacritics. We can feed the network the charac
 
 \subsection{Trimming Small Classes}
 
-Arabic poem dataset, as stated in Figure~\ref{Fig:Data_Size_Distribution}, is unbalanced. So, As part of our research, we make the dataset representation as a Full dataset and Trimmed dataset. This way allows us to study the effect of this unbalance. Also, We not only explore the impact of the unbalanced dataset But also, We have applied a technique to solve this issue~\ref{Sec:W_Loss}. The trimmed classes are five classes which have less than 1\% of the total dataset. We presented this classes as all the classes on the left side of the horizontal red line in Figure~\ref{Fig:Data_Size_Distribution}. So, The total classes after trimming are 11 classes and the full with all 16 meters presented.
+Arabic poem dataset, as stated in Figure~\ref{Fig:Data_Size_Distribution}, is unbalanced. So, As part of our research, we make the dataset representation as a Full dataset and Trimmed dataset. This way allows us to study the effect of this unbalance. Also, We not only explore the impact of the unbalanced dataset But also, We have applied a technique to solve this issue~\ref{Sec:W_Loss}. The trimmed classes are five classes which have less than 1\% of the total dataset. We presented these classes as all the classes on the left side of the horizontal red line in Figure~\ref{Fig:Data_Size_Distribution}. So, The total classes after trimming are 11 classes and the full with all 16 meters presented.
 
 \subsection{Encoding Techniques}
 
-As explained previously, There are three different encoding methods~\ref{Ch:Data_Encoding}. Although all carry the same information, It expected that Every encoding has its behaviours as below,
+As explained previously, There are three different encoding methods~\ref{Ch:Data_Encoding}. Although all carry the same information, It expected that Every encoding has its behaviors as below,
 \begin{itemize}
 \item \textbf{Running Time}: It was expected the running time would differ from one encoding type compared to others. This information is important if someone has an experiment with limited time and need to get the results as fast as it can.
 \item \textbf{Required Resources}: It was expected to have different resources consumption from one encoding typed compared to others. This information is important if someone has an experiment with limited resources.
@@ -75,21 +75,20 @@ As explained previously, There are three different encoding methods~\ref{Ch:Data
 \section{Parameters of Network Configuration}\label{Sec:Rnn_Param}
 
 % RNN,LSTM,BI_LSTM
-As explained previously, Recurrent Neural Networks (RNN) showed the ability to solve language model problems in Section~\ref{Sec:RNN}. We used RNNs with Long Short Term Memory(LSTM)~\ref{Sec:LSTM} as the main architecture for our experiments. We also used BI-LSTM discussed in section~\ref{Sec:Bi_Lstm} as an alternative way to test the affect of BI-Directional LSTM to check learn the patterns with the two directions.
+As explained previously, Recurrent Neural Networks (RNN) showed the ability to solve language model problems in Section~\ref{Sec:RNN}. We used RNNs with Long Short Term Memory (LSTM)~\ref{Sec:LSTM} as the main architecture for our experiments. We also used BI-LSTM discussed in Section~\ref{Sec:Bi_Lstm} as an alternative way to test the effect of BI-Directional LSTM to check the learning patterns with the two directions.
 
-We also thought using BI-LSTM will support the model to learn the Tafa'il for every class as it can combined the sound music from both ways. We will explain our argue and the effects on the results in Chapter~\ref{Ch:Results}.
+We also thought using BI-LSTM will support the model to learn the Tafa'il for every class as it can be combined the sound of music from both ways. We will explain our argument and the effects on the results in Chapter~\ref{Ch:Results}.
 % RNN Configuration
 In RNNs network configuration parameters, there are four parameters:
 \begin{itemize}
 \item \textbf{Cell Type}: We used LSTM and BI-LSTM.
 \item \textbf{Layers}: We tried many numbers of layers and we found the best number based on our problem is 4 and 7 layers.
 \item \textbf{Cell Unit Size}: We also tried many numbers but the best results achieved from 50 and 82.
-\item \textbf{Weighting Model}: As showed in Figure~\ref{Fig:Data_Size_Distribution} classes is unbalanced. So, as an alternative to remove the small classes we tried to keep all classes but with weighting the loss function to account for the relative class size. We introduced a new weighting function explain in next sub-section~\ref{Sec:W_Loss} to help working on all the dataset. So, we will have two combinations, One with weighting loss and one without weighting loss.
+\item \textbf{Weighting Model}: As showed in Figure~\ref{Fig:Data_Size_Distribution} classes is unbalanced. So, as an alternative to remove the small classes we tried to keep all classes, but with weighting the loss function to account for the relative class size. We introduced a new weighting function explain in next sub-section~\ref{Sec:W_Loss} to help work on all the dataset. So, we will have two combinations, One with weighting loss and one without weighting loss.
   
 \end{itemize}
 
-The total number of combination is 16 which is $4$ parameters each one have $2$ types. So, the total will be $2^4=16$; and hence, there are 16 different network configurations to run on each of the 12 data representations above. This results in $16 \times 12 = 192$ different experiments (or models). Hence, there are 96 different network configurations to run on each of the 2 data representations above. This results in 96 × 2 (= 192) different experiments (or models), whose accuracies are presented on the y-axis of Figure 7-a.%@@@add figure
-For all the 192 experiments networks are trained using dropout of 0.2, batch size is of 2048, with Adam optimizer, and 10\% for each of validation and testing sets.
+The total number of combination is 16 which is $4$ parameters each one has $2$ types. So, the total will be $2^4=16$; and hence, there are 16 different network configurations to run on each of the 12 data representations above. This results in $16 \times 12 = 192$ different experiments (or models). Hence, there are 96 different network configurations to run on each of the 2 data representations above. This results in $96 \times 2 = 192$ different experiments (or models), whose accuracy are presented on the y-axis of Figure~\ref{Fig:ArabicModelsResults}. For all the 192 experiments networks are trained using dropout of $0.2$, batch size is of $2048$, with Adam optimizer, and 10\% for each of validation and testing sets.
 
 
 
@@ -102,7 +101,7 @@ is the total number of classes.
   w_c = \left(\frac{\frac{1}{n_c}}{\sum_{c'} \frac{1}{n_{c'}}} \right)
 \end{equation}
 
-The idea is to increase the loss for the small classes as the number of verses of small classes is small so the output will be bigger than the loss in case the class has a lot of verses. To have a clear explanation we can show equation~\ref{eq:training_weighted_fun_example}~\footnote{The equation numbers are rounded for simplicity.} as example the biggest class will has smaller loss compared to the smallest class. We are dividing on constant which is the sum of classes density. 
+The idea is to increase the loss for the small classes as the number of verses of small classes is small so the output will be bigger than the loss in case the class has a lot of verses. To have a clear explanation we can show equation~\ref{eq:training_weighted_fun_example}~\footnote{The equation numbers are rounded for simplicity.} as an example the biggest class will have a smaller loss compared to the smallest class. We divided on constant which is the sum of classes density. 
 
 \begin{subequations}
 \begin{align}
@@ -116,7 +115,7 @@ The idea is to increase the loss for the small classes as the number of verses o
 
 \subsection{Hardware}
 
-We used a Dell Precision T7600 Workstation to conduct our experiments with: Intel Xeon E5-2650 32x 2.8GHz CPU, 32GB RAM, 1 NVIDIA GeForce GTX 1080 ti GPU\footnote{\textit{GPU ASUS ROG STRIX GeForce GTX 1080 Ti Assassin's Creed Origins Edition AC-ORIGINS-ROG-STRIX-GTX1080TI, Memory Type: GDDR5X, Connectors: DisplayPort Output, DVI Output: HDMI Standard Output, Chipset/GPU Manufacturer: NVIDIA, Brand: ASUS NVIDIA GeForce GTX 1080 Ti, Compatible Port/Slot: PCI Express 3.0, Memory Size: 11GB 352-Bit GDDR5X, Core Clock 1594 MHz (OC Mode), 1569 MHz (Gaming Mode (Default)), Boost Clock 1708 MHz (OC Mode), 1683 MHz (Gaming Mode (Default)), 1 x DL-DVI-D 2 x HDMI 2.0 2 x DisplayPort 1.4, 3584 CUDA Cores more details is available in the following website link \url{https://www.asus.com/us/Graphics-Cards/AC-ORIGINS-ROG-STRIX-GTX1080TI/}} }, Hard desk SSD 256; and with: Ubuntu OS, x86\_64 Linux 16.04 LTS. We need to highlight that\footnote{\textit{we found a major impact using SSD hard desk when data reading. Beside the effect of the GPU for Deep Learning experiments we utilized the memory and the processors to prepare the batches for the input model}}
+We used a Dell Precision T7600 Workstation to conduct our experiments with Intel Xeon E5-2650 32x 2.8GHz CPU, 32GB RAM, 1 NVIDIA GeForce GTX 1080 ti GPU\footnote{\textit{GPU ASUS ROG STRIX GeForce GTX 1080 Ti Assassin's Creed Origins Edition AC-ORIGINS-ROG-STRIX-GTX1080TI, Memory Type: GDDR5X, Connectors: DisplayPort Output, DVI Output: HDMI Standard Output, Chipset/GPU Manufacturer: NVIDIA, Brand: ASUS NVIDIA GeForce GTX 1080 Ti, Compatible Port/Slot: PCI Express 3.0, Memory Size: 11GB 352-Bit GDDR5X, Core Clock 1594 MHz (OC Mode), 1569 MHz (Gaming Mode (Default)), Boost Clock 1708 MHz (OC Mode), 1683 MHz (Gaming Mode (Default)), 1 x DL-DVI-D 2 x HDMI 2.0 2 x DisplayPort 1.4, 3584 CUDA Cores more details is available in the following website link \url{https://www.asus.com/us/Graphics-Cards/AC-ORIGINS-ROG-STRIX-GTX1080TI/}} }, Hard desk SSD 256; and with Ubuntu OS, x86\_64 Linux 16.04 LTS. We need to highlight that\footnote{\textit{we found a major impact using SSD hard desk when data reading. Beside the effect of the GPU for Deep Learning experiments we utilized the memory and the processors to prepare the batches for the input model}}
 
 
 \subsection{Software}
@@ -133,14 +132,54 @@ During our Model development we used the following software and libraries,
 \item pickle: \textit{We used it to save the encoder and the model as serialized pickle object.}
 \item h5py: \textit{We used it to save the encoded dataset matrix in h5 format.}
 \end{itemize}
+\subsection{Implementation Outline}
 
-We faced a performance issue while training LSTM for Recurrent Neural Networks as we have huge amount of data with the current known behaviour of RNN as it is recurrent. So, We did some techniques to reduce our RNN training time by
-\begin{itemize}
-\item Save the data cleaned and encoded in the hard desk and read it direct encoded\footnote{\textit{We saved the data encoder as pickle file for later decoding process}}.
-\item Read the data with batches and utilized the hardware to train the dataset in batch parallel.
-\item We used Nvidia Cuda optimized LSTM cell which highly reduced our training time up to 6x speedup.
-   
-\end{itemize}
+\begin{enumerate}
+\item Data Reading and Cleansing:
+  \begin{itemize}
+  \item We set the random seed and \textit{Numpy} seed in the code to be reproducible.
+  \item We used PyArabic~\cite{Pyarabic_2010} to trim and strip some dummy letters~\footnote{The data has some dummy letters named Tatweel for example \textarabic{شعـــر} is similar than \textarabic{شعر} so, we removed this letters as it doesn't have any meaning. } and working on Arabic letters.
+  \item We clean the data from any dummy char using \textit{Pandas and Numby} libraries.
+  \item We get the max Bayt length for padding~\footnote{Padding used zeros which is not a selected Arabic Char representations}.
+  \item We removed the dummy letters or wrong diacritics letters.
+  \item We factorize \textit{Shadaa and Tanween} to its original letters as explained in Chapter~\ref{Ch:Background}.
+  \item We split the data to be Full\textit{ Including all the Meters} and Eliminated\textit{ Removed the meters which have less than 1\% of the total data}.
+  \end{itemize}
+  
+\item Data Encoding:
+  \begin{itemize}
+  \item We encoded the Meters label using label encoder in \textit{Sklearn} and we generated to output label encoder Full and Eliminated.
+  \item We save the encoder serialized in the desk for later usage.
+  \item We used \textit{Pickle} python library to save the serialized object with \textit{H5 format} in \textit{h5py} library.
+  \item We used three ways of encoding \textit{One-Hot, Binary and Two-Hot} all of them developed using custom python functions.
+  \item We save the data for each encoding with two combinations \textit{Full/Eliminated and With/Without Tashkeel}.
+  \item We saved them as \textit{h5} format in the desk.
+  \end{itemize}
+
+\item Model Training:
+  \begin{itemize}
+  \item We used \textit{Keras with Tensorflow} backend as Deep Learning Framework.
+  \item We created custom function for handle the Data combinations \textit{Full/Eliminated and With/Without Tashkeel} with the Network combinations \textit{Layers, Units and cell type (Bi-LSTM or LSTM)}.
+  \item We faced a performance issue while training LSTM for Recurrent Neural Networks as we have a huge amount of data with the current known behaviour of RNN as it is recurrent. So, We did some techniques to reduce our RNN training time by
+      \begin{itemize}
+      \item Save the data cleaned and encoded in the hard desk and read it direct encoded as explained in the previous steps.
+      \item Read the data with batches and utilized the hardware to train the dataset in batch parallel.
+      \item We used Nvidia Cuda optimized LSTM cell which highly reduced our training time up to 6x speedup.
+      \end{itemize}
+  \item We saved all the model output for later validations.
+  \end{itemize}  
+
+\item Results and Validations
+      \begin{itemize}
+      \item We calculate the confusion matrix on the testing data to calculate the results and do the validations.
+      \item We calculate the accuracy from the confusion matrix which was similar than the accuracy generated from \textit{Tensorflow} on the testing data.
+      \item We used weighted accuracy to check the accuracy for Per-Class.
+      \end{itemize}
+  
+\end{enumerate}
+
+
+
 
 
 
