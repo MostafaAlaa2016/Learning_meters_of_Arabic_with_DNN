@@ -280,13 +280,21 @@ To implement a simple 1 iteration example below sample code simulate the program
 
 What is the Neural Networks component?
 
-\textbf{Input Layer:} Input layers is the input data raw for the network it is denoted as $a^0$.
-\textbf{Hidden Layers:} The layers between the input layers and the output layer it can be any number of layers. It also has a set of weighted input and produces an output through an activation function. Every layer in the hidden layer transmits the output to the other hidden layer as an input feature figure XXXX shows this relations. %@@@ NN representation
+Figure~\ref{Fig:NNExample} represents an Example of Neural Networks representations. It consists of
 
-\textbf{Output Layer:} It is one output layer with have the final results from the hidden layers.
-
+\begin{itemize}
+\item \textbf{Input Layer:} Input layers is the input data raw for the network it is denoted as $a^0$.
+\item \textbf{Hidden Layers:} The layers between the input layers and the output layer it can be any number of layers. It also has a set of weighted input and produces an output through an activation function. Every layer in the hidden layer transmits the output to the other hidden layer as an input feature.
+\item \textbf{Output Layer:} It is one output layer with have the final results from the hidden layers.
+\end{itemize}
  \subsection{Neural Network Computation}
- In this subsection, We will show as example on how we can compute the Neural Networks for every layer. In figure XXXX we have example of one layer we will continue explain on this example in Equation~\eqref{eq_nn_one_layer}.%
+ In this subsection, We will show as example on how we can compute the Neural Networks for every layer. In figure~\ref{Fig:NNExample} we have an example of Input layer of 4 input, one hidden layer, and one output layer with one neuron we will continue explain on this example in Equation~\eqref{eq_nn_one_layer}.%
+
+ \begin{figure}[!t]
+   \input{./Figures/Ch_2_Background/Fig_Neural_Network_Example.tex}
+  \caption{Neural Networks Example Input layer with four input samples, One hidden Layer, and Output Layer with one output neuron.}~\label{Fig:NNExample}
+\end{figure}%
+
  \begin{subequations}\label{eq_nn_one_layer}
    \begin{align}
      Z_1^{[1]} & = w_1^{[1]T} x + b_1^{[1]} , a_1^{[1]} = \sigma(Z_1^{[1]}) \\
@@ -429,7 +437,9 @@ If we checked the input variable in the backpropagation we will find it is $da^{
 \subsubsection{How we Initialize the Wights}
 
     As we explained previously in Logistic regression, We initialized the weights to Zero. However, in Deep Neural Networks it will not work. Note: It is okay to initialize the Bias to Zero but the wights it will not works. Let's see what will happen if we initialize the weights and Bias to Zero.
-  % @@@https://www.coursera.org/learn/neural-networks-deep-learning/lecture/XtFPI/random-initialization figure
+
+    %@@@https://www.coursera.org/learn/neural-networks-deep-learning/lecture/XtFPI/random-initialization figure
+    
   Assume from figure XXXX we have two input vectors $x_1,X_2$ if we initialize $W^{[1]}$ to Zero from equation\eqref{eq:nn_weights_init_zero} and $b^{[1]}$ to Zeros. So, $a_1^{[1]}=a_2^{[1]}$ because both of the hidden units compute the same functions. Also, $W^{[2]}=[0 0]$ Then when we will compute the backpropagation we will find that $dz_1^{[1]}=dz_2^{[2]}$. So, After every iteration, we will find that the two hidden units calculate the same function and we will not get more information from this Deep Neural Network. We need to highlight that the main idea from Neural Networks as explained before is every hidden unit should work to get a new piece of information. The more hidden unit, the more hidden information we will get but if we initialize it to Zero. It will be the same function which is calculated, and we will not get any new information.%
 \begin{subequations}\label{eq:nn_weights_init_zero}
 \begin{align}
@@ -440,6 +450,67 @@ If we checked the input variable in the backpropagation we will find it is $da^{
 \end{align}
 \end{subequations}%
 To initialize weights and to get the maximum value of the neural network computation we should initialize the weight by any small random numbers to avoid the big weights which will tend to get the small slope from the Z where $Z^{[1]}= W^{[1]} X + b^{[1]}$ For example, if we use $\tanh$ we will get the big tail values $a^{[1]}= g^{[1]}(Z^{[1]})$. So, the big weights we more likely to get slow learning rate. 
+
+\subsubsection{Regularization}
+
+One of the most common problem anyone working with data science in general or deep learning face is the overfitting problem. In statistics, overfitting is the production of an analysis that corresponds too closely or exactly to a particular set of data, and may therefore fail to fit additional data or predict future observations reliably~\cite{Wiki_Overfitting}. An overfitted model is a statistical model that contains more parameters than can be justified by the data. The essence of overfitting is to have unknowingly extracted some of the residual variation (i.e. the noise) as if that variation represented underlying model structure. In a practical example, When model performed working fine on training data, but was not able to predict test data. This means that the models are often free of bias in the parameter estimators, but have estimated (and actual) sampling variances that are needlessly large  of the training and not able to be generalized to predict testing data. In figure~\ref{Fig:Fitting} It shows different fitting ways, We need avoid both underfitting and overfitting. While we trying to enhance the results in our training sets the model start to be more complex. So that, the training error reduces but the testing error doesn’t. While building the neural networks the more complex models the more overfitting problem which we can face.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[scale=0.6]{./Figures/Ch_2_Background/Fig_Fitting.png}
+        \caption{Comparison Between different fitting types}~\label{Fig:Fitting}
+      \end{figure}%
+
+\begin{figure}[!t]
+  \centering
+\input{./Figures/Ch_2_Background/Fig_NN_Dropout.tex}
+        \caption{A diagram demonstrating the effects of applying dropout with p = 0.5 to a deep neural networks~\cite{Gitrepo_Dropout}}~\label{Fig:NN_Dropout}
+      \end{figure}
+
+
+One of the technique to enhance the results on testing data can be applied is to get more data. So, the model can learn the pattern from the data in a better way. But sometimes it is not easy to get more data or it is more expensive than the enhancement you need to do. So, we work to apply some regularization techniques to prevent the overfitting.
+
+In general, Regularization is a technique which apply slight changes or modifications to the algorithm to be more generalize. In some case we try to hide some information or adding some noise on the training data to avoid the overfitting on training phase. This made the model performance in the testing data or unseen data much better.
+
+\paragraph{Different Regularization Techniques in Deep Learning}
+In this part, We will explain how to apply different regularization techniques in deep learning.
+
+\begin{itemize}
+\item \textbf{L2 \& L1 Regularization} L1 \& L2 are most common types of regularization. They update the general cost function by adding another term~\eqref{eq:regularization} known as the regularization term~\cite{Web_Analyticsvidhya_Regularization}.
+\begin{equation}\label{eq:regularization}
+  J(w,b) =  \ell(y,\widehat{y})  + Regularization
+   \end{equation}
+
+   Addition of this regularization term decrease the values of weight matrices. This happen because it assumes that a neural network with smaller weight matrices leads to simpler models. Therefore, it will also reduce overfitting to quite an extent. So, assume we reduce the value of $\lambda$ to be close to zero this will produce simpler network and lots of nodes will be equal zeros. This will reduce the high variance so, less prone to overfitting.
+
+   \begin{enumerate}
+     \item L2 regularization is the most common type of regularization. In L2 Regularization We add $\lambda$ as regularization parameter. This  hyperparameter value is optimized for better results~\eqref{eq:regularization_l2}. It also known as weight decay as it forces the weights to decay towards zero (but not exactly zero)~\cite{Web_Analyticsvidhya_Regularization}.
+
+       \begin{equation}\label{eq:regularization_l2}
+  J(w,b) = \frac{1}{m} \sum_{i=1}^{m} \ell(y,\widehat{y})+\frac{\lambda}{2m} \times \lVert w \rVert^2
+\end{equation}
+
+\item In L1 Regularization, We penalize the absolute value of the weights~\eqref{eq:regularization_l1}. If we use L1 regularization  $W$ can end up being sparse which means $w$ vector will have a lot of zeros. This can help to compressing the model because the set of parameters are zero and we will need less memory to store the model. Otherwise, we usually prefer L2 over it.
+
+       \begin{equation}\label{eq:regularization_l1}
+  J(w,b) = \frac{1}{m} \sum_{i=1}^{m} \ell(y,\widehat{y})+\frac{\lambda}{2m} \times \lVert w \rVert
+\end{equation}
+     \end{enumerate}
+   \item \textbf{Dropout}
+     Dropout is one of the most powerful techniques to apply regularization. It produce excellent results and is consequently the most frequently used regularization technique in the field of deep learning.
+
+     Figure~\ref{Fig:NN_Dropout} shows the idea of dropout it randomly selects some nodes and removes them along with all of their incoming and outgoing connections. Dropout techniques randomness make the models results seems to be more generalized model. For each node we will have a probability of some dropout percentage that this node will be removed with its connections. So, we will have some simpler network architecture. Also, Dropout force the algorithm to not rely on any feature. So, have to spread the weights and make the network trying to learn different type of features. Due to these reasons, dropout is usually preferred when we have a large neural network structure in order to introduce more randomness.
+
+   \item \textbf{Data Augmentation} is a technique to augment your training data when there is no way to get more data for model more generalize. Assume we are working on Image classifier problem for example, we can flipping the images horizontally and adding that also with your training set. So now instead of just this one example in our training set, we can add this to our training example. So by flipping the images horizontally, we could double the size of our training set. Also, we can do different techniques such as rotating the image, flipping, scaling, shifting the images. All of these techniques can help to get better generalized model.
+   \item \textbf{Early stopping} is a typed of cross-validation way where we split some of our training data to be set as the validation set. So, When we show that our performance on the validation set is getting worse, we immediately stop the training on the model. This is known as early stopping.
+     %@@@ add figure example of early stopping
+\end{itemize}
+
+After we finalize this part, We need to note that: In our problem based on text we found the most effective regularization technique was \textit{Dropout}. After we applied the dropout in our experiments most of the results increased by at least 1\% and some of the experiments increased by 3.5\%.
+
+
+\subsubsection{ADAM Optimizer}
+
 
 \subsection{Recurrent Neural Networks (RNNs)}\label{Sec:RNN}
 
