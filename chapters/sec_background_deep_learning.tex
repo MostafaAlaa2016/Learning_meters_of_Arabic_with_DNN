@@ -453,7 +453,7 @@ To initialize weights and to get the maximum value of the neural network computa
 
 \subsubsection{Regularization}
 
-One of the most common problem anyone working with data science in general or deep learning face is the overfitting problem. In statistics, overfitting is the production of an analysis that corresponds too closely or exactly to a particular set of data, and may therefore fail to fit additional data or predict future observations reliably~\cite{Wiki_Overfitting}. An overfitted model is a statistical model that contains more parameters than can be justified by the data. The essence of overfitting is to have unknowingly extracted some of the residual variation (i.e. the noise) as if that variation represented underlying model structure. In a practical example, When model performed working fine on training data, but was not able to predict test data. This means that the models are often free of bias in the parameter estimators, but have estimated (and actual) sampling variances that are needlessly large  of the training and not able to be generalized to predict testing data. In figure~\ref{Fig:Fitting} It shows different fitting ways, We need avoid both underfitting and overfitting. While we trying to enhance the results in our training sets the model start to be more complex. So that, the training error reduces but the testing error doesn’t. While building the neural networks the more complex models the more overfitting problem which we can face.
+One of the most common problems anyone working with data science in general or deep learning face is the overfitting problem. In statistics, overfitting is the production of an analysis that corresponds too closely or exactly to a particular set of data, and may, therefore, do not fit additional data or predict future observations reliably~\cite{Wiki_Overfitting}. An overfitted model is a statistical model that contains more parameters that can be justified by the data. The essence of overfitting is to have unknowingly extracted residual variation (i.e. the noise) as if that variation represented underlying model structure. In a practical example When model performed working fine on training data but could not predict test data. This means that the models are often free of bias in the parameter estimators, but have estimated (and actual) sampling variances that are needlessly large  of the training and not able to be generalized to predict testing data. In figure~\ref{Fig:Fitting} It shows different fitting ways, We need to avoid both underfitting and overfitting. We were trying to enhance the results in our training sets the model is more complex. So that, the training error reduces but the testing error doesn’t. While building the neural networks the more complex models the more overfitting problem which we can face.
 
 \begin{figure}[!t]
   \centering
@@ -468,21 +468,19 @@ One of the most common problem anyone working with data science in general or de
       \end{figure}
 
 
-One of the technique to enhance the results on testing data can be applied is to get more data. So, the model can learn the pattern from the data in a better way. But sometimes it is not easy to get more data or it is more expensive than the enhancement you need to do. So, we work to apply some regularization techniques to prevent the overfitting.
-
-In general, Regularization is a technique which apply slight changes or modifications to the algorithm to be more generalize. In some case we try to hide some information or adding some noise on the training data to avoid the overfitting on training phase. This made the model performance in the testing data or unseen data much better.
-
+      We can enhance the results on testing data by getting more sample data. So, the model can learn the pattern from the data in a better way. But sometimes it is difficult to get more data, or it is more expensive than the enhancement you need to do. So, we work to apply regularization techniques to prevent the overfitting.
+Regularization is a technique which applies slight changes or modifications to the algorithm to be more generalized. Sometimes we try to hide information or adding noise on the training data to avoid the overfitting on training phase. This made the model performance in the testing data or unseen data much better.
 \paragraph{Different Regularization Techniques in Deep Learning}
 In this part, We will explain how to apply different regularization techniques in deep learning.
 
 \begin{itemize}
-\item \textbf{L2 \& L1 Regularization} L1 \& L2 are most common types of regularization. They update the general cost function by adding another term~\eqref{eq:regularization} known as the regularization term~\cite{Web_Analyticsvidhya_Regularization}.
+\item \textbf{L2 \& L1 Regularization} are the most common types of regularization. They update the general cost function by adding another term~\eqref{eq:regularization} known as the regularization term~\cite{Web_Analyticsvidhya_Regularization}.
 \begin{equation}\label{eq:regularization}
   J(w,b) =  \ell(y,\widehat{y})  + Regularization
    \end{equation}
 
-   Addition of this regularization term decrease the values of weight matrices. This happen because it assumes that a neural network with smaller weight matrices leads to simpler models. Therefore, it will also reduce overfitting to quite an extent. So, assume we reduce the value of $\lambda$ to be close to zero this will produce simpler network and lots of nodes will be equal zeros. This will reduce the high variance so, less prone to overfitting.
-
+   Addition of this regularization term decrease the values of weight matrices. This happens because it assumes that a neural network with smaller weight matrices leads to simpler models. Therefore, it will also reduce overfitting to quite an extent. So, assume we reduce the value of $\lambda$ to be close to zero this will produce a simpler network and lots of nodes will be equal zeros. This will reduce the high variance so, less prone to overfitting.
+   
    \begin{enumerate}
      \item L2 regularization is the most common type of regularization. In L2 Regularization We add $\lambda$ as regularization parameter. This  hyperparameter value is optimized for better results~\eqref{eq:regularization_l2}. It also known as weight decay as it forces the weights to decay towards zero (but not exactly zero)~\cite{Web_Analyticsvidhya_Regularization}.
 
@@ -490,24 +488,24 @@ In this part, We will explain how to apply different regularization techniques i
   J(w,b) = \frac{1}{m} \sum_{i=1}^{m} \ell(y,\widehat{y})+\frac{\lambda}{2m} \times \lVert w \rVert^2
 \end{equation}
 
-\item In L1 Regularization, We penalize the absolute value of the weights~\eqref{eq:regularization_l1}. If we use L1 regularization  $W$ can end up being sparse which means $w$ vector will have a lot of zeros. This can help to compressing the model because the set of parameters are zero and we will need less memory to store the model. Otherwise, we usually prefer L2 over it.
+\item In L1 Regularization, We penalize the absolute value of the weights~\eqref{eq:regularization_l1}. If we use L1 regularization  $W$ can end up being sparse which means $w$ vector will have a lot of zeros. This can help to compress the model because the set of parameters are zero and we will need less memory to store the model. Otherwise, we usually prefer L2 over it.
 
        \begin{equation}\label{eq:regularization_l1}
   J(w,b) = \frac{1}{m} \sum_{i=1}^{m} \ell(y,\widehat{y})+\frac{\lambda}{2m} \times \lVert w \rVert
 \end{equation}
      \end{enumerate}
    \item \textbf{Dropout}
-     Dropout is one of the most powerful techniques to apply regularization. It produce excellent results and is consequently the most frequently used regularization technique in the field of deep learning.
+Dropout is one of the most powerful techniques to apply regularization. It produces excellent results and is consequently the most frequently used regularization technique in the field of deep learning.
 
-     Figure~\ref{Fig:NN_Dropout} shows the idea of dropout it randomly selects some nodes and removes them along with all of their incoming and outgoing connections. Dropout techniques randomness make the models results seems to be more generalized model. For each node we will have a probability of some dropout percentage that this node will be removed with its connections. So, we will have some simpler network architecture. Also, Dropout force the algorithm to not rely on any feature. So, have to spread the weights and make the network trying to learn different type of features. Due to these reasons, dropout is usually preferred when we have a large neural network structure in order to introduce more randomness.
+Figure~\ref{Fig:NN_Dropout} shows the idea of dropout it randomly selects some nodes and removes them along with all of their incoming and outgoing connections. Dropout techniques randomness make the models results seems to be a more generalized model. For each node, we will have a probability of some dropout percentage that this node will be removed with its connections. So, we will have some simpler network architecture. Also, Dropout force the algorithm to not rely on any feature. So, have to spread the weights and make the network trying to learn a different type of features. Due to these reasons, dropout is usually preferred when we have a large neural network structure in order to introduce more randomness.
 
-   \item \textbf{Data Augmentation} is a technique to augment your training data when there is no way to get more data for model more generalize. Assume we are working on Image classifier problem for example, we can flipping the images horizontally and adding that also with your training set. So now instead of just this one example in our training set, we can add this to our training example. So by flipping the images horizontally, we could double the size of our training set. Also, we can do different techniques such as rotating the image, flipping, scaling, shifting the images. All of these techniques can help to get better generalized model.
-   \item \textbf{Early stopping} is a typed of cross-validation way where we split some of our training data to be set as the validation set. So, When we show that our performance on the validation set is getting worse, we immediately stop the training on the model. This is known as early stopping.
+\item \textbf{Data Augmentation} is a technique to augment your training data when there is no way to get more data for the more generalized model. Assume we are working on Image classifier problem, for example, we can flipping the images horizontally and adding that also with your training set. So now instead of just this one example in our training set, we can add this to our training example. So by flipping the images horizontally, we could double the size of our training set. Also, we can do different techniques such as rotating the image, flipping, scaling, shifting the images. All of these techniques can help to get a better-generalized model.
+
+\item \textbf{Early stopping} is a type of cross-validation way where we split some of our training data to be set as the validation set. So, When we show that our performance on the validation set is getting worse, we immediately stop the training on the model. This is known as early stopping.
      %@@@ add figure example of early stopping
 \end{itemize}
 
-After we finalize this part, We need to note that: In our problem based on text we found the most effective regularization technique was \textit{Dropout}. After we applied the dropout in our experiments most of the results increased by at least 1\% and some of the experiments increased by 3.5\%.
-
+After we finalize this part, We need to note that: In our problem based on text, we found the most effective regularization technique was \textit{Dropout}. After we applied the dropout in our experiments most of the results increased by at least 1\% and some of the experiments increased by 3.5\%.
 
 \subsubsection{ADAM Optimizer}
 
