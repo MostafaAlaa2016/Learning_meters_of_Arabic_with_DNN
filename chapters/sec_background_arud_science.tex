@@ -75,16 +75,12 @@ In Unicode, Arabic diacritics are standalone symbols, each of them has its own u
 		\bottomrule
 	\end{tabular}
 	\caption{Tanween diacritics on the letter  \textarabic{ د }} \label{Tab:Tanween_Dal}
-\end{table}%
-
+\end{table}%      
 
 \section{Arabic Arud}
 % @@@ add el3elal and zahafat
 % @@@ add tent picture
 % @@@ add details into every bahr
- 
-
-
 \begin{definition}\label{def:arud}
   \textbf{Arud} \hfill \\
   In Arabic Arud natively has many meanings (the way, the direction, the light clouds and Mecca and Madinah \footnote{\textit{Mecca and Madinah are two cities in  Saudi Arabia}.}~\cite{AlQuaed}. Arud is the study of Arabic Poem meters and the rules which confirm if the Poem is sound meters \& broken meters.
@@ -93,12 +89,11 @@ In Unicode, Arabic diacritics are standalone symbols, each of them has its own u
 The Author of Arabic Arud  is \textit{Al-Farahidi} (718 – 786 CE) who analyzed the Arabic poetry; then he came up with that the succession of consonants and vowels produce patterns or \textit{meters}, which make the music of poetry. He was one of the famous people who know The melodies and the musical parts of speech. He ha counted them fifteen meters.  After that, a student of \textit{Al-Farahidi} has added one more meter to make them sixteen. Arabs call meters \textarabic{بحور} which means "\textit{seas}" Poets have written poems without knowing exactly what rules which make a collection of words a poem.
 
 The Reasons which makes \textit{Al-Farahidi} put this rules is
-
-  \begin{itemize}
+\begin{itemize}
   \item Protect the Arabic Poetry from the broken meters.
   \item Distinguish between the original Arabic Poetry and the not original Arabic Poetry or from the prose.
-    \item Make the rules clear and easy for anyone who needs to write a poem.
-  \end{itemize}
+  \item Make the rules clear and easy for anyone who needs to write a poem.
+\end{itemize}
 
   Some people said that the one-day Al-Farahidi was walking into the metal-market and he was said some of the poetry and for some reasons the knock of the metals matched the musical sound of the poetry he was saying then he got an idea to explore the Arud of the poetry.
 
@@ -108,29 +103,21 @@ The Reasons which makes \textit{Al-Farahidi} put this rules is
   \item Arud in Arabic is noun come from verb \textarabic{يعرض} which means here to be assessed. They said because of Any poem should be assessed by Al-Arud rules so, it named Al-Arud~\cite{Alkafi1994}.
   \end{itemize}
   
-  
-
-  
-    
-    \subsection{Al-Farahidi and Pattern Recognition}
-    This subsection is our opinion in Al-Farahidi and his method he followed during working on Arabic Poetry Meter Classification.
+\subsection{Al-Farahidi and Pattern Recognition}
+This subsection is our opinion in Al-Farahidi and his method he followed during working on Arabic Poetry Meter Classification.
 
 \begin{enumerate}
-
-
 \item Al-Farahidi thought there is a pattern for every collection of the poetry by chance; however, He rigorously worked into this problem. He started analyzing the poetry and add every group with the same tafa'il to the same class.
 \item He analyzed the outliers and the particular case from every class and added it to his model.
 \item He revised the meters and get the cases and generalize his case to be fit into all poetry.
 \item His student once he found some poetry which was not fit into any model to be a model for a new class.
-
 \end{enumerate}
+
 The best essential point which made us admired by Al-Farahidi is his way of research and his passion for getting an indeed succession model. Also, his model is general and followed all the steps currently any Data scientist follows to explore new pattern. Some people state that He died when he was thinking about the problem he hit a wall which made trouble for him. His die story shows that he was thinking in profoundly about this problem. One of the most interest thing I found during this research is how he found this pattern and Al-Farahidi’s way to find a new thing.
 %@@@ add about student for sebayeah
 %@@@ التأكد من أن القرآن والحديث ليس شعر وﻹن تصادف فهو ليس قصداً والشعر يجب أن يكون وزناً إتفاقاً
 
-    
-    
-    \subsection{Feet Representation}
+\subsection{Feet Representation}
     A meter is an ordered sequence of feet. Feet are the basic
 units of meters; there are ten of them.
 \begin{definition}\label{def:feet}
@@ -157,10 +144,8 @@ feet consists of three parts (Asbab (the word abstract means Reasons in English 
     \end{enumerate}
   \end{itemize}
 
-
   \subsubsection{Rules for Arabic Letters Representation}
   Arabic Arud has one general rule in the poetry representation which is we represent only the letters which is (spoken) not the written which means the letters with phonatics not the written. We have give the below rules as a results of the general rule.
-
   \begin{itemize}
   \item Any letter with \textit{harakah} represented as (/).
   \item Any letter with \textit{sukun} represented as (0).
@@ -168,12 +153,10 @@ feet consists of three parts (Asbab (the word abstract means Reasons in English 
   \item Any letter with tanween represented by two letters the first one is \textit{haraka} (/) and the second is \textit{sukun}.
   \item Alef without hamze (\textarabic{همزة الوصل}) and Wow Algmaa are not represented example (\textarabic{وُاعلَموا}) will be (/0//0)
   \item If we have a letter which is not written but (spoken) so, we will represent it example (\textarabic{هذا}) it include Alef but not written (\textarabic{هاذا}) the representation will be (/0/0).
-  \item If we have \textit{Meem Aljamaa} with harakah so, it represented with \textit{Mad} example (\textarabic{هُمُ}) will be (//0) .
+  \item If we have \textit{Meem Aljamaa} with harakah so, it represented with \textit{Mad} example (\textarabic{هُمُ}) will be (//0).
   \item \textit{Alef Mad} (\textarabic{آ}) will be two letters \textit{Alef with harakah} and \textit{Alef with sukun} example (\textarabic{آدَمُ}) will be (/0//).
-    \item if the verse ended with \textit{harkah} we will add \textit{sukun} to it.
-
-
-    \end{itemize}
+  \item if the verse ended with \textit{harkah} we will add \textit{sukun} to it.
+\end{itemize}
 Example: (note: the below representation first line is simliar the second one but with Arud language style ).
 \begin{Arabic}
   \begin{traditionalpoem*}
@@ -205,8 +188,6 @@ Arabic poetry feet has ten tafa'il \textarabic{تفاعيل} (scansion)  any peo
     8 &\textarabic{مَفْعُولاَت} & \texttt{0//0///}   & two \textit{Sabb Khafeef} (\textarabic{مف})(\textarabic{عو}) and \textit{Watd Mafrouq} (\textarabic{لات}) \\
     9 &\textarabic{مُسْتَفْعِلُنْ} & \texttt{0//0/0/}  &  two \textit{Sabb Khafeef} (\textarabic{مس})(\textarabic{تف}) and \textit{Watd Magmo'a} (\textarabic{علن}) \\
     10 &\textarabic{مُسْتَفْعِ لُنْ} & \texttt{0//0/0/}  & \textit{Sabb Khafeef} (\textarabic{مس}), \textit{Watd Mafrouq}  (\textarabic{تفع}) and \textit{Sabb Khafeef}  (\textarabic{لن})\footnote{\textit{We separated the letters (\textarabic{ع}) and (\textarabic{ل}) in (\textarabic{مستفع لن}) to show that it ends with a \textit{Watd Mafrouq} and distinguish between this feet  and (\textarabic{مستفعلن}) which contains \textit{Watd Magmo'a} }}\\
-
-
     \hline
   \end{tabular}
   \caption{The ten feet of the Arabic meters. }\label{arud:feet}
@@ -578,7 +559,7 @@ Arabic poetry feet has ten tafa'il \textarabic{تفاعيل} (scansion)  any peo
 \end{Arabic}%.
 \subsection{Meters Relation}
 
-Al-Arud classes have a relation between each other. The author of this relations is Al-Farahidi. He designed this relation to show the similarity and the difference between the meters. In this section, we will explain in brief this relation between them, and we will demonstrate its effect in Chapter~\ref{Ch:Results}. There are five groups of relationships between the meters. The details about how this relations arises will be omitted as it need more explanation in Arud details. But we will show brief about each one.
+Al-Arud classes have a relation between each other. The author of this relations is Al-Farahidi. He designed this relation to show the similarity and the difference between the meters. In this section, we will explain in brief this relation between them, and we will demonstrate its effect in Section~\ref{Sec:Results}. There are five groups of relationships between the meters. The details about how this relations arises will be omitted as it need more explanation in Arud details. But we will show brief about each one.
   \begin{itemize}
   \item \textbf{Al-Mokhtalef \textarabic{المُخْتَلِف}}: This group also know as Al-Taweel group. As all the meters inside it is sub-child from Al-Taweel from its tafa'il. It contains three meters Al-Taweel, Al-Madeed and Al-Baseet. Table~\ref{Tab:Meters_Group} show this group relations.
   \item \textbf{Al-Mo'talef \textarabic{المُؤْتَلِف}}: This group contains two classes Al-Kamel and Al-Wafer. Table~\ref{Tab:Meters_Group} shows this relation between them.%

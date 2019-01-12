@@ -1,7 +1,178 @@
-\chapter{\uppercase{Model Training and Experiments}}\label{Ch:Model_Training}
+\chapter{\uppercase{Design Dataset and Experiments}}\label{Ch:Model_Training}
 
-In this chapter, We will discuss the Training and Experiments done in this project. The training phase started by exploring what the ratio of Training, Testing, and Validation is. Choosing the correct percentage of training dataset compared to the Testing and Validation in Deep learning differs from normal machine learning structure, and it affects the model performance.
+In this chapter, we will discuss the Dataset Design, Training and Experiments done in this project. The Dataset Design steps started from acquisition and encoding including the essential pre-processing steps, and the justification for their need. Pre-processing steps are data extraction, data cleansing, data format, data encoding techniques used. Also, it contains comparisons between the three techniques used. The training phase started by exploring what the ratio of Training, Testing, and Validation is. Choosing the correct percentage of training dataset compared to the Testing and Validation in Deep learning differs from normal machine learning structure, and it affects the model performance. The results and Discussion phase It explains the results of all the 192 experiments on our dataset. Also, How we assess our model design.
 
+\section{Dataset Design}
+
+In this section, We introduces the Dataset acquisition and encoding including the essential pre-processing steps, and the justification for their need. Pre-processing steps are data extraction, data cleansing, data format, and data encoding techniques used. Also, it contains comparisons between the three techniques used.
+
+  The collection of the dataset was one of the most laborious tasks in this project. There were criteria we were searching to find. These criteria are as follows,
+  \begin{itemize}
+    
+  \item \textbf{Datasets availability:} There are old Arabic references which have a lot of Poems but not all these books were not available in a PDF or a Web pages format, and it was hard to find it.
+    
+  \item \textbf{The Poem with diacritics:} There are resources which have Arabic Poems, but it is much harder to find same with diacritics.
+    
+  \item \textbf{The amount of the dataset:} To have a successful project with good results we need a massive amount of data. From the previous work, We did not find this amount of data. The maximum number found was 1.5k. However, We were searching for around 1.5M record of classified poetry.
+
+  
+\item \textbf{Cleansing of this data:} There was a limitation for the datasets which we can consider it, or we can scrap it due to the limitation for the APIs or the ready datasets in this context.
+  
+\end{itemize}
+To meet the above criteria and overcome it, We applied following,
+
+\begin{itemize}
+
+  \item \textbf{Datasets availability:} We have scrapped the Arabic datasets from two big poetry websites: \textarabic{الديوان}~\cite{diwan}, \textarabic{الموسوعة الشعرية}~\cite{PoetryEncyclopedia2016}. Both merged into one large dataset, and we open sourced it online ~\cite{ArabicpoetryDS}.
+
+  \item \textbf{The Poem with diacritics:} We tried to get the most verses with the available diacritics, but the diacritics states are not consistent, So, a verse can be fully diacritics, Semi diacritics or without diacritics.
+
+\item \textbf{The amount of the dataset:} The total number of verses is 1,862,046 poetic verses; each verse labeled by its meter (class), the poet who wrote it, and the age which it was written. There are 22 meters, 3701 poets and 11 ages; and they are Pre Islamic, Islamic, Umayyad, Mamluk, Abbasid, Ayyubid, Ottoman, Andalusian, the era between Umayyad and Abbasid, Fatimid and modern. We are only interested in the 16 classic meters which attributed to Al-Farahidi, and they are the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{Fig:Data_Size_Distribution} shows the distribution of the verses per meter. %@@@ add datasets figures percentage per class
+  
+\item \textbf{Cleansing of this data:} Dataset was not cleaned enough for usage in this research, but we have applied cleansing rules explained in details in Data Preparation and Cleansing section~\ref{sec:Data_Clens}. We also open sourced all the code scripts used in our online repository~\cite{HCILAB_ArabicPoetry_2018}.
+\end{itemize}
+
+\begin{figure}[!t]
+	\centering
+	\begin{tikzpicture}
+	\input{./Figures/Ch_4_Dataset/dataset_size_ar.tex}
+	\end{tikzpicture}%
+	\caption{Arabic dataset Meter per class percentage ordered descendingly on x axis vs. corresponding meter name on y axis all class in the left of the red line (less than 1\% assume to be trimmed in some experiments).	}\label{Fig:Data_Size_Distribution}
+\end{figure}
+
+\subsection{Data Scraping}\label{sec:Data_Scrap}
+To scrap the data from the website: \textarabic{الديوان}~\cite{diwan},ends up into such a problem just reduce your problem to the most smallest one. That means: First: Check if any "keywords" is set, if used. Then: Use your whole preamble and print the complete bibliography. If this ends up in the same error, your problem might be in your preamble. -> Reduction of preamble, until you get your bib printed. Adding slowly parts back to the preamble, until the error occurs again. That might show you, what lead to the warning.
+
+ \textarabic{الموسوعة الشعرية}~\cite{PoetryEncyclopedia2016}, We used custom Python scripts for each websites to get the verses details. The script created with simple usage to pass the link we need to scrap. We will show two examples from both websites.
+\begin{enumerate}
+\item The First example, If we need to scrap a meter from \textarabic{الديوان} the website, for example Al-Tawil \\\url{https://www.aldiwan.net/poem.html?Word=\%C7\%E1\%D8\%E6\%ED\%E1\&Find=meaning}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{Tab:Aldiwan_Sample}
+\item Second Example, If we need to scrap the same meter from \textarabic{الموسوعة الشعرية} the website for example Al-Raml \url{https://poetry.dctabudhabi.ae/\#/diwan/poem/126971}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{Tab:ElMosoaa_Sample}
+We scrapped all the available datasets on both websites and merged them based on the common columns. Then we started the Data preparation tasks. We need to mention that, Not all diacritics was correctly available on all the websites. Also, We did not work to generate the diacritics for those datasets. So, we depended on whatever available without changing the data all the next sections is related to correction, preparation, and cleansing of the current datasets.
+
+\subsection{Data Preparation and Cleansing}\label{sec:Data_Clens}
+
+Data preparation and cleansing tasks divided into multi-stages.
+
+\begin{itemize}
+\item Merge all scrapped datasets into one CSV file with a selection of the common columns in each file.
+\item Remove the duplicates rows from the files in case we have any joined rows between both websites.
+\item Filter the datasets on the 16 meters required as some data belonged to other non-famous or not original meters.
+\item Remove many unnecessary white spaces which were useless.
+\item Remove non-Arabic characters and the other web symbols.
+\item Fix diacritics mistakes, such as the existence of two consecutive harakat, we have only kept one and have removed the other. %@@@add an example
+\item Remove any \textit{harakah} comes after a white space, it removed as it is useless. %@@@add an example
+\item We factored \textit{Shadaa}~\ref{def:shadaa_definition} to its original format explained in this example~\ref{Tab:Diacritics_Dal} previously.
+\item We also factored \textit{Tanween}~\ref{def:tanween_definition} to its original format explained in this example~\ref{Tab:Tanween_Dal} previously.\footnote{\textit{We ignored the factorization of Alef-Mad  \textbf{\textarabic{ آ }} in our data preparation and transformation which can save more memory and shorten our encoding vectors}}
+\end{itemize}
+
+We need to highlight that the last two points are not a handcrafted feature. It is a factorization for the letter to its original format. This factorization will affect the size of the data in the memory and the letter representation in the vector. We will explain this part in details in the next chapter about encoding mechanism and the impact of the encoding type in the model training time and performance.
+
+%\clearpage
+% table: dal with diacritics
+\begin{table}[!t]
+	\centering
+	\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}c c c c c}
+		%\hline
+		\toprule
+          \textbf{\small{\textarabic{البيت}}} & \small{\textbf{\textarabic{الشطر الأيسر}}} & \small{\textbf{\textarabic{الشطر الأيمن}}} &
+\small{\textbf{\textarabic{البحر}}} & \small{\textbf{\textarabic{الشاعر}}} \\
+		 %\hline
+          \midrule
+\makecell{\textarabic{رَجا شافع نسج المودّة بيننا}\\ \textarabic{ولا خيرَ في ودّ يكون بشافع}} &
+\textarabic{ولا خيرَ في ودّ يكون بشافع} &                                                       \textarabic{رَجا شافع نسج المودّة بيننا} &                                                       \textarabic{الطويل}&
+\textarabic{ابن نباته المصري}\\
+          
+		%\hline
+		\bottomrule
+	\end{tabular*}
+	\caption{Aldiwan scraping output example }\label{Tab:Aldiwan_Sample}
+\end{table}
+
+
+% table: dal with diacritics
+\begin{table}[!t]
+	\centering
+	\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}c c c c c c c c c}
+		%\hline
+          \toprule
+\small{\textbf{\#}} &
+\small{\textbf{\textarabic{البيت}}} &
+\small{\textbf{\textarabic{الشطر الأيمن}}}&                        \small{\textbf{\textarabic{الشطر الأيسر}}} &
+\small{\textbf{\textarabic{البحر}}}&                                 \small{\textbf{\textarabic{القافية}}}& \small{\textbf{\textarabic{الديوان}}}&                               \small{\textbf{\textarabic{الشاعر}}}&
+\small{\textbf{\textarabic{العصر}}}\\
+		 %\hline
+          \midrule
+1 &          
+\makecell{\textarabic{من يرد مورد حب} \\ \textarabic{ظمأ بالشوق يزدد}} &
+\textarabic{ظمأ بالشوق يزدد} &                                                        \textarabic{من يرد مورد حب} &                                                       \textarabic{الرمل}&
+\textarabic{د}&
+\makecell{\textarabic{الديوان} \\ \textarabic{الرئيسي}}&
+\makecell{\textarabic{يعقوب الحاج}\\ \textarabic{ جعفر التبريزي}}&
+\textarabic{الحديث}\\
+          
+		%\hline
+		\bottomrule
+	\end{tabular*}
+	\caption{Al-Mosoaa Elshearyaa scraping output example }\label{Tab:ElMosoaa_Sample}
+\end{table}
+\end{enumerate}
+
+
+\subsection{Data Encoding}\label{Ch:Data_Encoding}
+
+As we explained, We have collected the dataset and cleaned the data from any quality issues. The next step is to change the data representation to be ready for model training. This change of the data structure named \textit{Data Encoding}.
+
+\subsubsection{Encoding in English}
+
+
+\begin{itemize}
+\item \textbf{Work embedding Encoding in English} The concept of data encoding was first introduced by [Bengio et al., 2003]~\cite{Bengio2003}. They used an embedding lookup table as a reference and map every word to this lookup. They used the resulting dense vectors as input for language modeling. There are many works to improve the word embedding one of them [Collobert et al., 2011]~\cite{Collobert_2011} proposed improvement of word embedding task and proved the versatility of word embedding in many NLP tasks. Another work proposed by [Mikolov et al., 2013~\cite{Mikolov_2013};
+Jeffrey Pennington et al., 2014~\cite{Pennington_2014} ] shows the maturity of word embedding and is currently the most used encoding technique in the neural network based natural language processing.
+
+\item \textbf{Character Level Encoding in English} 
+All the previous work focused on word embedding encoding, but in our research problem here we do not work on word level we focus into character level encoding as input feature to the model. There is a good deal of research based on the character level encoding [Kim et al., 2015]~\cite{Kim_2015} used character level embedding to construct word level representations to work on out of vocabulary problem. [Chiu and Nichols, 2015]~\cite{Chiu_2015} also used character embeddings with a convolutional neural network for named entity recognition.[Lee, Jinhyuk et al.,2017]~\cite{ijcai_2017} used character embeddings for the personal name classification using Recurrent Neural Networks.
+
+\end{itemize}
+
+\subsubsection{Character Level Encoding in Arabic}\label{sec:Char_Level_Arabic}
+
+Working on Arabic language embedding based on the character level did not take much attention from the research community. [Potdar et al.,2017]~\cite{Potdar_2017} has done a comparative study on six encoding techniques. We are interested in the comparison of one-hot and binary. They have used Artificial Neural Network for evaluating cars based on seven ordered qualitative features. The accuracy of the model was the same in both encoding one-hot and binary. [Agirrezabal et al.,2017]\cite{Agirrezabal_2017} shows that representations of data learned from character-based neural models are more informative than the ones from hand-crafted features.
+
+In this research, We will make a comparative study of different encoding techniques between binary and one-hot. Also, we provide some new encoding method specific for Arabic letters, and we will see the effect of this on our problem. We will show the efficiency of every technique based on performing model training and model running time performance.
+
+Generally, a character will be represented as an n vector. Consequently, a verse would be an $n \times p$ matrix, where n
+is the character representation length and p is the verse’s length, n varies from one encoding to another, we have used One-Hot and Binary encoding techniques and proposed a new encoding, the \textbf{Two-Hot} encoding.
+
+Arabic letters have a feature related to the diacritics; To explain this feature we will take an example based on \textit{One-Hot} encoding. This feature is related to how we will treat the character with a diacritic. Arabic letters are 36 + white space as a letter. So, the total is 37. Any letter represented as a vector $37 \times 1$. Let's take an example a work such as \textarabic{مرحبا} having 5 letters encoded as a $37 \times 5$ matrix. If it came with diacritics such as \textarabic{مَرْحَبَا} and we need to represent the letters as One-Hot encoding we will consider every letter and diacritics as a separate letter. So, it will be 5 character and 4 diacritics. The vector shape will be $41 \times 9$.
+
+One of the main reason we need to care about the encoding is the  \textit{RNN} training. If we have a different number of time steps in  \textit{RNN} cell and the input vector dimensions are different based on the input, It will have a standard architecture for the model and to be able to train both the work with diacritics and without diacritics to show the effect of the model learning on the same architecture.
+
+To achieve the model architecture unification,  we proposed three different encoding systems: \textit{one-hot}, \textit{binary}, and the novel encoding system developed in this project \textit{two-hot}. The three of them explained in the next three subsections.
+
+\begin{figure*}[!t]
+  \centering
+    \input{./Figures/Ch_5_Encoding/encoding_three_figures_together.tex}
+\caption{Different encoding mechanisms%: \textit{One-hot}, \textit{binary}, and \textit{two-hot}  encoding. Using the word example %\textarabic{مَرْحَبَا} \textit{One-hot} encoding is applied using $n$-letter alphabet $n = 181$ in Arabic. Same word encoded using \textit{binary} encoding where the vector length $n = \ceil*{\log_2 l}$, $l \in \{181\}$. \textit{two-hot} encoding is applied by stacking $\bm k_{4 \times 1}$ on the top of $\bm m_{37 \times 1}$ we get the $Two-Hot_{41 \times 1}$ \usebox{\columnVector}, which represents a letter and its diacritic simultaneously. 
+}~\label{Fig:One_Binary_Encoding}
+\end{figure*}
+
+
+
+\begin{description}
+
+\item[\textbf{One-Hot encoding}] In this encoding system, We assume the letter with the diacritic as one unit. So, for example, \textarabic{د} represented as letter differs than (\textarabic{دَ, دِ, دُ, دْْ}). Now every letter is represented 5 times one without diacritic and four times with different diacritics combinations $36 \times 5$ besides the white-space character. So, the total is $181 \times 1$. From now forward, We have 181-characters Arabic alphabet represent the One-Hot encoding, and according to it, we will encode verses. (Figure~\ref{Fig:One_Binary_Encoding}).
+
+We need to mention that, One-Hot encoding technique is of the famous techniques in encoding problem. We will not compare the encoding technique in these sections. However, We will discuss it in details in model results. Also, The implementations of the One-Hot is trivial. But we need to focus on here about the size for every letter which is $181 \times 1$ which means if we have a verse with 82 characters it will results up with a matrix $181 \times 82$ which is very big to be in memory.
+
+\item[\textbf{Binary Encoding}] The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros.  $n =\ceil*{\log_2} l$ where $l$ is the alphabet length, and $n$ is the sufficient number of digits to represent $l$ unique binary combinations.  For example a phrase like this \textarabic{مَرْحَبا}, it has 5 characters, figure~\ref{Fig:One_Binary_Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory than the \textit{one-hot} and reduces the model input dimensions, significantly. But on the other hand, the input letter share some features between them due to the binary representation as it is shown in figure~\ref{Fig:One_Binary_Encoding}.
+
+\item[\textbf{Two-Hot encoding}] This is an intermediate technique which takes the advantages of the previous two encoding techniques. In which we encode the letter and its diacritic separately as two \textit{One-Hot} vectors, this way the letter is encoded as $37 \times 1$ \textit{One-Hot} vector and the diacritic is encoded as $4 \times 1$ \textit{One-Hot} vector, then both vectors stacked to form one $41 \times 1$ vector (Figure~\ref{Fig:One_Binary_Encoding}).
+
+By this way, we reduced the vector dimension from 181 to 41 and also minimizes the number of shared features between vectors to the maximum one at each vector. 
+\end{description}
+
+
+\section{Model Training}
 In a normal machine learning project, we used to split the dataset as around 60\% as training, 30\% testing and 10\% as a validation. However, In The Deep Learning, the amount of data profoundly affects the model performance. So, the more data fed as training, the more performance results the model can achieve on test data (Assuming we did the regularization and the needed generalization on the model training phase). Also, The main reason to change the split size is due to the size of the dataset we used to work on for example 1\% of 1M sample is 10k which is big enough for such experiments way. However, if we work on 10k sample, we need around 30\% 3k sample to have confidence in our model. So, it depends on the problem and size of the dataset.
 
 In this research, We worked on \textit{Poem Comprehensive Dataset (PCD)}\cite{ArabicpoetryDS}. We are interested in the 16 classic meters which attributed to Al-Farahidi. These meters comprise the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{Fig:Data_Size_Distribution} shows an ordered bar chart based on the number of verses per meter. We trained all our models based on 80\% which is around 1,377,856 verse. Our testing data(development) is 10\% around 172,232 verse, and our Validation data around 172,232 verse.
@@ -16,19 +187,19 @@ We can show training phase designed as a Data representation configurations and 
 
 \end{itemize}
 
-\section{Parameters of Data Representation}\label{Sec:Data_Rep_Param}
+\subsection{Parameters of Data Representation}\label{Sec:Data_Rep_Param}
 
 Arabic language parameters have types Diacritics, Trimming, and Encoding. Every type has its effect on the data and the performance on model learning rate. We will explain each one in details in the next subsections.
 
-\subsection{Diacritics}
+\subsubsection{Diacritics}
 
 Arabic dataset has the verse with diacritics. We can feed the network the characters with diacritics and without diacritics. With diacritics, it will be much easier for the network to learn since it provides more information on the pronunciation. Moreover, It provides more information related to the vowel and consonant sounds in the letters. However, as we discussed in Data Encoding Chapter~\ref{Ch:Data_Encoding}, Both With and Without diacritics has the same length in input vector size.
 
-\subsection{Trimming Small Classes}
+\subsubsection{Trimming Small Classes}
 
 Arabic poem dataset, as stated in Figure~\ref{Fig:Data_Size_Distribution}, is unbalanced. So, As part of our research, we make the dataset representation as a Full dataset and Trimmed dataset. This way allows us to study the effect of this unbalance. Also, We not only explore the impact of the unbalanced dataset But also, We have applied a technique to solve this issue~\ref{Sec:W_Loss}. The trimmed classes are five classes which have less than 1\% of the total dataset. We presented these classes as all the classes on the left side of the horizontal red line in Figure~\ref{Fig:Data_Size_Distribution}. So, The total classes after trimming are 11 classes and the full with all 16 meters presented.
 
-\subsection{Encoding Techniques}
+\subsubsection{Encoding Techniques}
 
 As explained previously, There are three different encoding methods~\ref{Ch:Data_Encoding}. Although all carry the same information, It expected that Every encoding has its behaviors as below,
 \begin{itemize}
@@ -41,7 +212,7 @@ As explained previously, There are three different encoding methods~\ref{Ch:Data
 
   \end{itemize}
 
-  \subsection{Data Representation Matrix}
+\subsubsection{Data Representation Matrix}
 
   The data representation matrix is the cross product of the Diacritics 2, Data Encoding 3, and Trimming 2 total 12 combinations table~\ref{Tab:Data_Representation_Matrix} shows this matrix combination. Example (With diacritic + One-hot + Full)
 
@@ -69,15 +240,12 @@ As explained previously, There are three different encoding methods~\ref{Ch:Data
 %	\end{tikzpicture}%
 %	\caption{Arabic dataset class size (number of verses) ordered descendingly on y-axis vs. corresponding meter name on the x-axis.}\label{Fig:data_percentage_distribution}
 %\end{figure}
-
-
-
-\section{Parameters of Network Configuration}\label{Sec:Rnn_Param}
+\subsection{Parameters of Network Configuration}\label{Sec:Rnn_Param}
 
 % RNN,LSTM,BI_LSTM
 As explained previously, Recurrent Neural Networks (RNN) showed the ability to solve language model problems in Section~\ref{Sec:RNN}. We used RNNs with Long Short Term Memory (LSTM)~\ref{Sec:LSTM} as the main architecture for our experiments. We also used BI-LSTM discussed in Section~\ref{Sec:Bi_Lstm} as an alternative way to test the effect of BI-Directional LSTM to check the learning patterns with the two directions.
 
-We also thought using BI-LSTM will support the model to learn the Tafa'il for every class as it can be combined the sound of music from both ways. We will explain our argument and the effects on the results in Chapter~\ref{Ch:Results}.
+We also thought using BI-LSTM will support the model to learn the Tafa'il for every class as it can be combined the sound of music from both ways. We will explain our argument and the effects on the results in Section~\ref{Sec:Results}.
 % RNN Configuration
 In RNNs network configuration parameters, there are four parameters:
 \begin{itemize}
@@ -91,8 +259,7 @@ In RNNs network configuration parameters, there are four parameters:
 The total number of combination is 16 which is $4$ parameters each one has $2$ types. So, the total will be $2^4=16$; and hence, there are 16 different network configurations to run on each of the 12 data representations above. This results in $16 \times 12 = 192$ different experiments (or models). Hence, there are 96 different network configurations to run on each of the 2 data representations above. This results in $96 \times 2 = 192$ different experiments (or models), whose accuracy are presented on the y-axis of Figure~\ref{Fig:ArabicModelsResults}. For all the 192 experiments networks are trained using dropout of $0.2$, batch size is of $2048$, with Adam optimizer, and 10\% for each of validation and testing sets.
 
 
-
-\subsection{Working on Unbalanced data using Weighted Loss}\label{Sec:W_Loss}
+\subsubsection{Working on Unbalanced data using Weighted Loss}\label{Sec:W_Loss}
 
 One of the important problem we worked to solve it during our research unbalance dataset issue. We worked to overcome the unbalanced dataset and to not make our model suffer from this issue. We so introduced a Weighting function~\ref{eq:training_weighted_fun} where nc is the sample size of class c, c = 1,2,...C, and C
 is the total number of classes.
@@ -111,7 +278,7 @@ The idea is to increase the loss for the small classes as the number of verses o
 \end{align}\label{eq:training_weighted_fun_example}
 \end{subequations}
 
-\section{Experiments Setup Details}
+\section{Experiments}
 
 \subsection{Hardware}
 
@@ -132,6 +299,7 @@ During our Model development we used the following software and libraries,
 \item pickle: \textit{We used it to save the encoder and the model as serialized pickle object.}
 \item h5py: \textit{We used it to save the encoded dataset matrix in h5 format.}
 \end{itemize}
+
 \subsection{Implementation Outline}
 
 \begin{enumerate}
@@ -165,6 +333,7 @@ During our Model development we used the following software and libraries,
       \item Save the data cleaned and encoded in the hard desk and read it direct encoded as explained in the previous steps.
       \item Read the data with batches and utilized the hardware to train the dataset in batch parallel.
       \item We used Nvidia Cuda optimized LSTM cell which highly reduced our training time up to 6x speedup.
+      \item We used a parallel GPU in our experiments to test the affect we used it by utilize a Keras utils \textit{multi\_gpu\_model option}.
       \end{itemize}
   \item We saved all the model output for later validations.
   \end{itemize}  
@@ -176,13 +345,154 @@ During our Model development we used the following software and libraries,
       \item We used weighted accuracy to check the accuracy for Per-Class.
       \end{itemize}
   
+    \end{enumerate}
+
+    \section{Results}\label{Sec:Results}
+
+In this section we will explain the results of all the 192 experiments on our dataset. We measure the results using the overall accuracy Then we measure the performance accuracy of the model per class (meter). We will start by present the results for every combinations and then discuss our findings related to the topic.
+
+As we explained, In Section~\ref{Ch:Model_Training} we have a set of combinations we need to explore it. So, most of our results will combine a combination and show the results of these combinations. Let's explore it as below,
+\begin{enumerate}
+\item  We have three data representation \textbf{\textit{Binary, One-hot, and Two-Hot}} we will represent it as \textbf{\textit{BinE, 1D, 0T}} respectively.
+\item We have two types of model loss functions \textbf{\textit{Weighting loss and no Weighting loss}} we will represent it as \textbf{\textit{(1 and 0)}} respectively.
+\item The Number of layers is represented as \textbf{\textit{nL}}, for example, 7 layers are 7L.
+  \item The Number of cell units is represented as \textbf{\textit{nU}}, for example, 82 unit is 82U.
+  \end{enumerate}
+
+  So, If we need to explain a set of combination we can write (4L, 82U, 0) which means 4 layers, 82 units, and no weighted loss function. Also, we will provide many figures every figure will explain specific result perspective.
+  
+\subsection{Overall Accuracy}
+
+We present the overall accuracy Score in Figure~\ref{Fig:ArabicModelsResults} of the 16 neural networks configurations and at each of the 12 data representations (y- and x-axis respectively). The x-axis is divided into 4 strips corresponding to the 4 combinations of trimming and diacritic parameters. Then, each strip includes the 3 different encoding values. Each point on the figure represents the overall accuracy score of one of the 192 experiments; (some values are too small, and hence omitted from the figure). To explain the figure, we take as an example the most-left vertical list of points that represent the 16 experiments of the full (no trimming), diacritics, and binary encoding dataset representation. For each rug plot, the highest (Bi)LSTM accuracies are labeled differently as circle and square respectively; and the network configuration of both of them is listed at the top of the rug plot.
+
+To explain the figure, we take as an example the most-left vertical rug plot, which corresponds to (0T, 1D, BinE) data representation. The accuracies of the best (Bi)LSTM are 0.9025 and 0.7978 respectively. The configuration of the former is (7L, 82U, 0W). Among all the 192 experiments, the highest accuracy is 0.9638 and is possessed by (4L, 82U, 0W) network configuration on (1T, 0D, BinE) data representation.
+
+\subsection{Data Representation Effects}
+
+In this section we will explain the effect of the 12 data representation technique we explained it previous.
+
+\begin{enumerate}
+\item \textbf{Trimming Effect:} The effect of trimming (remove the small classes from the training cycle) can be observed if we fix the other two parameters, diacritic and encoding. The score with trimming is consistently higher than that with no trimming. E.g., by looking at the two unshaded strips, the score at (1T, 0D, TwoE) is 0.9629, while that at (0T, 0D, TwoE) is 0.9411. The only exception, with a very little difference, is (1T, 1D, BinE) vs. (0T, 1D, BinE). We need to highlight that is logic to have this effect as the training will have fewer classes with a huge amount of data for these classes.
+\item \textbf{Diacritics Effect}
+  \begin{itemize}
+  \item \textit{Without Trimming:} The effect of diacritics is obvious only with no trimming (the two left strips of the figure), where, for each encoding, the accuracy score is higher for diacritics than no diacritics.
+    \item \textit{With Trimming:} The diacritics don't have except for the \textit{one-hot} encoding but other encoding doesn't have an effect on the model performance. This result is inconsistent with what is anticipated from the effect of diacritics. We think that this result is an artifact due to the small number of network configurations.
+
+    \end{itemize} 
+\item \textbf{Encoding Effect:} The effect of encoding is clear; by looking at each individual strip, \textit{overall accuracy score is consistently highest for two-hot then one-hot then binary—the} only exception is (1T, 0D, BinE) that performs better than the other two encoding. It seems that two-hot encoding makes it easier for networks to capture the patterns in data. However; we anticipate that there is a particular network architecture for each encoding that can capture the same pattern with yielding the same score.
+  \end{enumerate}
+
+
+  
+\begin{figure}[!t]
+ \input{./Figures/Ch_7_Results/Fig_overall_Score.tex}
+ \caption{Overall accuracy of the 192 experiments plotted as 2 vertical rug plots (for the 12 different data representations: $\left\{\mathit{Trimming},\ \mathit{No Trimming} \right\} \times \left\{\mathit{Diacritics},\ \mathit{No Diacritics} \right\} \times \left\{\mathit{OneE},\ \mathit{BinE},\ \mathit{TwoE}\right\}$), each represents 16 exp. (for the 16 different network configurations: $\left\{7L,\ 4L\right\} \times \left\{82U,\ 50U\right\} \times \left\{0W, 1W\right\} \times \left\{LSTM,\ BiLSTM\right\}$). For each rug plot the best model of each of the four cell types ---(Bi)LSTM labeled differently. Consistently, BiLSTM  was the winner, and its network configuration parameters are listed at the top of each rug plot.}~\label{Fig:ArabicModelsResults}
+\end{figure}
+
+
+  
+\subsection{Network Configurations Effects} 
+
+This section is to comment on the effect of the network configurations parameters.
+\begin{itemize}
+\item \textbf{Cell Type}: It is clear that BI-LSTM  (large circle) is the highest accuracy score for each data representation. It is always higher than the highest score of the LSTM model (large square). This is what we expected the more complex architecture, the more results we can achieve. But we need to mention that the BI-LSTM is slower than LSTM in overall running time for all experiments, and it also consumes much more resources than LSTM cell.
+\item \textbf{Layers Number:} As we explained in Section~\ref{Sec:Deep_Learning_Background} The idea behind the deep neural network come from the multi-layers which make the network learn more details. So, the more complex network (more layer) the more results we can achieve. So, in our experiments, we can show that 7 layers achieved the highest scores more than the 4 layers. There is an exception for the trimming data without diacritics in (1T, 0D, BinE) and (1T, 0D, TwoE). The straightforward interpretation for that is the reduction in dataset size occurred by trimming and no diacritics, which required a less complex network. So, if we reduced the complexity of our problem the number of layers will not be effective.
+
+\item \textbf{Cell Units and Weighting Loss:} We can't figure out a consistent effect based on the number of cell units or the weighting loss. But we need to mention that the highest results achieved were using both the highest cell units 82 and the weighted loss.
+  \end{itemize}
+
+
+
+\subsection{Per-Class (Meter) Accuracy}
+
+In this section, we will explore the accuracy of each class. This is regarding how our model can detect every class separately. It similar the previous accuracy but per-class calculation. It is also useful to check it as it will show us how the model able to understand every class and what is the classes which our model not able to classify it. 
+
+Similar in the previous section, We have four combinations of \textit{trimming and diacritic} we will investigate which models achieved the best results. We will take the best four models (the first three of them is the two-hot encoding, and the fourth is the binary encoding) from Figure~\ref{Fig:ArabicModelsResults} which is the overall accuracy and show the results of the per class accuracy for each one.
+
+In Figure~\ref{Fig:Results_Per_Class} we have the previous four models display the per-class accuracy. We ordered The class names based on their data size per class. It explained previously in Figure~\ref{Fig:Data_Size_Distribution} with the same order. If we compare the results for the four models accuracy scores were around 95\% in Figure~\ref{Fig:ArabicModelsResults} and the per-class accuracy, we will find only 6 classes (which have around 80\% of the total datasets) are around this value. But there are significant drops for some classes which make the figures line has dropped in the results.
+
+Figure~\ref{Fig:Results_Per_Class} shows the relation between the model accuracy results per-class and the dataset size per class; However, This trend was expected to be fixed from the weighted loss which has an inconsistent effect of the weighting loss for all the models. This inconsistent effect shows we need to have a new design for has an function which can solve this trending issue. The overall accuracy can be increased after trimming but there will be a gap between the accuracy per class the size of the data per class as the dataset is not balanced. Moreover, We can repeat this experiment again with enforcing all classes to have an equal size so, we can show the accuracy without in data unbalance issue. We will elaborate more in Section~\ref{Sec:Discussion}.
+
+\begin{figure}[!t]
+ \input{./Figures/Ch_7_Results/Fig_Results_Per_Class.tex}
+ \caption{The per-class accuracy score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{Fig:Data_Size_Distribution}. There is a descending trend with the class size, with the exception at \textit{Rigz} meter.}~\label{Fig:Results_Per_Class}
+\end{figure}
+
+\subsection{Encoding Effect}
+
+As explained in Section~\ref{Ch:Data_Encoding} the difference between data encoding types. In this section, we will explore the effects of Data Encoding with respect to the \textit{Accuracy, Learning Rate and Memory Utilization} on the best model results (4L, 82U, 0W, 1T, 0D, BinE). During our experiments, we didn't find a consistent effect on the model encoding type and the model accuracy~\ref{Fig:Convergence_Memory}-a. However, most of the cases we found the accuracy of the two-hot is slightly better than binary and then one-hot.
+
+
+\begin{figure}[!t]
+  \centering
+  \begin{tikzpicture}
+    \input{Figures/Ch_7_Results/Fig_Results_Encoding_Convergence.tex}
+        %\input{Figures/Ch_7_Results/Fig_Results_Memory_Consumption.tex}
+  \end{tikzpicture}
+  \caption{Encoding effect on Learning rate with the best model (1T, 0D, 4L, 82U, 0W, BinE) and when using the two other encodings instead of BinE.}~\label{Fig:Convergence_Memory}%(b) Relative size in bytes of the three encoding vectors
+\end{figure}
+
+
+Figure~\ref{Fig:Convergence_Memory} shows the effect of encoding on learning rate which has no difference in convergence speed between the encoding types; However, We can found some encoding start learning faster than other between epochs[1:5] but overall they will converge with the same learning curve at the end.
+
+
+Memory Utilization is not similar for each model encoding. We found that each encoding has it is own vector size representation Figure with different memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \textit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \textit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that \textit{Two-hot} is in the middle between the two encoding with respect to memory consumption and also it gives some more meaning for data encoding as explained before in Section~\ref{Ch:Data_Encoding}
+
+\subsection{Comparison with Literature}
+As explained previous, One of the advantages in our research work is the very large dataset we have which allows us to have a good subset of testing. This provides us confidence regarding our results.
+
+If we compared our work approach results the best model scored 0.9638 with the highest two in literature, We will find that our model results are significantly higher than the others as illustrated in Table~\ref{Tab:Summary_Results}. Moreover, Our approach is a learning approach, not a Hand-crafted algorithmic approach which gives our model more confidence to be mature enough for these types of problems as explained in Chapter~\ref{Ch:Literature}.
+
+\section{Discussion}\label{Sec:Discussion}
+
+In this section, we need to discuss some points regarding our experiments and results approach. We will show some parts we think it needs more discussion or exploration.
+
+
+\subsection{Dataset Unbalanced}
+
+Our dataset was unbalanced which for sure affect the results we showed we have some significant drops in Per-class accuracy which most of them regarding the data size issue. We think we should have some further work regarding this point to reconstruct the experiments with balanced data, for example, 10k samples per class and check the results. Another approach could be to increase the size of the small classes to be at least 5\% of the overall classes percentage this would enhance the learning accuracy of these classes.  
+\subsection{Encoding Method}
+
+Although all the encoding methods which carry the same information should produce the same results in theory, In practice, Deep Neural Networks showed this is not the case. To explain the reason let’s first explain how Neural Network work with different encoding mechanism?
+
+The encoding method is a transformer function $\mathcal{T}$ this function transform a discrete input values $X$. We can denote to the values as a transformed feature $\mathcal{T}(X)$ the output of this transformer method. The output $\mathcal{T}(X)$ of this transformer in the new encoding space will be input to the Neural Network model. The model should be able to ``decode''  this type of encoding. Since the lossless encoding is invertible, it is clear for any two functions and any two encodings that $\eta_1\left(\mathcal{T}_1(X)\right) = \left(\eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1} \right)\left(\mathcal{T}_2(X)\right)$. This means that if the network $\eta_1$ is the most accurate network which can ``decode'' the encoding function (transformer) $\mathcal{T}_1$ this network $\eta_1$ is not a general network which can understand any encoding function. Also, to design this network requires a very complex architecture. So, if we have another encoding function $\mathcal{T}_2$ and we tried to use the same network for the $\mathcal{T}_2$ requires designing another network $\eta_2 = \eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1}$. However, this network may be of complicated architecture to ``decode'' the complicated pattern of $\mathcal{T}_2(X)$.
+
+In general, Any encoding function $\mathcal{T}$ require a special network $\eta$ to get the correct decoding (learning) for the dataset. So, our comparison between the encoding methods in the same Neural Networks architecture not accurate as each one required different network design. But all of them will reach the same results but with a different time or can be a small difference due to the not accurate network architecture. Moreover, Our work illustrated clearly the effect of the encoding methods and compared between each other, We think the \textit{Two-Hot} encoding is the more suitable method to work with character level problems. It is the middle approach between the \textit{One-Hot} which needs a huge amount of memory and the \textit{Binary} which loss some meaning in Arabic language diacritics effect.
+
+
+\subsection{Weighting Loss Function}
+Our weighting loss functions don’t solve the small classes issues (regardless the best model accuracy achieved with weighting loss but this is not a consistent result). The weighting loss function needs to be redesigned to solve this issue with the combination of learning rate and the batch size.
+
+\subsection{Neural Network configurations}
+
+During our work, we show the effect of different network configurations on the model learning and accuracy. We did a lot of experiments to find the best development architecture to make our experiments run faster and be able to do a lot of experiments. In the beginning, Out experiments took around 1.5 hours. Second, we proposed the multi-batch training to utilize parallel processing and prepare the data faster to the model as our data was huge. Then we use enhanced \textit{Cuda} LSTM cell which allows reducing our experiments time overall to be around 7-9 min per epoch based on the architecture of the network.
+
+We also showed the effect of network layers on Learning and accuracy results. So, If we have done more experiments with more deep layers and more complex architecture it can reach more language knowledge and build a more complex model which will enhance both the Per-class accuracy and the overall accuracy.
+\subsection{Model Assessment}
+
+In our work, we proposed the overall accuracy score as the model assessment method for the results. But we need to highlight that the overall model accuracy produced from the Deep Neural Networks was very close to the overall accuracy score calculated from the confusion matrix and in some experiments it was almost the same. We also, tried different statistical ways, for example, $F_1$ score to assess our model and we find it will be the same as the model results.
+
+\section{Future Work}
+
+  In this section, We will mention some future work which can be built based on this research. We will split the future work into two parts, One related to this idea and how can we enhance it. Second, related to the new research area which can be built on the dataset we have.
+
+\begin{itemize}
+\item Enhancement on the current work
+  \begin{enumerate}
+  \item Enhance the classification results to be the same as the human expert. We have many areas of enhancement. First, Enhance the network configurations with more layers with combinations of cell units and batch size. Second, There is an open area to solve the accuracy drops in the Per-class performance issue in the small classes using a new design of weighting loss function. Third, It can increase the dataset for the small classes which will affect the learning and understanding of their patterns.
+  \item This problem can be treated as unsupervised learning which will be a different approach to the problem-solving.
+  \end{enumerate}
+\item Build new work based on the dataset
+  \begin{enumerate}
+  \item Use the current datasets to classify the poetry meaning as this paper did not work for this idea.
+  \item Generate a new poem from learning the current classes and patterns.
+    \item Analyze the historical impact on the Poem and the Poetry for example for a specific period if the poetry affected by this period, or there are patterns of writing between the Poetry or not.
 \end{enumerate}
+  
+\end{itemize}
 
 
-
-
-
-
+    
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../master"
