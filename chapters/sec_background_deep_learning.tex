@@ -464,7 +464,7 @@ One of the most common problems anyone working with data science in general or d
 \begin{figure}[!t]
   \centering
 \input{./Figures/Ch_2_Background/Fig_NN_Dropout.tex}
-        \caption{A diagram demonstrating the effects of applying dropout with p = 0.5 to a deep neural networks~\cite{Gitrepo_Dropout}}~\label{Fig:NN_Dropout}
+        \caption{A diagram demonstrating the effects of applying dropout with p = 0.5 to a deep neural networks~\cite{Gitrepo_NN_Tikz}}~\label{Fig:NN_Dropout}
       \end{figure}
 
 
@@ -507,8 +507,33 @@ Figure~\ref{Fig:NN_Dropout} shows the idea of dropout it randomly selects some n
 
 After we finalize this part, We need to note that: In our problem based on text, we found the most effective regularization technique was \textit{Dropout}. After we applied the dropout in our experiments most of the results increased by at least 1\% and some of the experiments increased by 3.5\%.
 
-\subsubsection{ADAM Optimizer}
+\subsubsection{Optimization Algorithms}
+As explained previously, We used Gradient Descent algorithm to find the minimum loss for our functions. But Gradient Descent is not the only algorithm used for this purpose. In this part, we will introduce another type of optimization algorithm which most commonly used for optimization problems special in Deep Learning which named \textit{ADAM Optimization Algorithm}. 
 
+\paragraph{ADAM Optimization Algorithm}
+ADAM stands for adaptive moment estimation. It is an adaptive learning rate optimization algorithm designed for training deep neural networks. It published in 2014 at ICLR 2015~\cite{Adam_2014}. It is one of the most well-designed algorithms for deep learning and proven to work well across a wide range of deep learning architectures. The Adam optimization algorithm is taking Stochastic Gradient Descent with momentum (it used a moving average of the gradient instead of gradient itself) and RMS prop (it uses the squared gradients to scale the learning rate) and putting them together. It derives its name from adaptive moment estimation, and the reason it’s called that because Adam uses estimations First is $\beta_1$ is computing the mean of the derivatives as the first moment. Second, $\beta_2$ used to compute the exponentially weighted average of the squares and that’s called the second moment. We can show the algorithm pseudocode in Algorithm~\ref{Alg:Adam}. The choosing Hyperparameter can be as follow
+
+\begin{enumerate}
+\item $\alpha$ is the learning parameter and it needs to be tuned based on the problem type.
+\item $\beta_1$ the default choice is 0.9. So, this is the moving averages in momentum term for (dw,db).
+\item $\beta_2$ the author of Adam paper recommend being $0.999$ this is computing the moving average of $dw^2$ and $db^2$ squares.
+  \item $\epsilon$ the author of Adam paper recommended being $10^{-8}$ 
+  \end{enumerate}
+
+\begin{algorithm}
+  \caption{ADAM Algorithm for Deep Learning Optimization.}\label{Alg:Adam}
+
+  \begin{algorithmic}
+    \State Vdw = 0, Sdw = 0, Vdb = 0, Sdb = 0
+    \For  {$t=0$ to $num\_iterations$} \Comment{\%: compute dw,db on mini-batches}
+    \State $V_{dw} = \beta_1 V_{dw} + (1-\beta_1) dw,$\quad$ V_{db} = \beta_1 V_{db} + (1-\beta_1) db$ \Comment{\%:Momentum Step}
+    \State $S_{dw} = \beta_2 S_{dw} + (1-\beta_2) dw^2,\quad S_{db} = \beta_2 S_{db} + (1-\beta_2) db$ \Comment{\%:RMS prop Step)}
+    \State $V_{dw}^{corrected} = \frac{V_{dw}}{1-\beta_1^t} ,\quad  V_{db}^{corrected} = \frac{V_{db}}{1-\beta_1^t} $
+    \State $S_{dw}^{corrected} = \frac{S_{dw}}{1-\beta_1^t} ,\quad S_{db}^{corrected} = \frac{S_{db}}{1-\beta_1^t} $
+    \State $w:= w-\alpha \frac{V_{dw}^{corrected}}{\sqrt{S_{dw}^{corrected}} + \epsilon},\quad b:= b-\alpha \frac{V_{db}^{corrected}}{\sqrt{S_{db}^{corrected}} + \epsilon}$
+    \EndFor
+  \end{algorithmic}
+\end{algorithm}
 
 \subsection{Recurrent Neural Networks (RNNs)}\label{Sec:RNN}
 
@@ -538,7 +563,8 @@ What is the new proposed architecture which can provide a way to share the featu
   \input{./Figures/Ch_2_Background/Fig_RNN_unrolled.tex}
   \caption{Recurrent Neural Networks Loops\cite{colah}}\label{Fig:RNN_Rolled_Loop}
 \end{figure}%
-\item Second, The feedfarward will be compute for time t and then we will calculate the loss at step t. The final loss is the sum of loss at every step t eq\eqref{eq:rnn_feedfarward} explains the steps for feedfarward. Note: The backpropagation here will be calculated though time at every step.%@@@ change the notations from Andrew to Blog
+\item Second, The feedfarward will compute for time t and then we will calculate the loss at step t. The final loss is the sum of loss at every step t~\eqref{eq:rnn_feedfarward} explains feedfarward Steps. The backpropagation also will be calculated though time at every step.%
+  
   \begin{subequations}\label{eq:rnn_feedfarward}
 \begin{align}
   a^{<t>} & = g(W_{aa}a^{<t-1>}+ W_{ax}x^{<t>}+b_a)\\
@@ -710,6 +736,13 @@ Harry in the first example refers to a person, however, in the second example re
 
 The architecture in BI-LSTM is similar to what we discussed previous regarding Uni-LSTM. We can mention here that BI-LSTM is very slow compared to LSTM, and it needs much time in the training phase, but for example, As we will see later in our research it is impressive regarding the results and the effect in the language problems.
 
+Figure~\ref{Fig:BI-LSTM} represents a recurrent neural network consisting of several LSTM blocks, processing the input sequence simultaneously forwards and backwards (to exploit both directions of temporal dependence)
+\begin{figure}[!t]
+\centering
+\input{./Figures/Ch_2_Background/Fig_BI_LSTM.tex}
+\caption{Bidirectional long short-term memory~\cite{Gitrepo_NN_Tikz}}\label{Fig:BI-LSTM}
+\end{figure}%
+  
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../master"
