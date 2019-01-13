@@ -268,8 +268,7 @@ To implement a simple 1 iteration example below sample code simulate the program
 \end{figure}%
  How do we learn a new concept? \textit{The neuron receives its input from dendrites. The incoming neuron connection is dynamically strengthened or weakened based on how often it is used, and the strength of each connection determines the contribution of the input to the neuron's output. Based on the connection strength it will have weight then the input is summed in the cell body. This sum is transformed into a new signal which is propagated along the cell's axon and sent to other neurons\cite{DLFundamentals}}.
 
- The above biological model can be translated into an Artificial Neural Network as described in figure XXXX. %@@@ add figure for neuron input format here
- We have an input $x_1,x_2,x_3,...,x_n$ every input has its own strength (weight) $w_1,w_2,w_3,...,w_n$. We Sum the multiplication of X and W to get the logit of the neuron, $z =  \sum_{i=0}^{n} x_i w_i $. The logit is passed throw a function $f$ to produce the output $ y = f(z)$ the output will be the input to other neurons. Note: In many cases, the logit can also include a bias constant. So, in this case the function will be $$ y = f(\sum_{i=0}^{n} x_i w_i + b)$$
+ The above biological model can be translated into an Artificial Neural Network as described in figure~\ref{Fig:NNExample} We have an input $x_1,x_2,x_3,...,x_n$ every input has its own strength (weight) $w_1,w_2,w_3,...,w_n$. We Sum the multiplication of X and W to get the logit of the neuron, $z =  \sum_{i=0}^{n} x_i w_i $. The logit is passed throw a function $f$ to produce the output $ y = f(z)$ the output will be the input to other neurons. Note: In many cases, the logit can also include a bias constant. So, in this case the function will be $$ y = f(\sum_{i=0}^{n} x_i w_i + b)$$
  
  \subsection{The Neural Network Representation}
  As explained previously, We have been trying to simulate the human brain model into our research work in Deep Neural Network. So, We will have multi-layers to allows the model to get in-depth knowledge and more computation performance to simulate the human brain.
@@ -288,11 +287,11 @@ Figure~\ref{Fig:NNExample} represents an Example of Neural Networks representati
 \item \textbf{Output Layer:} It is one output layer with have the final results from the hidden layers.
 \end{itemize}
  \subsection{Neural Network Computation}
- In this subsection, We will show as example on how we can compute the Neural Networks for every layer. In figure~\ref{Fig:NNExample} we have an example of Input layer of 4 input, one hidden layer, and one output layer with one neuron we will continue explain on this example in Equation~\eqref{eq_nn_one_layer}.%
+ In this subsection, We will show as example on how we can compute the Neural Networks for every layer. In figure~\ref{Fig:NNExample} we have an example of Input layer of N input, one hidden layer, and one output layer. We will continue explain on this example in Equation~\eqref{eq_nn_one_layer}.%
 
  \begin{figure}[!t]
-   \input{./Figures/Ch_2_Background/Fig_Neural_Network_Example.tex}
-  \caption{Neural Networks Example Input layer with four input samples, One hidden Layer, and Output Layer with one output neuron.}~\label{Fig:NNExample}
+   \input{./Figures/Ch_2_Background/Fig_Simple_NN_Example.tex}
+  \caption{Neural Networks Example Input layer with N input samples, One hidden Layer, and an Output Layer.}~\label{Fig:NNExample}
 \end{figure}%
 
  \begin{subequations}\label{eq_nn_one_layer}
@@ -394,11 +393,16 @@ This is achieved by using a special output layer named softmax layer. This layer
 \end{equation}
 The strong prediction will have a value entry in the vector close to 1, while the other entries will be close to 0. The weak prediction will have multiple possible labels has almost the equal values\cite{DLFundamentals}.
 \subsubsection{Forward-Propagation in a Neural Networks}
-%@@@ add figure to show the network example similar https://www.coursera.org/learn/neural-networks-deep-learning/lecture/MijzH/forward-propagation-in-a-deep-network
-We will take the below figure XXXX as example of Deep Neural Network. So, to calculate the Forward propagation we will follow the below equation~\eqref{eq:feedfarward_dL}. Note: we assume $X = a^{[0]}$ as initial function notation. Also, $\widehat{Y}= g(Z^{[4]}=A^{[4]}$ as the final output layer.%
+As an example, in Figure~\ref{Fig:NN_With_BP} we need to calculate the Forward propagation we will follow the below equation~\eqref{eq:feedfarward_dL}. Note: we assume $X = a^{[0]}$ as initial function notation. Also, $\widehat{Y}= g(Z^{[4]}=A^{[4]}$ as the final output layer.%
 \begin{equation}\label{eq:feedfarward_dL}
      Z^{[l]}  = w^{[l]} a^{l-1} + b^{[l]} , A^{[1]} = g^{l}(Z^{[l]})
    \end{equation} % @@@ figure to show the input forward and back propagation steps
+
+   \begin{figure}[t]
+     \input{./Figures/Ch_2_Background/Fig_NN_WithBP.tex}
+  \caption{Neural Network Example with Backpropagation Step.}~\label{Fig:NN_With_BP}
+\end{figure}%
+
 \subsubsection{Back-Propagation in a Neural Networks}
 
 We explained previously,  how neural networks could learn their weights using gradient descent algorithm. In this part, we will explain how to compute the gradient of the cost function.
@@ -406,7 +410,7 @@ We explained previously,  how neural networks could learn their weights using gr
 To compute the gradient descent in Neural Networks, we use an algorithm named \textit{backpropagation}. The backpropagation algorithm was initially invented in the 1970s, but it wasn't shining until one of the most important papers in this field published in 1986 %@@@cite https://www.nature.com/articles/323533a0
 which describes several neural networks where backpropagation has a significant performance better than the earlier approaches and making it possible to use neural networks to solve problems which were previously not possible to be solved. Now, the backpropagation is the backbone for the learning in neural networks.%@@@cite Michael A. Nielsen, "Neural Networks and Deep Learning", Determination Press, 2015
 
-The backpropagation not only an algorithm which gives us the expression for partial derivative of the cost function $C$ with respect to wights $w$ and bias $b$ but also it gives is an intuations about the change of the cost function while changing its variables $w \& b$ and its effect to the overall network.
+The backpropagation not only an algorithm which gives us the expression for partial derivative of the cost function $C$ with respect to wights $w$ and bias $b$ but also it gives is an intuations about the change of the cost function while changing its variables $w \& b$ and its effect to the overall network~\ref{Fig:NN_With_BP}.
 
 As explained in logistic regression section (\ref{Sec:Logistic_Bp_Derivatives}) how we can calculate the derivatives for logistic regression with one layer using this equations\eqref{eq:logistic_regression_derivatives_single_example},\eqref{eq:logistic_regression_derivatives_da},\eqref{eq:logistic_regression_derivatives_dz},\\
 \eqref{eq:logistic_regression_derivatives_dw1},\eqref{eq:logistic_regression_derivatives_dw2},\eqref{eq:logistic_regression_derivatives_db}.\\
@@ -440,7 +444,7 @@ If we checked the input variable in the backpropagation we will find it is $da^{
 
     %@@@https://www.coursera.org/learn/neural-networks-deep-learning/lecture/XtFPI/random-initialization figure
     
-  Assume from figure XXXX we have two input vectors $x_1,X_2$ if we initialize $W^{[1]}$ to Zero from equation\eqref{eq:nn_weights_init_zero} and $b^{[1]}$ to Zeros. So, $a_1^{[1]}=a_2^{[1]}$ because both of the hidden units compute the same functions. Also, $W^{[2]}=[0 0]$ Then when we will compute the backpropagation we will find that $dz_1^{[1]}=dz_2^{[2]}$. So, After every iteration, we will find that the two hidden units calculate the same function and we will not get more information from this Deep Neural Network. We need to highlight that the main idea from Neural Networks as explained before is every hidden unit should work to get a new piece of information. The more hidden unit, the more hidden information we will get but if we initialize it to Zero. It will be the same function which is calculated, and we will not get any new information.%
+  Assume  we have two input vectors $x_1,X_2$ if we initialize $W^{[1]}$ to Zero from equation\eqref{eq:nn_weights_init_zero} and $b^{[1]}$ to Zeros. So, $a_1^{[1]}=a_2^{[1]}$ because both of the hidden units compute the same functions. Also, $W^{[2]}=[0 0]$ Then when we will compute the backpropagation we will find that $dz_1^{[1]}=dz_2^{[2]}$. So, After every iteration, we will find that the two hidden units calculate the same function and we will not get more information from this Deep Neural Network. We need to highlight that the main idea from Neural Networks as explained before is every hidden unit should work to get a new piece of information. The more hidden unit, the more hidden information we will get but if we initialize it to Zero. It will be the same function which is calculated, and we will not get any new information.%
 \begin{subequations}\label{eq:nn_weights_init_zero}
 \begin{align}
   W^{[1]} = \begin{bmatrix} 0 & 0\\ 0 & 0 \end{bmatrix} \quad b^{[1]} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} \\

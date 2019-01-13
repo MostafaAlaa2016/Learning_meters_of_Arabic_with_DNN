@@ -15,11 +15,11 @@
 \usepackage{hyperref}
 \usepackage{multirow}
 \hypersetup{
-  colorlinks,
-  citecolor=blue,
-  filecolor=blue,
-  linkcolor=blue,
-  urlcolor=blue}
+	colorlinks,
+	citecolor=blue,
+	filecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue}
 \setcounter{secnumdepth}{3}
 % -------------------------------------------------------------
 \usepackage{titlesec}
@@ -47,7 +47,9 @@
 \usepackage{pgf}
 \usepackage{setspace}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric,arrows.meta,arrows,calc,intersections,matrix,positioning,patterns,decorations.text}
+\usetikzlibrary{shapes.geometric,arrows.meta,arrows,calc,intersections,matrix,positioning,patterns,decorations.text,matrix,chains,decorations.pathreplacing}
+\tikzstyle{inputNode}=[draw,circle,minimum size=10pt,inner sep=0pt]
+\tikzstyle{stateTransition}=[-stealth, thick]
 \usepackage{bm}
 \usepackage{relsize}
 \usepackage{polyglossia}
