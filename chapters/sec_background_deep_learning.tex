@@ -563,10 +563,37 @@ So, What are the problems in the Naive Neural Network architecture?
 What is the new proposed architecture which can provide a way to share the features between the Network?
 \begin{itemize}
 \item First, Assume we have input features $x_1, x_2, x_n$ in the old architecture we input all these features to the Neural Network but now we will input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$ then take the output activation from $a^{<2>}$ as input to $x_3$ similar till $x_n$ figure~\ref{Fig:RNN_Rolled_Loop} shows an example. So, This new change will allow us to share the learned feature between the networks input data. Also, we can thing about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.%
-\begin{figure}[!t]
-  \input{./Figures/Ch_2_Background/Fig_RNN_unrolled.tex}
-  \caption{Recurrent Neural Networks Loops\cite{colah}}\label{Fig:RNN_Rolled_Loop}
-\end{figure}%
+\begin{figure}[t]
+\minipage{\textwidth}
+\centering
+\input{./Figures/Ch_2_Background/Fig_RNN_unrolled.tex}
+\endminipage\hfill
+\caption{Recurrent Neural Networks Loops\cite{colah}}\label{Fig:RNN_Rolled_Loop}
+
+\minipage{0.33\textwidth}
+\input{./Figures/Ch_2_Background/Fig_Rnn_Single_Tanh_Left.tex}
+\endminipage\hfill
+\minipage{0.33\textwidth}
+\input{./Figures/Ch_2_Background/Fig_Rnn_Single_Tanh_Middle.tex}
+\endminipage\hfill
+\minipage{0.33\textwidth}%
+\input{./Figures/Ch_2_Background/Fig_Rnn_Single_Tanh_Right.tex}
+\endminipage
+\caption{The repeating module in a standard RNN contains a single layer.\cite{colah}}~\label{Fig:LSTM_SimpleRNN}
+
+\minipage{0.33\textwidth}
+\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Left.tex}
+\endminipage\hfill
+\minipage{0.33\textwidth}
+\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_full.tex}
+\endminipage\hfill
+\minipage{0.33\textwidth}%
+\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Right.tex}
+\endminipage
+\caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}~\label{Fig:LSTM_Cell_Chaining}
+\end{figure}
+
+
 \item Second, The feedfarward will compute for time t and then we will calculate the loss at step t. The final loss is the sum of loss at every step t~\eqref{eq:rnn_feedfarward} explains feedfarward Steps. The backpropagation also will be calculated though time at every step.%
   
   \begin{subequations}\label{eq:rnn_feedfarward}
@@ -589,46 +616,57 @@ What is the new proposed architecture which can provide a way to share the featu
  In the previous example, to predict the word was is depending on long dependency to check if Waleed is singular or not to be consistent. Also, shows how some problems need the long-term dependencies handling.[Bengio et al.,1994]\cite{Bengio_ et_ al} showed that Basic RNNs has a problem in long-term dependency.  Another problem which may happen into basic Neural Networks is gradient exploding. One of the side-effects of gradient exploding is exponentially large gradient which causes our parameters to be so large. So, the Neural Networks parameters will have a server problem. Another fetal problem with Basic Neural Networks is overfitting problems [Zaremba et al., 2014]\cite{Zaremba_et_al}.
  
  So, to solve this learning problem [Hochreiter and Schmidhuber, 1997] introduced Long Short-Term Memory which helps to reduce the dependency problem using memory cell and forget gate.
+\begin{figure}[!t]
+  \centering
+  \subfigure[Top line is the medium for information flow]
+  {
+    \label{Fig:LSTM_Cell_State}
+    \input{./Figures/Ch_2_Background/Fig_LSTM_Cell_State.tex}
+  }
+  \subfigure[Pointwise Multiplication Operation]
+  {
+    \label{Fig:LSTM_Gate}
+    \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_multiplication_operation.tex}
+  }
+  \subfigure[LSTM sigmoid forget gate]
+  {
+    \label{Fig:LSTM-forget-gate}
+    \input{./Figures/Ch_2_Background/Fig_LSTM_forget_gate.tex}
+  }
+  \subfigure[LSTM Input gate]
+  {
+    \label{Fig:LSTM_Input_Gate}
+    \input{./Figures/Ch_2_Background/Fig_LSTM_Input_Gate.tex}
+  }
+  \subfigure[Multiplication and Addition Operation in LSTM.]
+  {
+    \label{Fig:LSTM_Pointwise_Operations}
+    \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_operations.tex}
+  }
+  \subfigure[LSTM output gate.]
+  {
+    \label{Fig:LSTM_Output_Gate}
+    \input{./Figures/Ch_2_Background/Fig_LSTM_output_gate.tex}
+  }
+  \subfigure[GRU cell architecture.]
+  {
+    \label{Fig:GRU}
+    \includegraphics[scale=0.6]{./Figures/Ch_2_Background/GRU.png}
+  }
+\caption{LSTM Gates and Configurations adapopted from~\cite{colah}.}
+\end{figure}%
 
 \subsection{Long Short Term Memory networks (LSTMs)}\label{Sec:LSTM}
 
 
 Long Short Term Memory networks – aka “LSTMs” – are a special type of RNN, capable of learning long-term dependencies. To solve the vanishing gradient problem for long-term dependencies, [Hochreiter and Schmidhuber, 1997]\cite{Hochreiter} suggested new cell architecture for RNN by adding Long Short Term Memory which significantly reduced the long-term dependency problem using memory cell and forget gate.
 
- LSTMs designed to help solving the long-term dependency problem and to hold information in memory for long periods of time. It also, use same RNNs sequential model but with adding some gating mechanism structure to every cell.
+LSTMs designed to help solving the long-term dependency problem and to hold information in memory for long periods of time. It also, use same RNNs sequential model but with adding some gating mechanism structure to every cell.
 
- Both Basic RNNs and LSTM have the form of a chain of repeating modules of neural network. The main difference is the structure of the Networks.%
- %\input{./Figures/Ch_2_Background/Fig_RNN_Single_Tanh_Main_3_Cells.tex}%
- \begin{figure}[!t]
-\minipage{0.33\textwidth}
-\input{./Figures/Ch_2_Background/Fig_Rnn_Single_Tanh_Left.tex}
-\endminipage\hfill
-\minipage{0.33\textwidth}
-\input{./Figures/Ch_2_Background/Fig_Rnn_Single_Tanh_Middle.tex}
-\endminipage\hfill
-\minipage{0.33\textwidth}%
-\input{./Figures/Ch_2_Background/Fig_Rnn_Single_Tanh_Right.tex}
-\endminipage
-\caption{The repeating module in a standard RNN contains a single layer.\cite{colah}}
-\label{Fig:LSTM_SimpleRNN}
-\end{figure}
+Both Basic RNNs and LSTM have the form of a chain of repeating modules of neural network. The main difference is the structure of the Networks.%
+
 
 In Basic RNNs it is very simple structure for every layer with simple output function~\ref{Fig:LSTM_SimpleRNN}. But in LSTMs it has four interacting layers Figure~\ref{Fig:LSTM_Cell_Chaining}.%
-%\input{./Figures/Ch_2_Background/Fig_LSTM_Main_Figure_3_Cells.tex}%
-\begin{figure}[t]
-\minipage{0.33\textwidth}
-\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Left.tex}
-\endminipage\hfill
-\minipage{0.33\textwidth}
-\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_full.tex}
-\endminipage\hfill
-\minipage{0.33\textwidth}%
-\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Right.tex}
-\endminipage
-\caption{The repeating module in an LSTM contains four interacting layers.\cite{colah}}
-\label{Fig:LSTM_Cell_Chaining}
-\end{figure}
-
 
 \subsubsection{LSTM Gate Mechanism}
 
@@ -637,13 +675,7 @@ The main component of LSTM is the cell state; It allows the information to pass 
 Gates's idea is a methodology to manage the way how and which information pass or not. It controls information flow through the cell. It has three of these gates. They are consist of a sigmoid neural network layer~\ref{Fig:LSTM_Cell_State} and a pointwise multiplication operation~\ref{Fig:LSTM_Gate}.
 
 Sigmoid function output values between zero and one. If the value is one these means that everything should pass, while if the value is zero these means do not pass anything. So, the value output from the sigmoid function refers to the amount of each component should be passed.%
-\begin{figure}[!t]
-  \centering
- \subfigure[Top line is the medium for information flow]{\label{Fig:LSTM_Cell_State}
-    \input{./Figures/Ch_2_Background/Fig_LSTM_Cell_State.tex}}
-  \subfigure[Pointwise Multiplication Operation]{\label{Fig:LSTM_Gate} \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_multiplication_operation.tex}}
-  \caption{LSTM Cell state and Pointwise operation adapted from~\cite{colah}.}
-\end{figure}%
+
 \subsubsection{How LSTM Works?}
 
 We have explained LSTM has three gates with some 
@@ -654,32 +686,6 @@ We have explained LSTM has three gates with some
 \begin{equation}\label{eq:lstm_gate}
 f_t  = \sigma(W_f  x_t + U_f h_{t-1} + b_t)
 \end{equation}%
-\begin{figure}[!t]
-  \centering
-  \subfigure[LSTM sigmoid forget gate]
-  {
-    \label{Fig:LSTM-forget-gate}
-    %\begin{tikzpicture}
-      \input{./Figures/Ch_2_Background/Fig_LSTM_forget_gate.tex}
-    %\end{tikzpicture}
-  }
-  \subfigure[LSTM Input gate]{\label{Fig:LSTM_Input_Gate}
-    %\begin{tikzpicture}
-        \input{./Figures/Ch_2_Background/Fig_LSTM_Input_Gate.tex}
-        % \end{tikzpicture}
-      }
-  \subfigure[Multiplication and Addition Operation in LSTM.]{\label{Fig:LSTM_Pointwise_Operations}
-  %\begin{tikzpicture}
-    \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_operations.tex}
-    % \end{tikzpicture}
-  }
-  \subfigure[LSTM output gate.]{\label{Fig:LSTM_Output_Gate}
-  %\begin{tikzpicture}
-    \input{./Figures/Ch_2_Background/Fig_LSTM_output_gate.tex}
-    % \end{tikzpicture}
-  }
-  \caption{LSTM Gates and Configurations adapopted from~\cite{colah}.}
-\end{figure}%
 
 \item \textbf{Input Gate Layer} is a combination between \textit{sigmoid layer} which works to decide which values we should be updated, and \textit{$\tanh$ layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state Figure~\ref{Fig:LSTM_Input_Gate}. The previous combination controls the update state as shown in Equation~\eqref{eq:input_gate}. This layer used when we have new input information. For example, We have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.%
 \begin{subequations}\label{eq:input_gate}
@@ -719,12 +725,7 @@ In RNN Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 b
 \item It also merges the cell state and hidden state.
   
 \end{itemize}%
-\begin{figure}[!t]
-  \centering
-  \includegraphics[scale=0.6]{./Figures/Ch_2_Background/GRU.png}
-        \caption{GRU cell architecture~\cite{colah}}
-        \label{Fig:GRU}
-      \end{figure}%
+
 The result of this modifications is GRUs are simpler and easier for modifications in the design. GRUs trains faster and in some case, it performs better than LSTMs on less training data mainly in language modeling. However, LSTMs has some benefits over GRUs in case longer sequences than GRUs in tasks requiring modeling long-distance relations. 
 
 
