@@ -1,0 +1,24 @@
+\section{Future Work}
+
+In this section, We will mention some future work which can be built based on this research. We will split the future work into two parts, One related to this idea and how can we enhance it. Second, related to the new research area which can be built on the dataset we have.
+
+\begin{itemize}
+  \item Enhancement on the current work
+  \begin{enumerate}
+    \item Enhance the classification results to be the same as the human expert. We have many areas of enhancement. First, Enhance the network configurations with more layers with combinations of cell units and batch size. Second, There is an open area to solve the accuracy drops in the Per-class performance issue in the small classes using a new design of weighting loss function. Third, It can increase the dataset for the small classes which will affect the learning and understanding of their patterns.
+    \item This problem can be treated as unsupervised learning which will be a different approach to the problem-solving.
+  \end{enumerate}
+  \item Build new work based on the dataset
+  \begin{enumerate}
+    \item Use the current datasets to classify the poetry meaning as this paper did not work for this idea.
+    \item Generate a new poem from learning the current classes and patterns.
+    \item Analyze the historical impact on the Poem and the Poetry for example for a specific period if the poetry affected by this period, or there are patterns of writing between the Poetry or not.
+  \end{enumerate}
+  
+\end{itemize}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../master"
+%%% End:
