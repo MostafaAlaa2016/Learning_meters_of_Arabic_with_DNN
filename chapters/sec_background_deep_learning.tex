@@ -747,7 +747,90 @@ Figure~\ref{Fig:BI-LSTM} represents a recurrent neural network consisting of sev
 \input{./Figures/Ch_2_Background/Fig_BI_LSTM.tex}
 \caption{Bidirectional long short-term memory~\cite{Gitrepo_NN_Tikz}}\label{Fig:BI-LSTM}
 \end{figure}%
+
+\subsection{Machine Learning Model Assessment}
+
+As explained previously, Machine learning cycle starting by Data preparation, Feature extraction, Model training and Model assessment~\ref{Fig:Thesis_Cycle}. In this section we will explain the meaning by model assessment. Also, We will discuss different techniques for model assessment.
+
+In Supervised machine learning problems we have two types \textit{Classification and Regression}. Classification the output is discrete variables, for example, Spam vs Normal Email detection. In Regression, The output is a continues variable for example, Predict Housing Price. Each type of problem has its methods or performance evaluation matrix. In this section, we will focus on Classification problem as our problem is a meter classifier application.
+
+How can we measure the model performance? The good is good when the difference between the predicted value and the actual is small and it is not overfitting on development dataset.
+
+There are lots of ways to measure the classification performance Before we explain every method we will give a simple example to allow us to understand the output of every method. Let’s assume we have a binary classifier which detects Spam vs Normal Emails. We will explain by example the definition for every type base on the example data in Table~\ref{Tab:EmailClassifier}
+
+\begin{table}[t]
+  \centering
+  \begin{tabular}{c c c c}
+    \toprule
+    \textbf{Label}& \textbf{Actual Number}& \textbf{Actual Spam (Positive)} &  \textbf{Actual Normal (Negative)}\\
+    \midrule
+    Predicted as Spam (Positive)   & 200 & \cellcolor{green!25}160 & \cellcolor{red!25}40 \\
+    Predicted as Normal (Negative)      & 300   & \cellcolor{red!25}10   & \cellcolor{green!25}290\\
+    \bottomrule
+  \end{tabular}
+  \caption{Spam vs Normal Email Classifier Example.}\label{Tab:EmailClassifier}
+\end{table}
+
+
+\subsubsection{Accuracy}
+
+Accuracy: It measures the corrected prediction over the dataset. It calculated using the ratio between the corrected predicted sample from the test data over the total test data sample. Ex: in Table~\ref{Tab:EmailClassifier}\textit{(the total positive predicted as positive + the total negative predicted as negative)/total number of test data }~\eqref{eq:accuracy_calculation} which means 90\%. There is an issue in Accuracy as a measurement it doesn’t give us any sense of the results with respect what is the actual performance of the positive which calculated as positive and vice-versus. So, one measurement which gives us some sense is the Precision and Recall we will discuss it in the next part.
+
+\begin{equation}\label{eq:accuracy_calculation}
+\frac{\text{the total positive predicted as positive + the total negative predicted as negative}}{\text{total number of test data}}  = \frac{160+290}{500}=0.9 
+\end{equation}%
+
+
+\subsubsection{Precision and Recall}
+
+Precision and Recall are two measurements which answers questions related to our model performance, Some application considers one of them and others required both or a combination. Before we explain it, We should prepare a data table named Confusion Matrix similar to the example in~\ref{Tab:EmailClassifier}.
+\begin{itemize}
+\item Precision (also called positive predictive value) is used to answer the question, \textbf{Based on the test data how many items predicted correctly from the test data sample}. It can be calculated from Equation~\eqref{eq:precision}.
+
+\item Recall (also known as sensitivity) answer another question, \textbf{Based on the test data how many from the truly predicted items are truly predicted}. We can calculate it using Equation~\eqref{eq:recall}.
+
+  \end{itemize}
+
+\begin{equation}\label{eq:precision}
+precision = \frac{\text{true positives}}{\text{true positives + false positives}} = \frac{160}{160 + 40}=0.8
+\end{equation}%
+
+
+\begin{equation}\label{eq:recall}
+recall = \frac{\text{true positives}}{\text{true positives + false negatives}} = \frac{160}{160 + 10}=0.941
+\end{equation}%
+
+We need to highlight some application could require a focus in precision more than recall and vice-versus. So, We need to choose the right measure based on our problem.
   
+\subsubsection{$F_1$ Score}
+In statistical analysis of binary classification, the F1 score is a measure of a test's accuracy. It considers both the precision p and the recall r of the test to compute the accuracy score. The F1 score is the harmonic average of the precision and recall, where an F1 score reaches its best value at 1 (perfect precision and recall) and worst at 0~\cite{Wiki_f1_score}. We can calculate it using Equation~\eqref{eq:f_1}.
+
+\begin{equation}\label{eq:f_1}
+F_1= 2 \times \frac{precision*recall}{precision+recall}
+\end{equation}%
+  
+\subsubsection{Per-Class Accuracy}
+
+Per class, accuracy is one of the important accuracy measures when we have multi-class. There is a difference between each accuracy calculation regarding the dataset classes distribution. Most of the performance measurement calculate the average accuracy per-class but the difference is some of them take into consideration the size of each class and some don’t take the size. So, in case we have imbalanced dataset we should use the type which considers the class size for the accuracy of calculations. In case the data is imbalanced the results could hide information about how the model is performing. For example, assuming the model working perfectly with a class which has the most amount of our data and performing badly in the other class the accuracy can give us results high. However, if we use the average per-class, it will give us a more clear vision of how the model is performing regarding the dataset size for each class. Below is common types used in most of the framework to calculate accuracy per-class. Note: The below naming is followed the same as \textit{Sklearn} Library.
+
+\begin{itemize}
+  \item Weighted: Calculates the F1 score for each class independently but when it adds them together uses a weight that depends on the number of true labels of each class~\eqref{eq:f_1_weighted}.
+\begin{equation}\label{eq:f_1_weighted}
+F_{1 class1}\times W_1 + F_{2 class2}\times W_2 + F_{3 class3}\times W_3
+\end{equation}%
+
+  \item Micro: It uses the global number of TP, FN, FP and calculates the F1 directly~\eqref{eq:f_1_micro}. It doesn't take in consideration the size for each class.
+  \begin{equation}\label{eq:f_1_micro}
+F_{1 class1+class2+class3}
+\end{equation}%
+  \item Macro: It calculates the F1 separated by class but not using weights for the aggregation~\eqref{eq:f_1_macro}  which results in a bigger penalization when the model does not perform well with the minority classes.
+\begin{equation}\label{eq:f_1_macro}
+F_{1 class1} + F_{2 class2} + F_{3 class3}
+\end{equation}%
+  \end{itemize}
+
+
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../master"
