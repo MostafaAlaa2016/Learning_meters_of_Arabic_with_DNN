@@ -142,12 +142,11 @@ Working on Arabic language embedding based on the character level did not take m
 
 In this research, We will make a comparative study of different encoding techniques between binary and one-hot. Also, we provide some new encoding method specific for Arabic letters, and we will see the effect of this on our problem. We will show the efficiency of every technique based on performing model training and model running time performance.
 
-Generally, a character will be represented as an n vector. Consequently, a verse would be an $n \times p$ matrix, where n
-is the character representation length and p is the verse’s length, n varies from one encoding to another, we have used One-Hot and Binary encoding techniques and proposed a new encoding, the \textbf{Two-Hot} encoding.
+Generally, a character will be represented as an n vector. Consequently, a verse would be an $n \times p$ matrix, where n is the character representation length and p is the verse’s length, n varies from one encoding to another, we have used One-Hot and Binary encoding techniques and proposed a new encoding, the \textbf{Two-Hot} encoding.
 
 Arabic letters have a feature related to the diacritics; To explain this feature we will take an example based on \textit{One-Hot} encoding. This feature is related to how we will treat the character with a diacritic. Arabic letters are 36 + white space as a letter. So, the total is 37. Any letter represented as a vector $37 \times 1$. Let's take an example a work such as \textarabic{مرحبا} having 5 letters encoded as a $37 \times 5$ matrix. If it came with diacritics such as \textarabic{مَرْحَبَا} and we need to represent the letters as One-Hot encoding we will consider every letter and diacritics as a separate letter. So, it will be 5 character and 4 diacritics. The vector shape will be $41 \times 9$.
 
-One of the main reason we need to care about the encoding is the  \textit{RNN} training. If we have a different number of time steps in  \textit{RNN} cell and the input vector dimensions are different based on the input, It will have a standard architecture for the model and to be able to train both the work with diacritics and without diacritics to show the effect of the model learning on the same architecture.
+One of the main reason we need to care about the encoding is the \textit{RNN} training. If we have a different number of time steps in \textit{RNN} cell and the input vector dimensions are different based on the input, It will have a standard architecture for the model and to be able to train both the work with diacritics and without diacritics to show the effect of the model learning on the same architecture.
 
 To achieve the model architecture unification,  we proposed three different encoding systems: \textit{one-hot}, \textit{binary}, and the novel encoding system developed in this project \textit{two-hot}. The three of them explained in the next three subsections.
 
@@ -173,6 +172,11 @@ To achieve the model architecture unification,  we proposed three different enco
   By this way, we reduced the vector dimension from 181 to 41 and also minimizes the number of shared features between vectors to the maximum one at each vector. 
 \end{description}
 
+\subsubsection{Categorical Values Encoding}\label{sec:label_encoder}
+{\color{red}
+  In Machine Learning we are using the encoding techniques to transform the categorical data (class label or
+text) into numbers. This way will make it easy for the predictive model to understand our label in an easy representation. Some encoding techniques are \textit{label encoding, one hot encoder, and custom binary encoding}. All these encoding will convert the categorical to numerical values but with different ways. For example, Label encoding can transform the following label (apple, orange, banana) to (0,1,2) as a numeric representation. As explained in previous subsection, One-hot encoding could transform the labels to ([1,0,0],[0,1,0],[0,0,1]). In this research, we used the label encoding for label encoding to the meters class name using the Sklearn library in Python~\cite{scikit-learn}. Actual, there is no effect of the categorical encoding technique on the results. But there is some difference in the execution and running time performance.
+}
 \clearpage
 
 \section{Model Training}
