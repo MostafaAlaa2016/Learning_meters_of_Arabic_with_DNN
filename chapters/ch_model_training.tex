@@ -516,12 +516,39 @@ If we analyzed the example, We can show there is only one issue in the meter \te
 
 %\subsubsection{Identify if }
 
-In Figure~\ref{Fig:Results_Distribution} we can show the score results for our testing data contains 159,998 correctly classified over 169,164 rows. These scores show that around 153,186 of the corrected results is above 0.94. So, If we filter any text with probability less than 0.94 we can identify if the text is related to the 16 classic meters or not. If we apply the same threshold to Table~\ref{Tab:Results_Article} we can find all the sentences which above 0.94 will be correctly classified to the corrected meters (with small issues in its \textit{Tafa’il}). 
+In Figure~\ref{Fig:Results_Distribution} we can show the score results for our testing data contains 159,998 correctly classified over 169,164 rows. These scores show that around 153,186 of the corrected results is above 0.94. So, If we filter any text with probability less than 0.94 we can identify if the text is related to the 16 classic meters or not. If we apply the same threshold to Table~\ref{Tab:Results_Article} we can find all the sentences which above 0.94 will be correctly classified to the corrected meters (with small issues in its \textit{Tafa’il}).
 
 \begin{figure}[!t]
   \includegraphics{./Figures/Ch_7_Results/IMG_Result_Distribution.png}
   \caption{Testing data score ranges distribution.}~\label{Fig:Results_Distribution}
 \end{figure}
+
+The second Interesting example to check how the model can understand the pattern without \textit{Tashkeel} and the effect of adding \textit{Tashkeel} to the text. We will take the second row from Table~\ref{Tab:Results_Article} and check the effect of adding and removing \textit{Tashkeel}. If we find the sentence without Tashkeel it follows the pattern of \textit{Al-Taweel} meter. Although the text meanings lead to another classification which is in this case not related to the 16 classic meters. But the meanings was not clear to the Model. So, the model tried to find the nearest meter to the sequences of the letters.
+
+The result was very impressive when we classify the sentence without \textit{Tashkeel} it classified to \textit{Al-Taweel} with score 0.9988 but when we add the \textit{Tashkeel} to the sentence it classified to not a poem with score 0.8390. This effect show how the model can highly utilize the \textit{Tashkeel} as feature to get more details and this was explained previous. 
+
+
+\textbf{Example:}
+
+\begin{Arabic}
+  \begin{traditionalpoem}
+    يُعَدُ بُورنُموُث بَوْاْبَةُ صَلَاح للعَوْدةِ\quad & \quad للتَسْجِيلِ هَذا المُوسِمِ فيِ بريميرليجِ\\
+    يعد بورنموث بوابة صلاح للعودة\quad & \quad للتسجيل هذا الموسم في بريميرليج\\
+
+    {\color{purple} يعدبو} {\color{blue} رنموث بو} {\color{OliveGreen} ابة ص} {\color{Brown} لاح للعودة}\quad & \quad
+    {\color{purple}للتسج } {\color{blue} يل هذا ال} {\color{OliveGreen} موسم في } {\color{Brown} بريميرليج}\\
+
+    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{/0//}} {\color{Brown} \texttt{0//0//}}\quad & \quad
+    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}}  \texttt{{\color{OliveGreen}/0//}{\color{red}/}{\color{OliveGreen}0}} {\color{Brown} \texttt{0//0//}}\\
+    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0// }} {\color{OliveGreen} \texttt{/0//}} {\color{Brown} \texttt{0/0///}}\quad & \quad
+    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{0/0//}} {\color{Brown} \texttt{0//0//}}\\
+        
+    {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُولُ} {\color{Brown} مَفَاعِلُنْ}\quad & \quad
+    {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُوْلُنْ} {\color{Brown} مَفَاعِيْلُنْ}
+
+  \end{traditionalpoem}
+\end{Arabic}
+
 
 \clearpage
 
