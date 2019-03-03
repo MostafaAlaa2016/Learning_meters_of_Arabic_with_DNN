@@ -741,9 +741,9 @@ BI-LSTM two LSTMs stacked on top of each other, It used to solve some problem wh
 Harry in the first example refers to a person, however, in the second example refers to the book. So, if we are working left to right, we will not get the type of word Harry in the second example.
 
 The architecture in BI-LSTM is similar to what we discussed previous regarding Uni-LSTM. We can mention here that BI-LSTM is very slow compared to LSTM, and it needs much time in the training phase, but for example, As we will see later in our research it is impressive regarding the results and the effect in the language problems.
-{\color{red}
+
 Figure~\ref{Fig:BI-LSTM} represents a recurrent neural network consisting of several LSTM blocks, processing the input sequence simultaneously forwards and backwards (to exploit both directions of temporal dependence). In Figure~\ref{Fig:LSTM_CharLevel} we can show similar example to our encoding data which feed the networks using a sequence of char then it passes to the BI-LSTM cells then it produce the characters representations to feed the next layer of the network. In Figure~\ref{Fig:LSTM_Arch} it shows the simple example of the full network from char-level embedding (encoding) till the last sequence which output to softmax layer.
-}
+
 
 \begin{figure}[!t]
   \centering
