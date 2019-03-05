@@ -523,9 +523,7 @@ In Figure~\ref{Fig:Results_Distribution} we can show the score results for our t
   \caption{Testing data score ranges distribution.}~\label{Fig:Results_Distribution}
 \end{figure}
 
-The second Interesting example to check how the model can understand the pattern without \textit{Tashkeel} and the effect of adding \textit{Tashkeel} to the text. We will take the second row from Table~\ref{Tab:Results_Article} and check the effect of adding and removing \textit{Tashkeel}. If we find the sentence without Tashkeel it follows the pattern of \textit{Al-Taweel} meter. Although the text meanings lead to another classification which is in this case not related to the 16 classic meters. But the meanings was not clear to the Model. So, the model tried to find the nearest meter to the sequences of the letters.
-
-The result was very impressive when we classify the sentence without \textit{Tashkeel} it classified to \textit{Al-Taweel} with score 0.9988 but when we add the \textit{Tashkeel} to the sentence it classified to not a poem with score 0.8390. This effect show how the model can highly utilize the \textit{Tashkeel} as feature to get more details and this was explained previous. 
+The second Interesting example to check how the model can understand the pattern without  \textit{Tashkeel} and the effect of adding  \textit{Tashkeel} to the text. We will take the second row from Table~\ref{Tab:Results_Article}. In the case without  \textit{Tashkeel}, the model automatically tried to find any sequences of character that follow any of the Meters patterns. The model only cared about the pattern regarding the  \textit{Tafa'il} not the mean of the text. So, we can find the model could successfully detect a sequence of characters which follow \textit{Al-Taweel} with score 0.9988. In the case with Tashkeel, the model understood the new pattern of \textit{Tafa'il} and gave the text low probability which below the threshold and classified it as non-poem (not related to the 16 classic meters) with score 0.8390. We can show how  \textit{Tashkeel} can add a feature for model understanding to the \textit{Tafa'il} pattern of the poem.
 
 
 \textbf{Example:}
