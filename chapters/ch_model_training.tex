@@ -466,13 +466,11 @@ We get a random sports article and pass each sentence to the Model to classify i
       \toprule
       \textbf{\small{Text}} & \small{\textbf{Meter (\textarabic{البحر})}} & \small{\textbf{Probability}} \\
       \midrule
-            \textarabic{خلال المباراة التي جمتهما مساء السبت بالجولة ال26 من المسابقة} & \textarabic{الطويل} & 0.9949\\
-
-      \textarabic{يعد بورنموث بوابة صلاح للعودة للتسجيل هذا الموسم في بريميرليج} & \textarabic{الطويل} & 0.9988\\
-      
+            \textarabic{خلال المباراة التي جمتهما مساء السبت بالجولة ال26 من المسابقة} & \textarabic{الطويل} & 0.9949\\      
       \textarabic{والثالث بشكل عام في آخر 16 موسم بعد ستيفن جيرارد في موسمي} & \textarabic{البسيط} & 0.9947\\
       \textarabic{واصل صلاح هوايته المفضلة بالتسجيل أمام بورنموث للمبارة الرابعة على التوالي محققا العلامة الكاملة أمامهم} & \textarabic{البسيط} & 0.9954\\
             \textarabic{مبتعدا عن أقرب ملاحقيه الجابوني بيير إمريك أوباميانج الذي سجل 15 هدا} & \textarabic{الطويل} & 0.9378\\
+      \textarabic{يعد بورنموث بوابة صلاح للعودة للتسجيل هذا الموسم في بريميرليج} & \textarabic{الطويل} & 0.9988\\
 
       \textarabic{عزز صلاح صدارة هدافي الدوري الإنجليزي راف رصيده إلى  هدف} & \textarabic{الطويل} & 0.7316\\
       \textarabic{وهاري كين وسيرجيو أجويور (14 هدفا لكل منهما)} & \textarabic{المتقارب} & 0.8327\\
@@ -530,22 +528,23 @@ The second Interesting example to check how the model can understand the pattern
 
 \begin{Arabic}
   \begin{traditionalpoem}
-    يُعَدُ بُورنُموُث بَوْاْبَةُ صَلَاح للعَوْدةِ\quad & \quad للتَسْجِيلِ هَذا المُوسِمِ فيِ بريميرليجِ\\
-    يعد بورنموث بوابة صلاح للعودة\quad & \quad للتسجيل هذا الموسم في بريميرليج\\
+   يَعِدْ بُرْنُمُثْ بَوَّابَةَ صَلَاحِ لِلْعَوْدَةْ\quad & \quad لِتَّسْجِيلِ هَذَا المَوْسِمِ فِي بِرِمِرْلِجْ  \\
 
-    {\color{purple} يعدبو} {\color{blue} رنموث بو} {\color{OliveGreen} ابة ص} {\color{Brown} لاح للعودة}\quad & \quad
-    {\color{purple}للتسج } {\color{blue} يل هذا ال} {\color{OliveGreen} موسم في } {\color{Brown} بريميرليج}\\
+    {\color{purple} يَعِدْبُرْ} {\color{blue} نُمُثْبَوَّا} {\color{OliveGreen} بَةَصَلَا} {\color{Brown} حِلِلْعَوْدَةْ}\quad & \quad
+    {\color{purple} لِتَّسْجِي } {\color{blue} لِهَذَاالْمَوْ} {\color{OliveGreen} سِمِفِى } {\color{Brown} بِرِمِرْلِجْ}\\
 
-    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{/0//}} {\color{Brown} \texttt{0//0//}}\quad & \quad
-    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}}  \texttt{{\color{OliveGreen}/0//}{\color{red}/}{\color{OliveGreen}0}} {\color{Brown} \texttt{0//0//}}\\
-    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0// }} {\color{OliveGreen} \texttt{/0//}} {\color{Brown} \texttt{0/0///}}\quad & \quad
+    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{//{\color{red} /}0/}} {\color{Brown} \texttt{0/0/0//}}\quad & \quad  {\color{purple} \texttt{/{\color{red} 0/0}0/}} {\color{blue} \texttt{0/0/0//}}  {\color{OliveGreen} \texttt{//{\color{red} /0/}}} {\color{Brown} \texttt{//{\color{red} 0/}0/}}\\
+    
+    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0// }} {\color{OliveGreen} \texttt{0/0//}} {\color{Brown} \texttt{0/0///}}\quad & \quad
     {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{0/0//}} {\color{Brown} \texttt{0//0//}}\\
         
-    {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُولُ} {\color{Brown} مَفَاعِلُنْ}\quad & \quad
+    {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُولُن} {\color{Brown} مَفَاعِلُنْ}\quad & \quad
     {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُوْلُنْ} {\color{Brown} مَفَاعِيْلُنْ}
 
   \end{traditionalpoem}
 \end{Arabic}
+
+
 
 
 \clearpage
