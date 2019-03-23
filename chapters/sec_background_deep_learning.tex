@@ -30,19 +30,21 @@ In the remaining parts in this section we will start introducing the main concep
 
 
 \subsection{Logistic Regression}
+
+
 Logistic Regression is a machine learning algorithm which we can assume has the basic idea behind the deep learning (explained later). Logistic Regression is also one of the most used machine learning techniques for binary classification.
 
 A simple example of logistic regression would be an algorithm for fraud detection. It takes some raw data input and detects if it is a fraud case or not. Assume fraud case is one and non-fraud case is zero. David Cox developed logistic regression in 1958~\cite{Cox2958}. The “logistic” name came from its core logistic function, also named \textit{Sigmoid function} function in Equation~\eqref{eq:logistic_function}. The Logistic function is shaped as an S-shape.
 
-One of these function features can take any input real number and convert it into a value between 1 and 0.
+One of these function features can take any input real number and convert it into a value between 1 and 0.%
 
 \begin{figure}
 \centering
 \input{./Figures/Ch_2_Background/fig_logistic.tex}
 \caption{Logistic Regression Function (S-Shape)}\label{Fig:Logistic}
-\end{figure}
+\end{figure}%
 
-Example: given x, we want to get the predictions of $\widehat{y}$ which is the estimate of $y$ when $\widehat{y}$ is presented in Equation~\eqref{eq:yhat_estimate}. So, to calculate the output function for Logistic Regression using Equation~\eqref{eq:logistic_regression_yhat}. Note: if we remove the Sigmoid function $\sigma$ from the equation it will be the Linear Regression model and $\widehat{y}$ can be greater than 1 or negative. Figure~\ref{Fig:Logistic} shows the Sigmoid function output. 
+Example: given x, we want to get the predictions of $\widehat{y}$ which is the estimate of $y$ when $\widehat{y}$ is presented in Equation~\eqref{eq:yhat_estimate}. So, to calculate the output function for Logistic Regression using Equation~\eqref{eq:logistic_regression_yhat}. Note: if we remove the Sigmoid function $\sigma$ from the equation it will be the Linear Regression model and $\widehat{y}$ can be greater than 1 or negative. Figure~\ref{Fig:Logistic} shows the Sigmoid function output.%
 
 \begin{equation}\label{eq:logistic_function}
  x = \frac{1}{1-e^{-x}} \quad \text{where} \quad x \in \mathbb{R}^{n_x} 
@@ -60,6 +62,7 @@ Example: given x, we want to get the predictions of $\widehat{y}$ which is the e
 
 
 \subsubsection{Loss Error Function}
+
 
 Loss Error Function is the function which describes how well our algorithm can understand $\widehat{y}$ y b when the true label is y. It also can be defined as the difference between the true value of $y$ and the estimated value of $\widehat{y}$.~\footnote{\textit{Parts of this subsections are explained into Andrew NG Coursera courses in deep learning and written using our understanding of this topic but the equations and the idea is taken from the course}}. Equation~\eqref{eq:loss_function} describe the loss function for Logistic Regression. There are other functions which can represent the loss functions but we take the example below. As we know $y$ is the label which should be 1 or 0, this function makes sense to describe the loss function is outlined below:
 
@@ -92,9 +95,10 @@ Loss Error Function is the function which describes how well our algorithm can u
 
 \subsubsection{Cost Function}
 
+
 To predict $y$ from $\widehat{y}$, we learn from the input parameters in this case it will be \textbf{\textit{(w,b)}} from Equation~\eqref{eq:logistic_regression_yhat} as \textbf{\textit{(w,b)}} are the parameters which define the relation between input dataset X and the output Y. So, Cost Function will measure how well you are doing in an entire training set and the ability to understand the relation between X,Y.
 
-Cost function \textbf{\textit{$J$}} in Equation~\eqref{eq:cost_function} is the average of loss function applied to every training example which equals the sum of the loss for each training example divided by the total number of training examples
+Cost function \textbf{\textit{$J$}} in Equation~\eqref{eq:cost_function} is the average of loss function applied to every training example which equals the sum of the loss for each training example divided by the total number of training examples%
 
 \begin{equation}\label{eq:cost_function}
  \begin{split}
@@ -115,22 +119,12 @@ In this subsection we will give an overview of the convex and non-convex functio
  f(\lambda x_1 + (1-\lambda)x_2) \leq \lambda f(x_1) + (1 - \lambda) f(x_2)
 \end{equation}
 
-For a twice differentiable function of a single variable, if the second derivative is always greater than or equal to zero for its entire domain then the function is \textit{convex}. Well-known examples of convex functions include the quadratic function $X^2$ Figure~\ref{Fig:Derivative_Example}. So, If $f(x)$ has a second derivative in $[a,b]$, then a necessary and sufficient condition for it to be \textit{convex} on that interval is %@@@MUST THIS APPEARS INCOMPLETE.
-that the second derivative $f^{''}(x) \geq 0$ for all $x$ in $[a,b]$.~\cite{Wolfram_Convex}.
-
-If the inequality above is strict for all $x_1$ and $x_2$, then $f(x)$ is called \textbf{strictly convex}. \textit{Convex} function on an open set has no more than one minimum. So, in strictly convex the local minimum = global minimum. This feature is very important feature for any optimization problem. As we will see most of deep learning problems are related to how to optimize the function to find the minimum point in this function. It will be nice and easy problem to face a convex function but in real world most of the cases is non convex functions.
+For a twice differentiable function of a single variable, if the second derivative is always greater than or equal to zero for its entire domain then the function is \textit{convex}. Well-known examples of convex functions include the quadratic function $X^2$ Figure~\ref{Fig:Derivative_Example}. So, If $f(x)$ has a second derivative in $[a,b]$, then a necessary and sufficient condition for it to be \textit{convex} on that interval is that the second derivative $f^{''}(x) \geq 0$ for all $x$ in $[a,b]$~\cite{Wolfram_Convex}.
 
 If the inequality above is strict for all $x_1$ and $x_2$, then $f(x)$ is called \textbf{strictly convex}. \textit{Convex function} on an open set has no more than one minimum. So, in strictly convex, the local minimum = global minimum. This feature is very important for any optimization problem. As we will see, most of deep learning problems are related to how to optimize the function to find the minimum point in this function. It will be a nice and easy problem to face a convex function but in the real world most cases are non-convex functions.
 
-%\begin{figure}[!t]
-%\begin{center}
-%\input{Figures/Ch_2_Background/Fig_Convex_Function.tex}
-%\caption{Convex Function Example }\label{Fig:Convex_Function}
-%\end{center}
-%\end{figure} 
-
-
 \item [\textbf{Non-Convex Function}]: In mathematics, a Non-Convex (also named concave) function is the negative of a \textit{convex function}. A function $f(x)$ is said to be concave on an interval $[a,b]$ if, for any points $x_1$ and $x_2$ in $[a,b]$, the function $-f(x)$ is convex on that interval.
+
 
 \begin{equation}\label{eq:concave_fun}
  \begin{split}
@@ -615,11 +609,10 @@ What is the new proposed architecture which can provide a way to share the featu
 
  \subsubsection{Vanishing Gradient with RNNs}\label{Sec:RNN_Vanishing}
  
-%@@@MUST Correct English: Waleed Yousef, who is Associate Professor at Helwan University and teaches Data Science courses and its dependencies, got a Ph.D. in Computer Engineering from GWU in 2006.
 As explained, RNN works on sequential data, and the idea is to predict new output not only based on the input data vector but also, other input vectors. Due to the recurrent structure in RNNs, it tends to suffer from long-term dependency. To simplify this point, consider the following sentence:\\
- \textit{Waleed Yousef who is Associate Professor at Helwan University and teaching Data Science courses and its dependencies \textbf{\underline{was}} got Ph.D. in Computer Engineering from GWU at 2006.}.
+\textit{Waleed Yousef, who is Associate Professor at Helwan University and teaches Data Science courses and its dependencies, \textbf{\underline{got}} a Ph.D. in Computer Engineering from GWU in 2006.}
 
- In the previous example, predicting the word was depends on checking if Waleed is singular or not, to be consistent. It also shows how some problems need the long-term dependencies handling.[Bengio et al.,1994]~\cite{Bengio_1994} showed that Basic RNNs have a problem in long-term dependency.  Another problem which may happen in basic Neural Networks is gradient exploding. One of the side-effects of gradient exploding is an exponentially large gradient which causes our parameters to be so large. Hence, the Neural Networks parameters will have a severe problem. Another serious problem with Basic Neural Networks is overfitting problems [Zaremba et al., 2014]~\cite{Zaremba_et_al}.
+ In the previous example, predicting the word got depends on the sentence’s tense whether it present or past to be consistent. It also shows how some problems need the long-term dependencies handling.[Bengio et al.,1994]~\cite{Bengio_1994} showed that Basic RNNs have a problem in long-term dependency.  Another problem which may happen in basic Neural Networks is gradient exploding. One of the side-effects of gradient exploding is an exponentially large gradient which causes our parameters to be so large. Hence, the Neural Networks parameters will have a severe problem. Another serious problem with Basic Neural Networks is overfitting problems [Zaremba et al., 2014]~\cite{Zaremba_et_al}.
 
  To solve this learning problem [Hochreiter and Schmidhuber, 1997] introduced Long Short-Term Memory which helps to reduce the dependency problem using memory cells and forget gates.
 
