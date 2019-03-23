@@ -1,38 +1,38 @@
 \section{Literature Review}\label{Ch:Literature}
 
-Poetry meter classification and detection have not addressed as learning problem or similar our way for solving this problem. In this literature, we can see that they treated the problem mainly as  deterministic problem. They restricted by some static conditions and not able to build a scientific approach to satisfy the problem.
+Poetry meter classification and detection have not addressed as a learning problem or similar our way for solving this problem. In this literature, we can see that they treat the problem mainly as deterministic. They are restricted by some static conditions and unable to build a scientific approach to address the problem.
 
-  
 %
 \subsection{Deterministic (Algorithmic) Approach}\label{sec:Determ_Algor_Appr}
 
-\cite{Abuata2016RuleBasedAlgorithm} present the most related work to our topic, classifying Arabic poetry according to their \textit{meters}. However, they have not addressed it as a \textit{learning problem}; they have designed a deterministic five-step \textit{algorithm} for analyzing and detecting meters. The first step and the most important is to have the input text carrying full diacritics; this means that every single letter must carry a diacritic, explicitly. The next step is converting input text into \textit{Arud writing} using \textit{if-else} like rules. \textit{Arud writing} is a pronounced version of writing; where only pronounced sounds written. Then metrical \textit{scansion} rules applied to the \textit{Arud writing}, which leaves the input text as a sequence of zeros and ones. After that they defined each group of zeros and ones as a \textit{tafa'il}, so now we have a sequence of \textit{tafa'il}. Finally, the input text classified to the closest meter to the \textit{tafa'il} sequence. 82.2\% is the classification accuracy on a relatively small sample, only 417 verse.
 
-\cite{Alnagdawi2013FindingArabicPoemMeter} has taken a similar approach to the previous work, but it replaced the \textit{if-else} by \textit{regular expressions} templates. This approach formalized the \textit{scansion}s, \textit{Arud} based on lingual rules related to pronounced and silent rules, which is directly related to \textit{harakat} as \textit{context-free grammar}. Only 75\% from 128 verses were correctly classified. 
+~\cite{Abuata2016RuleBasedAlgorithm} present the work most related to our topic, classifying Arabic poetry according to its meters}. However, they have not addressed it as a learning problem}; they have designed a deterministic five-step algorithm} for analyzing and detecting meters. The first and most important step is to have the input text carrying full diacritics; this means that every single letter must carry a diacritic, explicitly. The next step is converting input text into Arud writing} using if-else} like rules. Arud writing} is a pronounced version of writing; where only pronounced sounds written. Then metrical scansion} rules are applied to the Arud writing}, which leaves the input text as a sequence of zeros and ones. After that, each group of zeros and ones is defined as a tafa'il}, giving a sequence of tafa'il}. Finally, the input text classifies the closest meter to the tafa'il} sequence. 82.2\% is the classification accuracy on a relatively small sample, of 417 verses.
 
-\cite{Kurt2012AlgorithmForDetectionAnalysis} have taken a similar approach but worked on detecting and analyzing the \textit{arud} meters in Ottoman Language. They convert the text into a lingual form in which the meters appear. Their First Step, Converting Ottoman text transliterate to Latin transcription alphabet (LTA). After that, they feed the text to the algorithm which uses a database containing all Ottoman meters to compare the detected meter extracted from LTA to the closest meter found in the database which saved the meters.
+\cite{Alnagdawi2013FindingArabicPoemMeter} has taken a similar approach to the previous work, but it replaced the if-else} by regular expressions} templates. This approach formalized the scansion}s, Arud} based on lingual rules relating to pronounced and silent rules, directly related to harakat} as context-free grammar}. Only 75\% of128 verses were correctly classified. 
 
-Both~\cite{Abuata2016RuleBasedAlgorithm} and~\cite{Alnagdawi2013FindingArabicPoemMeter} have common problems,
+\cite{Kurt2012AlgorithmForDetectionAnalysis} have taken a similar approach but worked on detecting and analyzing the arud meters in Ottoman Language. They convert the text into a lingual form in which the meters appear. Their first step is converting Ottoman text transliterated to Latin Transcription alphabet (LTA). Subsequently, they feed the text to the algorithm which uses a database containing all Ottoman meters to compare the detected meter extracted from LTA to the closest meter found in the database which saved the meters.
+
+Both~\cite{Abuata2016RuleBasedAlgorithm} and~\cite{Alnagdawi2013FindingArabicPoemMeter} have common problems:
 
 \begin{enumerate}
-\item \textbf{The size of the test data} which cannot measure the accuracy for any algorithms they have constructed because it is a very small dataset. Also, a 75\% total accuracy of 128 verses is even worse.
-  \item \textbf{The step converting verses into ones and zeros patternso} are probabilistic; it also depends on the meaning, which is a source of randomness. Then treating such a problem as a deterministic problem will not satisfy the case study. It results in many limitations like obligating verses to have full diacritics on every single letter before conducting the classification. This is also the case with~\cite{Kurt2012AlgorithmForDetectionAnalysis} work, for their algorithm to work, the text must be transliterated into LTA.
-  \end{enumerate}
+\item \textbf{The size of the test data} which cannot measure the accuracy for any algorithms they have constructed because it is a very small dataset. In addition, a 75\% total accuracy of 128 verses is even worse.
+\item \textbf{The step converting verses into ones and zeros pattern} is probabilistic; it also depends on the meaning, which is a source of randomness. Treating such a problem as a deterministic problem will not satisfy the case study. It results in many limitations, including obligating verses to have full diacritics on every single letter before conducting the classification. This is also the case with~\cite{Kurt2012AlgorithmForDetectionAnalysis} work: for their algorithm to work, the text must be transliterated into LTA.
+\end{enumerate}
 
-  We can summarize the results difference between our work and the previous work in Table~\ref{Tab:Summary_Results}
+We can summarize the results difference between our work and the previous work in Table~\ref{Tab:Summary_Results}
 
-  \begin{table}[h]
-  \centering
-  \begin{tabular}{c c c}
-    \toprule
-    \textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} \\
-    \midrule
-    \cite{Alnagdawi2013FindingArabicPoemMeter}   & 75\%     & 128\\
-    \cite{Abuata2016RuleBasedAlgorithm}      & 82.2\%   & 417  \\
-    This article   & 96.38\%  & 150,000 \\
-    \bottomrule
-  \end{tabular}
-  \caption{Overall accuracy of this article compared to literature.}\label{Tab:Summary_Results}
+\begin{table}[h]
+\centering
+\begin{tabular}{c c c}
+\toprule
+\textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} \\
+\midrule
+\cite{Alnagdawi2013FindingArabicPoemMeter} & 75\% & 128\\
+\cite{Abuata2016RuleBasedAlgorithm}& 82.2\% & 417\\
+This article & 96.38\%& 150,000 \\
+\bottomrule
+\end{tabular}
+\caption{Overall accuracy of this article compared to literature.}\label{Tab:Summary_Results}
 \end{table}
 
 
