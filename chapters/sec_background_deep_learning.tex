@@ -32,7 +32,7 @@ In the remaining parts in this section we will start introducing the main concep
 \subsection{Logistic Regression}
 Logistic Regression is a machine learning algorithm which we can assume has the basic idea behind the deep learning (explained later). Logistic Regression is also one of the most used machine learning techniques for binary classification.
 
-A simple example of logistic regression would be an algorithm for fraud detection. It takes some raw data input and detects if it is a fraud case or not. Assume fraud case is one and non-fraud case is zero. David Cox developed logistic regression in 1958~\cite{Cox2958}. The “logistic” name came from its core logistic function, also named Sigmoid function} function in Equation~\eqref{eq:logistic_function}. The Logistic function is shaped as an S-shape.
+A simple example of logistic regression would be an algorithm for fraud detection. It takes some raw data input and detects if it is a fraud case or not. Assume fraud case is one and non-fraud case is zero. David Cox developed logistic regression in 1958~\cite{Cox2958}. The “logistic” name came from its core logistic function, also named \textit{Sigmoid function} function in Equation~\eqref{eq:logistic_function}. The Logistic function is shaped as an S-shape.
 
 One of these function features can take any input real number and convert it into a value between 1 and 0.
 
@@ -688,12 +688,12 @@ We have explained LSTM has three gates:
 
 \begin{itemize}
  
-\item \textbf{Forget Gate Layer} a Sigmoid layer Figure~\ref{Fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculates the output from Sigmoid function between zero and one. As explained, if one everything should pass}, while if zero nothing passes}. The value zero or one depends on the value of the cell state; if it includes a gender type and we need to predict the pronouns so, it will pass. Otherwise, it will ignore this state~\eqref{eq:lstm_gate}.%
+\item \textbf{Forget Gate Layer} a Sigmoid layer Figure~\ref{Fig:LSTM-forget-gate} decides which information will be allowed to pass and which will not. It looks at $h_{t-1}$ and $x_t$, and calculates the output from Sigmoid function between zero and one. As explained, if one \textit{everything should pass}, while if zero \textit{nothing passes}. The value zero or one depends on the value of the cell state; if it includes a gender type and we need to predict the pronouns so, it will pass. Otherwise, it will ignore this state~\eqref{eq:lstm_gate}.%
 \begin{equation}\label{eq:lstm_gate}
 f_t = \sigma(W_f x_t + U_f h_{t-1} + b_t)
 \end{equation}%
 
-\item \textbf{Input Gate Layer} a combination between sigmoid layer} which works to decide which values should be updated, and $\tanh$ layer} creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state Figure~\ref{Fig:LSTM_Input_Gate}. The previous combination controls the update state as shown in Equation~\eqref{eq:input_gate}. This layer is used when we have new input information. For example, if we have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.%
+\item \textbf{Input Gate Layer} a combination between sigmoid layer which works to decide which values should be updated, and $\tanh$ layer creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state Figure~\ref{Fig:LSTM_Input_Gate}. The previous combination controls the update state as shown in Equation~\eqref{eq:input_gate}. This layer is used when we have new input information. For example, if we have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.%
 
 \begin{subequations}\label{eq:input_gate}
 \begin{align}
@@ -704,14 +704,16 @@ f_t = \sigma(W_f x_t + U_f h_{t-1} + b_t)
 
 \item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates as shown in Equation~\eqref{eq:multiplication_gate}. This step is the actions applying the forgetting of the old information and addition of the new information, as decided in the previous steps. Regarding the upper line in Figure~\ref{Fig:LSTM_Pointwise_Operations}, there are two operations:
 
+  \begin{enumerate}
  \item Multiplication Operation: This operation applies the forget gate step by multiplying the old state $\tilde{C}_{t-1} $ by the $f_t$.
  \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t \times \tilde{C_t}$
-  \end{enumerate}%
+ \end{enumerate}%
+ 
 \begin{equation}\label{eq:multiplication_gate}
 C_t = f_t \circ c_{t-1} + i_t \circ \widetilde{C_t}
 \end{equation}
    
-  \item \textbf{Output Gate} This gate is a combination of sigmoid} layer and $\tanh$} layer. Sigmoid} layer decides the information which should be output. Then the output of the  sigmoid} function will be multiplied by the output of the $\tanh$} layer of the cell state. This $\tanh$} will make the values between -1 and 1. The output of the multiplication of sigmoid} and $\tanh$} will be the final output, as shown in Equation~\eqref{eq:output_gate}. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.%
+  \item \textbf{Output Gate} This gate is a combination of sigmoid layer and $\tanh$ layer. Sigmoid layer decides the information which should be output. Then the output of the  sigmoid function will be multiplied by the output of the $\tanh$ layer of the cell state. This $\tanh$ will make the values between -1 and 1. The output of the multiplication of sigmoid and $\tanh$ will be the final output, as shown in Equation~\eqref{eq:output_gate}. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.%
 
 \begin{subequations}\label{eq:output_gate}
 \begin{align}
