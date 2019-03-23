@@ -4,82 +4,89 @@
 % @@@ add details into every bahr
 \begin{definition}\label{def:arud}
   \textbf{Arud} \hfill \\
-  In Arabic Arud natively has many meanings (the way, the direction, the light clouds and Mecca and Madinah \footnote{\textit{Mecca and Madinah are two cities in  Saudi Arabia}.}~\cite{AlQuaed}. Arud is the study of Arabic Poem meters and the rules which confirm if the Poem is sound meters \& broken meters.
+  In Arabic, Arud has many meanings (the way, the direction, the light clouds and Mecca and Madinah \footnote{\textit{Mecca and Madinah are two cities in  Saudi Arabia}.}~\cite{AlQuaed}. Arud is the study of Arabic Poem meters and the rules which confirm if the Poem has sound meters \& broken meters.
 \end{definition}
 
-The Author of Arabic Arud  is \textit{Al-Farahidi} (718 – 786 CE) who analyzed the Arabic poetry; then he came up with that the succession of consonants and vowels produce patterns or \textit{meters}, which make the music of poetry. He was one of the famous people who know The melodies and the musical parts of speech. He ha counted them fifteen meters.  After that, a student of \textit{Al-Farahidi} has added one more meter to make them sixteen. Arabs call meters \textarabic{بحور} which means "\textit{seas}" Poets have written poems without knowing exactly what rules which make a collection of words a poem.
+The author of Arabic Arud  is \textit{Al-Farahidi} (718 – 786 CE) who analyzed Arabic poetry, then established the succession of consonants and vowels produce patterns or \textit{meters}, which make the music of poetry. He was one of the famous people who know the melodies and the musical parts of speech. He identified fifteen meters.  After that, a student of \textit{Al-Farahidi} has added one more meter, making sixteen. Arabs call meters \textarabic{بحور} which means "\textit{seas}". Poets have written poems without knowing exactly what rules make a collection of words a poem.
 
-The Reasons which makes \textit{Al-Farahidi} put this rules is
+\textit{Al-Farahidi} established these rules in order to:
 \begin{itemize}
-  \item Protect the Arabic Poetry from the broken meters.
-  \item Distinguish between the original Arabic Poetry and the not original Arabic Poetry or from the prose.
+  \item Protect Arabic Poetry from broken meters.
+  \item Distinguish original Arabic Poetry from non-original Arabic Poetry or from prose.
   \item Make the rules clear and easy for anyone who needs to write a poem.
 \end{itemize}
 
-Some people said that the one-day Al-Farahidi was walking into the metal-market and he was said some of the poetry and for some reasons the knock of the metals matched the musical sound of the poetry he was saying then he got an idea to explore the Arud of the poetry.
+It is claimed that one-day Al-Farahidi was walking into the metal-market and he noted that the knock of the metals matched the musical sound of the poetry he was saying; then he got an idea to explore the Arud of the poetry.
 
-There are many reason for Arud name 
+There are many reasons for the name Arud:
 \begin{itemize}
-  \item It named Arud because some people said he put this rules in Arud place \textarabic{العَروض} \textit{with fat-ha, not with dam-ma such as the rules name \textarabic{العُروض} } between Mecca and Al-Ta'if\cite{AlQuaed}.
-  \item Arud in Arabic is noun come from verb \textarabic{يعرض} which means here to be assessed. They said because of Any poem should be assessed by Al-Arud rules so, it named Al-Arud~\cite{Alkafi1994}.
+  \item It is said he put this rules in Arud place \textarabic{العَروض} \textit{with fat-ha, not with dam-ma such as the rules name \textarabic{العُروض} } between Mecca and Al-Ta'if\cite{AlQuaed}.
+  \item Arud in Arabic is a noun deriving from the verb \textarabic{يعرض} meaning "to be assessed". It is said that Any poem should be assessed by Al-Arud rules so, hence Al-Arud~\cite{Alkafi1994}.
 \end{itemize}
 
 
 \subsection{Al-Farahidi and Pattern Recognition}
-This subsection is our opinion in Al-Farahidi and his method he followed during working on Arabic Poetry Meter Classification.
+
+This subsection is our opinion of Al-Farahidi and the method he followed while working on Arabic Poetry Meter Classification.
 
 \begin{enumerate}
-  \item Al-Farahidi thought there is a pattern for every collection of the poetry by chance; however, He rigorously worked into this problem. He started analyzing the poetry and add every group with the same tafa'il to the same class.
-  \item He analyzed the outliers and the particular case from every class and added it to his model.
-  \item He revised the meters and get the cases and generalize his case to be fit into all poetry.
-  \item His student once he found some poetry which was not fit into any model to be a model for a new class.
+  \item Al-Farahidi thought there is a pattern for every collection of poetry; however, he rigorously worked on this problem. He started analyzing the poetry, adding every group with the same \textit{tafa'il} to the same class.
+  \item He analyzed the outliers and particular cases from every class and added them to his model.
+  \item He revised the meters using these cases and generalized them to fit all poetry.
+  \item His student subsequently found some poetry which did not fit into any model, leading to a model for a new class.
 \end{enumerate}
 
-The best essential point which made us admired by Al-Farahidi is his way of research and his passion for getting an indeed succession model. Also, his model is general and followed all the steps currently any Data scientist follows to explore new pattern. Some people state that He died when he was thinking about the problem he hit a wall which made trouble for him. His die story shows that he was thinking in profoundly about this problem. One of the most interest thing I found during this research is how he found this pattern and Al-Farahidi’s way to find a new thing.
+The essential point which made us admire Al-Farahidi is his research method and his passion for creating a successful model. Also, his model is general and followed all the steps currently any data scientist follows to explore new patterns. Some people state that he died when he was thinking about the problem and hit a wall which caused trouble for him. His death story shows that he was thinking profoundly about this problem. One of the most interest things I found during this research is how Al-Farahid found this pattern, and his way to find new things.
 % @@@ add about student for sebayeah
 % @@@ التأكد من أن القرآن والحديث ليس شعر وﻹن تصادف فهو ليس قصداً والشعر يجب أن يكون وزناً إتفاقاً
 
 \subsection{Feet Representation}
-A meter is an ordered sequence of feet. Feet are the basic
-units of meters; there are ten of them.
+A meter is an ordered sequence of feet. Feet are the basic units of meters; there are ten of these.
+
 \begin{definition}\label{def:feet}
-  \textbf{Feet} \hfill \\  A Foot consists of
-  a sequence of \textbf{Sukun} (Consonants) represented as (0) and \textbf{Harakah} (Vowels) (/). Traditionally, feet are represented by mnemonic words called tafa’il \textarabic{تفاعيل}.
+  \textbf{Feet} \hfill \\  A foot consists of a sequence of \textbf{Sukun} (Consonants) represented as (0) and \textbf{Harakah} (Vowels) (/). Traditionally, feet are represented by mnemonic words called \textit{tafa’il} \textarabic{تفاعيل}.
 \end{definition}
 
-feet consists of three parts (Asbab (the word abstract means Reasons in English but it means in Arabic connection between two things.) \textarabic{أسباب}, Awtaad (means Wedges in English) \textarabic{أوتاد}, Fawasel (means Breaks in English) \textarabic{فواصل}).
+Feet consists of three parts:
+\textit{Asbab \textarabic{أسباب}} (the word means reasons in English, but in Arabic means connection between two things).
+\textit{Awtaad \textarabic{أوتاد}} (English: wedges). 
+\textit{Fawasel \textarabic{فواصل}} (means Breaks in English) ).
+%@@@Dominic MUST
+Dominic MUST You need a link here between the three feet (above) and the bullet points below
+
 \begin{itemize}
-  \item \textbf{Asbab (\textarabic{أسباب})}: It has two types
+  \item \textbf{Asbab (\textarabic{أسباب})} has two types:
   \begin{enumerate}
-    \item \textbf{Sabb Khafeef (\textarabic{سبب خفيف})} which happens when we have the first letter is harakah and the second is sukun (/0) example (\textarabic{هَبْ, لَمْ}).
-    \item \textbf{Sabb Thakeel (\textarabic{سبب ثقيل})} which happens when we have two harakah letter (//) example (\textarabic{لَكَ, بِكَ}).
+    \item \textit{Sabb Khafeef (\textarabic{سبب خفيف})} when the first letter is \textit{harakah} and the second is \textit{sukun} (/0) example (\textarabic{هَبْ, لَمْ}).
+    \item \textit{Sabb Thakeel (\textarabic{سبب ثقيل})} when we have two \textit{harakah} letters (//) example (\textarabic{لَكَ, بِكَ}).
   \end{enumerate}
-  \item \textbf{Awtad (\textarabic{أوتاد})}: It has two types
+  \item \textbf{Awtad (\textarabic{أوتاد})} has two types:
   \begin{enumerate}
-    \item \textbf{Watd Magmo'a (\textarabic{وتد مجموع})} which happens when we have two harakah letters followed by sukun (//0) example (\textarabic{مَشَى, عَلَى}).
-    \item \textbf{Watd Mafrouq (\textarabic{وتد مفروق})} which happens when we have two harakah and in between a sukun letter (/0/) example (\textarabic{مُنْذُ, مِصْرُ}).
+    \item \textit{Watd Magmo'a (\textarabic{وتد مجموع})} when two \textit{harakah} letters are followed by \textit{sukun} letter (//0) example (\textarabic{مَشَى, عَلَى}).
+    \item \textit{Watd Mafrouq (\textarabic{وتد مفروق})} when  two \textit{harakah} separated by a \textit{sukun} (/0/) example (\textarabic{مُنْذُ, مِصْرُ}).
   \end{enumerate}
-  \item \textbf{Fawasek (\textarabic{فواصل}}): It has two types
+  \item \textbf{Fawasek (\textarabic{فواصل}}) has two types:
   \begin{enumerate}
-    \item \textbf{Faselah Soghra (\textarabic{فاصلة صغرى}}) which happens when we have three harakah letters followed by a sukun letter (///0) example (\textarabic{ذَهَبُوا, سُفُناً}).
-    \item \textbf{Faselah Kobra (\textarabic{فاصلة كبرى}}) which happens when we have four harakah letters followed by a sukun letter  (////0) example (\textarabic{جَعَلَهُمْ}).\footnote{\textit{Some of Arab linguistic scientist assume the Faselah Soghra as a combination between Sabb Thakeel and Sabb Khafeef. Same for the Faselah Kobra to be a combination between Sabb Thakeel and Watd Magmo'a. So, they didn't assume we have three types of feet it is only pure two and any other feet constructed from this two. In this thesis we assume there are three feet }.}
+    \item \textit{Faselah Soghra (\textarabic{فاصلة صغرى}})  when three harakah letters are followed by a sukun (///0) example (\textarabic{ذَهَبُوا, سُفُناً}).
+    \item \textit{Faselah Kobra (\textarabic{فاصلة كبرى}}) when four harakah letters are followed by a sukun letter (////0) example (\textarabic{جَعَلَهُمْ}).\footnote{\textit{Some Arab linguistic scientists assume the Faselah Soghra is a combination of Sabb Thakeel and Sabb Khafeef. Similarly, the Faselah Kobra is considered a combination of Sabb Thakeel and Watd Magmo'a. Therefore, they believed there are only two pure feet and combinations of these. In this thesis we assume there are three feet }.}
   \end{enumerate}
 \end{itemize}
 
-\subsubsection{Rules for Arabic Letters Representation}
-Arabic Arud has one general rule in the poetry representation which is we represent only the letters which is (spoken) not the written which means the letters with phonatics not the written. We have give the below rules as a results of the general rule.
+\subsubsection{Rules for Arabic Letter Representation}
+Arabic Arud has one general rule in the poetry representation: only spoken (not written) letters  are represented, which means the letters represent only phonetics. The rules resulting from the general rule are outlined below.
+
 \begin{itemize}
   \item Any letter with \textit{harakah} represented as (/).
   \item Any letter with \textit{sukun} represented as (0).
-  \item Any letter with shaddah represented by two letters the first one will be \textit{sukun} and the second letter will be \textit{harakah} represented as (0/) example (\textarabic{مُحَمََّد}) will be (//0//0).
-  \item Any letter with tanween represented by two letters the first one is \textit{haraka} (/) and the second is \textit{sukun}.
-  \item Alef without hamze (\textarabic{همزة الوصل}) and Wow Algmaa are not represented example (\textarabic{وُاعلَموا}) will be (/0//0)
-  \item If we have a letter which is not written but (spoken) so, we will represent it example (\textarabic{هذا}) it include Alef but not written (\textarabic{هاذا}) the representation will be (/0/0).
-  \item If we have \textit{Meem Aljamaa} with harakah so, it represented with \textit{Mad} example (\textarabic{هُمُ}) will be (//0).
-  \item \textit{Alef Mad} (\textarabic{آ}) will be two letters \textit{Alef with harakah} and \textit{Alef with sukun} example (\textarabic{آدَمُ}) will be (/0//).
-  \item if the verse ended with \textit{harkah} we will add \textit{sukun} to it.
+  \item Any letter with \textit{shaddah} represented by two letters; the first will be \textit{sukun} and the second letter will be \textit{harakah}, represented as (0/) example (\textarabic{مُحَمََّد}) will be (//0//0).
+  \item Any letter with tanween represented by two letters; the first is \textit{haraka} (/) and the second is \textit{sukun}.
+  \item \textit{Alef} without \textit{hamze} (\textarabic{همزة الوصل}) and \textit{wow algmaa} are not represented: example (\textarabic{وُاعلَموا}) will be (/0//0)
+  \item If a letter is not written but spoken, for example (\textarabic{هذا}) which includes alef but is not written (\textarabic{هاذا}), the representation will be (/0/0).
+  \item \textit{Meem aljamaa} with \textit{harakah} is represented by \textit{mad}, for example (\textarabic{هُمُ}) will be (//0).
+  \item \textit{Alef Mad} (\textarabic{آ}) will be two letters: \textit{Alef} with \textit{harakah} and \textit{Alef} with \textit{sukun} example e.g. (\textarabic{آدَمُ}) will be (/0//).
+  \item If the verse ends with \textit{harkah} we will add \textit{sukun} to it.
 \end{itemize}
-Example: (note: the below representation first line is simliar the second one but with Arud language style ).
+Example: (note: in the representation below, the first line is similar to the second but with \textit{Arud} language style).
 \begin{Arabic}
   \begin{traditionalpoem*}
     أرَاكَ عَصِيَّ الدّمعِ شِيمَتُكَ الصّبرُ،\quad & \quad أما للهوى نهيٌ عليكَ ولا أمرُ ؟
@@ -91,7 +98,7 @@ Example: (note: the below representation first line is simliar the second one bu
 
 \subsection{Arabic Poetry feet}
 
-Arabic poetry feet has ten tafa'il \textarabic{تفاعيل} (scansion)  any peom constructed from these feet. They are eight from writing (syntax) perspective, But it ten in the rules.
+Arabic poetry feet has ten \textit{tafa'il} \textarabic{تفاعيل} (scansion); any peom is constructed from these feet. There are eight from writing (syntax) perspective, but ten in the rules.
 \begin{savenotes}
 
   \begin{table}[t]
@@ -127,7 +134,7 @@ Arabic poetry feet has ten tafa'il \textarabic{تفاعيل} (scansion)  any peo
 \begin{definition}\label{def:meter}
   \textbf{Meter} \hfill \\
   %%%% What is rtythm,feet
-  Poetic meters define the basic rhythm of the poem. Each meter is described by a set of ordered feet which can be represented as ordered sets of consonants and vowels~\cite{Almuhareb2015}. A meter in Arabic named \textit{Bahr}   (\textarabic{بحر})
+  Poetic meters define the basic rhythm of the poem. Each meter is described by a set of ordered feet which can be represented as ordered sets of consonants and vowels~\cite{Almuhareb2015}. A meter in Arabic is named \textit{Bahr} (\textarabic{بحر}).
   \begin{Arabic}
     \begin{traditionalpoem*}
       ولد الهدى فالكائنات ضياء\quad & \quad وفم الزمان تبسم وثناء انشاء
@@ -137,15 +144,15 @@ Arabic poetry feet has ten tafa'il \textarabic{تفاعيل} (scansion)  any peo
 \end{definition}
 
 \begin{definition}\label{def:verse}
-  \textbf{Arabic Verse} \hfill \\ refers to "poetry" as contrasted to prose. Where the common unit of a verse is based on meter or rhyme, the common unit of prose is purely grammatical, such as a sentence or paragraph~\cite{Wiki_Verse}. A verse in Arabic named \textit{Bayt}(\textarabic{بيت})
+  \textbf{Arabic Verse} \hfill \\ refers to "poetry" as contrasted to prose. While the common unit of a verse is based on meter or rhyme, the common unit of prose is purely grammatical, such as a sentence or paragraph~\cite{Wiki_Verse}. A verse in Arabic is named \textit{Bayt} (\textarabic{بيت}).
 \end{definition}
 
 \begin{definition}\label{def:shatr}
-  \textbf{Shatr} \hfill \\  A verse consists of two halves, each of them is called \textit{shatr} and carries the full meter.  We will use the term \textit{shatr} to refer to a verse's half; whether the right or the left half.
+  \textbf{Shatr} \hfill \\ A verse consists of two halves, both called \textit{shatr}, and carries the full meter. We will use the term \textit{shatr} to refer to a verse's half; whether the right or the left half.
 \end{definition}
 
 \begin{definition}\label{def:poem}
-  \textbf{Poem} \hfill \\  is a set of verses has the same meter and rhyme.
+  \textbf{Poem} \hfill \\  is a set of verses having the same meter and rhyme.
 \end{definition}
 
 
