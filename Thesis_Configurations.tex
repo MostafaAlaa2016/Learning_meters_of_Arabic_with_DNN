@@ -81,12 +81,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% added the below part to reduce the spaces before and after figures and equations.
 %% https://tex.stackexchange.com/questions/69662/how-to-globally-change-the-spacing-around-equations
-\g@addto@macro\normalsize{%
-  \setlength\abovedisplayskip{10pt}
-  \setlength\belowdisplayskip{10pt}
-  \setlength\abovedisplayshortskip{10pt}
-  \setlength\belowdisplayshortskip{10pt}
+\expandafter\def\expandafter\normalsize\expandafter{%
+    \normalsize
+    \setlength\abovedisplayskip{10pt}
+    \setlength\belowdisplayskip{10pt}
+    \setlength\abovedisplayshortskip{10pt}
+    \setlength\belowdisplayshortskip{10pt}
 }
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{listing_python_configuration.tex}
 \usepackage{algpseudocode}
