@@ -20,14 +20,11 @@ If we go back to the image example, we can show that it is not an easy task to e
 
 Modern deep learning provides a compelling framework for learning data problems. This model becomes more complex by the adding more layers and more units within a layer. The Deep Learning model works perfectly on the big dataset which allows the model to learn the data features in a good way.
 
-In the remaining parts in this section we will start introducing the main concepts and components used in deep learning, and the basic units of Recurrent Neural networks and LSTM.
-   
+In the remaining parts in this section we will start introducing the main concepts and components used in deep learning, and the basic units of Recurrent Neural networks and LSTM.%
 \begin{figure}[!t] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/DeepLearningImagePersonExample.png}
  \caption{Illustrations on how Deep Learning can work based on images figure presented~\cite{Goodfellow-et-al-2016}~\cite{Zeiler2014}.}
  \label{Fig:Deep_Learning_Image_Person_Example}
 \end{figure}
-
-
 
 \subsection{Logistic Regression}
 
@@ -37,7 +34,6 @@ Logistic Regression is a machine learning algorithm which we can assume has the 
 A simple example of logistic regression would be an algorithm for fraud detection. It takes some raw data input and detects if it is a fraud case or not. Assume fraud case is one and non-fraud case is zero. David Cox developed logistic regression in 1958~\cite{Cox2958}. The “logistic” name came from its core logistic function, also named \textit{Sigmoid function} function in Equation~\eqref{eq:logistic_function}. The Logistic function is shaped as an S-shape.
 
 One of these function features can take any input real number and convert it into a value between 1 and 0.%
-
 \begin{figure}
 \centering
 \input{./Figures/Ch_2_Background/fig_logistic.tex}
@@ -45,104 +41,91 @@ One of these function features can take any input real number and convert it int
 \end{figure}%
 
 Example: given x, we want to get the predictions of $\widehat{y}$ which is the estimate of $y$ when $\widehat{y}$ is presented in Equation~\eqref{eq:yhat_estimate}. So, to calculate the output function for Logistic Regression using Equation~\eqref{eq:logistic_regression_yhat}. Note: if we remove the Sigmoid function $\sigma$ from the equation it will be the Linear Regression model and $\widehat{y}$ can be greater than 1 or negative. Figure~\ref{Fig:Logistic} shows the Sigmoid function output.%
-
 \begin{equation}\label{eq:logistic_function}
  x = \frac{1}{1-e^{-x}} \quad \text{where} \quad x \in \mathbb{R}^{n_x} 
 \end{equation}
-
 \begin{equation}
  \label{eq:yhat_estimate}
   \widehat{y} = P(y=1 | x) \quad \text{where} \quad 0 \le \widehat{y} \le 1
  \end{equation}
-
 \begin{equation}
  \label{eq:logistic_regression_yhat}
  \widehat{y} = \sigma(w^t x + b) \quad \text{where:} \quad \sigma(z) = \frac{1}{1-e^{-z}} \text{, } w \in \mathbb{R}^{n_x} \text{, } b \in \mathbb{R} 
-\end{equation}
-
-
+\end{equation}%
+%
 \subsubsection{Loss Error Function}
-
-
-Loss Error Function is the function which describes how well our algorithm can understand $\widehat{y}$ y b when the true label is y. It also can be defined as the difference between the true value of $y$ and the estimated value of $\widehat{y}$.~\footnote{\textit{Parts of this subsections are explained into Andrew NG Coursera courses in deep learning and written using our understanding of this topic but the equations and the idea is taken from the course}}. Equation~\eqref{eq:loss_function} describe the loss function for Logistic Regression. There are other functions which can represent the loss functions but we take the example below. As we know $y$ is the label which should be 1 or 0, this function makes sense to describe the loss function is outlined below:
-
+Loss Error Function is the function which describes how well our algorithm can understand $\widehat{y}$ y b when the true label is y. It also can be defined as the difference between the true value of $y$ and the estimated value of $\widehat{y}$.~\footnote{\textit{Parts of this subsections are explained into Andrew NG Coursera courses in deep learning and written using our understanding of this topic but the equations and the idea is taken from the course}}. Equation~\eqref{eq:loss_function} describe the loss function for Logistic Regression. There are other functions which can represent the loss functions but we take the example below. As we know $y$ is the label which should be 1 or 0, this function makes sense to describe the loss function is outlined below:%
 \begin{itemize}
-\item in case (y = 1) Equation~\eqref{eq:loss_function_log_y_1} we need $\widehat{y}$ to be as big as possible to be equal or near \textit{y true}, which is 1. So, $ - (\log \widehat{y} )$ will provide the value. Note, as explained before, Sigmoid function can't be greater than 1 or less than 0. 
-\item in case (y = 0) Equation~\eqref{eq:loss_function_log_y_0} we need $\widehat{y}$ to be as small as possible to be equal or near \textit{y true}, which is 0. So, $- \log (1-\widehat{y})$ will provide the value. 
- \end{itemize}
- 
+\item in case (y = 1) Equation~\eqref{eq:loss_function} we need $\widehat{y}$ to be as big as possible to be equal or near \textit{y true}, which is 1. So, $ - (\log \widehat{y} )$ will provide the value. Note, as explained before, Sigmoid function can't be greater than 1 or less than 0. 
+\item in case (y = 0) Equation~\eqref{eq:loss_function} we need $\widehat{y}$ to be as small as possible to be equal or near \textit{y true}, which is 0. So, $- \log (1-\widehat{y})$ will provide the value. 
+\end{itemize}%
+%
 \begin{equation}
  \label{eq:loss_function}
-  \ell(y,\widehat{y}) = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y}))
- \end{equation}
-
-\begin{equation} \label{eq:loss_function_log_y_1}
-\begin{split}
- \text{(if y = 1) } \quad \ell(y,\widehat{y}) & = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y})) \\
- & = - (1 \log \widehat{y} + (1-1) \log (1-\widehat{y}))\\
- & = - (\log \widehat{y} )
-\end{split}
-\end{equation}
-
-
-\begin{equation} \label{eq:loss_function_log_y_0}
-\begin{split}
- \text{(if y = 0) } \quad \ell(y,\widehat{y}) & = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y})) \\
- & = - (0 \times \log \widehat{y} + (1-0) \log (1-\widehat{y}))\\
- & = - \log (1-\widehat{y})
-\end{split}
-\end{equation}
-
+  \ell(y,\widehat{y}) = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y})) =  \begin{cases}
+- (1\times \log \widehat{y} + (1-1) \log (1-\widehat{y})) = - (\log \widehat{y} ) & \mbox{if }  y = 1\\
+- (0\times \log \widehat{y} + (1-0) \log (1-\widehat{y})) = - \log (1-\widehat{y}) & \mbox{if } y = 0
+\end{cases}
+\end{equation}%
+%
+%\begin{equation} \label{eq:loss_function_log_y_1}
+%\begin{split}
+% \text{(if y = 1) } \quad \ell(y,\widehat{y}) & = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y})) \\
+% & = - (1 \log \widehat{y} + (1-1) \log (1-\widehat{y}))\\
+% & = - (\log \widehat{y} )
+%\end{split}
+%\end{equation}
+%\begin{equation} \label{eq:loss_function_log_y_0}
+%\begin{split}
+% \text{(if y = 0) } \quad \ell(y,\widehat{y}) & = - (y \log \widehat{y} + (1-y) \log (1-\widehat{y})) \\
+% & = - (0 \times \log \widehat{y} + (1-0) \log (1-\widehat{y}))\\
+% & = - \log (1-\widehat{y})
+%\end{split}
+%\end{equation}
+%
 \subsubsection{Cost Function}
-
-
 To predict $y$ from $\widehat{y}$, we learn from the input parameters in this case it will be \textbf{\textit{(w,b)}} from Equation~\eqref{eq:logistic_regression_yhat} as \textbf{\textit{(w,b)}} are the parameters which define the relation between input dataset X and the output Y. So, Cost Function will measure how well you are doing in an entire training set and the ability to understand the relation between X,Y.
 
 Cost function \textbf{\textit{$J$}} in Equation~\eqref{eq:cost_function} is the average of loss function applied to every training example which equals the sum of the loss for each training example divided by the total number of training examples%
-
+%
 \begin{equation}\label{eq:cost_function}
  \begin{split}
  J(w,b) & = \frac{\sum_{i=1}^{m} \ell(y^i,\widehat{y^i})}{m} \quad \text{ where m is the total number of training example} \\
  & = \frac {- \sum_{i=1}^{m} [(y^i \log \widehat{y^i} + (1-y^i) \log (1-\widehat{y^i}))]}{m} 
  \end{split}
-\end{equation}
-
-
+\end{equation}%
+%
 \subsubsection{Convex Function vs Non-Convex Function }
 
 In this subsection we will give an overview of the convex and non-convex functions and their relation with deep learning. We will not explain the proofs or write them. We will explain in general the definition and its related features to our topic.
 
 \begin{description}
- \item [\textbf{Convex Function}]: In mathematics, a real-valued function defined on an n-dimensional interval is called \textit{convex} if the line segment between any two points on the graph of the function lies above or on the graph, in a Euclidean space (or more generally a vector space) of at least two dimensions~\cite{Wiki_Convex_Function}. More generally, a function $f(x)$ Figure~\ref{Fig:Convex_Function} is \textit{convex} on an interval $[a,b]$ if for any two points $x_1$ and $x_2$ in $[a,b]$ and any $\lambda$ where $0<\lambda<1$~\cite{Rudin_1976},
-
+ \item [\textbf{Convex Function}]: In mathematics, a real-valued function defined on an n-dimensional interval is called \textit{convex} if the line segment between any two points on the graph of the function lies above or on the graph, in a Euclidean space (or more generally a vector space) of at least two dimensions~\cite{Wiki_Convex_Function}. More generally, a function $f(x)$ Figure~\ref{Fig:Convex_Function} is \textit{convex} on an interval $[a,b]$ if for any two points $x_1$ and $x_2$ in $[a,b]$ and any $\lambda$ where $0<\lambda<1$~\cite{Rudin_1976},%
+%
 \begin{equation}\label{eq:convex_fun}
  f(\lambda x_1 + (1-\lambda)x_2) \leq \lambda f(x_1) + (1 - \lambda) f(x_2)
-\end{equation}
-
+\end{equation}%
+%
 For a twice differentiable function of a single variable, if the second derivative is always greater than or equal to zero for its entire domain then the function is \textit{convex}. Well-known examples of convex functions include the quadratic function $X^2$ Figure~\ref{Fig:Derivative_Example}. So, If $f(x)$ has a second derivative in $[a,b]$, then a necessary and sufficient condition for it to be \textit{convex} on that interval is that the second derivative $f^{''}(x) \geq 0$ for all $x$ in $[a,b]$~\cite{Wolfram_Convex}.
 
 If the inequality above is strict for all $x_1$ and $x_2$, then $f(x)$ is called \textbf{strictly convex}. \textit{Convex function} on an open set has no more than one minimum. So, in strictly convex, the local minimum = global minimum. This feature is very important for any optimization problem. As we will see, most of deep learning problems are related to how to optimize the function to find the minimum point in this function. It will be a nice and easy problem to face a convex function but in the real world most cases are non-convex functions.
 
-\item [\textbf{Non-Convex Function}]: In mathematics, a Non-Convex (also named concave) function is the negative of a \textit{convex function}. A function $f(x)$ is said to be concave on an interval $[a,b]$ if, for any points $x_1$ and $x_2$ in $[a,b]$, the function $-f(x)$ is convex on that interval.
-
-
+\item [\textbf{Non-Convex Function}]: In mathematics, a Non-Convex (also named concave) function is the negative of a \textit{convex function}. A function $f(x)$ is said to be concave on an interval $[a,b]$ if, for any points $x_1$ and $x_2$ in $[a,b]$, the function $-f(x)$ is convex on that interval.%
 \begin{equation}\label{eq:concave_fun}
  \begin{split}
 f(\lambda x_1 + (1-\lambda)x_2) \geq \lambda f(x_1) + (1 - \lambda) f(x_2)
  \end{split}
-\end{equation}
-
+\end{equation}%
 The function is also called strictly concave if,
 \begin{equation}\label{eq:concave_fun_strictly}
  \begin{split}
 f(\lambda x_1 + (1-\lambda)x_2) > \lambda f(x_1) + (1 - \lambda) f(x_2)
  \end{split}
-\end{equation}
-
-If $f$ is twice-differentiable, then $f$ is concave if and only if $f^{''}$ is non-positive (or, informally, if the "acceleration" is non-positive). If its second derivative is negative then it is strictly concave, but the opposite is not true, as shown by $f(x) = −x^4$~\cite{Wiki_Concave_Function}. Also, a differentiable function $f$ is (strictly) concave on an interval if and only if its derivative function $f^`$ is (strictly) monotonically decreasing on that interval; that is, a concave function has a non-increasing (decreasing) slope. The problem for non-convex optimization is to find the local minimum. Sometimes you will find many local minimums and it will be hard to optimize this function Figure~\ref{Fig:Concave_Function}.
-
+\end{equation}%
+%
+If $f$ is twice-differentiable, then $f$ is concave if and only if $f^{''}$ is non-positive (or, informally, if the "acceleration" is non-positive). If its second derivative is negative then it is strictly concave, but the opposite is not true, as shown by $f(x) = −x^4$~\cite{Wiki_Concave_Function}. Also, a differentiable function $f$ is (strictly) concave on an interval if and only if its derivative function $f^`$ is (strictly) monotonically decreasing on that interval; that is, a concave function has a non-increasing (decreasing) slope. The problem for non-convex optimization is to find the local minimum. Sometimes you will find many local minimums and it will be hard to optimize this function Figure~\ref{Fig:Concave_Function}.%
 \end{description}
-
+%
 \begin{figure}[t]
  \centering
  \subfigure[Convex Function Example]{~\label{Fig:Convex_Function}
@@ -150,32 +133,31 @@ If $f$ is twice-differentiable, then $f$ is concave if and only if $f^{''}$ is n
  \subfigure[Concave Function Example]{~\label{Fig:Concave_Function}
   \input{Figures/Ch_2_Background/Fig_Concave_Fun.tex}}
 \caption{Convex and Concave functions examples.}
-\end{figure}
+\end{figure}%
 \subsubsection{Gradient Descent}
 
-As we explained previously, we need to find the relation between X,Y from the input parameters \textbf{\textit{(w,b)}} which will make the cost function in Equation~\eqref{eq:cost_function} to the minimum. In other words we need to find the best value of \textbf{\textit{J(w,b)}} which will represent the relation and reduce the error between $y$ and $\widehat{y}$ So, we need to minimize \textbf{\textit{J(w,b)}}.
-
+As we explained previously, we need to find the relation between X,Y from the input parameters \textbf{\textit{(w,b)}} which will make the cost function in Equation~\eqref{eq:cost_function} to the minimum. In other words we need to find the best value of \textbf{\textit{J(w,b)}} which will represent the relation and reduce the error between $y$ and $\widehat{y}$ So, we need to minimize \textbf{\textit{J(w,b)}}.%
+%
 \begin{figure}[t]
 \begin{center}
 \input{Figures/Ch_2_Background/fig_gradient_decent.tex}
 \caption{Gradient Descent}\label{Fig:gradient_decent_surf}
 \end{center}
-\end{figure} 
-
+\end{figure}%
+%
 To illustrate the relation between \textbf{\textit{J(w,b)}} we will assume for simplicity the relation will be a function of one variable \textbf{\textit{J(w)}}. As shown in Figure~\ref{Fig:gradient_decent_surf} we have a curve which represents the function \textbf{\textit{J(w)}} we need to find the minimum point in this curve which is the local minimum (red point in the previous figure) assuming it is a \textbf{\textit{convex function}}. We will use Equation~\eqref{eq:gredient_descent_w} to find the local minimum.
 
 To explain how this equation works, let's take a simple function $f(x) = x^2$, then select a random point $P_1$ from Figure~\ref{Fig:Derivative_Example}, then pick another point $P_2$. Let's take the derivative \textit{(which by definition is the slope of the function at the point which also the change between these two points)} The slope of this function is the height (3) divided by the width (1); this is the tangent of $J(w)=\frac{3}{1}$ at this point. If the derivative is positive, w will be update minus the derivative multiplied by learning rate alpha $\alpha$ as in Equation~\eqref{eq:gredient_descent_w}. We will repeat the previous step until the value of w reaches the minimum. At this point, the derivative will be negative, so w will start to increase again; at this step the algorithm will stop. Also, we can demonstrate the effect of different $\alpha$ values and their impact on the function; we can show this effect in Figure~\ref{Fig:Alpha_Change} but the main point is that it is not always a happy scenario. Sometimes the high $alpha$ is not a good idea; it depends on the problem and the dataset.
 
-Now, let's generalize the above equation. Assume we have two parameters \textbf{\textit{(w,b)}} and we need to calculate the cost function for \textbf{\textit{J(w,b)}} we will work on as two steps; first function in Equation~\eqref{eq:gradient_descent_j_w} wrt \textbf{\textit{(w)}}, and second function in Equation~\eqref{eq:gradient_descent_j_b} wrt \textbf{\textit{(b)}}
-
+Now, let's generalize the above equation. Assume we have two parameters \textbf{\textit{(w,b)}} and we need to calculate the cost function for \textbf{\textit{J(w,b)}} we will work on as two steps; first function in Equation~\eqref{eq:gradient_descent_j_w} wrt \textbf{\textit{(w)}}, and second function in Equation~\eqref{eq:gradient_descent_j_b} wrt \textbf{\textit{(b)}}%
+%
 \begin{figure}[!t]
 \subfigure[Derivative Example of function $f(x) = x^2$]{~\label{Fig:Derivative_Example}
 \input{Figures/Ch_2_Background/fig_derivative_example.tex}}
 \subfigure[Derivative Example of function $f(x) = x^2$ where $\alpha_1$ > $\alpha_2$]{\label{Fig:Alpha_Change}
 \input{Figures/Ch_2_Background/fig_derivative_alpha_change.tex}}
-\end{figure}
-
-
+\end{figure}%
+%
 \begin{equation}\label{eq:gredient_descent_w}
  \begin{split}
   w & := w - \alpha dw \quad \text{\textit{alpha is learning rate}}\\
@@ -188,12 +170,12 @@ Now, let's generalize the above equation. Assume we have two parameters \textbf{
 w& := w - \alpha \frac{dJ(w,b)}{dw} \label{eq:gradient_descent_j_w}\\
 b& := b - \alpha \frac{dJ(w,b)}{db} \label{eq:gradient_descent_j_b}
    \end{align}
-  \end{subequations}
-  
+ \end{subequations}
+%
 \subsubsection{Logistic Regression derivatives}\label{Sec:Logistic_Bp_Derivatives}
 
 As described, we need to calculate the gradient descent to get the best $\widehat{y}$ which minimizes the total cost in equation~\eqref{eq:logistic_regression_derivatives_single_example}. So, doing back propagation to get the value of $dz$, we need to calculate $da$ in Equation~\eqref{eq:logistic_regression_derivatives_da}, then calculate $dz$ based on the output of $da$ from Equation~\eqref{eq:logistic_regression_derivatives_dz}. After that, we will start to take the derivative for $z$ function parameters \textbf{\textit{$w_1,w_2,b$}}. Once we have the values of \textbf{\textit{$dw_1,dw_2,db$}} we can use them to calculate the estimated values of \textbf{\textit{$w_1,w_2,b$}} in Equations~\eqref{eq:logistic_regression_derivatives_dw1},~\eqref{eq:logistic_regression_derivatives_dw2},~\eqref{eq:logistic_regression_derivatives_db}.%
-
+%
 \begin{equation}\label{eq:logistic_regression_derivatives_single_example}
   \boxed{\widehat{y} = \sigma(z) = a} \longrightarrow \boxed{ z = w^tx + b = w_1x_1+ w_2+x_2+ b} \longrightarrow \boxed{\ell(a,y)}
  \end{equation}
@@ -209,15 +191,12 @@ As described, we need to calculate the gradient descent to get the best $\wideha
   \begin{equation}\label{eq:logistic_regression_derivatives_dw2}
   \boxed{dw_2 = \frac{\partial\ell}{dw_2} = x_2 dz} \longrightarrow \boxed{ w_2 := w_2 - \alpha dw_2}
  \end{equation}
-
-
  \begin{equation}\label{eq:logistic_regression_derivatives_db}
   \boxed{db = \frac{\partial\ell}{db} = dz} \longrightarrow \boxed{ b := b - \alpha db}
-\end{equation}
- \subsubsection{Implementing Logistic Regression on m example}
-
+\end{equation}%
+%
+\subsubsection{Implementing Logistic Regression on m example}
 To implement a simple 1 iteration, in the example below the sample code simulates the program structure. First, assume $J = 0, dw_1 = 0, dw_2 = 0,db = 0$. Then calculate the feedforward step. Then backpropagation calculate. Finally, update the parameters. We can transfer the above equation into the below python sample code.%
-
  \begin{lstlisting}[language=Python]
   import numpy as np
   J = 0, dw_1 = 0, dw_2 = 0,db = 0, alpha = .02
@@ -231,8 +210,8 @@ To implement a simple 1 iteration, in the example below the sample code simulate
   w = w - alpha * dw
   b = b - alpha * db
  \end{lstlisting}%
-
- \subsection{The Neuron}
+%
+\subsection{The Neuron}
 
 Most computer research is trying to simulate the human brain as it is the most advanced creation. If we are trying to check how the model understands the new information, we can give a baby two bananas then ask him about it. The baby can remember it with all it new shapes. Similarly, if you inform any human about some information and trying to get a new inference, it will automatically detect this information. So, the new research tries to simulate the human brain model into an Artificial Intelligence model to achieve this performance. In this subsection, we will try to give an overview of the relation between the new research era and the human brain.
  
@@ -240,7 +219,7 @@ The neuron is the foundation unit of the brain. The size of the brain is about t
 
 \begin{figure}[!t] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/neuron_structure.png}
 \caption{Description of neuron's structure this figure from~\cite{DLFundamentals}}
-\label{Fig:Neuron_Structure}
+~\label{Fig:Neuron_Structure}
 \end{figure}%
  
 How do we learn a new concept? \textit{The neuron receives its input from dendrites. The incoming neuron connection is dynamically strengthened or weakened based on how often it is used, and the strength of each connection determines the contribution of the input to the neuron's output. Based on the connection strength, it will have weight then the input is summed in the cell body. This sum is transformed into a new signal which is propagated along the cell's axon and sent to other neurons~\cite{DLFundamentals}}.
@@ -251,13 +230,12 @@ The above biological model can be translated into an Artificial Neural Network a
 As explained previously, we have been trying to simulate the human brain model into our research work in Deep Neural Network. So, we will have multi-layers to allow the model to get in-depth knowledge and more computational performance to simulate the human brain. 
 
 Now, we will represent the functions per layer as per the equations below where lt refers to layer number, i refers to the node number in the layer~\eqref{eq:nn_multi_layer}%
-
+%
 \begin{equation}\label{eq:nn_multi_layer}
 \boxed{z^l = W^l x + b^l} \longrightarrow \boxed{a_i^l = \sigma(z^l)} \longrightarrow \boxed{\ell(a^l,y)}
-\end{equation}
-
+\end{equation}%
+%
 What is the Neural Networks component?
-
 Figure~\ref{Fig:NNExample} represents an Example of Neural Networks representations. It consists of
 
 \begin{itemize}
@@ -269,13 +247,10 @@ Figure~\ref{Fig:NNExample} represents an Example of Neural Networks representati
 \subsection{Neural Network Computation}
 
 In this subsection, we will show as example on how we can compute the Neural Networks for every layer. In figure~\ref{Fig:NNExample} we have an example of Input layer of N input, one hidden layer, and one output layer. We will continue explain on this example in Equation~\eqref{eq_nn_one_layer}.%
-
-
 \begin{figure}[!t]
 \input{./Figures/Ch_2_Background/Fig_Simple_NN_Example.tex}
 \caption{Neural Networks Example Input layer with N input samples, One hidden Layer, and an Output Layer}~\label{Fig:NNExample}
 \end{figure}%
-
 \begin{subequations}\label{eq_nn_one_layer}
 \begin{align}
 Z_1^{[1]} & = w_1^{[1]T} x + b_1^{[1]} , a_1^{[1]} = \sigma(Z_1^{[1]}) \\
@@ -283,9 +258,9 @@ Z_2^{[1]} & = w_2^{[1]T} x + b_2^{[1]} , a_2^{[1]} = \sigma(Z_2^{[1]})\\
 Z_3^{[1]} & = w_3^{[1]T} x + b_3^{[1]} , a_3^{[1]} = \sigma(Z_3^{[1]})\\
 Z_4^{[1]} & = w_4^{[1]T} x + b_4^{[1]} , a_4^{[1]} = \sigma(Z_4^{[1]})
 \end{align}
-\end{subequations}
+\end{subequations}%
 
-If we need to compute the above equations, it will be simply be represented as vectorized . The matrix below shows how we can implement it.%
+If we need to compute the above equations, it will be simply be represented as vectorized. The matrix below shows how we can implement it.%
 \[
 z^{[1]} = 
 \left[
@@ -331,7 +306,6 @@ z^{[1]} =
 \subsubsection{Linear Neurons and Their Limitations}
 
 We explained the equations for the feedforward Neural Network. We have only one point we need to discuss, which is the Activation function. Let's assume we will continue using linear function in Figure~\ref{Fig:Linear}, which represents linear equation  $y= w x + b$. So, if we have mutli-layer networks, for example Equation~\eqref{eq:linear_fun_limitations}, it will end as linear function because composition of two linear function will be linear function. So, we will not compute deep computation and we will get limited information from the networks. So, to be able to detect the deep information we will use different functions for the hidden layers, for example: $\tanh$ Figure~\ref{Fig:Tanh} and its Equation~\eqref{eq:nn_tanh}. Another option is Sigmoid Figure~\ref{Fig:Sigmoid} and  Equation~\eqref{eq:logistic_function}. Finally, Relu Figure~\ref{Fig:Relu} Equation~\eqref{eq:nn_relu}. Most binary classification problems use Sigmoid function for output layer. We can use the same functions for the output but we can also use the linear for activation function in some cases.%
-
 \begin{figure}[!t]
  \centering
  \subfigure[RELU activation function.]{\label{Fig:Relu}
@@ -369,23 +343,19 @@ We explained the equations for the feedforward Neural Network. We have only one 
 \begin{equation}\label{eq:nn_relu}
  a = \max(0,z)
 \end{equation}%
-
+%
 \subsubsection{Softmax Output Layers}
-
 Sometimes our problem has multi-output results, not only 1 or 0. For example, we have a problem recognizing the characters from 0 to 9 in MNIST dataset, But we will not be able to recognize digits with 100\% confidence. So, we will use the probability distribution to give us a better idea of how confident we are in our predictions. The result will be an output vector of the form of the $\sum_{i = 0}^9P_i=1$.
 
-This is achieved by using a special output layer named softmax layer. This layer differs from the other as the output of a neuron in a softmax layer depends on the output of all the other neurons in its layer. This because its sum of all output equal 1. If we assume $z_i$ be the logit of $i^{th}$ softmax neuron, we can normalize by setting its output to represented from Equation~\eqref{eq:nn_softmax_fun}.
-
+This is achieved by using a special output layer named softmax layer. This layer differs from the other as the output of a neuron in a softmax layer depends on the output of all the other neurons in its layer. This because its sum of all output equal 1. If we assume $z_i$ be the logit of $i^{th}$ softmax neuron, we can normalize by setting its output to represented from Equation~\eqref{eq:nn_softmax_fun}.%
 \begin{equation}\label{eq:nn_softmax_fun}
  y_i=\frac{e^{z_i}}{\sum_je^{z_j}}
 \end{equation}
-
+%
 The strong prediction will have a value entry in the vector close to 1, while the other entries will be close to 0. The weak prediction will have multiple possible labels, having almost equal values~\cite{DLFundamentals}.
 
 \subsubsection{Forward-Propagation in a Neural Networks}
-
-As an example, in Figure~\ref{Fig:NN_With_BP} we need to calculate the Forward propagation; we will follow the equation~\eqref{eq:feedfarward_dL}. Note: we assume $X = a^{[0]}$ as initial function notation. Also, $\widehat{Y}= g(Z^{[4]}=A^{[4]}$ as the final output layer.
-
+As an example, in Figure~\ref{Fig:NN_With_BP} we need to calculate the Forward propagation; we will follow the equation~\eqref{eq:feedfarward_dL}. Note: we assume $X = a^{[0]}$ as initial function notation. Also, $\widehat{Y}= g(Z^{[4]}=A^{[4]}$ as the final output layer.%
 \begin{equation}\label{eq:feedfarward_dL}
 Z^{[l]} = w^{[l]} a^{l-1} + b^{[l]} , A^{[1]} = g^{l}(Z^{[l]})
 \end{equation} % @@@ figure to show the input forward and back propagation steps
@@ -394,7 +364,6 @@ Z^{[l]} = w^{[l]} a^{l-1} + b^{[l]} , A^{[1]} = g^{l}(Z^{[l]})
 \input{./Figures/Ch_2_Background/Fig_NN_WithBP.tex}
 \caption{Neural Network Example with Backpropagation Step.}~\label{Fig:NN_With_BP}
 \end{figure}%
-
 \subsubsection{Back-Propagation in a Neural Networks}
 
 To compute the gradient descent in Neural Networks, we use an algorithm named \textit{backpropagation}. The backpropagation algorithm was initially invented in the 1970s, but was relatively unknown until one of the most important papers in this field was published in 1986, describing several neural networks where backpropagation has a performance significantly better than the earlier approaches and making it possible to use neural networks to solve problems which were previously insoluble. Backpropagation is now the backbone for the learning in neural networks.
@@ -405,10 +374,11 @@ We explained previously, how neural networks could learn their weights using gra
 Backpropagation not only an algorithm which gives us the expression for partial derivative of the cost function $C$ with respect to weights $w$ and bias $b$, but also gives  intuitions about the change of the cost function while changing its variables $w \& b$ and its effect on the overall network~\ref{Fig:NN_With_BP}.
 
 As explained in the Logistic Regression section (\ref{Sec:Logistic_Bp_Derivatives}), we can calculate the derivatives for logistic regression with one layer using this equations~\eqref{eq:logistic_regression_derivatives_single_example},~\eqref{eq:logistic_regression_derivatives_da},~\eqref{eq:logistic_regression_derivatives_dz},\\
-\eqref{eq:logistic_regression_derivatives_dw1},~\eqref{eq:logistic_regression_derivatives_dw2},~\eqref{eq:logistic_regression_derivatives_db}.\\
+~\eqref{eq:logistic_regression_derivatives_dw1},~\eqref{eq:logistic_regression_derivatives_dw2},~\eqref{eq:logistic_regression_derivatives_db}.\\
 
 We will generalize the derivatives equations to be for $l$ layers from the equations below~\eqref{eq:nn_bp_l_layers}.%
- \begin{subequations}\label{eq:nn_bp_l_layers}
+%
+\begin{subequations}\label{eq:nn_bp_l_layers}
   \begin{align}
    dz^{[l]} & = da^{[l]} \times g^{[l]'}(z^{l}) \\
    dw^{[l]} & = dz^{[l]} \cdot a^{[l-1]} \\
@@ -427,18 +397,17 @@ We can vectorize the above equation for Neural Network implementation as per the
 %   dz^{[l]} & = (W^{[l+1]T} \cdot dz^{[l+1]}) * g^{[l]'}(z^{l}) \quad \text{from 2.24d in 2.24a}
  \end{align}
 \end{subequations}%
-
+%
 If we check the input variable in the backpropagation we find it is $da^{l}$ and this is the derivative of~\eqref{eq:loss_function} which we can find, as explained previously from~\eqref{eq:logistic_regression_derivatives_da}; this is the formula for the final layer in the feedforward step. If we need to calculate the vectorized version of this equation, we can use equation~\eqref{eq:logistic_regression_derivatives_da_vectorize}
 \begin{equation}\label{eq:logistic_regression_derivatives_da_vectorize}
 da = \frac{d\ell}{da} = \frac{d\ell(a,y)}{da} = (- \frac{y^{[1]}}{a^{[1]}} + \frac{1-y^{[1]}}{1-a^{[1]}} \ldots - \frac{y^{[m]}}{a^{[m]}} + \frac{1-y^{[m]}}{1-a^{[m]}} )
 \end{equation}%
-
+%
 \subsubsection{How we Initialize the Weights}
-
 As explained previously in Logistic Regression, we initialized the weights to Zero. However, in Deep Neural Networks this will not work. Note: It is acceptable to initialize the Bias to Zero but for the weights it will not work. Let's see what will happen if we initialize the weights and Bias to Zero. %@@@https://www.coursera.org/learn/neural-networks-deep-learning/lecture/XtFPI/random-initialization figure
   
 Assume  we have two input vectors $x_1,X_2$, if we initialize $W^{[1]}$ to Zero from equation~\eqref{eq:nn_weights_init_zero} and $b^{[1]}$ to Zeros. So, $a_1^{[1]}=a_2^{[1]}$ because both of the hidden units compute the same functions. Also, $W^{[2]}=[0 0]$ Then, when we compute the backpropagation, we find that $dz_1^{[1]}=dz_2^{[2]}$. After every iteration, we will find that the two hidden units calculate the same function and we will not obtain more information from this Deep Neural Network. We need to highlight that the main idea from Neural Networks, as explained before, is that every hidden unit should work to get a new piece of information. The more hidden units, the more hidden information we will obtain, but if we initialize it to Zero, it will be the same function which is calculated, and we will not derive any new information.%
-
+%
 \begin{subequations}\label{eq:nn_weights_init_zero}
 \begin{align}
  W^{[1]} = \begin{bmatrix} 0 & 0\\ 0 & 0 \end{bmatrix} \quad b^{[1]} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} \\
@@ -447,25 +416,25 @@ Assume  we have two input vectors $x_1,X_2$, if we initialize $W^{[1]}$ to Zero 
  dw = \begin{bmatrix} u & u \\ v & v \end{bmatrix} \quad W^{[1]} = W^{[1]} - \alpha dw
 \end{align}
 \end{subequations}%
-
+%
 To initialize weights and to get the maximum value of the neural network computation, we should initialize the weight by small random numbers to avoid the big weights which will tend to cause a small slope from the Z where $Z^{[1]}= W^{[1]} X + b^{[1]}$ For example, if we use $\tanh$ we will produce big tail values $a^{[1]}= g^{[1]}(Z^{[1]})$. So, big weights are more likely to produce slow learning rate. 
 
 \subsubsection{Regularization}
 
-One of the most common problems anyone working with data science in general or deep learning faces is the overfitting problem. In statistics, overfitting is the production of an analysis that corresponds too closely or exactly to a particular set of data, and may, therefore, not fit additional data or predict future observations reliably~\cite{Wiki_Overfitting}. An overfitted model is a statistical model that contains more parameters that can be justified by the data. The essence of overfitting is to have unknowingly extracted residual variation (i.e. the noise) as if that variation represented underlying model structure. As a practical example,a  model performs adequately on training data but cannot predict test data. This means that the models are often free of bias in the parameter estimators, but have estimated (and actual) sampling variances that are needlessly large in the training and unable to be generalized to predict testing data. Figure~\ref{Fig:Fitting} shows different ways of fitting, We need to avoid both underfitting and overfitting. We attempted to enhance the results in our training sets, where the model is more complex, so that the training error reduces but the testing error does not. While building the neural networks, the more complex models lead to more overfitting problems.
-
+One of the most common problems anyone working with data science in general or deep learning faces is the overfitting problem. In statistics, overfitting is the production of an analysis that corresponds too closely or exactly to a particular set of data, and may, therefore, not fit additional data or predict future observations reliably~\cite{Wiki_Overfitting}. An overfitted model is a statistical model that contains more parameters that can be justified by the data. The essence of overfitting is to have unknowingly extracted residual variation (i.e. the noise) as if that variation represented underlying model structure. As a practical example,a  model performs adequately on training data but cannot predict test data. This means that the models are often free of bias in the parameter estimators, but have estimated (and actual) sampling variances that are needlessly large in the training and unable to be generalized to predict testing data. Figure~\ref{Fig:Fitting} shows different ways of fitting, We need to avoid both underfitting and overfitting. We attempted to enhance the results in our training sets, where the model is more complex, so that the training error reduces but the testing error does not. While building the neural networks, the more complex models lead to more overfitting problems.%
+%
 \begin{figure}[!t]
- \centering
- \includegraphics[scale=0.6]{./Figures/Ch_2_Background/Fig_Fitting.png}
+\centering
+\includegraphics[scale=0.6]{./Figures/Ch_2_Background/Fig_Fitting.png}
 \caption{Comparison Between different fitting types}~\label{Fig:Fitting}
-   \end{figure}%
-
+\end{figure}%
+%
 \begin{figure}[!t]
- \centering
+\centering
 \input{./Figures/Ch_2_Background/Fig_NN_Dropout.tex}
 \caption{A diagram demonstrating the effects of applying dropout with p = 0.5 to a deep neural networks~\cite{Gitrepo_NN_Tikz}}~\label{Fig:NN_Dropout}
-   \end{figure}%
-
+\end{figure}%
+%
 We can enhance the results on testing data by getting more sample data. Therefore, the model can learn the pattern from the data in a better way, but sometimes it is difficult to acquire more data, or it is more expensive than the enhancement required. Hence, we work to apply regularization techniques to prevent overfitting.
 
 Regularization is a technique which applies slight changes or modifications to the algorithm to be more generalized. Sometimes we try to hide information or add noise on the training data to avoid overfitting in the training phase. This considerably improves the model performance in the testing data or unseen.
@@ -477,20 +446,16 @@ In this part, we will explain how to apply different regularization techniques i
 \begin{itemize}
 \item \textbf{L2 \& L1 Regularization} are the most common types of regularization. They update the general cost function by adding another term~\eqref{eq:regularization} known as the regularization term~\cite{Web_Analyticsvidhya_Regularization}.
 \begin{equation}\label{eq:regularization}
- J(w,b) = \ell(y,\widehat{y}) + Regularization
-  \end{equation}
-
-Addition of this regularization term decreases the values of weight matrices. This happens because it assumes that a neural network with smaller weight matrices leads to simpler models. Therefore, it will also reduce overfitting to a significant extent. Assuming we reduce the value of $\lambda$ to be close to zero, this will produce a simpler network and many nodes will be equal zeros. This will reduce the high variance  and hence be less prone to overfitting.
-
+J(w,b) = \ell(y,\widehat{y}) + Regularization
+\end{equation}
+%
+Addition of this regularization term decreases the values of weight matrices. This happens because it assumes that a neural network with smaller weight matrices leads to simpler models. Therefore, it will also reduce overfitting to a significant extent. Assuming we reduce the value of $\lambda$ to be close to zero, this will produce a simpler network and many nodes will be equal zeros. This will reduce the high variance  and hence be less prone to overfitting.%
 \begin{enumerate}
 \item L2 regularization is the most common type of regularization. In L2 regularization we add $\lambda$ as regularization parameter. This  hyperparameter value is optimized for better results~\eqref{eq:regularization_l2}. It also known as weight decay as it forces the weights to decay towards zero (but not exactly zero)~\cite{Web_Analyticsvidhya_Regularization}.%
-
 \begin{equation}\label{eq:regularization_l2}
 J(w,b) = \frac{1}{m} \sum_{i=1}^{m} \ell(y,\widehat{y})+\frac{\lambda}{2m} \times \lVert w \rVert^2
 \end{equation}%
-
-\item In L1 Regularization, We penalize the absolute value of the weights~\eqref{eq:regularization_l1}. If we use L1 regularization $W$ can end up being sparse which means $w$ vector will have a lot of zeros. This can help to compress the model because the set of parameters are zero and we will need less memory to store the model. Otherwise, we usually prefer L2 over it.
-
+\item In L1 Regularization, We penalize the absolute value of the weights~\eqref{eq:regularization_l1}. If we use L1 regularization $W$ can end up being sparse which means $w$ vector will have a lot of zeros. This can help to compress the model because the set of parameters are zero and we will need less memory to store the model. Otherwise, we usually prefer L2 over it.%
 \begin{equation}\label{eq:regularization_l1}
 J(w,b) = \frac{1}{m} \sum_{i=1}^{m} \ell(y,\widehat{y})+\frac{\lambda}{2m} \times \lVert w \rVert
 \end{equation}
@@ -498,9 +463,9 @@ J(w,b) = \frac{1}{m} \sum_{i=1}^{m} \ell(y,\widehat{y})+\frac{\lambda}{2m} \time
   \item \textbf{Dropout}
 Dropout is one of the most powerful techniques to apply regularization. It produces excellent results and is consequently the most frequently used regularization technique in the field of deep learning.
 
-Figure~\ref{Fig:NN_Dropout} shows the idea of dropout; it randomly selects some nodes and removes them along with all of their incoming and outgoing connections. Dropout technique’s randomness makes the models’ results seem a more generalized model. For each node, we will have a probability of some dropout percentage that this node will be removed with its connections. Therefore, we will have some simpler network architecture. Also, dropout forces the algorithm not to rely on any feature. Hence, one must spread the weights and make the network try to learn a different type of features. Therefore, dropout is usually preferred when we have a large neural network structure in order to introduce more randomness.
+Figure~\ref{Fig:NN_Dropout} shows the idea of dropout; it randomly selects some nodes and removes them along with all of their incoming and outgoing connections. Dropout technique’s randomness makes the models’ results seem a more generalized model. For each node, we will have a probability of some dropout percentage that this node will be removed with its connections. Therefore, we will have some simpler network architecture. Also, dropout forces the algorithm not to rely on any feature. Hence, one must spread the weights and make the network try to learn a different type of features. Therefore, dropout is usually preferred when we have a large neural network structure in order to introduce more randomness.%
 
-\item \textbf{Data Augmentation} is a technique to augment your training data when there is no way to acquire more data for the more generalized model. Assuming we are working on Image classifier problem, for example, we can flip the images horizontally and also add that to the training set. Now, instead of this one example in our training set, we can add this to our training example. So by flipping the images horizontally, we could double the size of our training set. Also, we can do different techniques such as rotating the image, flipping, scaling, and shifting the images. All of these techniques can help to produce a better-generalized model.
+\item \textbf{Data Augmentation} is a technique to augment your training data when there is no way to acquire more data for the more generalized model. Assuming we are working on Image classifier problem, for example, we can flip the images horizontally and also add that to the training set. Now, instead of this one example in our training set, we can add this to our training example. So by flipping the images horizontally, we could double the size of our training set. Also, we can do different techniques such as rotating the image, flipping, scaling, and shifting the images. All of these techniques can help to produce a better-generalized model.%
 
 \item \textbf{Early stopping} is a type of cross-validation technique where we split some of our training data to be set as the validation set. When we show that our performance on the validation set is getting worse, we immediately stop the training on the model. This is known as early stopping.%@@@ add figure example of early stopping
 
@@ -518,13 +483,12 @@ ADAM stands for adaptive moment estimation. It is an adaptive learning rate opti
 \item $\alpha$ is the learning parameter and must be tuned based on the problem type.
 \item $\beta_1$ the default choice is 0.9. This is the moving averages in momentum term for (dw,db).
 \item $\beta_2$ The author of the Adam paper recommends $0.999$; this computes the moving average of $dw^2$ and $db^2$ squares.
- \item $\epsilon$ The author of the Adam paper recommends $10^{-8}$.
- \end{enumerate}
+\item $\epsilon$ The author of the Adam paper recommends $10^{-8}$.
+\end{enumerate}%
 
 \begin{algorithm}
- \caption{ADAM Algorithm for Deep Learning Optimization.}\label{Alg:Adam}
-
- \begin{algorithmic}
+\caption{ADAM Algorithm for Deep Learning Optimization.}\label{Alg:Adam}
+\begin{algorithmic}
   \State Vdw = 0, Sdw = 0, Vdb = 0, Sdb = 0
   \For {$t=0$ to $num\_iterations$} \Comment{\%: compute dw,db on mini-batches}
   \State $V_{dw} = \beta_1 V_{dw} + (1-\beta_1) dw,$\quad$ V_{db} = \beta_1 V_{db} + (1-\beta_1) db$ \Comment{\%:Momentum Step}
@@ -533,7 +497,7 @@ ADAM stands for adaptive moment estimation. It is an adaptive learning rate opti
   \State $S_{dw}^{corrected} = \frac{S_{dw}}{1-\beta_1^t} ,\quad S_{db}^{corrected} = \frac{S_{db}}{1-\beta_1^t} $
   \State $w:= w-\alpha \frac{V_{dw}^{corrected}}{\sqrt{S_{dw}^{corrected}} + \epsilon},\quad b:= b-\alpha \frac{V_{db}^{corrected}}{\sqrt{S_{db}^{corrected}} + \epsilon}$
   \EndFor
- \end{algorithmic}
+\end{algorithmic}
 \end{algorithm}
 
 \subsection{Recurrent Neural Networks (RNNs)}\label{Sec:RNN}
@@ -568,7 +532,6 @@ What is the new proposed architecture which can provide a way to share the featu
 \input{./Figures/Ch_2_Background/Fig_RNN_unrolled.tex}
 \endminipage\hfill
 \caption{Recurrent Neural Networks Loops adapted from~\cite{colah}}\label{Fig:RNN_Rolled_Loop}
-
 \minipage{0.33\textwidth}
 \input{./Figures/Ch_2_Background/Fig_Rnn_Single_Tanh_Left.tex}
 \endminipage\hfill
@@ -590,12 +553,10 @@ What is the new proposed architecture which can provide a way to share the featu
 \input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Right.tex}
 \endminipage
 \caption{The repeating module in an LSTM containing four interacting layers adapted from~\cite{colah}}~\label{Fig:LSTM_Cell_Chaining}
-\end{figure}
+\end{figure}%
 
-
-\item Second, the feedforward will compute for time t and then we will calculate the loss at step t. The final loss is the sum of loss at every step; t~\eqref{eq:rnn_feedfarward} explains feedforward steps. The backpropagation will also be calculated through time at every step.%
- 
- \begin{subequations}\label{eq:rnn_feedfarward}
+\item Second, the feedforward will compute for time t and then we will calculate the loss at step t. The final loss is the sum of loss at every step; t~\eqref{eq:rnn_feedfarward} explains feedforward steps. The backpropagation will also be calculated through time at every step.% 
+\begin{subequations}\label{eq:rnn_feedfarward}
 \begin{align}
  a^{<t>} & = g(W_{aa}a^{<t-1>}+ W_{ax}x^{<t>}+b_a)\\
   & = g(W_a[a^{<t-1>},x^{<t>}]+ b_a)\\
@@ -614,8 +575,7 @@ As explained, RNN works on sequential data, and the idea is to predict new outpu
 
  In the previous example, predicting the word got depends on the sentence’s tense whether it present or past to be consistent. It also shows how some problems need the long-term dependencies handling.[Bengio et al.,1994]~\cite{Bengio_1994} showed that Basic RNNs have a problem in long-term dependency.  Another problem which may happen in basic Neural Networks is gradient exploding. One of the side-effects of gradient exploding is an exponentially large gradient which causes our parameters to be so large. Hence, the Neural Networks parameters will have a severe problem. Another serious problem with Basic Neural Networks is overfitting problems [Zaremba et al., 2014]~\cite{Zaremba_et_al}.
 
- To solve this learning problem [Hochreiter and Schmidhuber, 1997] introduced Long Short-Term Memory which helps to reduce the dependency problem using memory cells and forget gates.
-
+To solve this learning problem [Hochreiter and Schmidhuber, 1997] introduced Long Short-Term Memory which helps to reduce the dependency problem using memory cells and forget gates.%
 \begin{figure}[!t]
  \centering
  \subfigure[Top line is the medium for information flow]
@@ -655,7 +615,6 @@ As explained, RNN works on sequential data, and the idea is to predict new outpu
  }
 \caption{LSTM Gates and Configurations adapted from~\cite{colah}}
 \end{figure}%
-
 \subsection{Long Short Term Memory networks (LSTMs)}\label{Sec:LSTM}
 
 
@@ -687,7 +646,6 @@ f_t = \sigma(W_f x_t + U_f h_{t-1} + b_t)
 \end{equation}%
 
 \item \textbf{Input Gate Layer} a combination between sigmoid layer which works to decide which values should be updated, and $\tanh$ layer creates a new vector of the new information $\tilde{C_t}$ which should be stored for the next state Figure~\ref{Fig:LSTM_Input_Gate}. The previous combination controls the update state as shown in Equation~\eqref{eq:input_gate}. This layer is used when we have new input information. For example, if we have a new subject named Elizabeth we need to store it for the next input. The next step is the pointwise multiplication and addition operations.%
-
 \begin{subequations}\label{eq:input_gate}
 \begin{align}
  i_t &= \sigma(W_i \dot[h_{t-1},x_t] + b_i)\\
@@ -696,18 +654,16 @@ f_t = \sigma(W_f x_t + U_f h_{t-1} + b_t)
 \end{subequations}
 
 \item \textbf{Multiplication and Addition operations} This step is to apply the actions recommended by the previous gates as shown in Equation~\eqref{eq:multiplication_gate}. This step is the actions applying the forgetting of the old information and addition of the new information, as decided in the previous steps. Regarding the upper line in Figure~\ref{Fig:LSTM_Pointwise_Operations}, there are two operations:
-
-  \begin{enumerate}
- \item Multiplication Operation: This operation applies the forget gate step by multiplying the old state $\tilde{C}_{t-1} $ by the $f_t$.
- \item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t \times \tilde{C_t}$
- \end{enumerate}%
+\begin{enumerate}
+\item Multiplication Operation: This operation applies the forget gate step by multiplying the old state $\tilde{C}_{t-1} $ by the $f_t$.
+\item Addition Operation: This operation will add the output from the previous multiplication with the new input information scaled by how much we need to update each state value $i_t \times \tilde{C_t}$
+\end{enumerate}%
  
 \begin{equation}\label{eq:multiplication_gate}
 C_t = f_t \circ c_{t-1} + i_t \circ \widetilde{C_t}
 \end{equation}
    
   \item \textbf{Output Gate} This gate is a combination of sigmoid layer and $\tanh$ layer. Sigmoid layer decides the information which should be output. Then the output of the  sigmoid function will be multiplied by the output of the $\tanh$ layer of the cell state. This $\tanh$ will make the values between -1 and 1. The output of the multiplication of sigmoid and $\tanh$ will be the final output, as shown in Equation~\eqref{eq:output_gate}. In practice, this gate responsible for deciding which information should be the output. For example, if it saw a subject such as Elizabeth, it might want to output a verb to be relevant to her as a singular.%
-
 \begin{subequations}\label{eq:output_gate}
 \begin{align}
 o_t &= \sigma(W_o x_t + U_o h_{t-1} + b_o),\\
@@ -723,11 +679,9 @@ We have explained the normal LSTM. We also need to mention that much research pr
 In RNN, Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 by Kyunghyun Cho et al.~\cite{Cho_et_al}. They work to overcome the problem for long-term dependencies. It also aims to solve the vanishing gradient problem from Basic RNNs.It proposed a new architecture Figure~\ref{Fig:GRU} similar to the LSTM but with some major variants as below:
 
 \begin{itemize}
- 
 \item It combines the forget gate and input gates into a single gate named “update gate and reset gate.”
 \item The GRU unit controls the flow of information without having to use a memory unit. It simply exposes the full hidden content without any control.
 \item It also merges the cell state and hidden state.
- 
 \end{itemize}%
 
 The result of this modifications is that GRUs are simpler and easier for modifications in design. GRUs trains faster and in some cases performs better than LSTMs on less training data, mainly in language modelling. However, LSTMs have some benefits over GRUs, with longer sequences in tasks requiring modelling long-distance relations.
@@ -745,8 +699,7 @@ Harry in the first example refers to a person, but in the second example refers 
 
 The architecture in BI-LSTM is similar to what we discussed previously regarding Uni-LSTM. We can mention here that BI-LSTM is very slow compared to LSTM, and needs much time in the training phase but, as we will see later in our research, it is impressive regarding the results and the effect on the language problems.
 
-Figure~\ref{Fig:BI-LSTM} represents a recurrent neural network consisting of several LSTM blocks, processing the input sequence simultaneously forwards and backwards (to exploit both directions of temporal dependence). In Figure~\ref{Fig:LSTM_CharLevel} we can observe a similar example to our encoding data, which feeds the networks using a sequence of char, then passes to the BI-LSTM cells, then produces the character representations to feed the next layer of the network. Figure~\ref{Fig:LSTM_Arch} shows the simple example of the full network from char-level embedding (encoding) till the last sequence which outputs to softmax layer.
-
+Figure~\ref{Fig:BI-LSTM} represents a recurrent neural network consisting of several LSTM blocks, processing the input sequence simultaneously forwards and backwards (to exploit both directions of temporal dependence). In Figure~\ref{Fig:LSTM_CharLevel} we can observe a similar example to our encoding data, which feeds the networks using a sequence of char, then passes to the BI-LSTM cells, then produces the character representations to feed the next layer of the network. Figure~\ref{Fig:LSTM_Arch} shows the simple example of the full network from char-level embedding (encoding) till the last sequence which outputs to softmax layer.%
 \begin{figure}[!t]
  \centering
  \subfigure[bidirectional long short-term memory~\cite{Gitrepo_NN_Tikz}]
@@ -756,13 +709,12 @@ Figure~\ref{Fig:BI-LSTM} represents a recurrent neural network consisting of sev
  }
  \subfigure[character-based representation using BiLSTM~\cite{ReimersG17}]
  {
-  \label{Fig:LSTM_CharLevel}
+ \label{Fig:LSTM_CharLevel}
   \includegraphics[width=8cm,height=7cm]{./Figures/Ch_2_Background/BI_LSTM_2.png}
 
  }
  \subfigure[An example of the architecture of LSTM~\cite{Blog_LSTM}]
- {
-  
+ { 
   \label{Fig:LSTM_Arch}
   \includegraphics[width=8cm,height=7cm]{./Figures/Ch_2_Background/BI_LSTM_1.jpg}
  }
@@ -778,8 +730,7 @@ In Supervised machine learning problems, we have two types \textit{Classificatio
 
 How can we measure the model performance? It is good when the difference between the predicted value and the actual is small and not overfitting on the development dataset.
 
-There are many ways to measure classification performance. Before we explain every method, we will give a simple example to allow us to understand the output of every method. Let us assume we have a binary classifier which detects Spam vs Normal Emails. We will explain by example the definition for every type base on the example data in Table~\ref{Tab:EmailClassifier}
-
+There are many ways to measure classification performance. Before we explain every method, we will give a simple example to allow us to understand the output of every method. Let us assume we have a binary classifier which detects Spam vs Normal Emails. We will explain by example the definition for every type base on the example data in Table~\ref{Tab:EmailClassifier}%
 \begin{table}[t]
  \centering
  \begin{tabular}{c c c c}
@@ -791,13 +742,11 @@ There are many ways to measure classification performance. Before we explain eve
   \bottomrule
  \end{tabular}
  \caption{Spam vs Normal Email Classifier example}\label{Tab:EmailClassifier}
-\end{table}
-
-
+\end{table}%
+%
 \subsubsection{Accuracy}
 
-Accuracy measures the corrected prediction over the dataset. It is calculated using the ratio between the corrected predicted sample from the test data over the total test data sample. Ex: in Table~\ref{Tab:EmailClassifier}\textit{(the total positive predicted as positive + the total negative predicted as negative)/total number of test data}~\eqref{eq:accuracy_calculation} which means 90\%. An issue in Accuracy as a measurement is that it doesn’t give us any sense of the results with respect to the actual performance of the positive, calculated as positive and vice-versa. One measurement which gives us some sense is the Precision and Recall, which we will discuss it in the next section.
-
+Accuracy measures the corrected prediction over the dataset. It is calculated using the ratio between the corrected predicted sample from the test data over the total test data sample. Ex: in Table~\ref{Tab:EmailClassifier}\textit{(the total positive predicted as positive + the total negative predicted as negative)/total number of test data}~\eqref{eq:accuracy_calculation} which means 90\%. An issue in Accuracy as a measurement is that it doesn’t give us any sense of the results with respect to the actual performance of the positive, calculated as positive and vice-versa. One measurement which gives us some sense is the Precision and Recall, which we will discuss it in the next section.%
 \begin{equation}\label{eq:accuracy_calculation}
 \frac{\text{the total positive predicted as positive + the total negative predicted as negative}}{\text{total number of test data}} = \frac{160+290}{500}=0.9 
 \end{equation}%
@@ -811,7 +760,6 @@ Precision and Recall are two measurements which answer questions related to our 
 \item Precision (also called positive predictive value) is used to answer the question, \textbf{Based on the test data how many items predicted correctly from the test data sample}. It can be calculated from Equation~\eqref{eq:precision}.
 \item Recall (also known as sensitivity) answers another question: \textbf{Based on the test data, how many of the truly predicted items are truly predicted}. We can calculate this using Equation~\eqref{eq:recall}.
 \end{itemize}
-
 \begin{equation}\label{eq:precision}
 precision = \frac{\text{true positives}}{\text{true positives + false positives}} = \frac{160}{160 + 40}=0.8
 \end{equation}%
@@ -824,8 +772,7 @@ recall = \frac{\text{true positives}}{\text{true positives + false negatives}} =
 We need to highlight that some applications could require a focus on precision more than recall and vice-versa. We therefore need to choose the right measure based on our problem.
  
 \subsubsection{$F_1$ Score}
-In statistical analysis of binary classification, the F1 score is a measure of a test's accuracy. It considers both the precision \textit{p} and the recall \textit{r} of the test to compute the accuracy score. The F1 score is the harmonic average of the precision and recall, where an F1 score reaches its best value at 1 (perfect precision and recall) and worst at 0~\cite{Wiki_f1_score}. We can calculate it using Equation~\eqref{eq:f_1}.
-
+In statistical analysis of binary classification, the F1 score is a measure of a test's accuracy. It considers both the precision \textit{p} and the recall \textit{r} of the test to compute the accuracy score. The F1 score is the harmonic average of the precision and recall, where an F1 score reaches its best value at 1 (perfect precision and recall) and worst at 0~\cite{Wiki_f1_score}. We can calculate it using Equation~\eqref{eq:f_1}.%
 \begin{equation}\label{eq:f_1}
 F_1= 2 \times \frac{precision*recall}{precision+recall}
 \end{equation}%
@@ -835,19 +782,16 @@ F_1= 2 \times \frac{precision*recall}{precision+recall}
 Per class, accuracy is one of the important accuracy measures when we have multi-class. There is a difference between each accuracy calculation regarding the dataset classes distribution. Most of the performance measurement calculate the average accuracy per-class but the difference is some of them take into consideration the size of each class and some don’t take the size. So, in case we have imbalanced dataset we should use the type which considers the class size for the accuracy of calculations. In case the data is imbalanced the results could hide information about how the model is performing. For example, assuming the model working perfectly with a class which has the most amount of our data and performing badly in the other class the accuracy can give us high results. However, if we use the average per-class, it will give us a more clear vision of how the model is performing regarding the dataset size for each class. Below is common types used in most of the framework to calculate accuracy per-class. Note: The below naming is followed the same as \textit{Sklearn} Library.
 
 \begin{itemize}
- \item Weighted: Calculates the F1 score for each class independently but when it adds them together uses a weight that depends on the number of true labels of each class~\eqref{eq:f_1_weighted}.
-
+ \item Weighted: Calculates the F1 score for each class independently but when it adds them together uses a weight that depends on the number of true labels of each class~\eqref{eq:f_1_weighted}.%
 \begin{equation}\label{eq:f_1_weighted}
 F_{1 class1}\times W_1 + F_{2 class2}\times W_2 + F_{3 class3}\times W_3
 \end{equation}%
 
- \item Micro: Uses the global number of TP, FN, FP and calculates the F1 directly~\eqref{eq:f_1_micro}. It does not take into consideration the size for each class.
-
+ \item Micro: Uses the global number of TP, FN, FP and calculates the F1 directly~\eqref{eq:f_1_micro}. It does not take into consideration the size for each class.%
  \begin{equation}\label{eq:f_1_micro}
 F_{1 class1+class2+class3}
 \end{equation}%
- \item Macro: Calculates the F1 separated by class but not using weights for the aggregation~\eqref{eq:f_1_macro}  which results in a bigger penalization when the model does not perform well with the minority classes.
-
+ \item Macro: Calculates the F1 separated by class but not using weights for the aggregation~\eqref{eq:f_1_macro}  which results in a bigger penalization when the model does not perform well with the minority classes.%
 \begin{equation}\label{eq:f_1_macro}
 F_{1 class1} + F_{2 class2} + F_{3 class3}
 \end{equation}%

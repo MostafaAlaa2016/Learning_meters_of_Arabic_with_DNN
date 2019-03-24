@@ -78,8 +78,15 @@
 \definecolor{CodedGreen2}{HTML}{BBCF4A}
 \definecolor{CodedLemon}{HTML}{E4EABC}
 \definecolor{CodedPearGreen}{HTML}{7CAA2D}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% added the below part to reduce the spaces before and after figures and equations.
+%% https://tex.stackexchange.com/questions/69662/how-to-globally-change-the-spacing-around-equations
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{10pt}
+  \setlength\belowdisplayskip{10pt}
+  \setlength\abovedisplayshortskip{10pt}
+  \setlength\belowdisplayshortskip{10pt}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{listing_python_configuration.tex}
 \usepackage{algpseudocode}
