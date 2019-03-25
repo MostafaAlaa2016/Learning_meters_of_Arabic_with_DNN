@@ -21,18 +21,19 @@ People can easily determine whether a piece of writing is a poem or prose, but o
 
 In this thesis, we built a model that can classify poetry according to its meters; a forward step towards machine understanding of the Arabic language.
 
-A number of different deep learning models are proposed for poem meter classification. As poetry is sequence data, then recurrent neural networks are suitable for the task. We have trained three variants of them; LSTM, GRU with different architectures and hyper-parameters. Because meters are a sequence of characters, we have encoded the input text at the character-level, so that we preserve the information provided by the letters succession directly fed to the models. Moreover, we introduce a comparative study on the difference between binary and One-hot encoding regarding their effect on the learning curve. We also introduce a new encoding technique called \textit{Two-Hot}, which merges the advantages of both \textit{Binary} and \textit{One-Hot} techniques.
+A number of different deep learning models are proposed for poem meter classification. As poetry is sequence data, then recurrent neural networks are suitable for the task. We have trained three variants of them; LSTM, GRU with different architectures and hyper-parameters. Because meters are a sequence of characters, we have encoded the input text at the character-level, so that we preserve the information provided by the letters succession directly fed to the models. Moreover, we introduce a comparative study on the difference between \textit{binary} and \textit{one-hot} encoding regarding their effect on the learning curve. We also introduce a new encoding technique called \textit{two-hot}, which merges the advantages of both \textit{binary} and \textit{one-hot} techniques.
 
 
 Artificial Intelligence currently works to do the human tasks such as our problem here. Our target in this thesis is to achieve the human accuracy which will make it easy for anyone to recognise the meter for any poem without referring to the language experts or to study the whole field.
 
-In this thesis, we will explain how to use deep learning to classify the Arabic poem. We will also explain in details the feature of Arabic poem and how to deal with this feature. We explain how anyone can work with Arabic text encoding in a dynamic way to encode the text at the character level and deal with Arabic text features such as the \textit{Tashkeel}.
+In this thesis, we will explain in detail the characteristics of Arabic poem. We will explain, as
+well, how anyone can work with Arabic text encoding in a dynamic way to encode the text at the
+character level and deal with Arabic text features such as the \textit{Tashkeel}. We will explain
+how to use deep learning to classify the Arabic poem.
 
 To the best of the author’s knowledge, this research is the first to address classifying poem meters in a machine learning approach, in general, and in RNN featureless based approach, in particular. In addition, the dataset is the first publicly available dataset prepared for the purpose of future computational research.
 
-%\end{abstract}
-%qualitative
-
+%@@@ 1. Please make sure you use the encoding consistently as I did above across the whole thesis. 2. I wonder how the guy left the phrasing''...explain in details the `' with plural!!! 3. 
 
 
 %%% Local Variables:
