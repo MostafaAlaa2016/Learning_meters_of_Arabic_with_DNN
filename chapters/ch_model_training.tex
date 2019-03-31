@@ -25,7 +25,7 @@ To meet the above criteria and overcome it, We applied following,
 
 \begin{itemize}
 
-  \item \textbf{Datasets availability:} We have scrapped the Arabic datasets from two big poetry websites: \textarabic{الديوان}~\cite{diwan}, \textarabic{الموسوعة الشعرية}~\cite{PoetryEncyclopedia2016}. Both merged into one large dataset, and we open sourced it online ~\cite{ArabicpoetryDS}.
+  \item \textbf{Datasets availability:} We have scrapped the Arabic datasets from two big poetry websites: \textarabic{الديوان}~\cite{diwan}, \textarabic{الموسوعة الشعرية}~\cite{PoetryEncyclopedia2016}. Both merged into one large dataset, and we open sourced it online~\cite{ArabicpoetryDS}.
 
   \item \textbf{The Poem with diacritics:} We tried to get the most verses with the available diacritics, but the diacritics states are not consistent, So, a verse can be fully diacritics, Semi diacritics or without diacritics.
 
@@ -138,36 +138,36 @@ As we explained, We have collected the dataset and cleaned the data from any qua
 
 \subsubsection{Character Level Encoding in Arabic}\label{sec:Char_Level_Arabic}
 
-Working on Arabic language embedding based on the character level did not take much attention from the research community. [Potdar et al.,2017]~\cite{Potdar_2017} has done a comparative study on six encoding techniques. We are interested in the comparison of one-hot and binary. They have used Artificial Neural Network for evaluating cars based on seven ordered qualitative features. The accuracy of the model was the same in both encoding one-hot and binary. [Agirrezabal et al.,2017]\cite{Agirrezabal_2017} shows that representations of data learned from character-based neural models are more informative than the ones from hand-crafted features.
+Working on Arabic language embedding based on the character level did not take much attention from the research community. [Potdar et al.,2017]~\cite{Potdar_2017} has done a comparative study on six encoding techniques. We are interested in the comparison of \textit{one-hot} and \textit{binary}. They have used Artificial Neural Network for evaluating cars based on seven ordered qualitative features. The accuracy of the model was the same in both encoding \textit{one-hot} and \textit{binary}. [Agirrezabal et al.,2017]~\cite{Agirrezabal_2017} shows that representations of data learned from character-based neural models are more informative than the ones from hand-crafted features.
 
-In this research, We will make a comparative study of different encoding techniques between binary and one-hot. Also, we provide some new encoding method specific for Arabic letters, and we will see the effect of this on our problem. We will show the efficiency of every technique based on performing model training and model running time performance.
+In this research, We will make a comparative study of different encoding techniques between \textit{binary} and \textit{one-hot}. Also, we provide some new encoding method specific for Arabic letters, and we will see the effect of this on our problem. We will show the efficiency of every technique based on performing model training and model running time performance.
 
-Generally, a character will be represented as an n vector. Consequently, a verse would be an $n \times p$ matrix, where n is the character representation length and p is the verse’s length, n varies from one encoding to another, we have used One-Hot and Binary encoding techniques and proposed a new encoding, the \textbf{Two-Hot} encoding.
+Generally, a character will be represented as an n vector. Consequently, a verse would be an $n \times p$ matrix, where n is the character representation length and p is the verse’s length, n varies from one encoding to another, we have used \textit{one-hot} and \textit{binary} encoding techniques and proposed a new encoding, the \textbf{\textit{two-hot}} encoding.
 
-Arabic letters have a feature related to the diacritics; To explain this feature we will take an example based on \textit{One-Hot} encoding. This feature is related to how we will treat the character with a diacritic. Arabic letters are 36 + white space as a letter. So, the total is 37. Any letter represented as a vector $37 \times 1$. Let's take an example a work such as \textarabic{مرحبا} having 5 letters encoded as a $37 \times 5$ matrix. If it came with diacritics such as \textarabic{مَرْحَبَا} and we need to represent the letters as One-Hot encoding we will consider every letter and diacritics as a separate letter. So, it will be 5 character and 4 diacritics. The vector shape will be $41 \times 9$.
+Arabic letters have a feature related to the diacritics; To explain this feature we will take an example based on \textit{\textit{one-hot}} encoding. This feature is related to how we will treat the character with a diacritic. Arabic letters are 36 + white space as a letter. So, the total is 37. Any letter represented as a vector $37 \times 1$. Let's take an example a work such as \textarabic{مرحبا} having 5 letters encoded as a $37 \times 5$ matrix. If it came with diacritics such as \textarabic{مَرْحَبَا} and we need to represent the letters as \textit{one-hot} encoding we will consider every letter and diacritics as a separate letter. So, it will be 5 character and 4 diacritics. The vector shape will be $41 \times 9$.
 
 One of the main reason we need to care about the encoding is the \textit{RNN} training. If we have a different number of time steps in \textit{RNN} cell and the input vector dimensions are different based on the input, It will have a standard architecture for the model and to be able to train both the work with diacritics and without diacritics to show the effect of the model learning on the same architecture.
 
-To achieve the model architecture unification,  we proposed three different encoding systems: \textit{one-hot}, \textit{binary}, and the novel encoding system developed in this project \textit{two-hot}. The three of them explained in the next three subsections.
+To achieve the model architecture unification,  we proposed three different encoding systems: \textit{\textit{one-hot}}, \textit{\textit{binary}}, and the novel encoding system developed in this project \textit{\textit{two-hot}}. The three of them explained in the next three subsections.
 
 \begin{figure*}[!t]
   \centering
   \input{./Figures/Ch_5_Encoding/encoding_three_figures_together.tex}
-  \caption{Different encoding mechanisms%: \textit{One-hot}, \textit{binary}, and \textit{two-hot}  encoding. Using the word example %\textarabic{مَرْحَبَا} \textit{One-hot} encoding is applied using $n$-letter alphabet $n = 181$ in Arabic. Same word encoded using \textit{binary} encoding where the vector length $n = \ceil*{\log_2 l}$, $l \in \{181\}$. \textit{two-hot} encoding is applied by stacking $\bm k_{4 \times 1}$ on the top of $\bm m_{37 \times 1}$ we get the $Two-Hot_{41 \times 1}$ \usebox{\columnVector}, which represents a letter and its diacritic simultaneously. 
-  }~\label{Fig:One_Binary_Encoding}
+  \caption{Different encoding mechanisms%: \textit{\textit{one-hot}}, \textit{\textit{binary}}, and \textit{\textit{two-hot}}  encoding. Using the word example %\textarabic{مَرْحَبَا} \textit{\textit{one-hot}} encoding is applied using $n$-letter alphabet $n = 181$ in Arabic. Same word encoded using \textit{\textit{binary}} encoding where the vector length $n = \ceil*{\log_2 l}$, $l \in \{181\}$. \textit{\textit{two-hot}} encoding is applied by stacking $\bm k_{4 \times 1}$ on the top of $\bm m_{37 \times 1}$ we get the $\textit{two-hot}_{41 \times 1}$ \usebox{\columnVector}, which represents a letter and its diacritic simultaneously. 
+  }~\label{Fig:One_binary_Encoding}
 \end{figure*}
 
 
 
 \begin{description}
 
-  \item[\textbf{One-Hot encoding}] In this encoding system, We assume the letter with the diacritic as one unit. So, for example, \textarabic{د} represented as letter differs than (\textarabic{دَ, دِ, دُ, دْْ}). Now every letter is represented 5 times one without diacritic and four times with different diacritics combinations $36 \times 5$ besides the white-space character. So, the total is $181 \times 1$. From now forward, We have 181-characters Arabic alphabet represent the One-Hot encoding, and according to it, we will encode verses. (Figure~\ref{Fig:One_Binary_Encoding}).
+  \item[\textbf{\textit{one-hot} encoding}] In this encoding system, We assume the letter with the diacritic as one unit. So, for example, \textarabic{د} represented as letter differs than (\textarabic{دَ, دِ, دُ, دْْ}). Now every letter is represented 5 times one without diacritic and four times with different diacritics combinations $36 \times 5$ besides the white-space character. So, the total is $181 \times 1$. From now forward, We have 181-characters Arabic alphabet represent the \textit{one-hot} encoding, and according to it, we will encode verses. (Figure~\ref{Fig:One_binary_Encoding}).
 
-  We need to mention that, One-Hot encoding technique is of the famous techniques in encoding problem. We will not compare the encoding technique in these sections. However, We will discuss it in details in model results. Also, The implementations of the One-Hot is trivial. But we need to focus on here about the size for every letter which is $181 \times 1$ which means if we have a verse with 82 characters it will results up with a matrix $181 \times 82$ which is very big to be in memory.
+  We need to mention that, \textit{one-hot} encoding technique is of the famous techniques in encoding problem. We will not compare the encoding technique in these sections. However, We will discuss it in details in model results. Also, The implementations of the \textit{one-hot} is trivial. But we need to focus on here about the size for every letter which is $181 \times 1$ which means if we have a verse with 82 characters it will results up with a matrix $181 \times 82$ which is very big to be in memory.
 
-  \item[\textbf{Binary Encoding}] The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros.  $n =\ceil*{\log_2} l$ where $l$ is the alphabet length, and $n$ is the sufficient number of digits to represent $l$ unique binary combinations.  For example a phrase like this \textarabic{مَرْحَبا}, it has 5 characters, figure~\ref{Fig:One_Binary_Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory than the \textit{one-hot} and reduces the model input dimensions, significantly. But on the other hand, the input letter share some features between them due to the binary representation as it is shown in figure~\ref{Fig:One_Binary_Encoding}.
+  \item[\textbf{\textit{binary} Encoding}] The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros.  $n =\ceil*{\log_2} l$ where $l$ is the alphabet length, and $n$ is the sufficient number of digits to represent $l$ unique \textit{binary} combinations.  For example a phrase like this \textarabic{مَرْحَبا}, it has 5 characters, figure~\ref{Fig:One_binary_Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory than the \textit{\textit{one-hot}} and reduces the model input dimensions, significantly. But on the other hand, the input letter share some features between them due to the \textit{binary} representation as it is shown in figure~\ref{Fig:One_binary_Encoding}.
 
-  \item[\textbf{Two-Hot encoding}] This is an intermediate technique which takes the advantages of the previous two encoding techniques. In which we encode the letter and its diacritic separately as two \textit{One-Hot} vectors, this way the letter is encoded as $37 \times 1$ \textit{One-Hot} vector and the diacritic is encoded as $4 \times 1$ \textit{One-Hot} vector, then both vectors stacked to form one $41 \times 1$ vector (Figure~\ref{Fig:One_Binary_Encoding}).
+  \item[\textbf{\textit{two-hot} encoding}] This is an intermediate technique which takes the advantages of the previous two encoding techniques. In which we encode the letter and its diacritic separately as two \textit{\textit{one-hot}} vectors, this way the letter is encoded as $37 \times 1$ \textit{\textit{one-hot}} vector and the diacritic is encoded as $4 \times 1$ \textit{\textit{one-hot}} vector, then both vectors stacked to form one $41 \times 1$ vector (Figure~\ref{Fig:One_binary_Encoding}).
 
   By this way, we reduced the vector dimension from 181 to 41 and also minimizes the number of shared features between vectors to the maximum one at each vector. 
 \end{description}
@@ -175,14 +175,14 @@ To achieve the model architecture unification,  we proposed three different enco
 \subsubsection{Categorical Values Encoding}\label{sec:label_encoder}
 
   In Machine Learning we are using the encoding techniques to transform the categorical data (class label or
-text) into numbers. This way will make it easy for the predictive model to understand our label in an easy representation. Some encoding techniques are \textit{label encoding, one hot encoder, and custom binary encoding}. All these encoding will convert the categorical to numerical values but with different ways. For example, Label encoding can transform the following label (apple, orange, banana) to (0,1,2) as a numeric representation. As explained in previous subsection, One-hot encoding could transform the labels to ([1,0,0],[0,1,0],[0,0,1]). In this research, we used the label encoding for label encoding to the meters class name using the Sklearn library in Python~\cite{scikit-learn}. Actual, there is no effect of the categorical encoding technique on the results. But there is some difference in the execution and running time performance.
+text) into numbers. This way will make it easy for the predictive model to understand our label in an easy representation. Some encoding techniques are \textit{label encoding, one hot encoder, and custom \textit{binary} encoding}. All these encoding will convert the categorical to numerical values but with different ways. For example, Label encoding can transform the following label (apple, orange, banana) to (0,1,2) as a numeric representation. As explained in previous subsection, \textit{one-hot} encoding could transform the labels to ([1,0,0],[0,1,0],[0,0,1]). In this research, we used the label encoding for label encoding to the meters class name using the Sklearn library in Python~\cite{scikit-learn}. Actual, there is no effect of the categorical encoding technique on the results. But there is some difference in the execution and running time performance.
 
 \clearpage
 
 \section{Model Training}
 In a normal machine learning project, we used to split the dataset as around 60\% as training, 30\% testing and 10\% as a validation. However, In The Deep Learning, the amount of data profoundly affects the model performance. So, the more data fed as training, the more performance results the model can achieve on test data (Assuming we did the regularization and the needed generalization on the model training phase). Also, The main reason to change the split size is due to the size of the dataset we used to work on for example 1\% of 1M sample is 10k which is big enough for such experiments way. However, if we work on 10k sample, we need around 30\% 3k sample to have confidence in our model. So, it depends on the problem and size of the dataset.
 
-In this research, We worked on \textit{Poem Comprehensive Dataset (PCD)}\cite{ArabicpoetryDS}. We are interested in the 16 classic meters which attributed to Al-Farahidi. These meters comprise the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{Fig:Data_Size_Distribution} shows an ordered bar chart based on the number of verses per meter. We trained all our models based on 80\% which is around 1,377,856 verse. Our testing data(development) is 10\% around 172,232 verse, and our Validation data around 172,232 verse.
+In this research, We worked on \textit{Poem Comprehensive Dataset (PCD)}~\cite{ArabicpoetryDS}. We are interested in the 16 classic meters which attributed to Al-Farahidi. These meters comprise the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{Fig:Data_Size_Distribution} shows an ordered bar chart based on the number of verses per meter. We trained all our models based on 80\% which is around 1,377,856 verse. Our testing data(development) is 10\% around 172,232 verse, and our Validation data around 172,232 verse.
 
 We can show training phase designed as a Data representation configurations and an RNN configuration. The number of experiments is the cross product of both data representation and RNN configuration, for example, If we have 12 data representation and 12 RNN configurations the total number of experiments will be 144. We need to highlight that,
 
@@ -221,7 +221,7 @@ As explained previously, There are three different encoding methods~\ref{Ch:Data
 
 \subsubsection{Data Representation Matrix}
 
-The data representation matrix is the cross product of the Diacritics 2, Data Encoding 3, and Trimming 2 total 12 combinations table~\ref{Tab:Data_Representation_Matrix} shows this matrix combination. Example (With diacritic + One-hot + Full)
+The data representation matrix is the cross product of the Diacritics 2, Data Encoding 3, and Trimming 2 total 12 combinations table~\ref{Tab:Data_Representation_Matrix} shows this matrix combination. Example (With diacritic + \textit{one-hot} + Full)
 
 
 \begin{table}[t]
@@ -231,9 +231,9 @@ The data representation matrix is the cross product of the Diacritics 2, Data En
     \textbf{\#} & \textbf{Diacritic} & \multicolumn{3}{c}{\textbf{Encoding Types}}  & \textbf{Trimming} \\
     
     \hline
-    1 & With diacritic & One-hot & Two-hot & Binary & Full    \\
+    1 & With diacritic & \textit{one-hot} & \textit{two-hot} & \textit{binary} & Full    \\
     \hline
-    2 & Without diacritic & One-hot & Two-hot & Binary & Trimmed \\
+    2 & Without diacritic & \textit{one-hot} & \textit{two-hot} & \textit{binary} & Trimmed \\
     \hline
   \end{tabular}
   \caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
@@ -325,7 +325,7 @@ During our Model development we used the following software and libraries,
     \item We encoded the Meters label using label encoder in \textit{Sklearn} and we generated to output label encoder Full and Eliminated.
     \item We save the encoder serialized in the desk for later usage.
     \item We used \textit{Pickle} python library to save the serialized object with \textit{H5 format} in \textit{h5py} library.
-    \item We used three ways of encoding \textit{One-Hot, Binary and Two-Hot} all of them developed using custom python functions.
+    \item We used three ways of encoding \textit{\textit{one-hot}, \textit{binary} and \textit{two-hot}} all of them developed using custom python functions.
     \item We save the data for each encoding with two combinations \textit{Full/Eliminated and With/Without Tashkeel}.
     \item We saved them as \textit{h5} format in the desk.
   \end{itemize}
@@ -361,7 +361,7 @@ In this section we will explain the results of all the 192 experiments on our da
 
 As we explained, In Section~\ref{Ch:Model_Training} we have a set of combinations we need to explore it. So, most of our results will combine a combination and show the results of these combinations. Let's explore it as below,
 \begin{enumerate}
-  \item  We have three data representation \textbf{\textit{Binary, One-hot, and Two-Hot}} we will represent it as \textbf{\textit{BinE, 1D, 0T}} respectively.
+  \item  We have three data representation \textbf{\textit{\textit{binary}, \textit{one-hot}, and \textit{two-hot}}} we will represent it as \textbf{\textit{BinE, 1D, 0T}} respectively.
   \item We have two types of model loss functions \textbf{\textit{Weighting loss and no Weighting loss}} we will represent it as \textbf{\textit{(1 and 0)}} respectively.
   \item The Number of layers is represented as \textbf{\textit{nL}}, for example, 7 layers are 7L.
   \item The Number of cell units is represented as \textbf{\textit{nU}}, for example, 82 unit is 82U.
@@ -371,7 +371,7 @@ So, If we need to explain a set of combination we can write (4L, 82U, 0) which m
 
 \subsection{Overall Accuracy}
 
-We present the overall accuracy Score in Figure~\ref{Fig:ArabicModelsResults} of the 16 neural networks configurations and at each of the 12 data representations (y- and x-axis respectively). The x-axis is divided into 4 strips corresponding to the 4 combinations of trimming and diacritic parameters. Then, each strip includes the 3 different encoding values. Each point on the figure represents the overall accuracy score of one of the 192 experiments; (some values are too small, and hence omitted from the figure). To explain the figure, we take as an example the most-left vertical list of points that represent the 16 experiments of the full (no trimming), diacritics, and binary encoding dataset representation. For each rug plot, the highest (Bi)LSTM accuracies are labeled differently as circle and square respectively; and the network configuration of both of them is listed at the top of the rug plot.
+We present the overall accuracy Score in Figure~\ref{Fig:ArabicModelsResults} of the 16 neural networks configurations and at each of the 12 data representations (y- and x-axis respectively). The x-axis is divided into 4 strips corresponding to the 4 combinations of trimming and diacritic parameters. Then, each strip includes the 3 different encoding values. Each point on the figure represents the overall accuracy score of one of the 192 experiments; (some values are too small, and hence omitted from the figure). To explain the figure, we take as an example the most-left vertical list of points that represent the 16 experiments of the full (no trimming), diacritics, and \textit{binary} encoding dataset representation. For each rug plot, the highest (Bi)LSTM accuracies are labeled differently as circle and square respectively; and the network configuration of both of them is listed at the top of the rug plot.
 
 To explain the figure, we take as an example the most-left vertical rug plot, which corresponds to (0T, 1D, BinE) data representation. The accuracies of the best (Bi)LSTM are 0.9025 and 0.7978 respectively. The configuration of the former is (7L, 82U, 0W). Among all the 192 experiments, the highest accuracy is 0.9638 and is possessed by (4L, 82U, 0W) network configuration on (1T, 0D, BinE) data representation.
 
@@ -384,16 +384,16 @@ In this section we will explain the effect of the 12 data representation techniq
   \item \textbf{Diacritics Effect}
   \begin{itemize}
     \item \textit{Without Trimming:} The effect of diacritics is obvious only with no trimming (the two left strips of the figure), where, for each encoding, the accuracy score is higher for diacritics than no diacritics.
-    \item \textit{With Trimming:} The diacritics don't have except for the \textit{one-hot} encoding but other encoding doesn't have an effect on the model performance. This result is inconsistent with what is anticipated from the effect of diacritics. We think that this result is an artifact due to the small number of network configurations.
+    \item \textit{With Trimming:} The diacritics don't have except for the \textit{\textit{one-hot}} encoding but other encoding doesn't have an effect on the model performance. This result is inconsistent with what is anticipated from the effect of diacritics. We think that this result is an artifact due to the small number of network configurations.
 
   \end{itemize} 
-  \item \textbf{Encoding Effect:} The effect of encoding is clear; by looking at each individual strip, \textit{overall accuracy score is consistently highest for two-hot then one-hot then binary—the} only exception is (1T, 0D, BinE) that performs better than the other two encoding. It seems that two-hot encoding makes it easier for networks to capture the patterns in data. However; we anticipate that there is a particular network architecture for each encoding that can capture the same pattern with yielding the same score.
+  \item \textbf{Encoding Effect:} The effect of encoding is clear; by looking at each individual strip, \textit{overall accuracy score is consistently highest for \textit{two-hot} then \textit{one-hot} then \textit{binary}—the} only exception is (1T, 0D, BinE) that performs better than the other two encoding. It seems that \textit{two-hot} encoding makes it easier for networks to capture the patterns in data. However; we anticipate that there is a particular network architecture for each encoding that can capture the same pattern with yielding the same score.
 \end{enumerate}
 
 
 
 \begin{figure}[!t]
-  \input{./Figures/Ch_7_Results/Fig_overall_Score.tex}
+  \input{./Figures/Ch_7_Results/Fig_Overall_Score.tex}
   \caption{Overall accuracy of the 192 experiments plotted as 2 vertical rug plots (for the 12 different data representations: $\left\{\mathit{Trimming},\ \mathit{No Trimming} \right\} \times \left\{\mathit{Diacritics},\ \mathit{No Diacritics} \right\} \times \left\{\mathit{OneE},\ \mathit{BinE},\ \mathit{TwoE}\right\}$), each represents 16 exp. (for the 16 different network configurations: $\left\{7L,\ 4L\right\} \times \left\{82U,\ 50U\right\} \times \left\{0W, 1W\right\} \times \left\{LSTM,\ BiLSTM\right\}$). For each rug plot the best model of each of the four cell types ---(Bi)LSTM labeled differently. Consistently, BiLSTM  was the winner, and its network configuration parameters are listed at the top of each rug plot.}~\label{Fig:ArabicModelsResults}
 \end{figure}
 
@@ -415,7 +415,7 @@ This section is to comment on the effect of the network configurations parameter
 
 In this section, we will explore the accuracy of each class. This is regarding how our model can detect every class separately. It similar the previous accuracy but per-class calculation. It is also useful to check it as it will show us how the model able to understand every class and what is the classes which our model not able to classify it. 
 
-Similar in the previous section, We have four combinations of \textit{trimming and diacritic} we will investigate which models achieved the best results. We will take the best four models (the first three of them is the two-hot encoding, and the fourth is the binary encoding) from Figure~\ref{Fig:ArabicModelsResults} which is the overall accuracy and show the results of the per class accuracy for each one.
+Similar in the previous section, We have four combinations of \textit{trimming and diacritic} we will investigate which models achieved the best results. We will take the best four models (the first three of them is the \textit{two-hot} encoding, and the fourth is the \textit{binary} encoding) from Figure~\ref{Fig:ArabicModelsResults} which is the overall accuracy and show the results of the per class accuracy for each one.
 
 In Figure~\ref{Fig:Results_Per_Class} we have the previous four models display the per-class accuracy. We ordered The class names based on their data size per class. It explained previously in Figure~\ref{Fig:Data_Size_Distribution} with the same order. If we compare the results for the four models accuracy scores were around 95\% in Figure~\ref{Fig:ArabicModelsResults} and the per-class accuracy, we will find only 6 classes (which have around 80\% of the total datasets) are around this value. But there are significant drops for some classes which make the figures line has dropped in the results.
 
@@ -428,7 +428,7 @@ Figure~\ref{Fig:Results_Per_Class} shows the relation between the model accuracy
 
 \subsection{Encoding Effect}
 
-As explained in Section~\ref{Ch:Data_Encoding} the difference between data encoding types. In this section, we will explore the effects of Data Encoding with respect to the \textit{Accuracy, Learning Rate and Memory Utilization} on the best model results (4L, 82U, 0W, 1T, 0D, BinE). During our experiments, we didn't find a consistent effect on the model encoding type and the model accuracy~\ref{Fig:Convergence_Memory}-a. However, most of the cases we found the accuracy of the two-hot is slightly better than binary and then one-hot.
+As explained in Section~\ref{Ch:Data_Encoding} the difference between data encoding types. In this section, we will explore the effects of Data Encoding with respect to the \textit{Accuracy, Learning Rate and Memory Utilization} on the best model results (4L, 82U, 0W, 1T, 0D, BinE). During our experiments, we didn't find a consistent effect on the model encoding type and the model accuracy~\ref{Fig:Convergence_Memory}-a. However, most of the cases we found the accuracy of the \textit{two-hot} is slightly better than \textit{binary} and then \textit{one-hot}.
 
 
 \begin{figure}[!t]
@@ -444,7 +444,7 @@ As explained in Section~\ref{Ch:Data_Encoding} the difference between data encod
 Figure~\ref{Fig:Convergence_Memory} shows the effect of encoding on learning rate which has no difference in convergence speed between the encoding types; However, We can found some encoding start learning faster than other between epochs[1:5] but overall they will converge with the same learning curve at the end.
 
 
-Memory Utilization is not similar for each model encoding. We found that each encoding has it is own vector size representation Figure with different memory utilization which is based on the vector size, for example, the vector size of \textit{One-hot} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \textit{Two-hot} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \textit{Binary} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that \textit{Two-hot} is in the middle between the two encoding with respect to memory consumption and also it gives some more meaning for data encoding as explained before in Section~\ref{Ch:Data_Encoding}
+Memory Utilization is not similar for each model encoding. We found that each encoding has it is own vector size representation Figure with different memory utilization which is based on the vector size, for example, the vector size of \textit{\textit{one-hot}} is $181 \times 8(bits)$ it will output $1,448$ if we compare this encoding with \textit{\textit{two-hot}} we will find $41 \times 8(bits)$ it will output $328$. If we compare the previous two encoding with \textit{\textit{binary}} we will find it is the lowest memory consumption $8 \times 8(bits)$ it will output $64$. We can find that \textit{\textit{two-hot}} is in the middle between the two encoding with respect to memory consumption and also it gives some more meaning for data encoding as explained before in Section~\ref{Ch:Data_Encoding}
 
 \subsection{Comparison with Literature}
 As explained previous, One of the advantages in our research work is the very large dataset we have which allows us to have a good subset of testing. This provides us confidence regarding our results.
@@ -561,7 +561,7 @@ Although all the encoding methods which carry the same information should produc
 
 The encoding method is a transformer function $\mathcal{T}$ this function transform a discrete input values $X$. We can denote to the values as a transformed feature $\mathcal{T}(X)$ the output of this transformer method. The output $\mathcal{T}(X)$ of this transformer in the new encoding space will be input to the Neural Network model. The model should be able to ``decode''  this type of encoding. Since the lossless encoding is invertible, it is clear for any two functions and any two encodings that $\eta_1\left(\mathcal{T}_1(X)\right) = \left(\eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1} \right)\left(\mathcal{T}_2(X)\right)$. This means that if the network $\eta_1$ is the most accurate network which can ``decode'' the encoding function (transformer) $\mathcal{T}_1$ this network $\eta_1$ is not a general network which can understand any encoding function. Also, to design this network requires a very complex architecture. So, if we have another encoding function $\mathcal{T}_2$ and we tried to use the same network for the $\mathcal{T}_2$ requires designing another network $\eta_2 = \eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1}$. However, this network may be of complicated architecture to ``decode'' the complicated pattern of $\mathcal{T}_2(X)$.
 
-In general, Any encoding function $\mathcal{T}$ require a special network $\eta$ to get the correct decoding (learning) for the dataset. So, our comparison between the encoding methods in the same Neural Networks architecture not accurate as each one required different network design. But all of them will reach the same results but with a different time or can be a small difference due to the not accurate network architecture. Moreover, Our work illustrated clearly the effect of the encoding methods and compared between each other, We think the \textit{Two-Hot} encoding is the more suitable method to work with character level problems. It is the middle approach between the \textit{One-Hot} which needs a huge amount of memory and the \textit{Binary} which loss some meaning in Arabic language diacritics effect.
+In general, Any encoding function $\mathcal{T}$ require a special network $\eta$ to get the correct decoding (learning) for the dataset. So, our comparison between the encoding methods in the same Neural Networks architecture not accurate as each one required different network design. But all of them will reach the same results but with a different time or can be a small difference due to the not accurate network architecture. Moreover, Our work illustrated clearly the effect of the encoding methods and compared between each other, We think the \textit{\textit{two-hot}} encoding is the more suitable method to work with character level problems. It is the middle approach between the \textit{\textit{one-hot}} which needs a huge amount of memory and the \textit{\textit{binary}} which loss some meaning in Arabic language diacritics effect.
 
 
 \subsection{Weighting Loss Function}
