@@ -6,191 +6,208 @@ In this chapter, we will discuss the Dataset Design, Training and Experiments do
 
 \section{Dataset Design}
 
-In this section, We introduces the Dataset acquisition and encoding including the essential pre-processing steps, and the justification for their need. Pre-processing steps are data extraction, data cleansing, data format, and data encoding techniques used. Also, it contains comparisons between the three techniques used.
+In this section, we introduce the dataset acquisition and encoding, including the essential pre-processing steps, and the justification for their need. Pre-processing steps are data extraction, data cleansing, data format, and the data encoding techniques used. This section also contains comparisons between the three techniques used.
 
-The collection of the dataset was one of the most laborious tasks in this project. There were criteria we were searching to find. These criteria are as follows,
+The collection of the dataset was one of the most laborious tasks in this project, involving the search for these criteria:
+
 \begin{itemize}
-  
-  \item \textbf{Datasets availability:} There are old Arabic references which have a lot of Poems but not all these books were not available in a PDF or a Web pages format, and it was hard to find it.
-  
-  \item \textbf{The Poem with diacritics:} There are resources which have Arabic Poems, but it is much harder to find same with diacritics.
-  
-  \item \textbf{The amount of the dataset:} To have a successful project with good results we need a massive amount of data. From the previous work, We did not find this amount of data. The maximum number found was 1.5k. However, We were searching for around 1.5M record of classified poetry.
+ 
+ \item \textbf{Datasets availability:} There are old Arabic references which contain many poems, not all of which were available in PDF or Web pages format, and could be difficult to locate.
+ 
+ \item \textbf{The Poem with diacritics:} Some resources have Arabic Poems, but it is difficult to find versions with diacritics.
+ 
+ \item \textbf{The amount of the dataset:} To have a successful project with good results we need a massive amount of data. From the previous work, We did not find this amount of data. The maximum number found was 1.5k. However, We were searching for around 1.5M record of classified poetry.
 
-  
-  \item \textbf{Cleansing of this data:} There was a limitation for the datasets which we can consider it, or we can scrap it due to the limitation for the APIs or the ready datasets in this context.
-  
+ 
+ \item \textbf{Cleansing of this data:} The amount of the datasets which could be considered was limited; alternatively data could be scrapped due to the limited APIs or already-existing datasets in this context.
+ 
 \end{itemize}
-To meet the above criteria and overcome it, We applied following,
+To meet the above criteria and overcome it, we applied following:
 
 \begin{itemize}
 
-  \item \textbf{Datasets availability:} We have scrapped the Arabic datasets from two big poetry websites: \textarabic{الديوان}~\cite{diwan}, \textarabic{الموسوعة الشعرية}~\cite{PoetryEncyclopedia2016}. Both merged into one large dataset, and we open sourced it online~\cite{ArabicpoetryDS}.
+ \item \textbf{Datasets availability:} We have scrapped the Arabic datasets from two large poetry websites: \textarabic{الديوان}~\cite{diwan}, \textarabic{الموسوعة الشعرية}~\cite{PoetryEncyclopedia2016}. Both were merged into one large dataset, which was open sourced online~\cite{ArabicpoetryDS}.
 
-  \item \textbf{The Poem with diacritics:} We tried to get the most verses with the available diacritics, but the diacritics states are not consistent, So, a verse can be fully diacritics, Semi diacritics or without diacritics.
+ \item \textbf{Poems with diacritics:} We tried to get the most verses with the available diacritics, but these are inconsistent; a verse may contain full diacritics, partial diacritics or no diacritics.
 
-  \item \textbf{The amount of the dataset:} The total number of verses is 1,862,046 poetic verses; each verse labeled by its meter (class), the poet who wrote it, and the age which it was written. There are 22 meters, 3701 poets and 11 ages; and they are Pre Islamic, Islamic, Umayyad, Mamluk, Abbasid, Ayyubid, Ottoman, Andalusian, the era between Umayyad and Abbasid, Fatimid and modern. We are only interested in the 16 classic meters which attributed to Al-Farahidi, and they are the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{Fig:Data_Size_Distribution} shows the distribution of the verses per meter. %@@@ add datasets figures percentage per class
-  
-  \item \textbf{Cleansing of this data:} Dataset was not cleaned enough for usage in this research, but we have applied cleansing rules explained in details in Data Preparation and Cleansing section~\ref{sec:Data_Clens}. We also open sourced all the code scripts used in our online repository~\cite{HCILAB_ArabicPoetry_2018}.
+ \item \textbf{The size of the dataset:} The total number of verses is 1,862,046 poetic verses; each verse is labeled by its meter (class), the poet who wrote it, and the age which it was written. There are 22 meters, 3701 poets and 11 ages;these are Pre Islamic, Islamic, Umayyad, Mamluk, Abbasid, Ayyubid, Ottoman, Andalusian, the era between Umayyad and Abbasid, Fatimid, and modern. We are only interested in the 16 classic meters attributed to Al-Farahidi, which constitute the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{Fig:Data_Size_Distribution} shows the distribution of the verses per meter. %@@@ add datasets figures percentage per class
+ 
+ \item \textbf{Cleansing of this data:} Dataset was not sufficiently cleansed for usage in this research, but we have applied cleansing rules explained in detail in the Data Preparation and Cleansing section~\ref{sec:Data_Clens}. We also open sourced all the code scripts used in our online repository~\cite{HCILAB_ArabicPoetry_2018}.
 \end{itemize}
 
 \begin{figure}[!t]
-  \centering
-  \begin{tikzpicture}
-    \input{./Figures/Ch_4_Dataset/dataset_size_ar.tex}
-  \end{tikzpicture}%
-  \caption{Arabic dataset Meter per class percentage ordered descendingly on x axis vs. corresponding meter name on y axis all class in the left of the red line (less than 1\% assume to be trimmed in some experiments).	}\label{Fig:Data_Size_Distribution}
+ \centering
+ \begin{tikzpicture}
+  \input{./Figures/Ch_4_Dataset/dataset_size_ar.tex}
+ \end{tikzpicture}%
+ \caption{Arabic dataset Meter per class percentage ordered descendingly on x axis vs. corresponding meter name on y axis all class in the left of the red line (less than 1\% assume to be trimmed in some experiments).	}\label{Fig:Data_Size_Distribution}
 \end{figure}
 
 \subsection{Data Scraping}\label{sec:Data_Scrap}
-To scrap the data from the website: \textarabic{الديوان}~\cite{diwan},ends up into such a problem just reduce your problem to the most smallest one. That means: First: Check if any "keywords" is set, if used. Then: Use your whole preamble and print the complete bibliography. If this ends up in the same error, your problem might be in your preamble. -> Reduction of preamble, until you get your bib printed. Adding slowly parts back to the preamble, until the error occurs again. That might show you, what lead to the warning.
+To scrape the data from the website: \textarabic{الديوان}~\cite{diwan},is to minimize the problem. Specifically, it should first be ascertained if any "keywords" are set, if used. Then the entire preamble and the complete bibliography are printed. If the same error recurs, the problem might be in the preamble. If so, the preamble is reduced, until the bibliography is printed. Parts are slowly added back to the preamble, until the error occurs again. This may reveal the cause of the warning. We used custom Python scripts for each website, to acquire the verses’ details. The script created with simple usage to pass the link we need to scrape, illustrated below with examples from both websites.
 
-\textarabic{الموسوعة الشعرية}~\cite{PoetryEncyclopedia2016}, We used custom Python scripts for each websites to get the verses details. The script created with simple usage to pass the link we need to scrap. We will show two examples from both websites.
 \begin{enumerate}
-  \item The First example, If we need to scrap a meter from \textarabic{الديوان} the website, for example Al-Tawil \\\url{https://www.aldiwan.net/poem.html?Word=\%C7\%E1\%D8\%E6\%ED\%E1\&Find=meaning}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{Tab:Aldiwan_Sample}
-  \item Second Example, If we need to scrap the same meter from \textarabic{الموسوعة الشعرية} the website for example Al-Raml \url{https://poetry.dctabudhabi.ae/\#/diwan/poem/126971}, We will pass this link to the script and the output file name. The script will start scraping and save the output in a CSV format. We can get the output similar than the output in table \ref{Tab:ElMosoaa_Sample}
-  We scrapped all the available datasets on both websites and merged them based on the common columns. Then we started the Data preparation tasks. We need to mention that, Not all diacritics was correctly available on all the websites. Also, We did not work to generate the diacritics for those datasets. So, we depended on whatever available without changing the data all the next sections is related to correction, preparation, and cleansing of the current datasets.
+ \item First example; if we need to scrape a meter from \textarabic{الديوان} the website, for example Al-Tawil \url{https://www.aldiwan.net/poem.html?Word=\%C7\%E1\%D8\%E6\%ED\%E1\&Find=meaning}, we will passed this link to the script and the output file name. The script started scraping and the output was saved in a CSV format. We can obtain an output similar to that in the output in table~\ref{Tab:Aldiwan_Sample}
 
-  \subsection{Data Preparation and Cleansing}\label{sec:Data_Clens}
+ \item Second Example; if we need to scrape the same meter from \textarabic{الموسوعة الشعرية} the website (for example Al-Raml \url{https://poetry.dctabudhabi.ae/\#/diwan/poem/126971}), we passed this link to the script and the output file name. The script started scraping and the output was saved in a CSV format. We can obtain an output similar than the output in table~\ref{Tab:ElMosoaa_Sample}
 
-  Data preparation and cleansing tasks divided into multi-stages.
+We scraped all the available datasets on both websites and merged them based on the common columns. Then we started the Data preparation tasks. It should be mentioned that not all diacritics were correctly available on all the websites. Nor did we work to generate the diacritics for those datasets. We therefore depended on available data, which remained unchanged. The following sections relate to correction, preparation, and cleansing of the current datasets.
 
-  \begin{itemize}
-    \item Merge all scrapped datasets into one CSV file with a selection of the common columns in each file.
-    \item Remove the duplicates rows from the files in case we have any joined rows between both websites.
-    \item Filter the datasets on the 16 meters required as some data belonged to other non-famous or not original meters.
-    \item Remove many unnecessary white spaces which were useless.
-    \item Remove non-Arabic characters and the other web symbols.
-    \item Fix diacritics mistakes, such as the existence of two consecutive harakat, we have only kept one and have removed the other. %@@@add an example
-    \item Remove any \textit{harakah} comes after a white space, it removed as it is useless. %@@@add an example
-    \item We factored \textit{Shadaa}~\ref{def:shadaa_definition} to its original format explained in this example~\ref{Tab:Diacritics_Dal} previously.
-    \item We also factored \textit{Tanween}~\ref{def:tanween_definition} to its original format explained in this example~\ref{Tab:Tanween_Dal} previously.\footnote{\textit{We ignored the factorization of Alef-Mad  \textbf{\textarabic{ آ }} in our data preparation and transformation which can save more memory and shorten our encoding vectors}}
-  \end{itemize}
+ \subsection{Data Preparation and Cleansing}\label{sec:Data_Clens}
 
-  We need to highlight that the last two points are not a handcrafted feature. It is a factorization for the letter to its original format. This factorization will affect the size of the data in the memory and the letter representation in the vector. We will explain this part in details in the next chapter about encoding mechanism and the impact of the encoding type in the model training time and performance.
+Data preparation and cleansing tasks were divided into multi-stages:
 
-  % \clearpage
-  % table: dal with diacritics
-  \begin{table}[!t]
-    \centering
-    \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}c c c c c}
-      % \hline
-      \toprule
-      \textbf{\small{\textarabic{البيت}}} & \small{\textbf{\textarabic{الشطر الأيسر}}} & \small{\textbf{\textarabic{الشطر الأيمن}}} &
-                                                                                                                                      \small{\textbf{\textarabic{البحر}}} & \small{\textbf{\textarabic{الشاعر}}} \\
-                                                                                                                                      % \hline
-      \midrule
-      \makecell{\textarabic{رَجا شافع نسج المودّة بيننا}\\ \textarabic{ولا خيرَ في ودّ يكون بشافع}} &
-                                                                                                  \textarabic{ولا خيرَ في ودّ يكون بشافع} &                                                       \textarabic{رَجا شافع نسج المودّة بيننا} &                                                       \textarabic{الطويل}&
-                                                                                                                                                                                                                                                                                                                    \textarabic{ابن نباته المصري}\\
-      
-                                                                                                                                                                                                                                                                                                                    % \hline
-      \bottomrule
-    \end{tabular*}
-    \caption{Aldiwan scraping output example }\label{Tab:Aldiwan_Sample}
-  \end{table}
+ \begin{itemize}
+  \item All scraped datasets were merged into one CSV file with a selection of the common columns in each file.
+  \item The duplicates rows were removed from the files in case of any joined rows between both websites.
+  \item The datasets on the 16 meters required were filtered, as some data belonged to other non-famous or not original meters.
+  \item Many unnecessary or useless white spaces were removed.
+  \item Removal of non-Arabic characters and other web symbols.
+  \item Diacritical mistakes were rectified, such as the removal of one of two consecutive harakats. 
+  \item Removal of any harakah occurring after a white space. 
+  \item Shadaa~\ref{def:shadaa_definition} was factored to its original format, explained in this example~\ref{Tab:Diacritics_Dal} previously.
+  \item Tanween~\ref{def:tanween_definition} was also factored to its original format, explained in this example~\ref{Tab:Tanween_Dal} previously.\footnote{\textit{We ignored the factorization of Alef-Mad \textarabic{(آ)} in our data preparation and transformation, thus saving more memory and shortening our encoding vectors.}}
+ \end{itemize}
+
+ We need to highlight that the last two points are not a handcrafted feature. They involve a factorization of the letter to its original format. This factorization will affect the size of the data in the memory, and the letter representation in the vector. We will explain this part in detail in the next chapter on the encoding mechanism and the impact of the encoding type in the model training time and performance.
+
+ % \clearpage
+ % table: dal with diacritics
+ \begin{table}[!t]
+  \centering
+  \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}c c c c c}
+   % \hline
+   \toprule
+   \textbf{\small{\textarabic{البيت}}} & \small{\textbf{\textarabic{الشطر الأيسر}}} & \small{\textbf{\textarabic{الشطر الأيمن}}} &
+                                                                   \small{\textbf{\textarabic{البحر}}} & \small{\textbf{\textarabic{الشاعر}}} \\
+                                                                   % \hline
+   \midrule
+   \makecell{\textarabic{رَجا شافع نسج المودّة بيننا}\\ \textarabic{ولا خيرَ في ودّ يكون بشافع}} &
+                                                 \textarabic{ولا خيرَ في ودّ يكون بشافع} &                            \textarabic{رَجا شافع نسج المودّة بيننا} &                            \textarabic{الطويل}&
+                                                                                                                                                          \textarabic{ابن نباته المصري}\\
+   
+                                                                                                                                                          % \hline
+   \bottomrule
+  \end{tabular*}
+  \caption{Aldiwan scraping output example }\label{Tab:Aldiwan_Sample}
+ \end{table}
 
 
-  % table: dal with diacritics
-  \begin{table}[!t]
-    \centering
-    \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}c c c c c c c c c}
-      % \hline
-      \toprule
-      \small{\textbf{\#}} &
-                            \small{\textbf{\textarabic{البيت}}} &
-                                                                  \small{\textbf{\textarabic{الشطر الأيمن}}}&                        \small{\textbf{\textarabic{الشطر الأيسر}}} &
-                                                                                                                                                                                  \small{\textbf{\textarabic{البحر}}}&                                 \small{\textbf{\textarabic{القافية}}}& \small{\textbf{\textarabic{الديوان}}}&                               \small{\textbf{\textarabic{الشاعر}}}&
-                                                                                                                                                                                                                                                                                                                                                                                                         \small{\textbf{\textarabic{العصر}}}\\
-                                                                                                                                                                                                                                                                                                                                                                                                         % \hline
-      \midrule
-      1 &          
-          \makecell{\textarabic{من يرد مورد حب} \\ \textarabic{ظمأ بالشوق يزدد}} &
-                                                                                   \textarabic{ظمأ بالشوق يزدد} &                                                        \textarabic{من يرد مورد حب} &                                                       \textarabic{الرمل}&
-                                                                                                                                                                                                                                                                                 \textarabic{د}&
-                                                                                                                                                                                                                                                                                                 \makecell{\textarabic{الديوان} \\ \textarabic{الرئيسي}}&
-                                                                                                                                                                                                                                                                                                                                                          \makecell{\textarabic{يعقوب الحاج}\\ \textarabic{ جعفر التبريزي}}&
-                                                                                                                                                                                                                                                                                                                                                                                                                             \textarabic{الحديث}\\
-      
-                                                                                                                                                                                                                                                                                                                                                                                                                             % \hline
-      \bottomrule
-    \end{tabular*}
-    \caption{Al-Mosoaa Elshearyaa scraping output example }\label{Tab:ElMosoaa_Sample}
-  \end{table}
+ % table: dal with diacritics
+ \begin{table}[!t]
+  \centering
+  \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}c c c c c c c c c}
+   % \hline
+   \toprule
+   \small{\textbf{\#}} &
+              \small{\textbf{\textarabic{البيت}}} &
+                                 \small{\textbf{\textarabic{الشطر الأيمن}}}&            \small{\textbf{\textarabic{الشطر الأيسر}}} &
+                                                                                         \small{\textbf{\textarabic{البحر}}}&                 \small{\textbf{\textarabic{القافية}}}& \small{\textbf{\textarabic{الديوان}}}&                \small{\textbf{\textarabic{الشاعر}}}&
+                                                                                                                                                                                                     \small{\textbf{\textarabic{العصر}}}\\
+                                                                                                                                                                                                     % \hline
+   \midrule
+   1 &     
+     \makecell{\textarabic{من يرد مورد حب} \\ \textarabic{ظمأ بالشوق يزدد}} &
+                                          \textarabic{ظمأ بالشوق يزدد} &                            \textarabic{من يرد مورد حب} &                            \textarabic{الرمل}&
+                                                                                                                                         \textarabic{د}&
+                                                                                                                                                 \makecell{\textarabic{الديوان} \\ \textarabic{الرئيسي}}&
+                                                                                                                                                                             \makecell{\textarabic{يعقوب الحاج}\\ \textarabic{ جعفر التبريزي}}&
+                                                                                                                                                                                                               \textarabic{الحديث}\\
+   
+                                                                                                                                                                                                               % \hline
+   \bottomrule
+  \end{tabular*}
+  \caption{Al-Mosoaa Elshearyaa scraping output example }\label{Tab:ElMosoaa_Sample}
+ \end{table}
 \end{enumerate}
 
 
 \subsection{Data Encoding}\label{Ch:Data_Encoding}
 
-As we explained, We have collected the dataset and cleaned the data from any quality issues. The next step is to change the data representation to be ready for model training. This change of the data structure named \textit{Data Encoding}.
+As explained, we collected the dataset and checked the data from any quality issues. The next step was to prepare the data representation for model training. This change in the data structure is named Data Encoding.
 
 \subsubsection{Encoding in English}
 
-
 \begin{itemize}
-  \item \textbf{Work embedding Encoding in English} The concept of data encoding was first introduced by [Bengio et al., 2003]~\cite{Bengio2003}. They used an embedding lookup table as a reference and map every word to this lookup. They used the resulting dense vectors as input for language modeling. There are many works to improve the word embedding one of them [Collobert et al., 2011]~\cite{Collobert_2011} proposed improvement of word embedding task and proved the versatility of word embedding in many NLP tasks. Another work proposed by [Mikolov et al., 2013~\cite{Mikolov_2013};
-  Jeffrey Pennington et al., 2014~\cite{Pennington_2014} ] shows the maturity of word embedding and is currently the most used encoding technique in the neural network based natural language processing.
+ \item \textbf{Work embedding Encoding in English:} The concept of data encoding was first introduced by Bengio et al. (2003)~\cite{Bengio2003}. They used an embedding lookup table as a reference and mapped every word to this lookup. They used the resulting dense vectors as input for language modeling. There are many works to improve the word embedding one of them. Collobert et al. (2011)~\cite{Collobert_2011} proposed improvement of word embedding task and proved the versatility of word embedding in many NLP tasks. Other works proposed by Mikolov et al. (2013)~\cite{Mikolov_2013}; and Pennington et al. (2014)~\cite{Pennington_2014} ] show the maturity of word embedding, which is currently the most used encoding technique in the neural network based natural language processing.
 
-  \item \textbf{Character Level Encoding in English} 
-  All the previous work focused on word embedding encoding, but in our research problem here we do not work on word level we focus into character level encoding as input feature to the model. There is a good deal of research based on the character level encoding [Kim et al., 2015]~\cite{Kim_2015} used character level embedding to construct word level representations to work on out of vocabulary problem. [Chiu and Nichols, 2015]~\cite{Chiu_2015} also used character embeddings with a convolutional neural network for named entity recognition.[Lee, Jinhyuk et al.,2017]~\cite{ijcai_2017} used character embeddings for the personal name classification using Recurrent Neural Networks.
+ \item \textbf{Character Level Encoding in English} : All the previous work focused on word embedding encoding, but in thisresearch problem, we work not on word level; instead we focus on character level encoding as an input feature of the model. There is much research based on character level encoding. Kim et al. (2015)~\cite{Kim_2015} used character level embedding to construct word level representations to work on vocabulary problems. Chiu and Nichols (2015)~\cite{Chiu_2015} also used character embeddings with a convolutional neural network for named entity recognition. Lee et al. 2017]~\cite{ijcai_2017} used character embeddings for personal name classification, using Recurrent Neural Networks.
 
 \end{itemize}
 
 \subsubsection{Character Level Encoding in Arabic}\label{sec:Char_Level_Arabic}
 
-Working on Arabic language embedding based on the character level did not take much attention from the research community. [Potdar et al.,2017]~\cite{Potdar_2017} has done a comparative study on six encoding techniques. We are interested in the comparison of \textit{one-hot} and \textit{binary}. They have used Artificial Neural Network for evaluating cars based on seven ordered qualitative features. The accuracy of the model was the same in both encoding \textit{one-hot} and \textit{binary}. [Agirrezabal et al.,2017]~\cite{Agirrezabal_2017} shows that representations of data learned from character-based neural models are more informative than the ones from hand-crafted features.
+Working on Arabic language embedding based on the character level has attracted little attention from the research community. Potdar et al. (2017) ~\cite{Potdar_2017} have undertaken a comparative study on six encoding techniques. Of interest is the comparison of \textit{one-hot} and \textit{binary}. They have used Artificial Neural Network for evaluating cars, based on seven ordered qualitative features. The accuracy of the model was the same in both encoding \textit{one-hot} and \textit{binary}. Agirrezabal et al. (2017) ~\cite{Agirrezabal_2017} show that representations of data learned from character-based neural models are more informative than the ones from hand-crafted features.
 
-In this research, We will make a comparative study of different encoding techniques between \textit{binary} and \textit{one-hot}. Also, we provide some new encoding method specific for Arabic letters, and we will see the effect of this on our problem. We will show the efficiency of every technique based on performing model training and model running time performance.
+This research makes a comparative study between different encoding techniques \textit{binary} and \textit{one-hot}. We also provide some new encoding method specific to Arabic letters, and we will see the effect of this on our problem. We will show the efficiency of every technique based on performing model training and model running time performance.
 
-Generally, a character will be represented as an n vector. Consequently, a verse would be an $n \times p$ matrix, where n is the character representation length and p is the verse’s length, n varies from one encoding to another, we have used \textit{one-hot} and \textit{binary} encoding techniques and proposed a new encoding, the \textbf{\textit{two-hot}} encoding.
+Generally, a character will be represented as an $n$ vector. Consequently, a verse would be an $n \times p$ matrix, where $n$ is the character representation length and $p$ is the verse’s length. Where $n$ varies from one encoding to another, we have used \textit{one-hot} and \textit{binary} encoding techniques and proposed a new encoding, the \textbf{\textit{two-hot}} encoding.
 
 Arabic letters have a feature related to the diacritics; To explain this feature we will take an example based on \textit{\textit{one-hot}} encoding. This feature is related to how we will treat the character with a diacritic. Arabic letters are 36 + white space as a letter. So, the total is 37. Any letter represented as a vector $37 \times 1$. Let's take an example a work such as \textarabic{مرحبا} having 5 letters encoded as a $37 \times 5$ matrix. If it came with diacritics such as \textarabic{مَرْحَبَا} and we need to represent the letters as \textit{one-hot} encoding we will consider every letter and diacritics as a separate letter. So, it will be 5 character and 4 diacritics. The vector shape will be $41 \times 9$.
 
-One of the main reason we need to care about the encoding is the \textit{RNN} training. If we have a different number of time steps in \textit{RNN} cell and the input vector dimensions are different based on the input, It will have a standard architecture for the model and to be able to train both the work with diacritics and without diacritics to show the effect of the model learning on the same architecture.
+One diacritical feature of Arabic letters can be explained by an example based on \textit{one-hot} encoding. 
+This feature is related to our treatment of characters with diacritics. 
+There are 36 Arabic letters. Including the white space, the total is 37. 
+Any letter represented as a vector $37 \times 1$. For example, a work such as \textarabic{مرحبا} has 5 letters encoded as a $37 \times 5$ matrix. 
+If it came with diacritics such as \textarabic{مَرْحَبَا} and we needed to represent the letters using \textit{one-hot} encoding, we would consider every letter and diacritic as a separate letter, thus 5 characters and 4 diacritics. The vector shape will be $41 \times 9$.
 
-To achieve the model architecture unification,  we proposed three different encoding systems: \textit{\textit{one-hot}}, \textit{\textit{binary}}, and the novel encoding system developed in this project \textit{\textit{two-hot}}. The three of them explained in the next three subsections.
+One of the main reasons for focusing on the encoding is the \textit{RNN} training. 
+Different numbers of time steps in \textit{RNN} cells, and different input vector dimensions based on the input will lead to a standard architecture for the model and permit both work with and without diacritics to show the effect of the model learning on the same architecture.
+
+To achieve the model architecture unification, we proposed three different encoding systems: \textit{one-hot}, \textit{binary}, and the novel encoding system developed in this project \textit{two-hot}. All three are explained in the next three subsections.
 
 \begin{figure*}[!t]
-  \centering
-  \input{./Figures/Ch_5_Encoding/encoding_three_figures_together.tex}
-  \caption{Different encoding mechanisms%: \textit{\textit{one-hot}}, \textit{\textit{binary}}, and \textit{\textit{two-hot}}  encoding. Using the word example %\textarabic{مَرْحَبَا} \textit{\textit{one-hot}} encoding is applied using $n$-letter alphabet $n = 181$ in Arabic. Same word encoded using \textit{\textit{binary}} encoding where the vector length $n = \ceil*{\log_2 l}$, $l \in \{181\}$. \textit{\textit{two-hot}} encoding is applied by stacking $\bm k_{4 \times 1}$ on the top of $\bm m_{37 \times 1}$ we get the $\textit{two-hot}_{41 \times 1}$ \usebox{\columnVector}, which represents a letter and its diacritic simultaneously. 
-  }~\label{Fig:One_binary_Encoding}
+ \centering
+ \input{./Figures/Ch_5_Encoding/encoding_three_figures_together.tex}
+ \caption{Different encoding mechanisms%: \One-hot, \textit{binary}, and \textit{two-hot} encoding. Using the word example %\textarabic{مَرْحَبَا} \textit{one-hot} encoding is applied using $n$-letter alphabet $n = 181$ in Arabic. Same word encoded using \textit{binary} encoding where the vector length $n = \ceil*{\log_2 l}$, $l \in \{181\}$. \textit{two-hot} encoding is applied by stacking $\bm k_{4 \times 1}$ on the top of $\bm m_{37 \times 1}$, giving the $Two-hot_{41 \times 1}$ \usebox{\columnVector}, which represents a letter and its diacritic simultaneously. 
+ }~\label{Fig:One_binary_Encoding}
 \end{figure*}
 
 
 
 \begin{description}
 
-  \item[\textbf{\textit{one-hot} encoding}] In this encoding system, We assume the letter with the diacritic as one unit. So, for example, \textarabic{د} represented as letter differs than (\textarabic{دَ, دِ, دُ, دْْ}). Now every letter is represented 5 times one without diacritic and four times with different diacritics combinations $36 \times 5$ besides the white-space character. So, the total is $181 \times 1$. From now forward, We have 181-characters Arabic alphabet represent the \textit{one-hot} encoding, and according to it, we will encode verses. (Figure~\ref{Fig:One_binary_Encoding}).
+ \item[\textbf{\textit{One-hot} encoding}] In this encoding system, we assume the letter with the diacritic as one unit. So, for example, \textarabic{د} represented as letter differs than (\textarabic{دَ, دِ, دُ, دْْ}). Now every letter is represented 5 times (one without diacritic and four times with different diacritics), giving combinations $36 \times 5$ besides the white-space character. Hence, the total is $181 \times 1$. Henceforth, we have 181 Arabic alphabetic characters represented in the \textit{one-hot} encoding, which we employ tol encode verses. (Figure~\ref{Fig:One_Binary_Encoding}).
 
-  We need to mention that, \textit{one-hot} encoding technique is of the famous techniques in encoding problem. We will not compare the encoding technique in these sections. However, We will discuss it in details in model results. Also, The implementations of the \textit{one-hot} is trivial. But we need to focus on here about the size for every letter which is $181 \times 1$ which means if we have a verse with 82 characters it will results up with a matrix $181 \times 82$ which is very big to be in memory.
+ It should be noted that that \textit{one-hot} encoding technique is one of the famous techniques in
+ encoding problems. We will not compare encoding techniques in these sections. We will, 
+ however, discuss it in detail in model results. Moreover, the implementations of the \textit{one-hot} is
+ trivial. We need to focus on the size for every letter which is $181 \times 1$;meaning if we have
+ a verse with 82 characters, it will result in a matrix $181 \times 82$. This would require very 
+ large memory.
 
-  \item[\textbf{\textit{binary} Encoding}] The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros.  $n =\ceil*{\log_2} l$ where $l$ is the alphabet length, and $n$ is the sufficient number of digits to represent $l$ unique \textit{binary} combinations.  For example a phrase like this \textarabic{مَرْحَبا}, it has 5 characters, figure~\ref{Fig:One_binary_Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory than the \textit{\textit{one-hot}} and reduces the model input dimensions, significantly. But on the other hand, the input letter share some features between them due to the \textit{binary} representation as it is shown in figure~\ref{Fig:One_binary_Encoding}.
+ \item[\textbf{\textit{Binary Encoding}}] The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros. $n =\ceil*{\log_2} l$ where $l$ is the alphabet length, and $n$ is a sufficient number of digits to represent $l$ unique \textit{binary} combinations. For example a phrase like this \textarabic{مَرْحَبا} has 5 characters. figure~\ref{Fig:One_Binary_Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory compared to \textit{one-hot}, and reduces the model input dimensions significantly. On the other hand, the input letters share some features due to the \textit{binary} representation as shown in figure~\ref{Fig:One_Binary_Encoding}.
 
-  \item[\textbf{\textit{two-hot} encoding}] This is an intermediate technique which takes the advantages of the previous two encoding techniques. In which we encode the letter and its diacritic separately as two \textit{\textit{one-hot}} vectors, this way the letter is encoded as $37 \times 1$ \textit{\textit{one-hot}} vector and the diacritic is encoded as $4 \times 1$ \textit{\textit{one-hot}} vector, then both vectors stacked to form one $41 \times 1$ vector (Figure~\ref{Fig:One_binary_Encoding}).
+ \item[\textbf{\textit{two-hot} encoding}] This is an intermediate technique which takes the advantages of the previous two encoding techniques. In it, we encode the letter and its diacritic separately as two \textit{one-hot} vectors, hence the letter is encoded as $37 \times 1$ \textit{one-hot} vector and the diacritic is encoded as $4 \times 1$ \textit{one-hot} vector, then both vectors are stacked to form one $41 \times 1$ vector (Figure~\ref{Fig:One_Binary_Encoding}).
 
-  By this way, we reduced the vector dimension from 181 to 41 and also minimizes the number of shared features between vectors to the maximum one at each vector. 
+ We thus reduced the vector dimension from 181 to 41, and also minimized the number of shared features between vectors to the maximum one at each vector. 
+
 \end{description}
 
 \subsubsection{Categorical Values Encoding}\label{sec:label_encoder}
 
-  In Machine Learning we are using the encoding techniques to transform the categorical data (class label or
-text) into numbers. This way will make it easy for the predictive model to understand our label in an easy representation. Some encoding techniques are \textit{label encoding, one hot encoder, and custom \textit{binary} encoding}. All these encoding will convert the categorical to numerical values but with different ways. For example, Label encoding can transform the following label (apple, orange, banana) to (0,1,2) as a numeric representation. As explained in previous subsection, \textit{one-hot} encoding could transform the labels to ([1,0,0],[0,1,0],[0,0,1]). In this research, we used the label encoding for label encoding to the meters class name using the Sklearn library in Python~\cite{scikit-learn}. Actual, there is no effect of the categorical encoding technique on the results. But there is some difference in the execution and running time performance.
+Machine Learning uses the encoding techniques to transform the categorical data (class label or text) into numbers. 
+This will make it easy for the predictive model to understand our label in an easy representation. 
+Some encoding techniques are \textit{label encoding, one hot encoder, and custom \textit{binary} encoding}. 
+All these encodings will convert the categorical to numerical values, but in different ways. 
+For example, Label encoding can transform the following labels: (apple, orange, banana) to (0,1,2) as a numeric representation. 
+As explained in the previous subsection, \textit{one-hot} encoding could transform the labels to ([1,0,0],[0,1,0],[0,0,1]). 
+In this research, we used the label encoding for label encoding to the meter’s class, using the \textit{Sklearn} library in Python~\cite{scikit-learn}. The categorical encoding technique has no effect on the results. However, there is some difference in the execution and running time performance.
 
 \clearpage
 
 \section{Model Training}
 In a normal machine learning project, we used to split the dataset as around 60\% as training, 30\% testing and 10\% as a validation. However, In The Deep Learning, the amount of data profoundly affects the model performance. So, the more data fed as training, the more performance results the model can achieve on test data (Assuming we did the regularization and the needed generalization on the model training phase). Also, The main reason to change the split size is due to the size of the dataset we used to work on for example 1\% of 1M sample is 10k which is big enough for such experiments way. However, if we work on 10k sample, we need around 30\% 3k sample to have confidence in our model. So, it depends on the problem and size of the dataset.
 
-In this research, We worked on \textit{Poem Comprehensive Dataset (PCD)}~\cite{ArabicpoetryDS}. We are interested in the 16 classic meters which attributed to Al-Farahidi. These meters comprise the majority of the dataset with a total number of 1,722,321 verses. Figure~\ref{Fig:Data_Size_Distribution} shows an ordered bar chart based on the number of verses per meter. We trained all our models based on 80\% which is around 1,377,856 verse. Our testing data(development) is 10\% around 172,232 verse, and our Validation data around 172,232 verse.
+In this research, We worked on \textit{Poem Comprehensive Dataset (PCD)}~\cite{ArabicpoetryDS}. We are interested in the 16 classic meters which attributed to Al-Farahidi. These meters comprise the majority of the dataset, with a total number of 1,722,321 verses. Figure~\ref{Fig:Data_Size_Distribution} shows an ordered bar chart based on the number of verses per meter. We trained all our models based on 80\% which is around 1,377,856 verse. Our testing data(development) is 10\% around 172,232 verse, and our Validation data around 172,232 verse.
 
 We can show training phase designed as a Data representation configurations and an RNN configuration. The number of experiments is the cross product of both data representation and RNN configuration, for example, If we have 12 data representation and 12 RNN configurations the total number of experiments will be 144. We need to highlight that,
 
 \begin{itemize}
-  \item Data representation feature is a general feature applied on the dataset not a Hand-Crafted features more details on~\ref{Sec:Data_Rep_Param}.
-  \item There is an effect of the Data representation feature due to Arabic language pronunciation and some features provide more information than others.
-  \item RNN configurations are the parameters related to the Network model development training, and it used after many of experiment to find and tune the best configurations. These means we did more than the number of experiment written in this research but we only publish the best results overall. It will explain more details in sec~\ref{Sec:Rnn_Param}.
-  \item The number verses used on testing and validation is a significant number 344,464 verse which confirms that the model tested on all types of verses and have confidence in the results.
+ \item Data representation feature is a general feature applied on the dataset not a Hand-Crafted features more details on~\ref{Sec:Data_Rep_Param}.
+ \item There is an effect of the Data representation feature due to Arabic language pronunciation and some features provide more information than others.
+ \item RNN configurations are the parameters related to the Network model development training, and it used after many of experiment to find and tune the best configurations. These means we did more than the number of experiment written in this research but we only publish the best results overall. It will explain more details in sec~\ref{Sec:Rnn_Param}.
+ \item The number verses used on testing and validation is a significant number 344,464 verse which confirms that the model tested on all types of verses and have confidence in the results.
 
 \end{itemize}
 
@@ -210,12 +227,12 @@ Arabic poem dataset, as stated in Figure~\ref{Fig:Data_Size_Distribution}, is un
 
 As explained previously, There are three different encoding methods~\ref{Ch:Data_Encoding}. Although all carry the same information, It expected that Every encoding has its behaviors as below,
 \begin{itemize}
-  \item \textbf{Running Time}: It was expected the running time would differ from one encoding type compared to others. This information is important if someone has an experiment with limited time and need to get the results as fast as it can.
-  \item \textbf{Required Resources}: It was expected to have different resources consumption from one encoding typed compared to others. This information is important if someone has an experiment with limited resources.
-  • Learning Rate: Some encoding will learn faster than others (Note: Learning Rate not the overall performance) for example, one encoding can achieve 80\% on training performance after four epoch, but another one can reach the same percentage after 20\% epoch.
-  \item \textbf{Learning Rate}: The final performance percentage which can be achieved with every encoding technique (Note: the best can be the worst in learning rate or the method which take much time). So, the researcher who will use this encoding should decide which one will be used based on the criteria needed.
+ \item \textbf{Running Time}: It was expected the running time would differ from one encoding type compared to others. This information is important if someone has an experiment with limited time and need to get the results as fast as it can.
+ \item \textbf{Required Resources}: It was expected to have different resources consumption from one encoding typed compared to others. This information is important if someone has an experiment with limited resources.
+ • Learning Rate: Some encoding will learn faster than others (Note: Learning Rate not the overall performance) for example, one encoding can achieve 80\% on training performance after four epoch, but another one can reach the same percentage after 20\% epoch.
+ \item \textbf{Learning Rate}: The final performance percentage which can be achieved with every encoding technique (Note: the best can be the worst in learning rate or the method which take much time). So, the researcher who will use this encoding should decide which one will be used based on the criteria needed.
 
-  \item \textbf{Overall Performance}: The final performance percentage which can be achieved with every encoding technique (Note: the best can be the worst in learning rate or the method which take much time). So, the researcher who will use this encoding should decide which one will be used based on the criteria needed.
+ \item \textbf{Overall Performance}: The final performance percentage which can be achieved with every encoding technique (Note: the best can be the worst in learning rate or the method which take much time). So, the researcher who will use this encoding should decide which one will be used based on the criteria needed.
 
 \end{itemize}
 
@@ -225,27 +242,27 @@ The data representation matrix is the cross product of the Diacritics 2, Data En
 
 
 \begin{table}[t]
-  \centering
-  \begin{tabular}{c c c c c c}
-    \hline
-    \textbf{\#} & \textbf{Diacritic} & \multicolumn{3}{c}{\textbf{Encoding Types}}  & \textbf{Trimming} \\
-    
-    \hline
-    1 & With diacritic & \textit{one-hot} & \textit{two-hot} & \textit{binary} & Full    \\
-    \hline
-    2 & Without diacritic & \textit{one-hot} & \textit{two-hot} & \textit{binary} & Trimmed \\
-    \hline
-  \end{tabular}
-  \caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
+ \centering
+ \begin{tabular}{c c c c c c}
+  \hline
+  \textbf{\#} & \textbf{Diacritic} & \multicolumn{3}{c}{\textbf{Encoding Types}} & \textbf{Trimming} \\
+  
+  \hline
+  1 & With diacritic & \textit{one-hot} & \textit{two-hot} & \textit{binary} & Full  \\
+  \hline
+  2 & Without diacritic & \textit{one-hot} & \textit{two-hot} & \textit{binary} & Trimmed \\
+  \hline
+ \end{tabular}
+ \caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
 \end{table}
 
 
 % \begin{figure}[H]
-%   \centering
-%   \begin{tikzpicture}
-%     \input{./Figures/Ch_4_Dataset/dataset_percentage_ar.tex}
-%   \end{tikzpicture}%
-%   \caption{Arabic dataset class size (number of verses) ordered descendingly on y-axis vs. corresponding meter name on the x-axis.}\label{Fig:data_percentage_distribution}
+%  \centering
+%  \begin{tikzpicture}
+%   \input{./Figures/Ch_4_Dataset/dataset_percentage_ar.tex}
+%  \end{tikzpicture}%
+%  \caption{Arabic dataset class size (number of verses) ordered descendingly on y-axis vs. corresponding meter name on the x-axis.}\label{Fig:data_percentage_distribution}
 % \end{figure}
 \subsection{Parameters of Network Configuration}\label{Sec:Rnn_Param}
 
@@ -256,11 +273,11 @@ We also thought using BI-LSTM will support the model to learn the Tafa'il for ev
 % RNN Configuration
 In RNNs network configuration parameters, there are four parameters:
 \begin{itemize}
-  \item \textbf{Cell Type}: We used LSTM and BI-LSTM.
-  \item \textbf{Layers}: We tried many numbers of layers and we found the best number based on our problem is 4 and 7 layers.
-  \item \textbf{Cell Unit Size}: We also tried many numbers but the best results achieved from 50 and 82.
-  \item \textbf{Weighting Model}: As showed in Figure~\ref{Fig:Data_Size_Distribution} classes is unbalanced. So, as an alternative to remove the small classes we tried to keep all classes, but with weighting the loss function to account for the relative class size. We introduced a new weighting function explain in next sub-section~\ref{Sec:W_Loss} to help work on all the dataset. So, we will have two combinations, One with weighting loss and one without weighting loss.
-  
+ \item \textbf{Cell Type}: We used LSTM and BI-LSTM.
+ \item \textbf{Layers}: We tried many numbers of layers and we found the best number based on our problem is 4 and 7 layers.
+ \item \textbf{Cell Unit Size}: We also tried many numbers but the best results achieved from 50 and 82.
+ \item \textbf{Weighting Model}: As showed in Figure~\ref{Fig:Data_Size_Distribution} classes is unbalanced. So, as an alternative to remove the small classes we tried to keep all classes, but with weighting the loss function to account for the relative class size. We introduced a new weighting function explain in next sub-section~\ref{Sec:W_Loss} to help work on all the dataset. So, we will have two combinations, One with weighting loss and one without weighting loss.
+ 
 \end{itemize}
 
 The total number of combination is 16 which is $4$ parameters each one has $2$ types. So, the total will be $2^4=16$; and hence, there are 16 different network configurations to run on each of the 12 data representations above. This results in $16 \times 12 = 192$ different experiments (or models). Hence, there are 96 different network configurations to run on each of the 2 data representations above. This results in $96 \times 2 = 192$ different experiments (or models), whose accuracy are presented on the y-axis of Figure~\ref{Fig:ArabicModelsResults}. For all the 192 experiments networks are trained using dropout of $0.2$, batch size is of $2048$, with Adam optimizer, and 10\% for each of validation and testing sets.
@@ -270,16 +287,16 @@ The total number of combination is 16 which is $4$ parameters each one has $2$ t
 
 One of the important problem we worked to solve it during our research unbalance dataset issue. We worked to overcome the unbalanced dataset and to not make our model suffer from this issue. We so introduced a Weighting function~\ref{eq:training_weighted_fun} where nc is the sample size of class c, c = 1,2,...C, and C is the total number of classes.%
 \begin{equation}\label{eq:training_weighted_fun}
-  w_c = \left(\frac{\frac{1}{n_c}}{\sum_{c'} \frac{1}{n_{c'}}} \right)
+ w_c = \left(\frac{\frac{1}{n_c}}{\sum_{c'} \frac{1}{n_{c'}}} \right)
 \end{equation}
 
 The idea is to increase the loss for the small classes as the number of verses of small classes is small so the output will be bigger than the loss in case the class has a lot of verses. To have a clear explanation we can show equation~\ref{eq:training_weighted_fun_example}~\footnote{The equation numbers are rounded for simplicity.} as an example the biggest class will have a smaller loss compared to the smallest class. We divided on constant which is the sum of classes density.%
 \begin{subequations}
-  \begin{align}
-    w_c &=  \frac{\frac{1}{288}}{\sum\frac{1}{416428}+\frac{1}{370116}\dots+\frac{1}{288}}\\
-       &= \frac{\frac{1}{288}}{0.00535} = ~0.03 \\
-       &= \frac{\frac{1}{416428}}{0.00535} = ~0.0004
-  \end{align}\label{eq:training_weighted_fun_example}
+ \begin{align}
+  w_c &= \frac{\frac{1}{288}}{\sum\frac{1}{416428}+\frac{1}{370116}\dots+\frac{1}{288}}\\
+    &= \frac{\frac{1}{288}}{0.00535} = ~0.03 \\
+    &= \frac{\frac{1}{416428}}{0.00535} = ~0.0004
+ \end{align}\label{eq:training_weighted_fun_example}
 \end{subequations}
 
 \clearpage
@@ -296,61 +313,61 @@ We used a Dell Precision T7600 Workstation to conduct our experiments with Intel
 During our Model development we used the following software and libraries,
 
 \begin{itemize}
-  \item Python 3.7: \textit{We used it as main programming language.}
-  \item Tensorflow: \textit{We used it as Deep learning backend framework}
-  \item Keras: \textit{We used it as High level framework on top of the backend}
-  \item Pyarabic: \textit{We used it in data pre-processing and cleansing.}
-  \item pandas: \textit{We used it in data pre-processing and splitting.}
-  \item sklearn: \textit{We used it to encode the classes using Label-Encoder and for model assessment phase.}
-  \item pickle: \textit{We used it to save the encoder and the model as serialized pickle object.}
-  \item h5py: \textit{We used it to save the encoded dataset matrix in h5 format.}
+ \item Python 3.7: \textit{We used it as main programming language.}
+ \item Tensorflow: \textit{We used it as Deep learning backend framework}
+ \item Keras: \textit{We used it as High level framework on top of the backend}
+ \item Pyarabic: \textit{We used it in data pre-processing and cleansing.}
+ \item pandas: \textit{We used it in data pre-processing and splitting.}
+ \item sklearn: \textit{We used it to encode the classes using Label-Encoder and for model assessment phase.}
+ \item pickle: \textit{We used it to save the encoder and the model as serialized pickle object.}
+ \item h5py: \textit{We used it to save the encoded dataset matrix in h5 format.}
 \end{itemize}
 
 \subsection{Implementation Outline}
 
 \begin{enumerate}
-  \item Data Reading and Cleansing:
-  \begin{itemize}
-    \item We set the random seed and \textit{Numpy} seed in the code to be reproducible.
-    \item We used PyArabic~\cite{Pyarabic_2010} to trim and strip some dummy letters~\footnote{The data has some dummy letters named Tatweel for example \textarabic{شعـــر} is similar than \textarabic{شعر} so, we removed this letters as it doesn't have any meaning. } and working on Arabic letters.
-    \item We clean the data from any dummy char using \textit{Pandas and Numby} libraries.
-    \item We get the max Bayt length for padding~\footnote{Padding used zeros which is not a selected Arabic Char representations}.
-    \item We removed the dummy letters or wrong diacritics letters.
-    \item We factorize \textit{Shadaa and Tanween} to its original letters as explained in Chapter~\ref{Ch:Background}.
-    \item We split the data to be Full\textit{ Including all the Meters} and Eliminated\textit{ Removed the meters which have less than 1\% of the total data}.
-  \end{itemize}
-  
-  \item Data Encoding:
-  \begin{itemize}
-    \item We encoded the Meters label using label encoder in \textit{Sklearn} and we generated to output label encoder Full and Eliminated.
-    \item We save the encoder serialized in the desk for later usage.
-    \item We used \textit{Pickle} python library to save the serialized object with \textit{H5 format} in \textit{h5py} library.
-    \item We used three ways of encoding \textit{\textit{one-hot}, \textit{binary} and \textit{two-hot}} all of them developed using custom python functions.
-    \item We save the data for each encoding with two combinations \textit{Full/Eliminated and With/Without Tashkeel}.
-    \item We saved them as \textit{h5} format in the desk.
-  \end{itemize}
+ \item Data Reading and Cleansing:
+ \begin{itemize}
+  \item We set the random seed and \textit{Numpy} seed in the code to be reproducible.
+  \item We used PyArabic~\cite{Pyarabic_2010} to trim and strip some dummy letters~\footnote{The data has some dummy letters named Tatweel for example \textarabic{شعـــر} is similar than \textarabic{شعر} so, we removed this letters as it doesn't have any meaning. } and working on Arabic letters.
+  \item We clean the data from any dummy char using \textit{Pandas and Numby} libraries.
+  \item We get the max Bayt length for padding~\footnote{Padding used zeros which is not a selected Arabic Char representations}.
+  \item We removed the dummy letters or wrong diacritics letters.
+  \item We factorize \textit{Shadaa and Tanween} to its original letters as explained in Chapter~\ref{Ch:Background}.
+  \item We split the data to be Full\textit{ Including all the Meters} and Eliminated\textit{ Removed the meters which have less than 1\% of the total data}.
+ \end{itemize}
+ 
+ \item Data Encoding:
+ \begin{itemize}
+  \item We encoded the Meters label using label encoder in \textit{Sklearn} and we generated to output label encoder Full and Eliminated.
+  \item We save the encoder serialized in the desk for later usage.
+  \item We used \textit{Pickle} python library to save the serialized object with \textit{H5 format} in \textit{h5py} library.
+  \item We used three ways of encoding \textit{\textit{one-hot}, \textit{binary} and \textit{two-hot}} all of them developed using custom python functions.
+  \item We save the data for each encoding with two combinations \textit{Full/Eliminated and With/Without Tashkeel}.
+  \item We saved them as \textit{h5} format in the desk.
+ \end{itemize}
 
-  \item Model Training:
+ \item Model Training:
+ \begin{itemize}
+  \item We used \textit{Keras with Tensorflow} backend as Deep Learning Framework.
+  \item We created custom function for handle the Data combinations \textit{Full/Eliminated and With/Without Tashkeel} with the Network combinations \textit{Layers, Units and cell type (Bi-LSTM or LSTM)}.
+  \item We faced a performance issue while training LSTM for Recurrent Neural Networks as we have a huge amount of data with the current known behaviour of RNN as it is recurrent. So, We did some techniques to reduce our RNN training time by
   \begin{itemize}
-    \item We used \textit{Keras with Tensorflow} backend as Deep Learning Framework.
-    \item We created custom function for handle the Data combinations \textit{Full/Eliminated and With/Without Tashkeel} with the Network combinations \textit{Layers, Units and cell type (Bi-LSTM or LSTM)}.
-    \item We faced a performance issue while training LSTM for Recurrent Neural Networks as we have a huge amount of data with the current known behaviour of RNN as it is recurrent. So, We did some techniques to reduce our RNN training time by
-    \begin{itemize}
-      \item Save the data cleaned and encoded in the hard desk and read it direct encoded as explained in the previous steps.
-      \item Read the data with batches and utilized the hardware to train the dataset in batch parallel.
-      \item We used Nvidia Cuda optimized LSTM cell which highly reduced our training time up to 6x speedup.
-      \item We used a parallel GPU in our experiments to test the affect we used it by utilize a Keras utils \textit{multi\_gpu\_model option}.
-    \end{itemize}
-    \item We saved all the model output for later validations.
-  \end{itemize}  
-
-  \item Results and Validations
-  \begin{itemize}
-    \item We calculate the confusion matrix on the testing data to calculate the results and do the validations.
-    \item We calculate the accuracy from the confusion matrix which was similar than the accuracy generated from \textit{Tensorflow} on the testing data.
-    \item We used weighted accuracy to check the accuracy for Per-Class.
+   \item Save the data cleaned and encoded in the hard desk and read it direct encoded as explained in the previous steps.
+   \item Read the data with batches and utilized the hardware to train the dataset in batch parallel.
+   \item We used Nvidia Cuda optimized LSTM cell which highly reduced our training time up to 6x speedup.
+   \item We used a parallel GPU in our experiments to test the affect we used it by utilize a Keras utils \textit{multi\_gpu\_model option}.
   \end{itemize}
-  
+  \item We saved all the model output for later validations.
+ \end{itemize} 
+
+ \item Results and Validations
+ \begin{itemize}
+  \item We calculate the confusion matrix on the testing data to calculate the results and do the validations.
+  \item We calculate the accuracy from the confusion matrix which was similar than the accuracy generated from \textit{Tensorflow} on the testing data.
+  \item We used weighted accuracy to check the accuracy for Per-Class.
+ \end{itemize}
+ 
 \end{enumerate}
 
 \clearpage
@@ -361,10 +378,10 @@ In this section we will explain the results of all the 192 experiments on our da
 
 As we explained, In Section~\ref{Ch:Model_Training} we have a set of combinations we need to explore it. So, most of our results will combine a combination and show the results of these combinations. Let's explore it as below,
 \begin{enumerate}
-  \item  We have three data representation \textbf{\textit{\textit{binary}, \textit{one-hot}, and \textit{two-hot}}} we will represent it as \textbf{\textit{BinE, 1D, 0T}} respectively.
-  \item We have two types of model loss functions \textbf{\textit{Weighting loss and no Weighting loss}} we will represent it as \textbf{\textit{(1 and 0)}} respectively.
-  \item The Number of layers is represented as \textbf{\textit{nL}}, for example, 7 layers are 7L.
-  \item The Number of cell units is represented as \textbf{\textit{nU}}, for example, 82 unit is 82U.
+ \item We have three data representation \textbf{\textit{\textit{binary}, \textit{one-hot}, and \textit{two-hot}}} we will represent it as \textbf{\textit{BinE, 1D, 0T}} respectively.
+ \item We have two types of model loss functions \textbf{\textit{Weighting loss and no Weighting loss}} we will represent it as \textbf{\textit{(1 and 0)}} respectively.
+ \item The Number of layers is represented as \textbf{\textit{nL}}, for example, 7 layers are 7L.
+ \item The Number of cell units is represented as \textbf{\textit{nU}}, for example, 82 unit is 82U.
 \end{enumerate}
 
 So, If we need to explain a set of combination we can write (4L, 82U, 0) which means 4 layers, 82 units, and no weighted loss function. Also, we will provide many figures every figure will explain specific result perspective.
@@ -380,21 +397,21 @@ To explain the figure, we take as an example the most-left vertical rug plot, wh
 In this section we will explain the effect of the 12 data representation technique we explained it previous.
 
 \begin{enumerate}
-  \item \textbf{Trimming Effect:} The effect of trimming (remove the small classes from the training cycle) can be observed if we fix the other two parameters, diacritic and encoding. The score with trimming is consistently higher than that with no trimming. E.g., by looking at the two unshaded strips, the score at (1T, 0D, TwoE) is 0.9629, while that at (0T, 0D, TwoE) is 0.9411. The only exception, with a very little difference, is (1T, 1D, BinE) vs. (0T, 1D, BinE). We need to highlight that is logic to have this effect as the training will have fewer classes with a huge amount of data for these classes.
-  \item \textbf{Diacritics Effect}
-  \begin{itemize}
-    \item \textit{Without Trimming:} The effect of diacritics is obvious only with no trimming (the two left strips of the figure), where, for each encoding, the accuracy score is higher for diacritics than no diacritics.
-    \item \textit{With Trimming:} The diacritics don't have except for the \textit{\textit{one-hot}} encoding but other encoding doesn't have an effect on the model performance. This result is inconsistent with what is anticipated from the effect of diacritics. We think that this result is an artifact due to the small number of network configurations.
+ \item \textbf{Trimming Effect:} The effect of trimming (remove the small classes from the training cycle) can be observed if we fix the other two parameters, diacritic and encoding. The score with trimming is consistently higher than that with no trimming. E.g., by looking at the two unshaded strips, the score at (1T, 0D, TwoE) is 0.9629, while that at (0T, 0D, TwoE) is 0.9411. The only exception, with a very little difference, is (1T, 1D, BinE) vs. (0T, 1D, BinE). We need to highlight that is logic to have this effect as the training will have fewer classes with a huge amount of data for these classes.
+ \item \textbf{Diacritics Effect}
+ \begin{itemize}
+  \item \textit{Without Trimming:} The effect of diacritics is obvious only with no trimming (the two left strips of the figure), where, for each encoding, the accuracy score is higher for diacritics than no diacritics.
+  \item \textit{With Trimming:} The diacritics don't have except for the \textit{\textit{one-hot}} encoding but other encoding doesn't have an effect on the model performance. This result is inconsistent with what is anticipated from the effect of diacritics. We think that this result is an artifact due to the small number of network configurations.
 
-  \end{itemize} 
-  \item \textbf{Encoding Effect:} The effect of encoding is clear; by looking at each individual strip, \textit{overall accuracy score is consistently highest for \textit{two-hot} then \textit{one-hot} then \textit{binary}—the} only exception is (1T, 0D, BinE) that performs better than the other two encoding. It seems that \textit{two-hot} encoding makes it easier for networks to capture the patterns in data. However; we anticipate that there is a particular network architecture for each encoding that can capture the same pattern with yielding the same score.
+ \end{itemize} 
+ \item \textbf{Encoding Effect:} The effect of encoding is clear; by looking at each individual strip, \textit{overall accuracy score is consistently highest for \textit{two-hot} then \textit{one-hot} then \textit{binary}—the} only exception is (1T, 0D, BinE) that performs better than the other two encoding. It seems that \textit{two-hot} encoding makes it easier for networks to capture the patterns in data. However; we anticipate that there is a particular network architecture for each encoding that can capture the same pattern with yielding the same score.
 \end{enumerate}
 
 
 
 \begin{figure}[!t]
-  \input{./Figures/Ch_7_Results/Fig_Overall_Score.tex}
-  \caption{Overall accuracy of the 192 experiments plotted as 2 vertical rug plots (for the 12 different data representations: $\left\{\mathit{Trimming},\ \mathit{No Trimming} \right\} \times \left\{\mathit{Diacritics},\ \mathit{No Diacritics} \right\} \times \left\{\mathit{OneE},\ \mathit{BinE},\ \mathit{TwoE}\right\}$), each represents 16 exp. (for the 16 different network configurations: $\left\{7L,\ 4L\right\} \times \left\{82U,\ 50U\right\} \times \left\{0W, 1W\right\} \times \left\{LSTM,\ BiLSTM\right\}$). For each rug plot the best model of each of the four cell types ---(Bi)LSTM labeled differently. Consistently, BiLSTM  was the winner, and its network configuration parameters are listed at the top of each rug plot.}~\label{Fig:ArabicModelsResults}
+ \input{./Figures/Ch_7_Results/Fig_Overall_Score.tex}
+ \caption{Overall accuracy of the 192 experiments plotted as 2 vertical rug plots (for the 12 different data representations: $\left\{\mathit{Trimming},\ \mathit{No Trimming} \right\} \times \left\{\mathit{Diacritics},\ \mathit{No Diacritics} \right\} \times \left\{\mathit{OneE},\ \mathit{BinE},\ \mathit{TwoE}\right\}$), each represents 16 exp. (for the 16 different network configurations: $\left\{7L,\ 4L\right\} \times \left\{82U,\ 50U\right\} \times \left\{0W, 1W\right\} \times \left\{LSTM,\ BiLSTM\right\}$). For each rug plot the best model of each of the four cell types ---(Bi)LSTM labeled differently. Consistently, BiLSTM was the winner, and its network configuration parameters are listed at the top of each rug plot.}~\label{Fig:ArabicModelsResults}
 \end{figure}
 
 
@@ -403,10 +420,10 @@ In this section we will explain the effect of the 12 data representation techniq
 
 This section is to comment on the effect of the network configurations parameters.
 \begin{itemize}
-  \item \textbf{Cell Type}: It is clear that BI-LSTM  (large circle) is the highest accuracy score for each data representation. It is always higher than the highest score of the LSTM model (large square). This is what we expected the more complex architecture, the more results we can achieve. But we need to mention that the BI-LSTM is slower than LSTM in overall running time for all experiments, and it also consumes much more resources than LSTM cell.
-  \item \textbf{Layers Number:} As we explained in Section~\ref{Sec:Deep_Learning_Background} The idea behind the deep neural network come from the multi-layers which make the network learn more details. So, the more complex network (more layer) the more results we can achieve. So, in our experiments, we can show that 7 layers achieved the highest scores more than the 4 layers. There is an exception for the trimming data without diacritics in (1T, 0D, BinE) and (1T, 0D, TwoE). The straightforward interpretation for that is the reduction in dataset size occurred by trimming and no diacritics, which required a less complex network. So, if we reduced the complexity of our problem the number of layers will not be effective.
+ \item \textbf{Cell Type}: It is clear that BI-LSTM (large circle) is the highest accuracy score for each data representation. It is always higher than the highest score of the LSTM model (large square). This is what we expected the more complex architecture, the more results we can achieve. But we need to mention that the BI-LSTM is slower than LSTM in overall running time for all experiments, and it also consumes much more resources than LSTM cell.
+ \item \textbf{Layers Number:} As we explained in Section~\ref{Sec:Deep_Learning_Background} The idea behind the deep neural network come from the multi-layers which make the network learn more details. So, the more complex network (more layer) the more results we can achieve. So, in our experiments, we can show that 7 layers achieved the highest scores more than the 4 layers. There is an exception for the trimming data without diacritics in (1T, 0D, BinE) and (1T, 0D, TwoE). The straightforward interpretation for that is the reduction in dataset size occurred by trimming and no diacritics, which required a less complex network. So, if we reduced the complexity of our problem the number of layers will not be effective.
 
-  \item \textbf{Cell Units and Weighting Loss:} We can't figure out a consistent effect based on the number of cell units or the weighting loss. But we need to mention that the highest results achieved were using both the highest cell units 82 and the weighted loss.
+ \item \textbf{Cell Units and Weighting Loss:} We can't figure out a consistent effect based on the number of cell units or the weighting loss. But we need to mention that the highest results achieved were using both the highest cell units 82 and the weighted loss.
 \end{itemize}
 
 
@@ -422,8 +439,8 @@ In Figure~\ref{Fig:Results_Per_Class} we have the previous four models display t
 Figure~\ref{Fig:Results_Per_Class} shows the relation between the model accuracy results per-class and the dataset size per class; However, This trend was expected to be fixed from the weighted loss which has an inconsistent effect of the weighting loss for all the models. This inconsistent effect shows we need to have a new design for has an function which can solve this trending issue. The overall accuracy can be increased after trimming but there will be a gap between the accuracy per class the size of the data per class as the dataset is not balanced. Moreover, We can repeat this experiment again with enforcing all classes to have an equal size so, we can show the accuracy without in data unbalance issue. We will elaborate more in Section~\ref{Sec:Discussion}.
 
 \begin{figure}[!t]
-  \input{./Figures/Ch_7_Results/Fig_Results_Per_Class.tex}
-  \caption{The per-class accuracy score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{Fig:Data_Size_Distribution}. There is a descending trend with the class size, with the exception at \textit{Rigz} meter.}~\label{Fig:Results_Per_Class}
+ \input{./Figures/Ch_7_Results/Fig_Results_Per_Class.tex}
+ \caption{The per-class accuracy score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{Fig:Data_Size_Distribution}. There is a descending trend with the class size, with the exception at \textit{Rigz} meter.}~\label{Fig:Results_Per_Class}
 \end{figure}
 
 \subsection{Encoding Effect}
@@ -432,12 +449,12 @@ As explained in Section~\ref{Ch:Data_Encoding} the difference between data encod
 
 
 \begin{figure}[!t]
-  \centering
-  \begin{tikzpicture}
-    \input{Figures/Ch_7_Results/Fig_Results_Encoding_Convergence.tex}
-    % \input{Figures/Ch_7_Results/Fig_Results_Memory_Consumption.tex}
-  \end{tikzpicture}
-  \caption{Encoding effect on Learning rate with the best model (1T, 0D, 4L, 82U, 0W, BinE) and when using the two other encodings instead of BinE.}~\label{Fig:Convergence_Memory}%(b) Relative size in bytes of the three encoding vectors
+ \centering
+ \begin{tikzpicture}
+  \input{Figures/Ch_7_Results/Fig_Results_Encoding_Convergence.tex}
+  % \input{Figures/Ch_7_Results/Fig_Results_Memory_Consumption.tex}
+ \end{tikzpicture}
+ \caption{Encoding effect on Learning rate with the best model (1T, 0D, 4L, 82U, 0W, BinE) and when using the two other encodings instead of BinE.}~\label{Fig:Convergence_Memory}%(b) Relative size in bytes of the three encoding vectors
 \end{figure}
 
 
@@ -457,57 +474,57 @@ In this section, We will present the results of classifying non-poems text (ex: 
 
 We get a random sports article and pass each sentence to the Model to classify it to the Arabic meters. We can find the results for sample sentences in Table~\ref{Tab:Results_Article}. As we explained previously, Arud rules are not concerns with the meaning. It only concerns with the music of the text. So, we can find the text in the table match one of our meters classes full or partially with small issues. So, it does not follow the full rule for the meter. However, The model was able to identify it. We feed the model with text without \textit{Tashkeel} which is harder than with \textit{Tashkeel} but the Model able to get all the nearest pattern and classify it correctly. We will take an example from the table and do the Arud writing style to show how the Model was able to classify it. We will take the first row from the Table which belongs to \textit{Al-Taweel} Meter as an example.
 
-  \begin{table}[!t]
-    \centering
-    \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}c c}
-      % \hline
-      \toprule
-      \textbf{\small{Text}} & \small{\textbf{Meter (\textarabic{البحر})}} & \small{\textbf{Probability}} \\
-      \midrule
-            \textarabic{خلال المباراة التي جمتهما مساء السبت بالجولة ال26 من المسابقة} & \textarabic{الطويل} & 0.9949\\      
-      \textarabic{والثالث بشكل عام في آخر 16 موسم بعد ستيفن جيرارد في موسمي} & \textarabic{البسيط} & 0.9947\\
-      \textarabic{واصل صلاح هوايته المفضلة بالتسجيل أمام بورنموث للمبارة الرابعة على التوالي محققا العلامة الكاملة أمامهم} & \textarabic{البسيط} & 0.9954\\
-            \textarabic{مبتعدا عن أقرب ملاحقيه الجابوني بيير إمريك أوباميانج الذي سجل 15 هدا} & \textarabic{الطويل} & 0.9378\\
-      \textarabic{يعد بورنموث بوابة صلاح للعودة للتسجيل هذا الموسم في بريميرليج} & \textarabic{الطويل} & 0.9988\\
+ \begin{table}[!t]
+  \centering
+  \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}c c}
+   % \hline
+   \toprule
+   \textbf{\small{Text}} & \small{\textbf{Meter (\textarabic{البحر})}} & \small{\textbf{Probability}} \\
+   \midrule
+      \textarabic{خلال المباراة التي جمتهما مساء السبت بالجولة ال26 من المسابقة} & \textarabic{الطويل} & 0.9949\\   
+   \textarabic{والثالث بشكل عام في آخر 16 موسم بعد ستيفن جيرارد في موسمي} & \textarabic{البسيط} & 0.9947\\
+   \textarabic{واصل صلاح هوايته المفضلة بالتسجيل أمام بورنموث للمبارة الرابعة على التوالي محققا العلامة الكاملة أمامهم} & \textarabic{البسيط} & 0.9954\\
+      \textarabic{مبتعدا عن أقرب ملاحقيه الجابوني بيير إمريك أوباميانج الذي سجل 15 هدا} & \textarabic{الطويل} & 0.9378\\
+   \textarabic{يعد بورنموث بوابة صلاح للعودة للتسجيل هذا الموسم في بريميرليج} & \textarabic{الطويل} & 0.9988\\
 
-      \textarabic{عزز صلاح صدارة هدافي الدوري الإنجليزي راف رصيده إلى  هدف} & \textarabic{الطويل} & 0.7316\\
-      \textarabic{وهاري كين وسيرجيو أجويور (14 هدفا لكل منهما)} & \textarabic{المتقارب} & 0.8327\\
-      \textarabic{أصبح صلاح أول لاعب يسجل 20 هدفا أو أكثر في موسمين متتاليين مع ليفربول منذ الأوروجواياني لويس سواريز} & \textarabic{البسيط} &0.7075\\
-      \textarabic{ليتساوى بورنموث مع واتفورد كأكثر الفرق استقبالا لأهداف صلاح في بريميرليج برصيد 6 أهداف
+   \textarabic{عزز صلاح صدارة هدافي الدوري الإنجليزي راف رصيده إلى هدف} & \textarabic{الطويل} & 0.7316\\
+   \textarabic{وهاري كين وسيرجيو أجويور (14 هدفا لكل منهما)} & \textarabic{المتقارب} & 0.8327\\
+   \textarabic{أصبح صلاح أول لاعب يسجل 20 هدفا أو أكثر في موسمين متتاليين مع ليفربول منذ الأوروجواياني لويس سواريز} & \textarabic{البسيط} &0.7075\\
+   \textarabic{ليتساوى بورنموث مع واتفورد كأكثر الفرق استقبالا لأهداف صلاح في بريميرليج برصيد 6 أهداف
 } & \textarabic{الرمل} & 0.8422\\
-      \textarabic{لم يكمل صلاح ثلاث مباريات متتالية مع ليفربول في الدوري الإنجليزي بدون تسجيل هدف} & \textarabic{الوافر} & 0.5246\\
+   \textarabic{لم يكمل صلاح ثلاث مباريات متتالية مع ليفربول في الدوري الإنجليزي بدون تسجيل هدف} & \textarabic{الوافر} & 0.5246\\
 
-      \textarabic{، منذ انضمامه للريدز قبل انطلاق الموسم الماضي قادما من روما الإيطالي} & \textarabic{البسيط} & 0.7561\\
-      
+   \textarabic{، منذ انضمامه للريدز قبل انطلاق الموسم الماضي قادما من روما الإيطالي} & \textarabic{البسيط} & 0.7561\\
+   
 \textarabic{قاد الدولي المصري محمد صلاح فريقه ليفربول للعودة إلى صدارة الدوري الإنجليزي الممتاز} & \textarabic{الرمل} & 0.7385\\
-      \bottomrule
-    \end{tabular*}
-    \caption{Sample Article Classification }\label{Tab:Results_Article}
-  \end{table}
+   \bottomrule
+  \end{tabular*}
+  \caption{Sample Article Classification }\label{Tab:Results_Article}
+ \end{table}
 
 
-  We can show in the below example the data cleansing applied to remove 26 from the text (Note: If the numbers are written with letters it will be part of the text otherwise the model will remove it). Then we can show the model was able to classify the text to the correct class. We can show the sequence of the example as follows, the first line is the text, the second line is the Arud writing style, the third line is the Arud writing equivalent music shapes as a sequence of \textit{Harakat and Sukun}. The fourth line is the correct meter music sequence, And the last line is \textit{Al-Taweel} meter \textit{Tafa’il}.
-  
+ We can show in the below example the data cleansing applied to remove 26 from the text (Note: If the numbers are written with letters it will be part of the text otherwise the model will remove it). Then we can show the model was able to classify the text to the correct class. We can show the sequence of the example as follows, the first line is the text, the second line is the Arud writing style, the third line is the Arud writing equivalent music shapes as a sequence of \textit{Harakat and Sukun}. The fourth line is the correct meter music sequence, And the last line is \textit{Al-Taweel} meter \textit{Tafa’il}.
+ 
 If we analyzed the example, We can show there is only one issue in the meter \textit{Tafa'il}. We highlighted this issue with red color to show the additional \textit{Harakah}. But the model can still identify the meter with some few issues. However, If we tried to remove this \textit{Harakah} the probability for this sentence to be classified to \textit{Al-Taweel} will be increase around 1\%. This means the Model can know how much the text is relevant and close to the nearest \textit{Tafa'il}. We need also to highlight \textit{Al-Taweel} can appear with different \textit{Tafa'il} example \textarabic{فعول, فعولن} both of them is correct and the meter will be assumed correctly with any of these shapes. 
 
 \textbf{Example:}
 
 \begin{Arabic}
-  \begin{traditionalpoem}
-خلال المباراة التي جمعتهما\quad & \quad  مساء السبت بالجولة الـ26 من المسابقة \\
+ \begin{traditionalpoem}
+خلال المباراة التي جمعتهما\quad & \quad مساء السبت بالجولة الـ26 من المسابقة \\
 %خِلَالَ الْمُبَارَاةِ الْلَتِي جَمْعَتِهِمَا\quad & \quad مَسَاءَ السْسَبْتِ بِالْجَوْلَةِ ال26 مِنَ الْمُسَابَقَةِ \\
-    {\color{purple} خلالَلْ} {\color{blue} مُباراتل} {\color{OliveGreen} لَتِيجُ} {\color{Brown} مَعَتْهُما}\quad & \quad
-    {\color{purple} مِساءَسْ} {\color{blue} سَبَتْبِلْجَوْ} {\color{OliveGreen} لَتِلْمِنَلْ } {\color{Brown} مُسَابَقَه}\\
+  {\color{purple} خلالَلْ} {\color{blue} مُباراتل} {\color{OliveGreen} لَتِيجُ} {\color{Brown} مَعَتْهُما}\quad & \quad
+  {\color{purple} مِساءَسْ} {\color{blue} سَبَتْبِلْجَوْ} {\color{OliveGreen} لَتِلْمِنَلْ } {\color{Brown} مُسَابَقَه}\\
 
-    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{/0//}} {\color{Brown} \texttt{0//0//}}\quad & \quad
-    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}}  \texttt{{\color{OliveGreen}/0//}{\color{red}/}{\color{OliveGreen}0}} {\color{Brown} \texttt{0//0//}}\\
-    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0// }} {\color{OliveGreen} \texttt{/0//}} {\color{Brown} \texttt{0/0///}}\quad & \quad
-    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{0/0//}} {\color{Brown} \texttt{0//0//}}\\
-        
-    {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُولُ} {\color{Brown} مَفَاعِلُنْ}\quad & \quad
-    {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُوْلُنْ} {\color{Brown} مَفَاعِيْلُنْ}
+  {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{/0//}} {\color{Brown} \texttt{0//0//}}\quad & \quad
+  {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} \texttt{{\color{OliveGreen}/0//}{\color{red}/}{\color{OliveGreen}0}} {\color{Brown} \texttt{0//0//}}\\
+  {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0// }} {\color{OliveGreen} \texttt{/0//}} {\color{Brown} \texttt{0/0///}}\quad & \quad
+  {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{0/0//}} {\color{Brown} \texttt{0//0//}}\\
+    
+  {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُولُ} {\color{Brown} مَفَاعِلُنْ}\quad & \quad
+  {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُوْلُنْ} {\color{Brown} مَفَاعِيْلُنْ}
 
-  \end{traditionalpoem}
+ \end{traditionalpoem}
 \end{Arabic}
 
 %\subsubsection{Identify if }
@@ -515,31 +532,31 @@ If we analyzed the example, We can show there is only one issue in the meter \te
 In Figure~\ref{Fig:Results_Distribution} we can show the score results for our testing data contains 159,998 correctly classified over 169,164 rows. These scores show that around 153,186 of the corrected results is above 0.94. So, If we filter any text with probability less than 0.94 we can identify if the text is related to the 16 classic meters or not. If we apply the same threshold to Table~\ref{Tab:Results_Article} we can find all the sentences which above 0.94 will be correctly classified to the corrected meters (with small issues in its \textit{Tafa’il}).
 
 \begin{figure}[!t]
-  \includegraphics{./Figures/Ch_7_Results/IMG_Result_Distribution.png}
-  \caption{Testing data score ranges distribution.}~\label{Fig:Results_Distribution}
+ \includegraphics{./Figures/Ch_7_Results/IMG_Result_Distribution.png}
+ \caption{Testing data score ranges distribution.}~\label{Fig:Results_Distribution}
 \end{figure}
 
-The second Interesting example to check how the model can understand the pattern without  \textit{Tashkeel} and the effect of adding  \textit{Tashkeel} to the text. We will take the second row from Table~\ref{Tab:Results_Article}. In the case without  \textit{Tashkeel}, the model automatically tried to find any sequences of character that follow any of the Meters patterns. The model only cared about the pattern regarding the  \textit{Tafa'il} not the mean of the text. So, we can find the model could successfully detect a sequence of characters which follow \textit{Al-Taweel} with score 0.9988. In the case with Tashkeel, the model understood the new pattern of \textit{Tafa'il} and gave the text low probability which below the threshold and classified it as non-poem (not related to the 16 classic meters) with score 0.8390. We can show how  \textit{Tashkeel} can add a feature for model understanding to the \textit{Tafa'il} pattern of the poem.
+The second Interesting example to check how the model can understand the pattern without \textit{Tashkeel} and the effect of adding \textit{Tashkeel} to the text. We will take the second row from Table~\ref{Tab:Results_Article}. In the case without \textit{Tashkeel}, the model automatically tried to find any sequences of character that follow any of the Meters patterns. The model only cared about the pattern regarding the \textit{Tafa'il} not the mean of the text. So, we can find the model could successfully detect a sequence of characters which follow \textit{Al-Taweel} with score 0.9988. In the case with Tashkeel, the model understood the new pattern of \textit{Tafa'il} and gave the text low probability which below the threshold and classified it as non-poem (not related to the 16 classic meters) with score 0.8390. We can show how \textit{Tashkeel} can add a feature for model understanding to the \textit{Tafa'il} pattern of the poem.
 
 
 \textbf{Example:}
 
 \begin{Arabic}
-  \begin{traditionalpoem}
-   يَعِدْ بُرْنُمُثْ بَوَّابَةَ صَلَاحِ لِلْعَوْدَةْ\quad & \quad لِتَّسْجِيلِ هَذَا المَوْسِمِ فِي بِرِمِرْلِجْ  \\
+ \begin{traditionalpoem}
+  يَعِدْ بُرْنُمُثْ بَوَّابَةَ صَلَاحِ لِلْعَوْدَةْ\quad & \quad لِتَّسْجِيلِ هَذَا المَوْسِمِ فِي بِرِمِرْلِجْ \\
 
-    {\color{purple} يَعِدْبُرْ} {\color{blue} نُمُثْبَوَّا} {\color{OliveGreen} بَةَصَلَا} {\color{Brown} حِلِلْعَوْدَةْ}\quad & \quad
-    {\color{purple} لِتَّسْجِي } {\color{blue} لِهَذَاالْمَوْ} {\color{OliveGreen} سِمِفِى } {\color{Brown} بِرِمِرْلِجْ}\\
+  {\color{purple} يَعِدْبُرْ} {\color{blue} نُمُثْبَوَّا} {\color{OliveGreen} بَةَصَلَا} {\color{Brown} حِلِلْعَوْدَةْ}\quad & \quad
+  {\color{purple} لِتَّسْجِي } {\color{blue} لِهَذَاالْمَوْ} {\color{OliveGreen} سِمِفِى } {\color{Brown} بِرِمِرْلِجْ}\\
 
-    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{//{\color{red} /}0/}} {\color{Brown} \texttt{0/0/0//}}\quad & \quad  {\color{purple} \texttt{/{\color{red} 0/0}0/}} {\color{blue} \texttt{0/0/0//}}  {\color{OliveGreen} \texttt{//{\color{red} /0/}}} {\color{Brown} \texttt{//{\color{red} 0/}0/}}\\
+  {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{//{\color{red} /}0/}} {\color{Brown} \texttt{0/0/0//}}\quad & \quad {\color{purple} \texttt{/{\color{red} 0/0}0/}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{//{\color{red} /0/}}} {\color{Brown} \texttt{//{\color{red} 0/}0/}}\\
+  
+  {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0// }} {\color{OliveGreen} \texttt{0/0//}} {\color{Brown} \texttt{0/0///}}\quad & \quad
+  {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{0/0//}} {\color{Brown} \texttt{0//0//}}\\
     
-    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0// }} {\color{OliveGreen} \texttt{0/0//}} {\color{Brown} \texttt{0/0///}}\quad & \quad
-    {\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{0/0//}} {\color{Brown} \texttt{0//0//}}\\
-        
-    {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُولُن} {\color{Brown} مَفَاعِلُنْ}\quad & \quad
-    {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُوْلُنْ} {\color{Brown} مَفَاعِيْلُنْ}
+  {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُولُن} {\color{Brown} مَفَاعِلُنْ}\quad & \quad
+  {\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُوْلُنْ} {\color{Brown} مَفَاعِيْلُنْ}
 
-  \end{traditionalpoem}
+ \end{traditionalpoem}
 \end{Arabic}
 
 
@@ -554,12 +571,12 @@ In this section, we need to discuss some points regarding our experiments and re
 
 \subsection{Dataset Unbalanced}
 
-Our dataset was unbalanced which for sure affect the results we showed we have some significant drops in Per-class accuracy which most of them regarding the data size issue. We think we should have some further work regarding this point to reconstruct the experiments with balanced data, for example, 10k samples per class and check the results. Another approach could be to increase the size of the small classes to be at least 5\% of the overall classes percentage this would enhance the learning accuracy of these classes.  
+Our dataset was unbalanced which for sure affect the results we showed we have some significant drops in Per-class accuracy which most of them regarding the data size issue. We think we should have some further work regarding this point to reconstruct the experiments with balanced data, for example, 10k samples per class and check the results. Another approach could be to increase the size of the small classes to be at least 5\% of the overall classes percentage this would enhance the learning accuracy of these classes. 
 \subsection{Encoding Method}
 
 Although all the encoding methods which carry the same information should produce the same results in theory, In practice, Deep Neural Networks showed this is not the case. To explain the reason let’s first explain how Neural Network work with different encoding mechanism?
 
-The encoding method is a transformer function $\mathcal{T}$ this function transform a discrete input values $X$. We can denote to the values as a transformed feature $\mathcal{T}(X)$ the output of this transformer method. The output $\mathcal{T}(X)$ of this transformer in the new encoding space will be input to the Neural Network model. The model should be able to ``decode''  this type of encoding. Since the lossless encoding is invertible, it is clear for any two functions and any two encodings that $\eta_1\left(\mathcal{T}_1(X)\right) = \left(\eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1} \right)\left(\mathcal{T}_2(X)\right)$. This means that if the network $\eta_1$ is the most accurate network which can ``decode'' the encoding function (transformer) $\mathcal{T}_1$ this network $\eta_1$ is not a general network which can understand any encoding function. Also, to design this network requires a very complex architecture. So, if we have another encoding function $\mathcal{T}_2$ and we tried to use the same network for the $\mathcal{T}_2$ requires designing another network $\eta_2 = \eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1}$. However, this network may be of complicated architecture to ``decode'' the complicated pattern of $\mathcal{T}_2(X)$.
+The encoding method is a transformer function $\mathcal{T}$ this function transform a discrete input values $X$. We can denote to the values as a transformed feature $\mathcal{T}(X)$ the output of this transformer method. The output $\mathcal{T}(X)$ of this transformer in the new encoding space will be input to the Neural Network model. The model should be able to ``decode'' this type of encoding. Since the lossless encoding is invertible, it is clear for any two functions and any two encodings that $\eta_1\left(\mathcal{T}_1(X)\right) = \left(\eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1} \right)\left(\mathcal{T}_2(X)\right)$. This means that if the network $\eta_1$ is the most accurate network which can ``decode'' the encoding function (transformer) $\mathcal{T}_1$ this network $\eta_1$ is not a general network which can understand any encoding function. Also, to design this network requires a very complex architecture. So, if we have another encoding function $\mathcal{T}_2$ and we tried to use the same network for the $\mathcal{T}_2$ requires designing another network $\eta_2 = \eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1}$. However, this network may be of complicated architecture to ``decode'' the complicated pattern of $\mathcal{T}_2(X)$.
 
 In general, Any encoding function $\mathcal{T}$ require a special network $\eta$ to get the correct decoding (learning) for the dataset. So, our comparison between the encoding methods in the same Neural Networks architecture not accurate as each one required different network design. But all of them will reach the same results but with a different time or can be a small difference due to the not accurate network architecture. Moreover, Our work illustrated clearly the effect of the encoding methods and compared between each other, We think the \textit{\textit{two-hot}} encoding is the more suitable method to work with character level problems. It is the middle approach between the \textit{\textit{one-hot}} which needs a huge amount of memory and the \textit{\textit{binary}} which loss some meaning in Arabic language diacritics effect.
 
