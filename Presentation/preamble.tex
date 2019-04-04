@@ -1,0 +1,120 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages Definition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[toc,page]{appendix}
+%\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{pgf,pgfpages}
+\usepackage{graphicx}
+%\usepackage{units}
+\usepackage[utf8]{inputenc}
+\usepackage{pstricks}
+\usepackage{multicol}
+\usepackage{xspace}
+\usepackage[utf8]{inputenc}
+\usepackage{utopia} %font utopia imported
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{xcolor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[font=small]{caption}
+\setlength{\belowcaptionskip}{-10pt}
+\setlength{\textfloatsep}{5pt}
+\usepackage[font=small,skip=0pt]{caption}
+\usepackage{lipsum}
+\newcommand\Wider[2][4em]{%
+	\makebox[\linewidth][c]{%
+		\begin{minipage}{\dimexpr\textwidth+#1\relax}
+			\raggedright#2
+		\end{minipage}%
+	}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{appendixnumberbeamer}
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\usepackage{xspace}
+\usepackage{amsmath}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+\usefonttheme{professionalfonts} % using non standard fonts for beamer
+\usefonttheme{serif} % default family is serif
+\usepackage{tipa}
+\usetikzlibrary{shapes.geometric,arrows.meta,arrows,calc,intersections,matrix,positioning,patterns,decorations.text,matrix,chains,decorations.pathreplacing}
+\tikzstyle{inputNode}=[draw,circle,minimum size=10pt,inner sep=0pt]
+\tikzstyle{stateTransition}=[-stealth, thick]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For Arabic
+\usepackage{polyglossia} 
+\setmainlanguage{english}
+\setotherlanguage{arabic}
+\newfontfamily\arabicfont[Script=Arabic]{Amiri}
+\setmainfont[Scale=0.925]{Heuristica}
+\usepackage{bidipoem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{code_listing.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To define sime custom colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xcolor}
+\definecolor{myBlue}{HTML}{7982db}
+\definecolor{myGreen}{HTML}{ABDDA4}
+\definecolor{myBlue2}{HTML}{4169AA}
+\definecolor{myGreen2}{HTML}{38AE40}
+
+\definecolor{uiborange}{RGB}{217, 89, 0}
+\definecolor{MyGray}{rgb}{.9, .9, .9}
+\definecolor{myorange}{rgb}{1.0,0.4,0}
+\definecolor{mygreen}{rgb}{0,0.8,0.6}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\colorlet{LightGreen}{green!25}%for figures
+\colorlet{DarkGreen}{green!90}%for figures
+\colorlet{LightBlue}{blue!40}%for figures
+\colorlet{LightPurple}{red!20}%for figures
+\colorlet{LightYellow}{yellow!30}%for figures
+\colorlet{LightBlue1}{blue!20}%for figures
+\colorlet{LightPurple1}{purple!40}%for figures
+\definecolor{CodedBlue}{HTML}{375E97}
+\definecolor{CodedOrange}{HTML}{FB6542}
+\definecolor{CodedYellow}{HTML}{FFBB00}
+\definecolor{CodedEmerald}{HTML}{265C00}%375E97
+\definecolor{CodedDarkLemon}{HTML}{C6D166}%FB6542
+\definecolor{CodedDarkGreen}{HTML}{3F681C}%739F3D
+\definecolor{CodedGreen2}{HTML}{BBCF4A}
+\definecolor{CodedLemon}{HTML}{E4EABC}
+\definecolor{CodedPearGreen}{HTML}{7CAA2D}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\beamertemplatenavigationsymbolsempty
+\include{macros}
+%\Includeonlyframes{current}
+%\newcommand{\ShowGraphics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\AtBeginSection[]{
+	\begin{frame}
+	\vfill
+	\centering
+	\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+		\usebeamerfont{title}\secname\par%
+	\end{beamercolorbox}
+	\vfill
+\end{frame}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{pgfplot_configurations.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pdfstringdefDisableCommands{\let\uppercase\relax}%ignore warning \uppercase is not supported when a string is expanded for bookmarks.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% TeX-engine: xetex
+%%% End:

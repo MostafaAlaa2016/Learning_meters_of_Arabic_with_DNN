@@ -1,0 +1,143 @@
+\section{Datasets Design}
+%\begin{frame}[fragile]{Dataset}
+%\begin{itemize}
+%	\item Our dataset consists of  1,722,321 labeled data points.
+%%	\item Verses are for 3701 poets from 11 ages.
+%	\item Dataset split on 80\% training, 10\% testing, and 10\% validation (around 150k).
+%\end{itemize}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Dataset}
+Our dataset consists of \textbf{1,722,321} labeled data points.%
+\begin{center}
+	\begin{figure}[!t]
+		\centering
+		\begin{tikzpicture}[scale=.8]
+		\input{./Figures/dataset_size_ar.tex}
+		\end{tikzpicture}%
+		\caption{{\tiny Number of verses per \textit{meter} ordered descendingly on y-axis vs. meter name on x-axis.}}\label{Fig:Data_Size_Distribution}
+	\end{figure}
+\end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Dataset}
+Basic cleansing rules:
+	\begin{itemize}
+		\item Filtering the 16 classic meters.% Ignore the non-classic.
+		\item Removing many unnecessary white spaces.
+		\item Removing non-Arabic characters.
+		\item Factoring Shadaa and Tanween.
+	\end{itemize}
+
+\begin{table}[!ht]
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{c c c | c c}
+			% \hline
+			\toprule
+			\textbf{\small{Diacritics}}     & \small{\textit{With Shadda}} & \small{\textit{Without shadaa}} &
+			\small{\textit{With tanween}} & \small{\textit{Without tanween}} \\
+			% \hline
+			\midrule
+			\textbf{\small{Shape}}   & \textarabic{دَّ} &  \textarabic{دْدَ} & \textarabic{دً} &  \textarabic{دَ+نْ}\\
+			% \hline
+			\bottomrule
+	\end{tabular}}
+	\caption{Diacritics on the letter  \textarabic{ د }}\label{Tab:Diacritics_Dal}
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[fragile]{Motivation}
+%Analyze the learning curve and the effect of the following:
+%\begin{itemize}
+%\item<1-> Encoding.
+%\item<2-> Dataset size.
+%\item<3-> Diacritics. 
+%\end{itemize}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Data Representation}
+An Issue:
+\begin{itemize}
+	\item Diacritics are standalone characters!
+	\begin{itemize}
+		\item \texttt{len} \textarabic{مرحبا} $\neq$ \texttt{len} \textarabic{مَرْحَبَاً}
+		\item We have represented the letter and its diacritic as a \alert{one character}.
+	\end{itemize}
+\end{itemize}
+
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=.9]
+		\node at (-12,0){\input{./Figures/encoding_onehot_with_tashkeel.tex}};
+		\node at (-7,0){\input{./Figures/encoding_onehot_without_tashkeel.tex}};
+		\node at (-12+0.3,-3){(a) \textit{With Diacritics}};
+		\node at (-7+0.3, -3){(b) \textit{Without Diacritics}};
+		\end{tikzpicture}
+		\caption{{\tiny Example of \textit{One-hot} encoding for ِِArabic word (\textarabic{مرحبا}).}}\label{Fig:One-hot}
+	\end{figure}
+
+
+
+%\textbf{Benefits}:
+%\begin{enumerate}
+%	\item Verse's length is fixed, regardless the diacritic states.
+%	\item Saving more space, by shorten the length of full diacritic verses. 
+%	\item Models can be tested on both diacritic or non-diacritic data.
+%\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Encoding Techniques}
+\begin{enumerate}
+\item One-Hot
+\item Binary
+\item \alert{Two-Hot} (new technique)
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Encoding Techniques}
+\Wider{
+\begin{figure}
+	\centering
+	\input{./Figures/encoding_three_figures_together.tex}
+	\caption{{\tiny Different encoding mechanisms}}~\label{Fig:All_Encoding}
+\end{figure}
+}
+%181 is the number of all combination between letters and diacritics. $181 = 36 + 36 \times 4 + 1$
+%Let $n$ be the vector length. $n = \ceil*{\log_2 l}$ $l \in \{181\}$ for Arabic English alphabet, respectively.   
+\end{frame}
+
+%
+%\begin{frame}[fragile]{Pros and Cons}
+%
+%
+%\textbf{One-Hot}:
+%\begin{itemize}
+%\item $181 \times 1$ too long vector.
+%\item Wast of memory, compared with Binary.
+%\end{itemize}
+%But it's very informative and easy to learn.\\[0.7cm]
+%
+%\textbf{Binary}:
+%\begin{itemize}
+%\item The problem of a common feature, the optimizer updates weights of this two common features to reduce the error of one character of them it will affect the rest characters that have the same feature.
+%\end{itemize}
+%But, memory is well consumed.
+%\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% TeX-engine: xetex
+%%% End:

@@ -1,0 +1,275 @@
+\section{Training and Architecture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Which Network!}
+
+
+		\begin{itemize}
+			\item[--] \textbf{Pattern}: is a sequence of characters.
+			\item  Unlike feedforward neural networks, RNNs can use their internal state (memory) to process sequences of inputs.
+			\item In theory, RNNs are capable of handling long-term dependencies. 	However, in practice they do not, due to the \alert{exploding gradient problem}
+			\item LSTMs was designed to solve the long-term dependency problem using internal memory gates.
+		\end{itemize}
+		
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{RNN, Architectures}
+\begin{figure}[t]
+	\minipage{\textwidth}
+	\centering
+	\input{./Figures/Fig_RNN_unrolled.tex}
+	\endminipage\hfill
+	\caption{Recurrent Neural Networks Loops adapted from~\cite{colah}}\label{Fig:RNN_Rolled_Loop}
+	
+\end{figure}%
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{RNN, Architectures}
+\begin{figure}[t]
+	\minipage{0.3\textwidth}
+	\input{./Figures/Fig_Rnn_Single_Tanh_Left.tex}
+	\endminipage\hfill
+	\minipage{0.3\textwidth}
+	\input{./Figures/Fig_Rnn_Single_Tanh_Middle.tex}
+	\endminipage\hfill
+	\minipage{0.3\textwidth}%
+	\input{./Figures/Fig_Rnn_Single_Tanh_Right.tex}
+	\endminipage
+	\caption{A single recurrent layer adapted from~\cite{colah}}~\label{Fig:LSTM_SimpleRNN}
+\end{figure}%
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{LSTM Architectures}
+\begin{center}
+\begin{figure}[t]
+	\minipage{0.8\textwidth}
+	\input{./Figures/Fig_LSTM_Cell_full_not_scaled.tex}
+	\endminipage
+	\caption{LSTM internal cell adapted from~\cite{colah}}~\label{Fig:LSTM_Cell_Chaining}
+\end{figure}%
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{LSTM Architectures}
+\begin{figure}[t]
+	\minipage{0.32\textwidth}
+	\input{./Figures/Fig_LSTM_Cell_Left.tex}
+	\endminipage\hfill
+	\minipage{0.32\textwidth}
+	\input{./Figures/Fig_LSTM_Cell_full.tex}
+	\endminipage\hfill
+	\minipage{0.33\textwidth}%
+	\input{./Figures/Fig_LSTM_Cell_Right.tex}
+	\endminipage
+	\caption{Unfold LSTM adapted from~\cite{colah}}
+	~\label{Fig:LSTM_Cell_Chaining}
+\end{figure}%
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{LSTM Architectures}
+\begin{block}{Bi-LSTM Motivation}
+		\begin{itemize}
+	\item[--] \textit{\textbf{Harry}} is the king, and he will travel next week.
+	\item[--] The new book which makes the big sale is named \textit{\textbf{Harry}} Potter.
+\end{itemize}
+\end{block}
+
+\begin{itemize}
+	\item Bi-LSTM models always outperform LSTM models.
+	\item It means that models can't learn the pattern from one direction, it
+	should be two directions together.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{LSTM Architectures}
+\begin{center}
+\begin{figure}[!t]
+\centering
+\input{./Figures/Fig_BI_LSTM.tex}
+\caption{bidirectional long short-term memory~\cite{Gitrepo_NN_Tikz}}~\label{Fig:BI-LSTM}
+\end{figure}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experiments and Results}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Experiments Parameters}
+\begin{itemize}
+	\item \textbf{Dataset Configurations}:
+	\begin{itemize}
+		\item [-] Encoding technique: BinE, OneE, TwoE.
+		\item [-] Diacritics: 0D, 1D.
+		\item [-] Trimming: 0T, 1T.
+	\end{itemize}
+\item \textbf{Network Configurations}:
+\begin{itemize}
+\item [-] Loss functions: \textit{Weighted} or \textit{Non-Weighted } \textbf{(1, 0)} respectively.
+\item [-] The number of layers: nL.
+\item [-] The number of cell units: nU.
+\item [-] Cell type: LSTM, Bi-LSTM.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Overall Accuracy!}
+\Wider{
+\begin{figure}[!t]
+	\input{./Figures/Fig_Overall_Score.tex}
+	\caption{Overall accuracy of the 192 experiments}~\label{Fig:ArabicModelsResults}
+\end{figure}
+}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Comparison with related works}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c c c}
+		\toprule
+		\textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} \\
+		\midrule
+		\cite{Alnagdawi2013FindingArabicPoemMeter} & 75\% & 128\\
+		\cite{Abuata2016RuleBasedAlgorithm}& 82.2\% & 417\\
+		This article & 96.38\%& 150,000 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Overall accuracy of this article compared to literature.}\label{Tab:Summary_Results}
+\end{table}
+\end{frame}
+
+\section{Discussions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Per-class Accuracy!}
+\Wider{
+	\begin{figure}[!t]
+		\input{./Figures/Fig_Results_Per_Class.tex}
+		\caption{The per-class accuracy score of the best four models.}~\label{Fig:ArabicModelsResults}
+	\end{figure}
+}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Encoding effect}
+%\Wider{
+	\begin{figure}[!t]
+		  \begin{tikzpicture}
+		\input{./Figures/Fig_Results_Encoding_Convergence.tex}
+		  \end{tikzpicture}
+		\caption{Encoding effect on Learning rate with the best model (1T, 0D, 4L, 82U, 0W, BinE) and when using the two other encodings	instead of BinE.}~\label{Fig:ArabicModelsResults}
+
+	\end{figure}
+%}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}[fragile]{Encoding effect}
+
+\begin{block}{Encoding}
+	\begin{itemize}
+		
+		\item The encoding method is a transformer function $\mathcal{T}$ which transform a discrete input values $X$. 
+		\item If the network $\eta_1$ is the most accurate network which can ``decode'' $\mathcal{T}(X)$. 
+		\item If we have another encoding function $\mathcal{T}_2$ and we tried to use the same network $\eta_1$ for the $\mathcal{T}_2$ as $\eta_1\left(\mathcal{T}_1(X)\right) = \left(\eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1} \right)\left(\mathcal{T}_2(X)\right)$. This network may be of complicated architecture to be able to “decode” a terse or complex pattern $\mathcal{T}_2(X)$.
+		
+		
+	\end{itemize}
+
+	
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Classifying Arabic Non-Poem Text}
+\begin{figure}[!t]
+{\includegraphics[scale=.65]{./Figures/IMG_Result_Distribution.png}};
+	\caption{Testing data score ranges distribution.}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Classifying Arabic Non-Poem Text}
+\begin{Arabic}
+	\begin{traditionalpoem}
+		خلال المباراة التي جمعتهما\quad & \quad  مساء السبت بالجولة الـ26 من المسابقة \\
+		%خِلَالَ الْمُبَارَاةِ الْلَتِي جَمْعَتِهِمَا\quad & \quad مَسَاءَ السْسَبْتِ بِالْجَوْلَةِ ال26 مِنَ الْمُسَابَقَةِ \\
+		{\color{purple} خلالَلْ} {\color{blue} مُباراتل} {\color{OliveGreen} لَتِيجُ} {\color{Brown} مَعَتْهُما}\quad & \quad
+		{\color{purple} مِساءَسْ} {\color{blue} سَبَتْبِلْجَوْ} {\color{OliveGreen} لَتِلْمِنَلْ } {\color{Brown} مُسَابَقَه}\\
+		
+		{\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{/0//}} {\color{Brown} \texttt{0//0//}}\quad & \quad
+		{\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}}  \texttt{{\color{OliveGreen}/0//}{\color{red}/}{\color{OliveGreen}0}} {\color{Brown} \texttt{0//0//}}\\
+		{\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0// }} {\color{OliveGreen} \texttt{/0//}} {\color{Brown} \texttt{0/0///}}\quad & \quad
+		{\color{purple} \texttt{0/0//}} {\color{blue} \texttt{0/0/0//}} {\color{OliveGreen} \texttt{0/0//}} {\color{Brown} \texttt{0//0//}}\\
+		
+		{\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُولُ} {\color{Brown} مَفَاعِلُنْ}\quad & \quad
+		{\color{purple} فَعُوْلُنْ} {\color{blue} مَفَاعِيْلُنْ} {\color{OliveGreen} فَعُوْلُنْ} {\color{Brown} مَفَاعِيْلُنْ}
+		
+	\end{traditionalpoem}
+\end{Arabic}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \cite{einstein} \cite{knuth}
+\end{frame} 
+
+\begin{frame}
+\frametitle{bibliography}
+\printbibliography
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Questions!}
+\begin{center}
+	Questions.
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\begin{thebibliography}{10}
+\bibitem{mueller92}
+\alert{V. M\"uller, and A. Soltysiak}
+\newblock  {Spectral radius formula for commuting Hilbert space operators}
+\newblock {\em Studia Math.103. (1992), 329-333}.
+
+\bibitem{cho92}
+\alert{M. Cho and W. Zelazko}
+\newblock {On geometric spectral radius of commuting $n$-tuples of  operators}
+\newblock {\em Hokkaido Math. J., 21(2): 251-258, 1992}.
+\end{thebibliography}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% TeX-engine: xetex
+%%% End:

@@ -1,0 +1,119 @@
+\begin{tikzpicture}[scale=1.2]
+
+% The grid
+%  \draw[step=0.5, gray!40, very thin] (-1,-1) grid (8,8);
+
+% LSTM frame
+\def \yONE {0.75}
+
+\def \sigmoidWidth  {0.5}
+\def \sigmoidInDist {0.2}
+\def \sigmoidHeight  {0.5}
+\def \yB  {1.5}
+\def \yD  {2.75}
+\def \xZERO  {0}
+\def \xONE  {2}
+\def \xTWO  {3.5}
+\def \xTHREE  {5}
+\def \xFOUR  {7}
+\def \shift {1}
+\def \bigR {0.25cm}
+%%%%%%%%%%%%%%%%%%%%%first one 
+% First Sigmoid
+\draw[fill=LightYellow] (\xONE, \yB) rectangle (\xONE+ \sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {\large$\sigma$};
+% Upper Arrow Sigmoid 
+\draw[arrows=-latex, line width=1.8pt]  (\xONE + \sigmoidWidth/2, \yB +\sigmoidHeight) -- (\xONE + \sigmoidWidth/2, 2.6);
+% Circle X_{t+1}
+\draw[thick,fill=LightBlue1] (\xONE + \sigmoidWidth/2, \yONE ) circle (\bigR) node {\large$x_0$};
+% Down Arrow X_{t+1}
+\draw[arrows=-latex,line width=1.8pt] (\xONE + \sigmoidWidth/2, \yONE + 0.25)  --  (\xONE + \sigmoidWidth/2, \yB);
+% Circle H{t} 
+\draw[thick,fill=LightPurple1] (\xONE + \sigmoidWidth/2, \yD) circle (\bigR) node {\large$h_0$};
+% Right Arrow H{t} 
+\draw[arrows=-latex, line width=1.8pt] (\xONE + \sigmoidWidth/2+\sigmoidWidth/2, 1.75)   
+--  (\xTWO, 1.75)
+node[right, xshift=-0.9cm, yshift=0.4cm,] {\large$h_0$};
+%%%%%%%%%%%%%%%%%%%%%second one 
+% First Sigmoid
+%%%%%%%%%%%%%%%%%%%%%first one 
+% First Sigmoid
+\draw[fill=LightYellow] (\xTWO, \yB) rectangle (\xTWO+ \sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {\large$\sigma$};
+% Upper Arrow Sigmoid 
+\draw[arrows=-latex, line width=1.8pt]  (\xTWO + \sigmoidWidth/2, \yB +\sigmoidHeight) -- (\xTWO + \sigmoidWidth/2, 2.6);
+% Circle X_{t+1}
+\draw[thick,fill=LightBlue1] (\xTWO + \sigmoidWidth/2, \yONE ) circle (\bigR) node {\large$x_1$};
+% Down Arrow X_{t+1}
+\draw[arrows=-latex,line width=1.8pt] (\xTWO + \sigmoidWidth/2, \yONE + 0.25)  --  (\xTWO + \sigmoidWidth/2, \yB);
+% Circle H{t} 
+\draw[thick,fill=LightPurple1] (\xTWO + \sigmoidWidth/2, \yD) circle (\bigR) node {\large$h_1$};
+% Right Arrow H{t} 
+\draw[arrows=-latex, line width=1.8pt] (\xTWO + \sigmoidWidth/2+\sigmoidWidth/2, 1.75)   
+--  (\xTHREE, 1.75)
+node[right, xshift=-0.9cm, yshift=0.4cm,] {\large$h_1$};
+
+%%%%%%%%%%%%%%%%%%%%%first one 
+% First Sigmoid
+\draw[fill=LightYellow] (\xTHREE, \yB) rectangle (\xTHREE+ \sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {\large$\sigma$};
+% Upper Arrow Sigmoid 
+\draw[arrows=-latex, line width=1.8pt]  (\xTHREE + \sigmoidWidth/2, \yB +\sigmoidHeight) -- (\xTHREE + \sigmoidWidth/2, 2.6);
+% Circle X_{t+1}
+\draw[thick,fill=LightBlue1] (\xTHREE + \sigmoidWidth/2, \yONE ) circle (\bigR) node {\large$x_2$};
+% Down Arrow X_{t+1}
+\draw[arrows=-latex,line width=1.8pt] (\xTHREE + \sigmoidWidth/2, \yONE + 0.25)  --  (\xTHREE + \sigmoidWidth/2, \yB);
+% Circle H{t} 
+\draw[thick,fill=LightPurple1] (\xTHREE + \sigmoidWidth/2, \yD) circle (\bigR) node {\large$h_2$};
+% Right Arrow H{t} 
+\draw[arrows=-latex, line width=1.8pt] (\xTHREE + \sigmoidWidth/2+\sigmoidWidth/2, 1.75)   
+--  (\xFOUR, 1.75)
+node[right, xshift=-0.9cm, yshift=0.4cm,] {\large$h_2$};
+
+%%%%%%%%%%%%%%%%%%%%%first one 
+% First Sigmoid
+\draw[fill=LightYellow] (\xFOUR, \yB) rectangle (\xFOUR+ \sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {\large$\sigma$};
+% Upper Arrow Sigmoid 
+\draw[arrows=-latex, line width=1.8pt]  (\xFOUR + \sigmoidWidth/2, \yB +\sigmoidHeight) -- (\xFOUR + \sigmoidWidth/2, 2.6);
+% Circle X_{t+1}
+\draw[thick,fill=LightBlue1] (\xFOUR + \sigmoidWidth/2, \yONE ) circle (\bigR) node {\large$x_{t}$};
+% Down Arrow X_{t+1}
+\draw[arrows=-latex,line width=1.8pt] (\xFOUR + \sigmoidWidth/2, \yONE + 0.25)  --  (\xFOUR + \sigmoidWidth/2, \yB);
+% Circle H{t} 
+\draw[thick,fill=LightPurple1] (\xFOUR + \sigmoidWidth/2, \yD) circle (\bigR) node {\large$h_t$};
+% Right Arrow H{t} 
+\draw[arrows=-latex, line width=1.8pt] (\xFOUR + \sigmoidWidth/2+\sigmoidWidth/2, 1.75)   
+--  (\xFOUR + \sigmoidWidth + \sigmoidWidth, 1.75)
+node[right, xshift=-0.7cm, yshift=0.4cm,] {\large$h_t$};
+\node[text width=1cm] at (\xFOUR-.75,1) 
+{\large....};
+
+%%%%%%%%%%%%%%%%%%%%%first one 
+% First Sigmoid
+\draw[fill=LightYellow] (\xZERO, \yB) rectangle (\xZERO+ \sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {\large$\sigma$};
+% Upper Arrow Sigmoid 
+\draw[arrows=-latex, line width=1.8pt]  (\xZERO + \sigmoidWidth/2, \yB +\sigmoidHeight) -- (\xZERO + \sigmoidWidth/2, 2.6);
+% Circle X_{t+1}
+\draw[thick,fill=LightBlue1] (\xZERO + \sigmoidWidth/2, \yONE ) circle (\bigR) node {\large$x_0$};
+% Down Arrow X_{t+1}
+\draw[arrows=-latex,line width=1.8pt] (\xZERO + \sigmoidWidth/2, \yONE + 0.25)  --  (\xZERO + \sigmoidWidth/2, \yB);
+% Circle H{t} 
+\draw[thick,fill=LightPurple1] (\xZERO + \sigmoidWidth/2, \yD) circle (\bigR) node {\large$h_0$};
+% Right Arrow H{t} 
+\draw[line width=1.8pt] (\xZERO + \sigmoidWidth/2+\sigmoidWidth/2, 1.75)   
+--  (.5+\sigmoidWidth/2, 1.75);
+
+\draw[line width=1.8pt] (.5+\sigmoidWidth/2, 1.73)   
+--  (.5+\sigmoidWidth/2, 2.25);
+
+\draw[line width=1.8pt] (.5+\sigmoidWidth/2, 2.23)   
+--  (\xZERO + \sigmoidWidth/2+.03, 2.23);
+
+\draw[line width=1.8pt] (\xZERO + \sigmoidWidth/2-.03, 2.23)   
+--  (\xZERO - \sigmoidWidth/2, 2.23);
+
+\draw[line width=1.8pt] (\xZERO - \sigmoidWidth/2, 2.25)
+--  (\xZERO - \sigmoidWidth/2, 1.75);
+
+\draw[arrows=-latex,line width=1.8pt] (\xZERO-.02 - \sigmoidWidth/2, 1.75)
+--  (\xZERO , 1.75);
+
+\node[text width=1cm] at (1.5,1.75) {\large=};
+\end{tikzpicture}
