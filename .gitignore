@@ -12,19 +12,6 @@ ore latex/pdflatex auxiliary files:
 *.cb2
 .*.lb
 
-Master_Presentation/
-Master_Presentation/*.aux
-Master_Presentation/*.lof
-Master_Presentation/*.log
-Master_Presentation/*.lot
-Master_Presentation/*.fls
-Master_Presentation/*.out
-Master_Presentation/*.toc
-Master_Presentation/*.fmt
-Master_Presentation/*.fot
-Master_Presentation/*.cb
-Master_Presentation/*.cb2
-Master_Presentation/.*.lb
 
 ## Intermediate documents:
 *.dvi
@@ -47,13 +34,6 @@ Master_Presentation/*.xdv
 *-blx.aux
 *-blx.bib
 *.run.xml
-Master_Presentation/*.bbl
-Master_Presentation/*.bcf
-Master_Presentation/*.blg
-Master_Presentation/*-blx.aux
-Master_Presentation/*-blx.bib
-Master_Presentation/*.run.xml
-
 
 ## Build tool auxiliary files:
 *.fdb_latexmk
@@ -62,14 +42,6 @@ Master_Presentation/*.run.xml
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
-
-Master_Presentation/
-Master_Presentation/*.fdb_latexmk
-Master_Presentation/*.synctex
-Master_Presentation/*.synctex(busy)
-Master_Presentation/*.synctex.gz
-Master_Presentation/*.synctex.gz(busy)
-Master_Presentation/*.pdfsync
 
 
 ## Build tool directories for auxiliary files
@@ -93,10 +65,6 @@ acs-*.bib
 *.snm
 *.vrb
 
-Master_Presentation/*.nav
-Master_Presentation/*.pre
-Master_Presentation/*.snm
-Master_Presentation/*.vrb
 # changes
 *.soc
 Master_Presentation/*.soc
