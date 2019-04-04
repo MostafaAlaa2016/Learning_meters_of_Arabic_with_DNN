@@ -167,7 +167,7 @@ To achieve the model architecture unification, we proposed three different encod
 
 \begin{description}
 
- \item[\textbf{\textit{One-hot} encoding}] In this encoding system, we assume the letter with the diacritic as one unit. So, for example, \textarabic{د} represented as letter differs than (\textarabic{دَ, دِ, دُ, دْْ}). Now every letter is represented 5 times (one without diacritic and four times with different diacritics), giving combinations $36 \times 5$ besides the white-space character. Hence, the total is $181 \times 1$. Henceforth, we have 181 Arabic alphabetic characters represented in the \textit{one-hot} encoding, which we employ tol encode verses. (Figure~\ref{Fig:One_Binary_Encoding}).
+ \item[\textbf{\textit{One-hot} encoding}] In this encoding system, we assume the letter with the diacritic as one unit. So, for example, \textarabic{د} represented as letter differs than (\textarabic{دَ, دِ, دُ, دْْ}). Now every letter is represented 5 times (one without diacritic and four times with different diacritics), giving combinations $36 \times 5$ besides the white-space character. Hence, the total is $181 \times 1$. Henceforth, we have 181 Arabic alphabetic characters represented in the \textit{one-hot} encoding, which we employ to encode verses. (Figure~\ref{Fig:One_binary_Encoding}).
 
  It should be noted that that \textit{one-hot} encoding technique is one of the famous techniques in
  encoding problems. We will not compare encoding techniques in these sections. We will, 
@@ -176,9 +176,9 @@ To achieve the model architecture unification, we proposed three different encod
  a verse with 82 characters, it will result in a matrix $181 \times 82$. This would require very 
  large memory.
 
- \item[\textbf{\textit{Binary Encoding}}] The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros. $n =\ceil*{\log_2} l$ where $l$ is the alphabet length, and $n$ is a sufficient number of digits to represent $l$ unique \textit{binary} combinations. For example a phrase like this \textarabic{مَرْحَبا} has 5 characters. figure~\ref{Fig:One_Binary_Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory compared to \textit{one-hot}, and reduces the model input dimensions significantly. On the other hand, the input letters share some features due to the \textit{binary} representation as shown in figure~\ref{Fig:One_Binary_Encoding}.
+ \item[\textbf{\textit{Binary Encoding}}] The idea is to represent a letter with an $n \times 1$ vector which contains a unique combination of ones and zeros. $n =\ceil*{\log_2} l$ where $l$ is the alphabet length, and $n$ is a sufficient number of digits to represent $l$ unique \textit{binary} combinations. For example a phrase like this \textarabic{مَرْحَبا} has 5 characters. figure~\ref{Fig:One_binary_Encoding} shows how it is encoded as a $8 \times 5$ matrix, which saves 22.6 times memory compared to \textit{one-hot}, and reduces the model input dimensions significantly. On the other hand, the input letters share some features due to the \textit{binary} representation as shown in figure~\ref{Fig:One_binary_Encoding}.
 
- \item[\textbf{\textit{two-hot} encoding}] This is an intermediate technique which takes the advantages of the previous two encoding techniques. In it, we encode the letter and its diacritic separately as two \textit{one-hot} vectors, hence the letter is encoded as $37 \times 1$ \textit{one-hot} vector and the diacritic is encoded as $4 \times 1$ \textit{one-hot} vector, then both vectors are stacked to form one $41 \times 1$ vector (Figure~\ref{Fig:One_Binary_Encoding}).
+ \item[\textbf{\textit{two-hot} encoding}] This is an intermediate technique which takes the advantages of the previous two encoding techniques. In it, we encode the letter and its diacritic separately as two \textit{one-hot} vectors, hence the letter is encoded as $37 \times 1$ \textit{one-hot} vector and the diacritic is encoded as $4 \times 1$ \textit{one-hot} vector, then both vectors are stacked to form one $41 \times 1$ vector (Figure~\ref{Fig:One_binary_Encoding}).
 
  We thus reduced the vector dimension from 181 to 41, and also minimized the number of shared features between vectors to the maximum one at each vector. 
 
@@ -312,7 +312,7 @@ The idea was to increase the loss for the small classes, given that the number o
 
 \subsection{Hardware}
 
-We used a Dell Precision T7600 Workstation to conduct our experiments with Intel Xeon E5-2650 32x 2.8GHz CPU, 32GB RAM, 1 NVIDIA GeForce GTX 1080 ti GPU\footnote{\textit{GPU ASUS ROG STRIX GeForce GTX 1080 Ti Assassin's Creed Origins Edition AC-ORIGINS-ROG-STRIX-GTX1080TI, Memory Type: GDDR5X, Connectors: DisplayPort Output, DVI Output: HDMI Standard Output, Chipset/GPU Manufacturer: NVIDIA, Brand: ASUS NVIDIA GeForce GTX 1080 Ti, Compatible Port/Slot: PCI Express 3.0, Memory Size: 11GB 352-Bit GDDR5X, Core Clock 1594 MHz (OC Mode), 1569 MHz (Gaming Mode (Default)), Boost Clock 1708 MHz (OC Mode), 1683 MHz (Gaming Mode (Default)), 1 x DL-DVI-D 2 x HDMI 2.0 2 x DisplayPort 1.4, 3584 CUDA Cores.}.
+We used a Dell Precision T7600 Workstation to conduct our experiments with Intel Xeon E5-2650 32x 2.8GHz CPU, 32GB RAM, 1 NVIDIA GeForce GTX 1080 ti GPU\footnote{\textit{GPU ASUS ROG STRIX GeForce GTX 1080 Ti Assassin's Creed Origins Edition AC-ORIGINS-ROG-STRIX-GTX1080TI, Memory Type: GDDR5X, Connectors: DisplayPort Output, DVI Output: HDMI Standard Output, Chipset/GPU Manufacturer: NVIDIA, Brand: ASUS NVIDIA GeForce GTX 1080 Ti, Compatible Port/Slot: PCI Express 3.0, Memory Size: 11GB 352-Bit GDDR5X, Core Clock 1594 MHz (OC Mode), 1569 MHz (Gaming Mode (Default)), Boost Clock 1708 MHz (OC Mode), 1683 MHz (Gaming Mode (Default)), 1 x DL-DVI-D 2 x HDMI 2.0 2 x DisplayPort 1.4, 3584 CUDA Cores.}}.
 
 More details are available in the following website link: \url{https://www.asus.com/us/Graphics-Cards/AC-ORIGINS-ROG-STRIX-GTX1080TI/ }
 Hard disk SSD 256; with Ubuntu OS, x86\_64 Linux 16.04 LTS. We must emphasize that\footnote{we found a major impact using SSD hard disk when data reading}. Beside the effect of the GPU for Deep Learning experiments, we utilized the memory and the processors to prepare the batches for the input model.
@@ -366,7 +366,7 @@ During our Model development we used the following software and libraries,
  \begin{itemize}
   \item Saving the data cleaned and encoded in the hard disk, and reading it directly encoded (as explained in the previous steps). The data was read in batches and the hardware utilized to train the dataset in parallel with these.
   \item We used Nvidia Cuda optimized LSTM cell, which significantly reduced our training time by up to 6x speedup.
-  \item We used a parallel GPU in our experiments to test the effect, by utilizing a Keras utils multi_gpu_model option.
+  \item We used a parallel GPU in our experiments to test the effect, by utilizing a Keras utils multi\_gpu\_model option.
   \item We saved all the model output for later validations.
  \end{itemize}
  \item We saved all the model output for later validations.
@@ -466,8 +466,9 @@ Figure~\ref{Fig:Results_Per_Class} shows the relation between the model accuracy
 
 
 The difference between data encoding types is explained in Section~\ref{Ch:Data_Encoding}. 
-In this section, we will explore the effects of Data Encoding with respect to Accuracy, Learning Rate and Memory Utilization} on the best model results (4L, 82U, 0W, 1T, 0D, BinE). 
-During our experiments, we found no consistent effect on the model encoding type and the model accuracy ~\ref{Fig:Convergence_Memory}-a. However, in most cases the accuracy of the \textit{two-hot} was found to be slightly better than \textit{binary} and then \textit{one-hot}.
+In this section, we will explore the effects of Data Encoding with respect to Accuracy, Learning Rate and Memory Utilization on the best model results (4L, 82U, 0W, 1T, 0D, BinE). 
+
+During our experiments, we found no consistent effect on the model encoding type and the model accuracy~\ref{Fig:Convergence_Memory}-a. However, in most cases the accuracy of the \textit{two-hot} was found to be slightly better than \textit{binary} and then \textit{one-hot}.
 
 
 \begin{figure}[!t]
