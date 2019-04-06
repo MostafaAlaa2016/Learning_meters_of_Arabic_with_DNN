@@ -8,30 +8,53 @@
 %\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Dataset}
-Our dataset consists of \textbf{1,722,321} labeled data points.%
-\begin{center}
-	\begin{figure}[!t]
-		\centering
-		\begin{tikzpicture}[scale=.8]
-		\input{./Figures/dataset_size_ar.tex}
-		\end{tikzpicture}%
-		\caption{{\tiny Number of verses per \textit{meter} ordered descendingly on y-axis vs. meter name on x-axis.}}\label{Fig:Data_Size_Distribution}
-	\end{figure}
-\end{center}
+\begin{frame}[fragile]{Dataset acquisition and cleansing}
+	\Wider{
+\begin{columns}
 
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Dataset}
-Basic cleansing rules:
+\begin{column}{.5\textwidth} % Left column and width	
+
+
 	\begin{itemize}
+		  \setlength{\itemindent}{.5em}
+{\small		
+		\item[--] \textbf{1,722,321} labeled data points.\\
+		\item [--] We have scrapped the Arabic datasets from \textarabic{الديوان}~\cite{diwan}, \textarabic{الموسوعة الشعرية}~\cite{PoetryEncyclopedia2016}.	
+	\item[--] Basic cleansing rules:
+}
+	
+	\begin{itemize}
+	  \setlength{\itemindent}{-1em}
+{\small		
 		\item Filtering the 16 classic meters.% Ignore the non-classic.
-		\item Removing many unnecessary white spaces.
+		\item Removing unnecessary spaces.
 		\item Removing non-Arabic characters.
 		\item Factoring Shadaa and Tanween.
+	}
 	\end{itemize}
 
-\begin{table}[!ht]
+	\end{itemize}
+%		\caption{Diacritics on the letter  \textarabic{ د }}\label{Tab:Diacritics_Dal}
+
+
+\end{column}
+	
+\begin{column}{.5\textwidth} % Left column and width
+		\begin{center}
+			\begin{figure}[!t]
+				\centering
+				\begin{tikzpicture}[scale=.7]
+				\input{./Figures/dataset_size_ar.tex}
+				\end{tikzpicture}%
+				\label{Fig:Data_Size_Distribution}
+			\end{figure}
+		\end{center}
+\end{column}
+
+\end{columns}
+}
+	\begin{table}[!ht]	
+	\footnotesize 
 	\centering
 	\resizebox{\linewidth}{!}{
 		\begin{tabular}{c c c | c c}
@@ -45,25 +68,14 @@ Basic cleansing rules:
 			% \hline
 			\bottomrule
 	\end{tabular}}
-	\caption{Diacritics on the letter  \textarabic{ د }}\label{Tab:Diacritics_Dal}
 \end{table}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}[fragile]{Motivation}
-%Analyze the learning curve and the effect of the following:
-%\begin{itemize}
-%\item<1-> Encoding.
-%\item<2-> Dataset size.
-%\item<3-> Diacritics. 
-%\end{itemize}
-%\end{frame}
-%
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]{Data Representation}
-An Issue:
+\Wider{
 \begin{itemize}
 	\item Diacritics are standalone characters!
 	\begin{itemize}
@@ -72,19 +84,13 @@ An Issue:
 	\end{itemize}
 \end{itemize}
 
-	\begin{figure}
-		\centering
-		\begin{tikzpicture}[scale=.9]
-		\node at (-12,0){\input{./Figures/encoding_onehot_with_tashkeel.tex}};
-		\node at (-7,0){\input{./Figures/encoding_onehot_without_tashkeel.tex}};
-		\node at (-12+0.3,-3){(a) \textit{With Diacritics}};
-		\node at (-7+0.3, -3){(b) \textit{Without Diacritics}};
-		\end{tikzpicture}
-		\caption{{\tiny Example of \textit{One-hot} encoding for ِِArabic word (\textarabic{مرحبا}).}}\label{Fig:One-hot}
-	\end{figure}
+\begin{figure}
+	\centering
+	\input{./Figures/encoding_three_figures_together.tex}
+	\caption{{\tiny Different encoding mechanisms}}~\label{Fig:All_Encoding}
+\end{figure}
 
-
-
+}
 %\textbf{Benefits}:
 %\begin{enumerate}
 %	\item Verse's length is fixed, regardless the diacritic states.
@@ -95,26 +101,17 @@ An Issue:
 \end{frame}
 
 
-\begin{frame}[fragile]{Encoding Techniques}
-\begin{enumerate}
-\item One-Hot
-\item Binary
-\item \alert{Two-Hot} (new technique)
-\end{enumerate}
-
-\end{frame}
-
-\begin{frame}[fragile]{Encoding Techniques}
-\Wider{
-\begin{figure}
-	\centering
-	\input{./Figures/encoding_three_figures_together.tex}
-	\caption{{\tiny Different encoding mechanisms}}~\label{Fig:All_Encoding}
-\end{figure}
-}
+%\begin{frame}[fragile]{Encoding Techniques}
+%\Wider{
+%\begin{figure}
+%	\centering
+%	\input{./Figures/encoding_three_figures_together.tex}
+%	\caption{{\tiny Different encoding mechanisms}}~\label{Fig:All_Encoding}
+%\end{figure}
+%}
 %181 is the number of all combination between letters and diacritics. $181 = 36 + 36 \times 4 + 1$
 %Let $n$ be the vector length. $n = \ceil*{\log_2 l}$ $l \in \{181\}$ for Arabic English alphabet, respectively.   
-\end{frame}
+%\end{frame}
 
 %
 %\begin{frame}[fragile]{Pros and Cons}

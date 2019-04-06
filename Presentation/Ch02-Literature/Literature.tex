@@ -1,67 +1,53 @@
 \section{Literature Review}
 
-\begin{frame}[fragile]{Detecting Arabic poems meters}
+\begin{frame}[fragile]{Literature Review:Detecting Arabic poems meters}
 
 \begin{block}{Deterministic Approach}
 	There is some literature on recognizing the meters of written Arabic poem using rule-based deterministic algorithms
 \end{block}
 
-\begin{block}{Machine Learning Approach}
-Learning and classifying poems to the right meter has not been addressed before!
-\end{block}
+\begin{itemize}
+	\item <1-> [--] \textbf{Abuata and Al-Omari~\cite{Abuata2016RuleBasedAlgorithm}}:
+	\begin{itemize}
+		\item<2-> Deterministic Algorithm
+		\begin{enumerate}
+			\item Getting the input, carrying full diacritics.
+			\item Metrical scansion rules are applied to the Arud writing. 0/0/..
+			\item Grouping zero and ones to feet \textarabic{تفعيلات}.
+			\item A class is assigned  to the input.
+		\end{enumerate}
+		\item<3-> \textbf{\alert{Results}}: 82.2\% of 417 verses.
+	\end{itemize}
+	\item <4->[--]\textbf{Alnagdawi et al~\cite{Alnagdawi2013FindingArabicPoemMeter}}, similar approach;  Context-Free Grammar; 75\% correctly
+	classed from 128.
+\end{itemize}
 
 
 \end{frame}
 
-
-\begin{frame}[fragile]{Deterministic Approach}
+\begin{frame}[fragile]{Machine Learning approach: Our point of departure}
 \begin{itemize}
-\item <1-> [--] \textbf{Abuata and Al-Omari~\cite{Abuata2016RuleBasedAlgorithm}}:
+\item[--]<1-> Dataset issues:
 \begin{itemize}
-	\item<2-> Deterministic Algorithm
-	\begin{enumerate}
-		\item Getting the input, carrying full diacritics.
-		\item Metrical scansion rules are applied to the Arud writing. 0/0/..
-		\item Grouping zero and ones to feet \textarabic{تفعيلات}.
-		\item A class is assigned  to the input.
-	\end{enumerate}
-	\item<3-> \textbf{\alert{Results}}: 82.2\% of 417 verses.
+\item<2-> Dataset size.
+\item<3-> Diacritics are a must.
+\item<4-> Converting verses into Al-Arud writing style is probabilistic.
 \end{itemize}
-\item <4->[--]\textbf{Alnagdawi et al~\cite{Alnagdawi2013FindingArabicPoemMeter}}, similar approach;  Context-Free Grammar; 75\% correctly
-classed from 128.
-\end{itemize}
-\end{frame}
 
+\item[--]<5-> Detection issues:
 
-\begin{frame}[fragile]{Our point of departure}
-Issues;
-\begin{itemize}
-\item Dataset size.
-\item Accuracies: (75\%, 82\%) tested on (128, 417) verses respectively.
-\item Diacritics are a must.
-% A source of randomness.
-%s. Treating such a problem as a deterministic problem will not satisfy the case study. It results in many limitations, including obligating verses to have full diacritics on every single letter before conducting the classification
-\item Converting verses into Al-Arud writing style is probabilistic.
-\item For detecting meters, all models are so \textbf{naive and primitive}. They do no have any clue about the real pattern.
-
+	\begin{itemize}
+	\item<6-> For detecting meters, all models are so \textbf{naive and primitive}. They do no have any clue about the real pattern.
+	\item<7-> Accuracies: (75\%, 82\%) tested on (128, 417) verses respectively.
+	
+	% A source of randomness.
+	%s. Treating such a problem as a deterministic problem will not satisfy the case study. It results in many limitations, including obligating verses to have full diacritics on every single letter before conducting the classification
+	
+	\item<8-> Encoding technique.
+	\end{itemize}
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Our Approach}
-\begin{itemize}
-\item We present:
-\begin{enumerate}
-	\item<1-> Machine Learning approach.
-	\item<2-> Big Dataset.
-	\item<3-> New encoding technique.
-	\item<4-> Results.
-\end{enumerate}
-\end{itemize}
-
-
-%%% results, dataset, techniques, 
-\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
