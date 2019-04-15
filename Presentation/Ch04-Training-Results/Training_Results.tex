@@ -1,11 +1,11 @@
 \section{Network Architecture and Training}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Which Network!}
+\begin{frame}[fragile]{Which Network?}
 
 
 		\begin{itemize}
-			\item[--] \textbf{Pattern}: is a sequence of characters.
+			\item[--] \textbf{Pattern} is a sequence of characters.
 			\item  Unlike feedforward neural networks, RNNs can use their internal state (memory) to process sequences of inputs.
 			\item In theory, RNNs are capable of handling long-term dependencies. 	However, in practice they do not, due to the \alert{exploding gradient problem}
 			\item LSTMs was designed to solve the long-term dependency problem using internal memory gates.
@@ -176,9 +176,9 @@
 \begin{block}{Encoding}
 	\begin{itemize}
 		
-		\item The encoding method is a transformer function $\mathcal{T}$ which transform a discrete input values $X$. 
-		\item If the network $\eta_1$ is the most accurate network which can ``decode'' $\mathcal{T}(X)$. 
-		\item If we have another encoding function $\mathcal{T}_2$ and we tried to use the same network $\eta_1$ for the $\mathcal{T}_2$ as $\eta_1\left(\mathcal{T}_1(X)\right) = \left(\eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1} \right)\left(\mathcal{T}_2(X)\right)$. This network may be of complicated architecture to be able to “decode” a terse or complex pattern $\mathcal{T}_2(X)$.
+		\item The encoding method is a transformer function $\mathcal{T}$, which transforms discrete input values $X$. 
+		\item It is assumed the network $\eta_1$ is the most accurate network which can ``decode'' $\mathcal{T}(X)$. 
+		\item If we have another encoding function $\mathcal{T}_2$ and we try to use the same network $\eta_1$ for the $\mathcal{T}_2$ as $\eta_1\left(\mathcal{T}_1(X)\right) = \left(\eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1} \right)\left(\mathcal{T}_2(X)\right)$. This network may be of complicated architecture to be able to “decode” a terse or complex pattern $\mathcal{T}_2(X)$.
 		
 	\end{itemize}
 	
@@ -188,6 +188,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Classifying Arabic Non-Poem Text}
+We found 99.2\% of our 150k testing observations which correctly classified have a score range between 0.94 and 1.0.
 \begin{center}
 	\begin{block}{Arabic Article}
 		\begin{Arabic}
@@ -197,13 +198,14 @@
 
 	\end{block}
 
-
-	\begin{Arabic}
-		\begin{table}
+\Wider{
+	
+\begin{Arabic}
+\begin{table}
 \small
-			\begin{tabular}[h!]{c c c c c c c c } 
-%	\hline
-	\multicolumn{4}{c} \hfil \textarabic{خلال المباراة التي جمعتهما} \hfil    & \multicolumn{4}{c} \hfil \textarabic{مساء السبت بالجولة الـ26 من المسابقة} \hfil
+\begin{tabular}[h!]{c c c c c c c c }
+				
+	\multicolumn{4}{c} \hfill \textarabic{خــلال المــبـاراة التــي جـمـعـتـهـمـا}     & \multicolumn{4}{c} \hfill \textarabic{مـســاء الســبـت بالجـولـة الـ26 من المـســابـقـة} \hfill
 	\\ 
 	{\color{black} خلالَلْ} & {\color{black} مُباراتل} & {\color{black} لَتِيجُ} & {\color{black} مَعَتْهُما} & 
 	{\color{black} مِساءَسْ} & {\color{black} سَبَتْبِلْجَوْ} & {\color{black} لَتِلْمِنَلْ } & {\color{black} مُسَابَقَه}\\
@@ -218,9 +220,10 @@
 	{\color{black} فَعُوْلُنْ} &  {\color{black} مَفَاعِيْلُنْ} &  {\color{black} فَعُوْلُنْ} &  {\color{black} مَفَاعِيْلُنْ}\\
 %	\hline
 \end{tabular}
-		\end{table}
-	\end{Arabic}%
-	
+\end{table}
+\end{Arabic}%
+
+}	
 \end{center}
 
 \end{frame}
@@ -228,16 +231,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Classifying Arabic Non-Poem Text}
-\begin{figure}[!t]
-{\includegraphics[scale=.65]{./Figures/IMG_Result_Distribution.png}};
-	\caption{Testing data score ranges distribution.}
-\end{figure}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Bibliography}
 
 \begin{thebibliography}{10}
@@ -349,7 +342,7 @@
 
 \begin{itemize}
 \item Bi-LSTM models always outperform LSTM models.
-\item It means that models can't learn the pattern from one direction, it
+\item This means that models cannot learn the pattern from one direction; it
 should be two directions together.
 \end{itemize}
 \end{frame}
@@ -364,6 +357,39 @@ should be two directions together.
 \end{figure}
 \end{center}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Classifying Arabic Non-Poem Text}
+\begin{figure}[!t]
+	{\includegraphics[scale=.65]{./Figures/IMG_Result_Distribution.png}};
+	\caption{Testing data score ranges distribution.}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Classifying Arabic Non-Poem Text}
+\begin{Arabic}
+	\begin{table}
+		\Large 
+		\begin{tabular}[h!]{c c c c c c c c }
+			
+			\multicolumn{4}{c} \hfill \textarabic{تدفق في البطحاء بعد تبهطل}     & \multicolumn{4}{c} \hfill \textarabic{وقعقع في البيداءغير مزركلِ} \hfill
+			\\ 
+
+			\multicolumn{4}{c} \hfill \textarabic{وسار بأركان العقيش مقرنصا}     & \multicolumn{4}{c} \hfill \textarabic{وهـــام بكـل القارطات بشنكلِ} \hfill
+			\\ 
+			\multicolumn{4}{c} \hfill \textarabic{يقول: وما بال البحاط مقرمطا}     & \multicolumn{4}{c} \hfill \textarabic{ويسعى دواما بين هـك وهنكلِ} \hfill
+			\\ 
+			\multicolumn{4}{c} \hfill \textarabic{إذا أقبـل البحراط طـاح بهمـة}     & \multicolumn{4}{c} \hfill \textarabic{وإن أقرط البحطوش ناء بكلكلِ} \hfill
+			\\ 
+			\multicolumn{4}{c} \hfill \textarabic{يكاد على فرط الحطيف يبقبق}     & \multicolumn{4}{c} \hfill \textarabic{ويضرب ما بين الهماط وكندلِ} \hfill
+			\\ 
+		\end{tabular}
+	
+	\end{table}
+\end{Arabic}%
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% Local Variables:
