@@ -7,13 +7,16 @@
   chapters/ch_abstract,
   chapters/ch_introduction,
   chapters/ch_background,
+  chapters/ch_literature,
+  chapters/ch_dataset,
   chapters/ch_model_training,
+  chapters/ch_results,
   chapters/ch_conclusion,
   chapters/ch_references
-  
+}  
 
 
-  \begin{document}}
+  \begin{document}
 
 
 \include{chapters/front_page}
@@ -36,7 +39,10 @@
 \include{chapters/ch_abstract}
 \include{chapters/ch_introduction}
 \include{chapters/ch_background}
-\include{chapters/ch_model_training}
+\input{chapters/ch_literature}
+\include{chapters/ch_dataset}
+\include{chapters/ch_model_training},
+\include{chapters/ch_results}
 \include{chapters/ch_conclusion}
 %\include{chapters/ch_references}
 \bibliographystyle{IEEEtran}

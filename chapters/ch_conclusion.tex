@@ -15,8 +15,15 @@ In this section, we outline future work which can be undertaken based on this re
 \begin{itemize}
   \item Enhancement on the current work:
   \begin{enumerate}
-    \item The classification results could be enhanced to be the same level as a human expert. We have many areas of enhancement; first, enhancing the network configurations with more layers with combinations of cell units and batch size. Secondly, there is an open area to solve the accuracy drops in the per-class performance issue in the small classes, using a new design of weighting loss function. Third, the dataset for the small classes could be increased, which will affect the learning and understanding of their patterns.
-
+    \item The classification results could be enhanced to be the same level as a human expert. We have many areas of enhancement; first, enhancing the network configurations with more layers with combinations of cell units and batch size. Secondly, there is an open area to solve the accuracy drops in the per-class performance issue in the small classes as following: 
+    {\color{red}
+    	\begin{itemize}
+    		\item New design of weighting loss function. 
+    		\item Increase the dataset for the small classes, which will affect the learning and understanding of their patterns. 
+    		\item Train the dataset with equal amount of classes which named desampling. 
+    		\item Dublicate some poem in the small classes.
+    	\end{itemize}
+}
     \item This problem can be treated as unsupervised learning, which will be a different approach to the problem-solving.
   \end{enumerate}
   \item Build new work based on the current dataset:
