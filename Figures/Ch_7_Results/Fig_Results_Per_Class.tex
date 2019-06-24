@@ -15,8 +15,36 @@
     nodes near coords align={vertical},
     x tick label style={rotate=90, anchor=east},
     bar width=2pt,
-    ymin=0.6,
+    ymin=0.1,
     ]
+
+
+	
+	% full diacritic (Full Circle)
+	% replaced
+	% Exp_3_full_data_matrix_with_tashkeel_8bitsEncoding_Bidirectional_LSTM_3_82_0
+	% (0T, 1D)
+	\addplot[mark=*, thin, only marks, mark size=1.5pt, point
+	meta=explicit symbolic, opacity=0.4]
+	coordinates {
+		(Wafeer,    0.9014024346835623 )       
+		(Monsareh,  0.7305790960451978 )       
+		(Madeed,    0.5062814070351759 )  
+		(Mogtath,   0.6814562002275313 )       
+		(Motakarib, 0.8488725411802335 )       
+		(Kamel,     0.9185383195083638 )       
+		(Taweel,    0.9563337122522612 )       
+		(Sar'e,     0.7830334190231363 )       
+		(Raml,      0.8205778003041054 )       
+		(Rigz,      0.6881982360352793 )       
+		(Khafeef,   0.8859834647183235 )       
+		(Baseet,    0.9370664229634861 ) 
+		(Moktadib,  0.3673469387755102 ) 
+		(Hazg,      0.6519480519480519 )
+		(Modar'e,   0.08333333333333333)
+		(Motadarik, 0.40190476190476193) 
+	};
+
 
     % trimmed no-diacritic (Empty Triangle)
     \addplot[mark=triangle, every mark/.append style={rotate=180},
@@ -38,10 +66,11 @@
       (Baseet,    0.9814341393906374) 
       % Damn Trick; the first \addplot must have all the x ticks; otherwise
       % the following 4 ticks will not appear on the x-axis.
-      (Madeed,     0)  
-      (Hazg,       0) (Motadarik,  0) 
-      (Moktadib,   0) 
-      (Modar'e,    0)
+      %(Madeed,     0)  
+      %(Hazg,       0) 
+      %(Motadarik,  0) 
+      %(Moktadib,   0) 
+      %(Modar'e,    0)
     };
 
     % trimmed diacritic (Empty Circle)
@@ -88,31 +117,6 @@
       (Hazg,      0.5506493506493506 )
       (Modar'e,   0.0                )
       (Motadarik, 0.28               ) 
-    };
-
-    % full diacritic (Full Circle)
-    % replaced
-    % Exp_3_full_data_matrix_with_tashkeel_8bitsEncoding_Bidirectional_LSTM_3_82_0
-    % (0T, 1D)
-    \addplot[mark=*, thin, only marks, mark size=1.5pt, point
-    meta=explicit symbolic, opacity=0.4]
-    coordinates {
-      (Wafeer,    0.9014024346835623 )       
-      (Monsareh,  0.7305790960451978 )       
-      (Madeed,    0.5062814070351759 )  
-      (Mogtath,   0.6814562002275313 )       
-      (Motakarib, 0.8488725411802335 )       
-      (Kamel,     0.9185383195083638 )       
-      (Taweel,    0.9563337122522612 )       
-      (Sar'e,     0.7830334190231363 )       
-      (Raml,      0.8205778003041054 )       
-      (Rigz,      0.6881982360352793 )       
-      (Khafeef,   0.8859834647183235 )       
-      (Baseet,    0.9370664229634861 ) 
-      (Moktadib,  0.3673469387755102 ) 
-      (Hazg,      0.6519480519480519 )
-      (Modar'e,   0.08333333333333333)
-      (Motadarik, 0.40190476190476193) 
     };
 
     \legend{

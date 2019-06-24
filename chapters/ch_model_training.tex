@@ -15,9 +15,9 @@ The current research addresses Poem Comprehensive Dataset (PCD)~\cite{Arabicpoet
 We can show the training phase designed as a data representation configuration and an RNN configuration. The number of experiments is the cross product of both data representations and RNN configuration; for example, If we have 12 data representations and 12 RNN configurations, the total number of experiments will be 144. It should be emphasised that:
 
 \begin{itemize}
- \item Data representation feature is a general feature applied to the dataset, not a hand-drafted feature. More details on~\ref{Sec:Data_Rep_Param}.
+ \item Data representation feature is a general feature applied to the dataset, not a hand-drafted feature. More details on~\nameref{Sec:Data_Rep_Param}.
  \item Data representation feature is affected by Arabic language pronunciation, and some features provide more information than others.
- \item RNN configurations are the parameters related to the Network model development training, and are used after many experiments to find and tune the best configurations. This means we did more than the number of experiment written in this research but publish only the best results overall. More details are provided in sec~\ref{Sec:Rnn_Param}.
+ \item RNN configurations are the parameters related to the Network model development training, and are used after many experiments to find and tune the best configurations. This means we did more than the number of experiment written in this research but publish only the best results overall. More details are provided in sec~\nameref{Sec:Rnn_Param}.
  \item The number of verses (344,464) used in testing and validation is significant, confirming that the model was tested on all types of verses and inspiring confidence in the results.
 
 \end{itemize}
@@ -28,16 +28,16 @@ Arabic language parameters have the following types: Diacritics, Trimming, and E
 
 \subsection{Diacritics}
 
-The Arabic dataset contains the verse with diacritics. We can feed the network the characters with and without diacritics. With diacritics, it will be much easier for the network to learn, since they provide more information on the pronunciation. Moreover, they provide more information relating to the vowel and consonant sounds in the letters. However, as we discussed in Data Encoding Chapter~\ref{Ch:Data_Encoding}, the inclusion or otherwise of diacritics has the same length in input vector size.
+The Arabic dataset contains the verse with diacritics. We can feed the network the characters with and without diacritics. With diacritics, it will be much easier for the network to learn, since they provide more information on the pronunciation. Moreover, they provide more information relating to the vowel and consonant sounds in the letters. However, as we discussed in Data Encoding Chapter~\nameref{Ch:Data_Encoding}, the inclusion or otherwise of diacritics has the same length in input vector size.
 
 
 \subsection{Trimming Small Classes}
 
-The Arabic poem dataset, as stated in Figure~\ref{Fig:Data_Size_Distribution}, is unbalanced. Hence, as part of our research, we consider the dataset representation as a Full dataset and Trimmed dataset. This allows us to study the effect of this unbalance. We not only explore the impact of the unbalanced dataset, but also apply a technique to solve this issue~\ref{Sec:W_Loss}. The trimmed classes are five classes which have less than 1\% of the total dataset. We present these classes as all the classes on the left side of the horizontal red line in Figure~\ref{Fig:Data_Size_Distribution}. Therefore, the classes after trimming total 11, and in the Full dataset all 16 meters are presented.
+The Arabic poem dataset, as stated in Figure~\ref{Fig:Data_Size_Distribution}, is unbalanced. Hence, as part of our research, we consider the dataset representation as a Full dataset and Trimmed dataset. This allows us to study the effect of this unbalance. We not only explore the impact of the unbalanced dataset, but also apply a technique to solve this issue~\nameref{Sec:W_Loss}. The trimmed classes are five classes which have less than 1\% of the total dataset. We present these classes as all the classes on the left side of the horizontal red line in Figure~\ref{Fig:Data_Size_Distribution}. Therefore, the classes after trimming total 11, and in the Full dataset all 16 meters are presented.
 
 \subsection{Encoding Techniques}
 
-As explained previously, there are three different encoding methods~\ref{Ch:Data_Encoding}. Although all carry the same information, it was expected that every encoding has its own behaviors (as below):
+As explained previously, there are three different encoding methods~\nameref{Ch:Data_Encoding}. Although all carry the same information, it was expected that every encoding has its own behaviors (as below):
 
 \begin{itemize}
  \item \textbf{Running Time}: It was expected that the running time would differ from one encoding type to others. This information is important if someone is conducting an experiment with limited time and needs the results as fast as possible.
@@ -81,16 +81,16 @@ The data representation matrix is the cross product of the Diacritics 2, Data En
 \section{Parameters of Network Configuration}\label{Sec:Rnn_Param}
 
 % RNN,LSTM,BI_LSTM
-As explained previously, Recurrent Neural Networks (RNN) show the ability to solve language model problems in Section~\ref{Sec:RNN}. We used RNNs with Long Short Term Memory (LSTM)~\ref{Sec:LSTM} as the main architecture for our experiments. We also used BI-LSTM, discussed in Section~\ref{Sec:Bi_Lstm}, as an alternative way to test the effect of BI-Directional LSTM, to check the learning patterns with the two directions.
+As explained previously, Recurrent Neural Networks (RNN) show the ability to solve language model problems in Section~\nameref{Sec:RNN}. We used RNNs with Long Short Term Memory (LSTM)~\nameref{Sec:LSTM} as the main architecture for our experiments. We also used BI-LSTM, discussed in Section~\nameref{Sec:Bi_Lstm}, as an alternative way to test the effect of BI-Directional LSTM, to check the learning patterns with the two directions.
 
-We also thought using BI-LSTM will support the model to learn the \textit{tafa'il} for every class as it can be combined the sound of music from both ways. We will explain our argument and the effects on the results in Section~\ref{Sec:Results}.
+We also thought using BI-LSTM will support the model to learn the \textit{tafa'il} for every class as it can be combined the sound of music from both ways. We will explain our argument and the effects on the results in Section~\nameref{Sec:Results}.
 % RNN Configuration
 In RNNs network configuration parameters, there are four parameters:
 \begin{itemize}
 \item \textbf{Cell Type}: We used LSTM and BI-LSTM.
 \item \textbf{Layers}: We tried many numbers of layers and we found the optimum number based on our problem to be 4 and 7 layers.
 \item \textbf{Cell Unit Size}: We also tried many numbers but the best results were achieved between 50 and 82.
-\item \textbf{Weighting Model}: As shown in Figure~\ref{Fig:Data_Size_Distribution}, classes are unbalanced. Hence, as an alternative to removing the small classes, we tried to keep all classes, weighting the loss function to account for the relative class size. We introduced a new weighting function, explained in the next sub-section~\ref{Sec:W_Loss} to help work on all the dataset. We therefore have two combinations; one with weighting loss and one without weighting loss.
+\item \textbf{Weighting Model}: As shown in Figure~\ref{Fig:Data_Size_Distribution}, classes are unbalanced. Hence, as an alternative to removing the small classes, we tried to keep all classes, weighting the loss function to account for the relative class size. We introduced a new weighting function, explained in the next sub-section~\nameref{Sec:W_Loss} to help work on all the dataset. We therefore have two combinations; one with weighting loss and one without weighting loss.
  
  \end{itemize}
 
@@ -122,7 +122,7 @@ The idea was to increase the loss for the small classes, given that the number o
 
 We used a Dell Precision T7600 Workstation to conduct our experiments with Intel Xeon E5-2650 32x 2.8GHz CPU, 32GB RAM, 1 NVIDIA GeForce GTX 1080 ti GPU\footnote{\textit{GPU ASUS ROG STRIX GeForce GTX 1080 Ti Assassin's Creed Origins Edition AC-ORIGINS-ROG-STRIX-GTX1080TI, Memory Type: GDDR5X, Connectors: DisplayPort Output, DVI Output: HDMI Standard Output, Chipset/GPU Manufacturer: NVIDIA, Brand: ASUS NVIDIA GeForce GTX 1080 Ti, Compatible Port/Slot: PCI Express 3.0, Memory Size: 11GB 352-Bit GDDR5X, Core Clock 1594 MHz (OC Mode), 1569 MHz (Gaming Mode (Default)), Boost Clock 1708 MHz (OC Mode), 1683 MHz (Gaming Mode (Default)), 1 x DL-DVI-D 2 x HDMI 2.0 2 x DisplayPort 1.4, 3584 CUDA Cores.}}.
 
-More details are available in the following website link: \url{https://www.asus.com/us/Graphics-Cards/AC-ORIGINS-ROG-STRIX-GTX1080TI/ }
+More details are available in the following website link: \href{https://www.asus.com/us/Graphics-Cards/AC-ORIGINS-ROG-STRIX-GTX1080TI/}{asus website}
 Hard disk SSD 256; with Ubuntu OS, x86\_64 Linux 16.04 LTS. We must emphasize that\footnote{we found a major impact using SSD hard disk when data reading}. Beside the effect of the GPU for Deep Learning experiments, we utilized the memory and the processors to prepare the batches for the input model.
 
 \section{Software}
@@ -150,7 +150,7 @@ During our Model development we used the following software and libraries,
  \item We cleaned the data from any dummy char using Pandas and Numby libraries.
  \item We obtained the maximum Bayt length for padding~\footnote{Padding used zeros, which are not selected Arabic Char representations}.
  \item We removed the dummy letters or wrong diacritics letters.
- \item We factorize \textit{Shadaa and Tanween} to their original letters as explained in Chapter~\ref{Ch:Background}.
+ \item We factorize \textit{Shadaa and Tanween} to their original letters as explained in Chapter~\nameref{Ch:Background}.
  \item We divided the data into Full (i.e. Including all the Meters) and Eliminated (i.e. Removing the meters which have less than 1\% of the total data).
  \end{itemize}
  

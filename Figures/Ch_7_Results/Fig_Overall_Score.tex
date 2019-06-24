@@ -1,4 +1,4 @@
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=1.7]
   %% Uses pointModelsFiguresStyle macro defined in pgfplot_configurations.tex
 
   %% two grid to help during positioing.
@@ -18,13 +18,13 @@
   \draw[dashed, thick] (4.2, 0 - 0.9) -- (4.2, \maxHeight +0.5);
 
   %% Group Labels Full/Elimenated
-  \node [align=center, text width=3cm, inner sep=0.25cm] at (2.1, \yONE) {\scriptsize no trimming(0T)};
-  \node [align=center, text width=4cm, inner sep=0.25cm] at (6.32,\yONE) {\scriptsize trimming(1T)};
+  \node [align=center, text width=3cm, inner sep=0.25cm] at (2.1, \yONE) {\large no trimming(0T)};
+  \node [align=center, text width=4cm, inner sep=0.25cm] at (6.32,\yONE) {\large trimming(1T)};
 
-  \node [align=center, text width=3cm, inner sep=0.25cm] at (1, \yTWO) {\scriptsize diacritic(1D)};
-  \node [align=center, text width=3cm, inner sep=0.25cm] at (3, \yTWO) {\scriptsize no diacritic(0D)};
-  \node [align=center, text width=3cm, inner sep=0.25cm] at (5+0.2, \yTWO) {\scriptsize diacritic(1D)};
-  \node [align=center, text width=3cm, inner sep=0.25cm] at (7+0.2, \yTWO) {\scriptsize no diacritic(0D)};
+  \node [align=center, text width=3cm, inner sep=0.25cm] at (1, \yTWO) {\large diacritic(1D)};
+  \node [align=center, text width=3cm, inner sep=0.25cm] at (3, \yTWO) {\large no diacritic(0D)};
+  \node [align=center, text width=3cm, inner sep=0.25cm] at (5+0.2, \yTWO) {\large diacritic(1D)};
+  \node [align=center, text width=3cm, inner sep=0.25cm] at (7+0.2, \yTWO) {\large no diacritic(0D)};
 
   % Points annotaions
   \def \layerHeight{5.7}
@@ -35,59 +35,59 @@
   \def \move{0.1}
   %%%%%% 
 
-  \node  at (3.5*   \step -0.15-\move, \layerHeight) {\scriptsize 7L};
-  \node  at (3.5*   \step -0.15-\move, \unitHeight) {\scriptsize 82U};
-  \node  at (3.5*   \step -0.1 -\move, \weightedHeihgt) {\scriptsize 0};
+  \node  at (3.5*   \step -0.15-\move, \layerHeight) {\large 7L};
+  \node  at (3.5*   \step -0.15-\move, \unitHeight) {\large 82U};
+  \node  at (3.5*   \step -0.1 -\move, \weightedHeihgt) {\large 0};
 
-  \node  at (5.2*   \step, \layerHeight) {\scriptsize 7L};
-  \node  at (5.2*   \step, \unitHeight) {\scriptsize 50U};
-  \node  at (5.2*   \step, \weightedHeihgt) {\scriptsize 1};
+  \node  at (5.2*   \step, \layerHeight) {\large 7L};
+  \node  at (5.2*   \step, \unitHeight) {\large 50U};
+  \node  at (5.2*   \step, \weightedHeihgt) {\large 1};
 
-  \node  at (7*     \step +0.15+\move, \layerHeight) {\scriptsize 7L};
-  \node  at (7*   \step   +0.15+\move, \unitHeight) {\scriptsize 50U};
-  \node  at (7*   \step   +0.1 +\move, \weightedHeihgt) {\scriptsize 1};
-
-  %%%%%%
-
-  \node  at (14*    \step -0.15-\move, \layerHeight) {\scriptsize 7L};
-  \node  at (14*   \step -0.15 -\move, \unitHeight) {\scriptsize 82U};
-  \node  at (14*   \step -0.1  -\move, \weightedHeihgt) {\scriptsize 0};
-
-  \node  at (16*    \step, \layerHeight) {\scriptsize 7L};
-  \node  at (16*    \step, \unitHeight) {\scriptsize 82U};
-  \node  at (16*    \step, \weightedHeihgt) {\scriptsize 0};
-
-  \node  at (17.6*  \step +0.15+\move, \layerHeight) {\scriptsize 7L};
-  \node  at (17.6*  \step +0.15+\move, \unitHeight) {\scriptsize 50U};
-  \node  at (17.6*  \step +0.1 +\move, \weightedHeihgt) {\scriptsize 0};
+  \node  at (7*     \step +0.15+\move, \layerHeight) {\large 7L};
+  \node  at (7*   \step   +0.15+\move, \unitHeight) {\large 50U};
+  \node  at (7*   \step   +0.1 +\move, \weightedHeihgt) {\large 1};
 
   %%%%%%
 
-  \node  at (24.5*  \step -0.15-\move, \layerHeight) {\scriptsize 7L};
-  \node  at (24.5*  \step -0.15-\move, \unitHeight) {\scriptsize 82U};
-  \node  at (24.5*  \step -0.1 -\move,  \weightedHeihgt) {\scriptsize 1};
+  \node  at (14*    \step -0.15-\move, \layerHeight) {\large 7L};
+  \node  at (14*   \step -0.15 -\move, \unitHeight) {\large 82U};
+  \node  at (14*   \step -0.1  -\move, \weightedHeihgt) {\large 0};
 
-  \node  at (26.1*  \step, \layerHeight) {\scriptsize 7L};
-  \node  at (26.1*  \step, \unitHeight) {\scriptsize 82U};
-  \node  at (26.1*  \step, \weightedHeihgt) {\scriptsize 0};
+  \node  at (16*    \step, \layerHeight) {\large 7L};
+  \node  at (16*    \step, \unitHeight) {\large 82U};
+  \node  at (16*    \step, \weightedHeihgt) {\large 0};
 
-  \node  at (28*    \step +0.15+\move, \layerHeight) {\scriptsize 7L};
-  \node  at (28*    \step +0.15+\move, \unitHeight) {\scriptsize 82U};
-  \node  at (28*    \step +0.1 +\move,  \weightedHeihgt) {\scriptsize 1};
+  \node  at (17.6*  \step +0.15+\move, \layerHeight) {\large 7L};
+  \node  at (17.6*  \step +0.15+\move, \unitHeight) {\large 50U};
+  \node  at (17.6*  \step +0.1 +\move, \weightedHeihgt) {\large 0};
 
   %%%%%%
 
-  \node  at (35*    \step -0.15-\move, \layerHeight) {\scriptsize 4L};
-  \node  at (35*    \step -0.15-\move, \unitHeight) {\scriptsize 82U};
-  \node  at (35*    \step -0.1 -\move,  \weightedHeihgt) {\scriptsize 0};
+  \node  at (24.5*  \step -0.15-\move, \layerHeight) {\large 7L};
+  \node  at (24.5*  \step -0.15-\move, \unitHeight) {\large 82U};
+  \node  at (24.5*  \step -0.1 -\move,  \weightedHeihgt) {\large 1};
 
-  \node  at (37*    \step, \layerHeight) {\scriptsize 7L};
-  \node  at (37*    \step, \unitHeight) {\scriptsize 82U};
-  \node  at (37*    \step, \weightedHeihgt) {\scriptsize 0};
+  \node  at (26.1*  \step, \layerHeight) {\large 7L};
+  \node  at (26.1*  \step, \unitHeight) {\large 82U};
+  \node  at (26.1*  \step, \weightedHeihgt) {\large 0};
 
-  \node  at (38.7*  \step +0.15+\move, \layerHeight) {\scriptsize 4L};
-  \node  at (38.7*  \step +0.15+\move, \unitHeight) {\scriptsize 50U};
-  \node  at (38.7*  \step +0.1 +\move,  \weightedHeihgt) {\scriptsize 1};
+  \node  at (28*    \step +0.15+\move, \layerHeight) {\large 7L};
+  \node  at (28*    \step +0.15+\move, \unitHeight) {\large 82U};
+  \node  at (28*    \step +0.1 +\move,  \weightedHeihgt) {\large 1};
+
+  %%%%%%
+
+  \node  at (35*    \step -0.15-\move, \layerHeight) {\large 4L};
+  \node  at (35*    \step -0.15-\move, \unitHeight) {\large 82U};
+  \node  at (35*    \step -0.1 -\move,  \weightedHeihgt) {\large 0};
+
+  \node  at (37*    \step, \layerHeight) {\large 7L};
+  \node  at (37*    \step, \unitHeight) {\large 82U};
+  \node  at (37*    \step, \weightedHeihgt) {\large 0};
+
+  \node  at (38.7*  \step +0.15+\move, \layerHeight) {\large 4L};
+  \node  at (38.7*  \step +0.15+\move, \unitHeight) {\large 50U};
+  \node  at (38.7*  \step +0.1 +\move,  \weightedHeihgt) {\large 1};
 
   \begin{axis}[
     major x tick style = transparent,
@@ -96,7 +96,7 @@
     ymajorgrids = true,
     % every axis y label/.style= {at={( 0, 1.09)}, anchor=north},
     ylabel = {Accuracy},
-    ylabel style = {font=\footnotesize},
+    ylabel style = {font=\large},
     xtickmin={1},
     xtickmax={21},
     axis x line = bottom,
@@ -116,7 +116,7 @@
       {\centerline{\X}\newline}%
       \vspace*{-0.7\baselineskip}
     },
-    nodes near coords style={font=\scriptsize,anchor=-90, text width=1cm},
+    nodes near coords style={font=\large,anchor=-90, text width=1cm},
     ]
 
 
@@ -432,7 +432,7 @@
     };
 
 
-    %\legend{{\scriptsize{Binary(BinE)}}, {\scriptsize{One-Hot(OneE)}}, {\scriptsize{Two-Hot(TwoE)}}}
+    %\legend{{\large{Binary(BinE)}}, {\large{One-Hot(OneE)}}, {\large{Two-Hot(TwoE)}}}
 
 
     \addplot[pointBiLSTM=black] coordinates {(1, 0)};\label{BiLSTM}
@@ -444,14 +444,14 @@
 
     % Cells legend
     \node [draw,fill=white] at (4.2,-1.4) {\shortstack[l]{
-    \ref{BiLSTM} \scriptsize{BiLSTM}
-    \ref{LSTM} \scriptsize{LSTM}}};
+    \ref{BiLSTM} \large{BiLSTM}
+    \ref{LSTM} \large{LSTM}}};
 
     % Encoding legend
-    \node [draw,fill=white] at (4.2,-2) {\shortstack[l]{
-    \ref{Binary} \scriptsize{\scriptsize{Binary(BinE)}}
-    \ref{OneHot} \scriptsize{\scriptsize{One-Hot(OneE)}}
-    \ref{TwoHot} \scriptsize{\scriptsize{Two-Hot(TwoE)}}
+    \node [draw,fill=white] at (4.2,-1.75) {\shortstack[l]{
+    \ref{Binary} \large{\large{Binary(BinE)}}
+    \ref{OneHot} \large{\large{One-Hot(OneE)}}
+    \ref{TwoHot} \large{\large{Two-Hot(TwoE)}}
     }};
 
 
