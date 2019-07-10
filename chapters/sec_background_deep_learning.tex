@@ -423,16 +423,10 @@ To initialize weights and to get the maximum value of the neural network computa
 
 One of the most common problems anyone working with data science in general or deep learning faces is the overfitting problem. In statistics, overfitting is the production of an analysis that corresponds too closely or exactly to a particular set of data, and may, therefore, not fit additional data or predict future observations reliably~\cite{Wiki_Overfitting}. An overfitted model is a statistical model that contains more parameters that can be justified by the data. The essence of overfitting is to have unknowingly extracted residual variation (i.e. the noise) as if that variation represented underlying model structure. As a practical example,a  model performs adequately on training data but cannot predict test data. This means that the models are often free of bias in the parameter estimators, but have estimated (and actual) sampling variances that are needlessly large in the training and unable to be generalized to predict testing data. Figure~\ref{Fig:Fitting} shows different ways of fitting, We need to avoid both underfitting and overfitting. We attempted to enhance the results in our training sets, where the model is more complex, so that the training error reduces but the testing error does not. While building the neural networks, the more complex models lead to more overfitting problems.%
 %
-\begin{figure}[!t]
+\begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.6]{./Figures/Ch_2_Background/Fig_Fitting.png}
 \caption{Comparison Between different fitting types}~\label{Fig:Fitting}
-\end{figure}%
-%
-\begin{figure}[!t]
-\centering
-\input{./Figures/Ch_2_Background/Fig_NN_Dropout.tex}
-\caption{A diagram demonstrating the effects of applying dropout with p = 0.5 to a deep neural networks~\cite{Gitrepo_NN_Tikz}}~\label{Fig:NN_Dropout}
 \end{figure}%
 %
 We can enhance the results on testing data by getting more sample data. Therefore, the model can learn the pattern from the data in a better way, but sometimes it is difficult to acquire more data, or it is more expensive than the enhancement required. Hence, we work to apply regularization techniques to prevent overfitting.
@@ -464,7 +458,12 @@ J(w,b) = \frac{1}{m} \sum_{i=1}^{m} \ell(y,\widehat{y})+\frac{\lambda}{2m} \time
 Dropout is one of the most powerful techniques to apply regularization. It produces excellent results and is consequently the most frequently used regularization technique in the field of deep learning.
 
 Figure~\ref{Fig:NN_Dropout} shows the idea of dropout; it randomly selects some nodes and removes them along with all of their incoming and outgoing connections. Dropout technique’s randomness makes the models’ results seem a more generalized model. For each node, we have a probability of some dropout percentage that this node will be removed with its connections. Therefore, we have some simpler network architecture. Also, dropout forces the algorithm not to rely on any feature. Hence, one must spread the weights and make the network try to learn a different type of features. Therefore, dropout is usually preferred when we have a large neural network structure in order to introduce more randomness.%
-
+%
+\begin{figure}[!ht]
+	\centering
+	\input{./Figures/Ch_2_Background/Fig_NN_Dropout.tex}
+	\caption{A diagram demonstrating the effects of applying dropout with p = 0.5 to a deep neural networks~\cite{Gitrepo_NN_Tikz}}~\label{Fig:NN_Dropout}
+\end{figure}%
 \item \textbf{Data Augmentation} is a technique to augment your training data when there is no way to acquire more data for the more generalized model. Assuming we are working on Image classifier problem, for example, we can flip the images horizontally and also add that to the training set. Now, instead of this one example in our training set, we can add this to our training example. So by flipping the images horizontally, we could double the size of our training set. Also, we can do different techniques such as rotating the image, flipping, scaling, and shifting the images. All of these techniques can help to produce a better-generalized model.%
 
 \item \textbf{Early stopping} is a type of cross-validation technique where we split some of our training data to be set as the validation set. When we show that our performance on the validation set is getting worse, we immediately stop the training on the model. This is known as early stopping.%@@@ add figure example of early stopping
@@ -526,7 +525,7 @@ What is the new proposed architecture which can provide a way to share the featu
 \begin{itemize}
 \item First, assuming we have input features $x_1, x_2, x_n$ in the old architecture, we input all these features to the Neural Network, but now we input for example $x_1$ and take the output activation from $a^{<1>}$ to be a feature input with $x_2$, then take the output activation from $a^{<2>}$ as input to $x_3$, similar to $x_n$. figure~\ref{Fig:RNN_Rolled_Loop} shows an example. Hence, this new change allows us to share the learned feature between the networks input data. ,We can also think about it as multiple copies of the same network, each passing a message to a successor\cite{colah}.%
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \minipage{\textwidth}
 \centering
 \input{./Figures/Ch_2_Background/Fig_RNN_unrolled.tex}
@@ -543,16 +542,6 @@ What is the new proposed architecture which can provide a way to share the featu
 \endminipage
 \caption{The repeating module in a standard RNN containing a single layer adapted from~\cite{colah}}~\label{Fig:LSTM_SimpleRNN}
 
-\minipage{0.33\textwidth}
-\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Left.tex}
-\endminipage\hfill
-\minipage{0.33\textwidth}
-\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_full.tex}
-\endminipage\hfill
-\minipage{0.33\textwidth}%
-\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Right.tex}
-\endminipage
-\caption{The repeating module in an LSTM containing four interacting layers adapted from~\cite{colah}}~\label{Fig:LSTM_Cell_Chaining}
 \end{figure}%
 
 \item Second, the feedforward computes for time t and then we calculate the loss at step t. The final loss is the sum of loss at every step; t~\eqref{eq:rnn_feedfarward} explains feedforward steps. The backpropagation is also calculated through time at every step.% 
@@ -576,45 +565,6 @@ As explained, RNN works on sequential data, and the idea is to predict new outpu
 In the previous example, predicting the word \underline{got} depends on the sentence’s tense whether it present or past to be consistent is correct. It also shows how some problems need the long-term dependencies handling.[Bengio et al.,1994]~\cite{Bengio_1994} showed that Basic RNNs have a problem in long-term dependency.  Another problem which may happen in basic Neural Networks is gradient exploding. One of the side-effects of gradient exploding is an exponentially large gradient which causes our parameters to be so large. Hence, the Neural Networks parameters have a severe problem. Another serious problem with Basic Neural Networks is overfitting problems [Zaremba et al., 2014]~\cite{Zaremba_et_al}.
 
 To solve this learning problem [Hochreiter and Schmidhuber, 1997] introduced Long Short-Term Memory which helps to reduce the dependency problem using memory cells and forget gates.%
-\begin{figure}[!t]
- \centering
- \subfigure[Top line is the medium for information flow]
- {
-  \label{Fig:LSTM_Cell_State}
-  \input{./Figures/Ch_2_Background/Fig_LSTM_Cell_State.tex}
- }
- \subfigure[Pointwise Multiplication Operation]
- {
-  \label{Fig:LSTM_Gate}
-  \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_multiplication_operation.tex}
- }
- \subfigure[LSTM sigmoid forget gate]
- {
-  \label{Fig:LSTM-forget-gate}
-  \input{./Figures/Ch_2_Background/Fig_LSTM_forget_gate.tex}
- }
- \subfigure[LSTM Input gate]
- {
-  \label{Fig:LSTM_Input_Gate}
-  \input{./Figures/Ch_2_Background/Fig_LSTM_Input_Gate.tex}
- }
- \subfigure[Multiplication and Addition Operation in LSTM.]
- {
-  \label{Fig:LSTM_Pointwise_Operations}
-  \input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_operations.tex}
- }
- \subfigure[LSTM output gate.]
- {
-  \label{Fig:LSTM_Output_Gate}
-  \input{./Figures/Ch_2_Background/Fig_LSTM_output_gate.tex}
- }
- \subfigure[GRU cell architecture.]
- {
-  \label{Fig:GRU}
-  \includegraphics[scale=0.6]{./Figures/Ch_2_Background/GRU.png}
- }
-\caption{LSTM Gates and Configurations adapted from~\cite{colah}}
-\end{figure}%
 \subsection{Long Short Term Memory networks (LSTMs)}\label{Sec:LSTM}
 
 
@@ -625,6 +575,19 @@ LSTMs are designed to help solving the long-term dependency problem and to hold 
 Both Basic RNNs and LSTM have the form of a chain of repeating modules of neural network. The main difference is the structure of the Networks.%
 
 Basic RNNs have very simple structure for every layer with simple output function~\ref{Fig:LSTM_SimpleRNN}. However, LSTMs have four interacting layers Figure~\ref{Fig:LSTM_Cell_Chaining}.
+\begin{figure}[!ht]
+	
+	\minipage{0.33\textwidth}
+	\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Left.tex}
+	\endminipage\hfill
+	\minipage{0.33\textwidth}
+	\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_full.tex}
+	\endminipage\hfill
+	\minipage{0.33\textwidth}%
+	\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_Right.tex}
+	\endminipage
+	\caption{The repeating module in an LSTM containing four interacting layers adapted from~\cite{colah}}~\label{Fig:LSTM_Cell_Chaining}
+\end{figure}%
 
 \subsubsection{LSTM Gate Mechanism}
 
@@ -685,6 +648,45 @@ In RNN, Gated recurrent units (GRUs) are a gating mechanism, introduced in 2014 
 \end{itemize}%
 
 The result of this modifications is that GRUs are simpler and easier for modifications in design. GRUs trains faster and in some cases performs better than LSTMs on less training data, mainly in language modelling. However, LSTMs have some benefits over GRUs, with longer sequences in tasks requiring modelling long-distance relations.
+\begin{figure}[!ht]
+	\centering
+	\subfigure[Top line is the medium for information flow]
+	{
+		\label{Fig:LSTM_Cell_State}
+		\input{./Figures/Ch_2_Background/Fig_LSTM_Cell_State.tex}
+	}
+	\subfigure[Pointwise Multiplication Operation]
+	{
+		\label{Fig:LSTM_Gate}
+		\input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_multiplication_operation.tex}
+	}
+	\subfigure[LSTM sigmoid forget gate]
+	{
+		\label{Fig:LSTM-forget-gate}
+		\input{./Figures/Ch_2_Background/Fig_LSTM_forget_gate.tex}
+	}
+	\subfigure[LSTM Input gate]
+	{
+		\label{Fig:LSTM_Input_Gate}
+		\input{./Figures/Ch_2_Background/Fig_LSTM_Input_Gate.tex}
+	}
+	\subfigure[Multiplication and Addition Operation in LSTM.]
+	{
+		\label{Fig:LSTM_Pointwise_Operations}
+		\input{./Figures/Ch_2_Background/Fig_LSTM_pointwise_operations.tex}
+	}
+	\subfigure[LSTM output gate.]
+	{
+		\label{Fig:LSTM_Output_Gate}
+		\input{./Figures/Ch_2_Background/Fig_LSTM_output_gate.tex}
+	}
+	\subfigure[GRU cell architecture.]
+	{
+		\label{Fig:GRU}
+		\includegraphics[scale=0.6]{./Figures/Ch_2_Background/GRU.png}
+	}
+	\caption{LSTM Gates and Configurations adapted from~\cite{colah}}
+\end{figure}%
 
 \subsubsection{BI-LSTM}\label{Sec:Bi_Lstm}
 

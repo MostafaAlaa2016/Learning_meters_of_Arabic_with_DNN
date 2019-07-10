@@ -31,34 +31,25 @@ Arabic poetry(\textarabic{الشعر العربى}) is the earliest form of Arab
 Deep Learning, also named Deep Neural Network, is part of Machine Learning algorithms. Deep Learning attempts to simulate the human brain into neural dependency.  By using Deep Learning, we can achieve better results when learning from the data. Deep Neural Network needs a huge amount of data to achieve the expected learning curve and results. It also needs a massive amount of computation to train. We used the Recurrent Neural Network (RNN) to work on the Arabic text and show its ability to achieve outstanding performance on problems of text data. We also used LSTM to solve the long dependency issue in RNN~\nameref{Sec:Deep_Learning_Background}.
 
 \section{Thesis Objectives}
+
 This thesis aims to explore the Arabic language feature using established Al-Arud rules. This exploration helps us understand how to use a machine learning model to understand Arabic language features without hand-crafted features or static rule-based models.
+
+Artificial Intelligence currently works to do the human tasks such as our problem here. Our target in this thesis is to achieve the human accuracy which will make it easy for anyone to recognise the meter for any poem without referring to the language experts or to study the whole field.
+
+In this thesis, we explain how to use deep learning to classify the Arabic poem. We also explain in detail the feature of Arabic poem and how to deal with this feature. We explain how anyone can work with Arabic text encoding in a dynamic way to encode the text at the character level and deal with Arabic text features such as the \textit{Tashkeel}.{\color{red} We was able to achieve classification accuracy score 0.9638 for classifications of the sixteen Arabic meters classes.}
 
 This is a basic step to get deeper into the language and, later not only can we have more robust machine learning models which understand and classify the Poem/poetry, but we can also generate a similar text with the model without breaking the rules. All the previous are first steps toward a deeper understanding of the Arabic language features and rules using deep learning techniques. This research can open ideas about how machine understanding of Arabic Grammar rules leads to new ideas to generate better Arabic text models.
 
 This research is the first to address classifying poem meters via a machine learning approach. It aims to have a deep understanding of Arabic language grammar and features in the Poem meters classification and is a base for further research related to the poem analysis problem.
 
 In this study, we work on Poetry Meter Classification and use the latest technologies to check the class of poem. We also work to achieve near human expert results which make our work a breakthrough in the field concerning the results compared to previous results. Figure~\ref{Fig:Thesis_Cycle} shows the steps. First, we derived the data from the available sources with labeling. Second, the clean data was transformed and encoded. Finally, the cleaned data was trained, validated, and enhanced into the RNN model.
-
-\begin{figure}[!t]
-   \input{./Figures/Ch_1_Intro/Fig_Master_Cycle.tex}
-  \caption{Thesis Working Steps.}
-  \label{Fig:Thesis_Cycle}
+\begin{figure}[!ht]
+	\input{./Figures/Ch_1_Intro/Fig_Master_Cycle.tex}
+	\caption{Thesis Working Steps.}
+	\label{Fig:Thesis_Cycle}
 \end{figure}
 
-% @@@
-% ``will''; e.g., ``In this chapter, we will give ...'' => `` we give...''
 
-% be consistent in formatting: you wrote ``meters'' using italic then wrote ``Al-arud'' using bold face without italic. No need for bold face; just italic is enough because it is a new term.
-
-% The following statements need complete re-writing; I left them unchanged: ``This thesis aims to
-% explore the Arabic language feature using established Al-Arud rules. This exploration will help us
-% understand how to use a machine learning model to understand Arabic language features without
-% hand-crafted features or static rule-based models.''
-
-% I left the rest of the section ``Thesis Objective'' without revision, since I fed up.
-
-% General comments to this guy: Many statements need re-phrasing or re-wording. Some statements need
-% to be merged. Some other places include redundant phrasing.
 
 
 %%% Local Variables:

@@ -85,7 +85,7 @@ As explained previously, Recurrent Neural Networks (RNN) show the ability to sol
 
 We also thought using BI-LSTM will support the model to learn the \textit{tafa'il} for every class as it can be combined the sound of music from both ways. We will explain our argument and the effects on the results in Section~\nameref{Sec:Results}.
 % RNN Configuration
-In RNNs network configuration parameters, there are four parameters:
+In RNNs network configuration parameters {\color{red} we took 100k sample of the data and applied lots of experiments and trials to find the best network configurations paramters which we show in the next part. However, due to the limitation of the Hardware we didn't apply much higher configurations parameters due to the memory issue. We can mention that for example, when we was trying to increase the unit size over 82 and the layers more than 7 we got out of memory exceptions and sometimes we reduce for experiment stability}.  there are four parameters:
 \begin{itemize}
 \item \textbf{Cell Type}: We used LSTM and BI-LSTM.
 \item \textbf{Layers}: We tried many numbers of layers and we found the optimum number based on our problem to be 4 and 7 layers.
@@ -189,12 +189,8 @@ During our Model development we used the following software and libraries,
 
  \end{itemize}
  
-\end{enumerate}
-
-\clearpage
-
-
-
+\end{enumerate}%
+%
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../master"

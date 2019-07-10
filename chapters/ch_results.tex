@@ -101,11 +101,11 @@ In Figure~\ref{Fig:Results_Per_Class} we have the previous four models display t
 Figure~\ref{Fig:Results_Per_Class} shows the relation between the model accuracy results per-class and the dataset size per class; however, this trend was expected to be fixed from the weighted loss which has an inconsistent effect on the weighting loss for all the models. This inconsistent effect shows we need a new design which has an function which can solve this trending issue. The overall accuracy can be increased after trimming but there will be a gap between the accuracy per class the size of the data per class as the dataset is not balanced. Moreover, we can repeat this experiment, ensuring all classes have an equal size; we can therefore show the accuracy without the issue of data unbalance.This is developed in Section~\nameref{Sec:Discussion}.
 
 
-\begin{figure}[!t]
- \input{./Figures/Ch_7_Results/Fig_Results_Per_Class.tex}
- \caption{The per-class accuracy score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{Fig:Data_Size_Distribution}. There is a descending trend in the class size, with an exception at \textit{Rigz}}~\label{Fig:Results_Per_Class}
+\begin{figure}[t]
+	\input{./Figures/Ch_7_Results/Fig_Results_Per_Class.tex}
+	\caption{The per-class accuracy score for the best four models with combination of (\{\textit{Trimming}\} $\times$ \{\textit{Diacritics}\}); the $x$-axis is sort by the class size as in Figure~\ref{Fig:Data_Size_Distribution}. There is a descending trend in the class size, with an exception at \textit{Rigz}}~\label{Fig:Results_Per_Class}
 \end{figure}
-
+\clearpage
 \section{Encoding Effect}
 
 
@@ -114,20 +114,21 @@ In this section, we will explore the effects of Data Encoding with respect to Ac
 
 During our experiments, we found no consistent effect on the model encoding type and the model accuracy~\ref{Fig:Convergence_Memory}-a. However, in most cases the accuracy of the \textit{two-hot} was found to be slightly better than \textit{binary} and then \textit{one-hot}.
 
-
-\begin{figure}[!t]
- \centering
- \begin{tikzpicture}
- \input{Figures/Ch_7_Results/Fig_Results_Encoding_Convergence.tex}
- % \input{Figures/Ch_7_Results/Fig_Results_Memory_Consumption.tex}
- \end{tikzpicture}
- \caption{Encoding effect on Learning rate with the best model (1T, 0D, 4L, 82U, 0W, BinE) and when using the two other encodings instead of BinE.}~\label{Fig:Convergence_Memory}%(b) Relative size in bytes of the three encoding vectors
-\end{figure}
-
-
 Figure~\ref{Fig:Convergence_Memory} shows the effect of encoding on learning rate, with no difference in convergence speed between the encoding types; However, we found some encoding starts learning faster than others between epochs [1:5]; but overall they converge with the same learning curve at the end.
 
 Memory Utilization is not similar for each model encoding. We found that each encoding has it is own vector size representation with different memory utilization, based on the vector size; for example, the vector size of \textit{one-hot} is $181 \times 8(bits)$, which will output $1,448$. If we compare this encoding with \textit{two-hot} we find $41 \times 8(bits)$, WHICH will output $328$. Comparing the previous two encodings with \textit{binary}, we find it is the lowest memory consumption $8 \times 8(bits)$, outputting $64$. It is apparent that \textit{two-hot} is in the middle between the two encodings with respect to memory consumption, which gives more meaning for data encoding, as explained in Section~\nameref{Ch:Data_Encoding}
+
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+	\input{Figures/Ch_7_Results/Fig_Results_Encoding_Convergence.tex}
+	% \input{Figures/Ch_7_Results/Fig_Results_Memory_Consumption.tex}
+	\end{tikzpicture}
+	\caption{Encoding effect on Learning rate with the best model (1T, 0D, 4L, 82U, 0W, BinE) and when using the two other encodings instead of BinE.}~\label{Fig:Convergence_Memory}%(b) Relative size in bytes of the three encoding vectors
+\end{figure}
+
+
 
 \section{Comparison with Literature}
 As explained previously, one of the advantages in our research work is our very large dataset, which affords us a good subset for testing. This provides us confidence regarding our results.
