@@ -112,6 +112,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pdfstringdefDisableCommands{\let\uppercase\relax}%ignore warning \uppercase is not supported when a string is expanded for bookmarks.
 
+\newcommand{\abbrlabel}[1]{\makebox[3cm][l]{\textbf{#1}\ \dotfill}}
+\newenvironment{abbreviations}{\begin{list}{}{\renewcommand{\makelabel}{\abbrlabel}}}{\end{list}}
+
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "master"
