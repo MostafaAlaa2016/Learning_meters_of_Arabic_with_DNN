@@ -17,14 +17,20 @@ This simple machine learning approach is working in the data but not with its or
 However, for many tasks, it is difficult to identify the features which should be extracted. For example, we need to detect cars in photographs. We know every car has wheels. So, to detect cars, we can check if there is a wheel to be a feature for car detection. However, to detect or to describe wheels in terms of pixel values is a difficult task. The image may not be clear or may be complicated by shadows, the sun glaring off the metal parts of the wheel, the blurring in images may sometimes make it unclear, and so on~\cite{Goodfellow-et-al-2016}. One solution to this problem is to use machine learning itself to discover not only the output of the model but also the features which are the input for the model. This approach is known as representation learning. Learned representation can achieve better results than hard-designed representation. This approach also allows AI systems to rapidly adapt to new tasks or be automatically identified from any new data. Representation learning can automatically discover many features quickly or can take more time in case of complex tasks, but will at least provide an excellent set of features which can be adapted for any complex problem without the need for manual features. In this research, we used the AI to identify the features for our model, enabling this model to achieve breakthrough results, compared with the old method of manual feature machine learning.
 
 If we go back to the image example, we can show that it is not an easy task to extract features to detect the car from an image. So, Deep Learning is trying to solve this problem in feature engineering by introducing representation learning that build complex representations in terms of another simpler layer of representations. Figure~\ref{Fig:Deep_Learning_Image_Person_Example} shows how deep learning represents an image of a person by combining simpler representation, e.g. the edges and contours which led to understanding complex representations. The benefit from allowing the computer to understand the data and building the representation is the ability to build and understand very complex representation and also to utilize and combine features from simpler to deep representations with many ways such as recurrence or sequences.
+\begin{figure}[!ht] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/DeepLearningImagePersonExample.png}
+	\caption{Illustrations on how Deep Learning can work based on images figure presented~\cite{Goodfellow-et-al-2016}~\cite{Zeiler2014}.}
+	\label{Fig:Deep_Learning_Image_Person_Example}
+\end{figure}
+
+{\color{red}
+
+Another example is using DL in text generation problems. Lots of research works to use DL to generate text after learning the pattern from the text for example, train the model on Shakespeare’s poems and then the model try to generate a similar text. We can also use DL to classify the text similar idea of our research work. The main idea is how to use these techniques to get best results without hand-crafted feature engineering.
+
+}
 
 Modern deep learning provides a compelling framework for learning data problems. This model becomes more complex by the adding more layers and more units within a layer. The Deep Learning model works perfectly on the big dataset which allows the model to learn the data features in a good way.
 
 In the remaining parts in this section we start introducing the main concepts and components used in deep learning, and the basic units of Recurrent Neural networks and LSTM.%
-\begin{figure}[!t] \includegraphics[width=\linewidth]{./Figures/Ch_2_Background/DeepLearningImagePersonExample.png}
- \caption{Illustrations on how Deep Learning can work based on images figure presented~\cite{Goodfellow-et-al-2016}~\cite{Zeiler2014}.}
- \label{Fig:Deep_Learning_Image_Person_Example}
-\end{figure}
 
 \subsection{Logistic Regression}
 
