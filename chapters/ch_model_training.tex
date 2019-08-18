@@ -1,6 +1,7 @@
 \chapter{Model Training}\label{Ch:Model_Training}
 
-{\color{red} In this chapter, we discuss the training and experiment design. This phase started by exploring what the ratio of Training, Testing, and Validation is. Choosing the correct percentage of training dataset compared to the Testing and Validation in Deep learning differs from normal machine learning structure, and it affects the model performance. Choose the correct Neural Network and RNN architecture.}
+
+In this chapter, we discuss the training and experiment design. This phase starts by exploring the ratio of Training, Testing, and Validation. Choosing the correct percentage of training dataset compared to the Testing and Validation in Deep learning differs from normal machine learning structure, and affects the model performance. One must choose the correct Neural Network and RNN architecture.
 
 \clearpage
 
@@ -83,9 +84,7 @@ The data representation matrix is the cross product of the Diacritics 2, Data En
 % RNN,LSTM,BI_LSTM
 As explained previously, Recurrent Neural Networks (RNN) show the ability to solve language model problems in Section~\nameref{Sec:RNN}. We used RNNs with Long Short Term Memory (LSTM)~\nameref{Sec:LSTM} as the main architecture for our experiments. We also used BI-LSTM, discussed in Section~\nameref{Sec:Bi_Lstm}, as an alternative way to test the effect of BI-Directional LSTM, to check the learning patterns with the two directions.
 
-We also thought using BI-LSTM will support the model to learn the \textit{tafa'il} for every class as it can be combined the sound of music from both ways. We will explain our argument and the effects on the results in Section~\nameref{Sec:Results}.
-% RNN Configuration
-In RNNs network configuration parameters {\color{red} we took 100k sample of the data and applied lots of experiments and trials to find the best network configurations paramters which we show in the next part. However, due to the limitation of the Hardware we didn't apply much higher configurations parameters due to the memory issue. We can mention that for example, when we was trying to increase the unit size over 82 and the layers more than 7 we got out of memory exceptions and sometimes we reduce for experiment stability}.  there are four parameters:
+We also thought using BI-LSTM will support the model to learn the \textit{tafa'il} for every class as it can be combined with the sound of music from both perspectives. We will explain our argument and the effects on the results in Section~\nameref{Sec:Results}. In RNNs network configuration parameters, we took 100k sample of the data and applied numerous experiments and trials to find the best network configuration parameters which we show in the next part. However, due to the hardware limitations, we didn’t apply much higher configuration parameters, due to the memory issue. We can mention that, for example, when we were trying to increase the unit size over 82 and the layers more than 7 we had insufficient memory exceptions and sometimes reduced for experiment stability. There are four parameters:
 \begin{itemize}
 \item \textbf{Cell Type}: We used LSTM and BI-LSTM.
 \item \textbf{Layers}: We tried many numbers of layers and we found the optimum number based on our problem to be 4 and 7 layers.
